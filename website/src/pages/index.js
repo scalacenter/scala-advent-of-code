@@ -13,7 +13,7 @@ function HomepageHeader() {
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
         <h1 className="hero__title">
-          Scala Advent of Code by 
+          Scala Advent of Code by
           <a href="https://scala.epfl.ch/">
             <img className={styles.scalacenter} alt="Scala Center" src={useBaseUrl('/img/scala-center.png')} title="Scala Center"/>
           </a>
@@ -36,7 +36,7 @@ export default function Home() {
   return (
     <Layout
       title={siteConfig.title}
-      description="Description will go into a meta tag in <head />">
+      description="Scala advent of code by the scala center">
       <HomepageHeader />
       <main>
         <HomepageFeatures />

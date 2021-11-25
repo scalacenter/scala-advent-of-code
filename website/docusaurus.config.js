@@ -7,7 +7,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Scala Center Advent of Code',
-  tagline: 'Some fun with Scala',
+  tagline: '',
   url: 'https://scalacenter.github.io/',
   baseUrl: '/scala-advent-of-code/',
   onBrokenLinks: 'throw',
@@ -41,7 +41,7 @@ const config = {
         title: 'Scala Advent of Code',
         logo: {
           alt: 'Scala Center',
-          src: '/img/scala-center.png',
+          src: '/img/scala-with-tree.png',
         },
         items: [
           {
@@ -70,7 +70,6 @@ const config = {
         ],
       },
       footer: {
-        style: 'dark',
         links: [
           {
             title: 'Content',
@@ -93,16 +92,8 @@ const config = {
             title: 'Community',
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/scala',
-              },
-              {
                 label: 'Discord',
                 href: 'https://discord.gg/pNUuM4gA'
-              },
-              {
-                label: 'Gitter',
-                href: 'https://gitter.im/scala/center',
               },
               {
                 label: 'Twitter',
