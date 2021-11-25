@@ -22,7 +22,7 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          path: '../docs',
+          path: '../myproject-docs/target/mdoc',
           routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl: 'https://github.com/scalacenter/scala-advent-of-code/edit/main/website',
