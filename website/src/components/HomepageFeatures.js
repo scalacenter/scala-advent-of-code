@@ -22,7 +22,7 @@ export default function HomepageFeatures() {
           </div>
           <div className={clsx('col col--4')}>
             <div className="text--center">
-              <img src={useBaseUrl('/img/adventOfCode.png')} className={styles.featureSvg} />
+              <img src={useBaseUrl('/img/adventofcode_circle.png')} className={styles.featureSvg} />
             </div>
             <div className="text--center padding-horiz--md">
               <h3>Solve Advent of Code puzzles</h3>
