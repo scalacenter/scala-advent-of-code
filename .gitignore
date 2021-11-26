@@ -1,3 +1,9 @@
+# Scala stuff
+/.bloop/
+.bsp/
+metals.sbt
+target/
+
 # Dependencies
 website/node_modules
 
