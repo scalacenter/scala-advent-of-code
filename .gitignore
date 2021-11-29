@@ -5,6 +5,9 @@ metals.sbt
 target/
 .scala/
 
+# Solutions
+/solutions/
+
 # Dependencies
 website/node_modules
 

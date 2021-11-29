@@ -1,4 +1,4 @@
-// using scala 3.0.1
+// using scala 3.0.2
 
 package template1
 
@@ -8,7 +8,7 @@ import scala.io.Source
   val path = args.headOption.getOrElse("input/template1.part1")
   val input = Source.fromFile(path).mkString
   val answer = computeAnswer(input, 2)
-  println(s"The solution of is $answer")
+  println(s"The solution is $answer")
 
 @main def part2(args: String*): Unit =
   val path = args.headOption.getOrElse("input/template1.part2")
