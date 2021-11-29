@@ -2,5 +2,5 @@
 .bsp/
 metals.sbt
 target/
-.Scala
+.scala/
 
