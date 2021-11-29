@@ -4,12 +4,12 @@
  */
 
 .heroBanner {
-  padding: 4rem 0;
   text-align: center;
   position: relative;
   overflow: hidden;
-  background-image: url("../../static/img/130.jpg");
+  background-image: url("/img/background.jpg");
   background-size: cover;
+  height: 550px;
   /*background-position: top;*/
 }
 
