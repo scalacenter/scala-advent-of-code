@@ -6,23 +6,21 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #113f5c;
-  --ifm-color-primary-lightest: #165278;
-  --ifm-color-primary-lighter: #14486a;
-  --ifm-color-primary-light: #134565;
-  --ifm-color-primary-dark: #0f3953;
-  --ifm-color-primary-darker: #0e364e;
-  --ifm-color-primary-darkest: #0c2c40;
+  --ifm-color-primary: #c54245;
+  --ifm-color-primary-lightest: #d87e80;
+  --ifm-color-primary-lighter: #ce6063;
+  --ifm-color-primary-light: #cb5659;
+  --ifm-color-primary-dark: #b5383a;
+  --ifm-color-primary-darker: #ab3437;
+  --ifm-color-primary-darkest: #8d2b2d;
   --ifm-code-font-size: 95%;
   --ifm-footer-background-color: #0c2c40
 }
+
 html footer {
   --ifm-footer-title-color: rgb(255, 255, 255);
   --ifm-footer-link-color: #dadde1;
   --ifm-footer-color: #dadde1;
-  /*background-image: url("../../static/img/130.jpg");*/
-  /*background-size: cover;*/
-  /*background-position: bottom;*/
 }
 
 .docusaurus-highlight-code-line {
@@ -34,4 +32,33 @@ html footer {
 
 html[data-theme='dark'] .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.3);
+}
+
+.tabs__item {
+  margin: 5px !important;
+  padding: 9px 25px;
+  background-color: #453e43;
+  border: 1.5px solid #453e43;
+  box-sizing: border-box;
+  border-radius: 30px;
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 700;
+  color: #fff;
+}
+@media (max-width: 375px) {
+  .tabs__item {
+    margin: 10px !important;
+    font-size: 13px;
+  }
+}
+.tabs__item:hover:not(.tabs__item--active) {
+  border: 1.5px solid #c54245;
+  color: #8d2b2d;
+}
+.tabs__item--active {
+  background: #d87e80;
+  border-color: #d87e80;
+  color: #1c1c1c;
+  box-shadow: 0px 8px 15px rgba(255, 213, 131, 0.1);
 }
