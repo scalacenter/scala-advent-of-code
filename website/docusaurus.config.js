@@ -25,7 +25,7 @@ const config = {
           path: 'target/mdoc',
           routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.js'),
-          editUrl: 'https://github.com/scalacenter/scala-advent-of-code/edit/main/website',
+          editUrl: param => `https://github.com/scalacenter/scala-advent-of-code/edit/website/docs/${param.docPath}`,
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
