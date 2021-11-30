@@ -137,11 +137,13 @@ Replace the `input/template1.part1` and `input/template2.part2` files with your 
 
 #### Part 1
 
-<div id="template1-part1"></div>
+import Solver from "../../../../website/src/components/Solver.js"
+
+<Solver puzzle="template1-part1"/>
 
 #### Part 2
 
-<div id="template1-part2"></div>
+<Solver puzzle="template1-part2"/>
 
 ## Solutions from the community
 
