@@ -8,13 +8,12 @@ import scala.scalajs.js.annotation.JSExportTopLevel
 object Solver:
   private val solutions: Map[String, String => String] = Map(
     "template1-part1" -> template1.computeAnswer(2),
-    "template1-part2" -> template1.computeAnswer(3),
-    "day2" -> day2.solve
+    "template1-part2" -> template1.computeAnswer(3)
   )
 
   @JSExportTopLevel("default")
   def solver(puzzleId: String): Unit =
-    for 
+    for
       solution <- solutions.get(puzzleId)
       div <- Option(document.getElementById(puzzleId))
     do
@@ -43,7 +42,7 @@ object Solver:
       }
     )
 
-  private def failureResponse(e: Throwable): Element = 
+  private def failureResponse(e: Throwable): Element =
     p(
       "Execution failed: ",
       p(
