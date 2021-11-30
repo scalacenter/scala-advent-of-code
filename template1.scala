@@ -4,19 +4,17 @@ package template1
 
 import scala.io.Source
 
-@main def part1(args: String*): Unit =
-  val path = args.headOption.getOrElse("input/template1.part1")
-  val input = Source.fromFile(path).mkString
-  val answer = computeAnswer(input, 2)
+@main def part1(): Unit =
+  val input = Source.fromFile("input/template1.part1").mkString
+  val answer = computeAnswer(2)(input)
   println(s"The solution is $answer")
 
-@main def part2(args: String*): Unit =
-  val path = args.headOption.getOrElse("input/template1.part2")
-  val input = Source.fromFile(path).mkString
-  val answer = computeAnswer(input, 3)
+@main def part2(): Unit =
+  val input = Source.fromFile("input/template1.part2").mkString
+  val answer = computeAnswer(3)(input)
   println(s"The solution is $answer")
 
-private def computeAnswer(input: String, n: Int): String =
+def computeAnswer(n: Int)(input: String): String =
   val entries = input.split('\n').map(_.toInt).toSeq
   val combinations = entries.combinations(n)
   combinations.find(_.sum == 2020)
