@@ -12,3 +12,24 @@ lazy val adventOfCode = crossProject(JSPlatform, JVMPlatform)
 lazy val docs = project
   .in(file("website"))
   .enablePlugins(MdocPlugin, DocusaurusPlugin)
+  .settings(
+    mdoc := {
+      val solverJs = (solver / Compile / scalaJSLinkedFile).value.data
+      val dest = baseDirectory.value / "static" / "js" / "solver.js"
+      IO.createDirectory(baseDirectory.value / "static" / "js")
+      IO.copy(Seq(solverJs -> dest))
+      mdoc.evaluated
+    }
+  )
+
+lazy val solver = project
+  .in(file("solver"))
+  .enablePlugins(ScalaJSPlugin)
+  .settings(
+    libraryDependencies ++= Seq(
+      "org.scala-js" %%% "scalajs-dom" % "2.0.0",
+      "com.raquo" %%% "laminar" % "0.14.2"
+    ),
+    scalaJSUseMainModuleInitializer := true
+  )
+  .dependsOn(adventOfCode.js)
