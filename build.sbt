@@ -15,8 +15,8 @@ lazy val docs = project
   .settings(
     mdoc := {
       val solverJs = (solver / Compile / scalaJSLinkedFile).value.data
-      val dest = baseDirectory.value / "static" / "js" / "solver.js"
-      IO.createDirectory(baseDirectory.value / "static" / "js")
+      val dest = baseDirectory.value / "src" / "js" / "solver.js"
+      IO.createDirectory(baseDirectory.value / "src" / "js")
       IO.copy(Seq(solverJs -> dest))
       mdoc.evaluated
     }
@@ -30,6 +30,6 @@ lazy val solver = project
       "org.scala-js" %%% "scalajs-dom" % "2.0.0",
       "com.raquo" %%% "laminar" % "0.14.2"
     ),
-    scalaJSUseMainModuleInitializer := true
+    scalaJSLinkerConfig ~= (_.withModuleKind(ModuleKind.ESModule))
   )
   .dependsOn(adventOfCode.js)

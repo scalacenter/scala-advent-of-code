@@ -122,11 +122,7 @@ const config = {
         darkTheme: darkCodeTheme,
         additionalLanguages : ['java', 'scala', 'batch']
       },
-    }),
-
-  scripts: [
-    '/scala-advent-of-code/js/solver.js'
-  ]
+    })
 };
 
 module.exports = config;

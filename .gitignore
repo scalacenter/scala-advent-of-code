@@ -4,7 +4,7 @@
 metals.sbt
 target/
 .scala/
-website/static/js
+website/src/js
 
 # Dependencies
 website/node_modules

@@ -3,24 +3,22 @@ package adventofcode
 import org.scalajs.dom.{document, DocumentReadyState}
 import com.raquo.laminar.api.L.*
 import scala.util.{Try, Failure, Success}
+import scala.scalajs.js.annotation.JSExportTopLevel
 
 object Solver:
-  private val puzzles: Map[String, String => String] = Map(
+  private val solutions: Map[String, String => String] = Map(
     "template1-part1" -> template1.computeAnswer(2),
-    "template1-part2" -> template1.computeAnswer(3)
+    "template1-part2" -> template1.computeAnswer(3),
+    "day2" -> day2.solve
   )
 
-  @main def start(): Unit =
-    document.onreadystatechange = { _ => 
-      if document.readyState == DocumentReadyState.complete then loadSolvers()
-    }
-
-  private def loadSolvers(): Unit =
-    for (id, solution) <- puzzles do
-      val div = document.getElementById(id)
-      if div != null then
-        render(div, solverElement(solution))
-      else println(s"cannot find $id")
+  @JSExportTopLevel("default")
+  def solver(puzzleId: String): Unit =
+    for 
+      solution <- solutions.get(puzzleId)
+      div <- Option(document.getElementById(puzzleId))
+    do
+      render(div, solverElement(solution))
 
   private def solverElement(solution: String => String): Element =
     val input = Var("")
