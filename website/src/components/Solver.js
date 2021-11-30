@@ -1,9 +1,11 @@
-import React from 'react';
-import solver from '../js/solver';
+import React from 'react'
+import solver from '../js/solver'
 
-function Solver(props) {
-  React.useEffect(() => {solver(props.puzzle)}, [])
-  return (<div id={props.puzzle}></div>);
+const Solver = ({puzzle}) => {
+  React.useEffect(() => solver(puzzle), [])
+  return (
+    <div id={puzzle}></div>
+  )
 }
 
-export default Solver;
+export default Solver
