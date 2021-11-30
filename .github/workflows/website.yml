@@ -7,6 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+        with:
+          fetch-depth: 0
+          submodules: true
       - uses: olafurpg/setup-scala@v13
       - name: Publish ${{ github.ref }}
         run: sbt docs/docusaurusPublishGhpages
