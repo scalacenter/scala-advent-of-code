@@ -13,7 +13,7 @@ import scala.io.Source
 @main def part2(args: String*): Unit =
   val path = args.headOption.getOrElse("input/template1.part2")
   val input = Source.fromFile(path).mkString
-  val answer = computeAnswer(input, 2)
+  val answer = computeAnswer(input, 3)
   println(s"The solution is $answer")
 
 private def computeAnswer(input: String, n: Int): String =
