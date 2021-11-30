@@ -58,7 +58,7 @@ const config = {
           },
           {
             type: 'doc',
-            docId: 'puzzles/template-day-1',
+            docId: 'puzzles/template1',
             position: 'left',
             label: 'Puzzles',
           },
@@ -84,7 +84,7 @@ const config = {
               },
               {
                 label: 'Puzzles',
-                to: '/puzzles/template-day-1',
+                to: '/puzzles/template1',
               }
             ],
           },
@@ -122,7 +122,11 @@ const config = {
         darkTheme: darkCodeTheme,
         additionalLanguages : ['java', 'scala', 'batch']
       },
-    })
+    }),
+
+  scripts: [
+    '/scala-advent-of-code/js/solver.js'
+  ]
 };
 
 module.exports = config;
