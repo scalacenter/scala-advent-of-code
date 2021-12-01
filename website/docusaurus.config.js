@@ -41,7 +41,7 @@ const config = {
         title: 'Scala Advent of Code',
         logo: {
           alt: 'Scala Center',
-          src: '/img/scala-with-tree.png',
+          src: '/img/scala-tree.png',
         },
         items: [
           {
