@@ -112,10 +112,10 @@ $ cd advent-of-code
 
 The you can run it with scala-cli:
 ```
-$ scala-cli . -M day1.part1
+$ scala-cli src -M day1.part1
 The answer is 1559
 
-$ scala-cli . -M template1.part2
+$ scala-cli src -M template1.part2
 The answer is 1600
 ```
 
