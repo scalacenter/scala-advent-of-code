@@ -84,7 +84,7 @@ const config = {
               },
               {
                 label: 'Puzzles',
-                to: '/puzzles/template1',
+                to: '/puzzles/day1',
               }
             ],
           },
