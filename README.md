@@ -19,7 +19,7 @@ You can follow these [steps](https://scalacenter.github.io/scala-advent-of-code/
 After you clone the repository, open a terminal and run:
 ```
 $ cd scala-advent-of-code
-$ scala-cli setup-ide .
+$ scala-cli setup-ide src
 $ code .
 ```
 
@@ -29,7 +29,7 @@ $ code .
 
 In a terminal you can run:
 ```
-$ scala-cli . -M day1.part1
+$ scala-cli src -M day1.part1
 Compiling project (Scala 3.0.2, JVM)
 Compiled project (Scala 3.0.2, JVM)
 The solution is 1559
@@ -37,7 +37,7 @@ The solution is 1559
 
 Or, to run another solution:
 ```
-$ scala-cli . -M <dayX>.<partX>
+$ scala-cli src -M <dayX>.<partX>
 ```
 
 By default the solution programs run on our input files which are stored in the `input` folder.
