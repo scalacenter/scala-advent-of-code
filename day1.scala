@@ -14,13 +14,13 @@ import scala.io.Source
   val answer = part2(input)
   println(s"The solution is $answer")
 
-def part1(input: String): String = 
+def part1(input: String): Int = 
   val depths = input.split('\n').iterator.map(_.toInt)
   val pairs = depths.sliding(2).map(arr => (arr(0), arr(1)))
-  pairs.count((prev, next) => prev < next).toString
+  pairs.count((prev, next) => prev < next)
 
-def part2(input: String): String =
+def part2(input: String): Int =
   val depths = input.split('\n').iterator.map(_.toInt)
   val sums = depths.sliding(3).map(arr => arr(0) + arr(1) + arr(2))
   val pairs = sums.sliding(2).map(arr => (arr(0), arr(1)))
-  pairs.count((prev, next) => prev < next).toString
+  pairs.count((prev, next) => prev < next)
