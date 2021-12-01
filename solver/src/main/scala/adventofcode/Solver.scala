@@ -6,9 +6,9 @@ import scala.util.{Try, Failure, Success}
 import scala.scalajs.js.annotation.JSExportTopLevel
 
 object Solver:
-  private val solutions: Map[String, String => String] = Map(
-    "template1-part1" -> template1.computeAnswer(2),
-    "template1-part2" -> template1.computeAnswer(3)
+  private val solutions: Map[String, String => Any] = Map(
+    "day1-part1" -> day1.part1,
+    "day1-part2" -> day1.part2
   )
 
   @JSExportTopLevel("default")
@@ -19,9 +19,9 @@ object Solver:
     do
       render(div, solverElement(solution))
 
-  private def solverElement(solution: String => String): Element =
+  private def solverElement(solution: String => Any): Element =
     val input = Var("")
-    val answer = EventBus[Try[String]]()
+    val answer = EventBus[Try[Any]]()
     div(
       textArea(
         onChange.mapToValue --> input,
@@ -51,11 +51,11 @@ object Solver:
       )
     )
 
-  private def answerResponse(answer: String): Element =
+  private def answerResponse(answer: Any): Element =
     p(
       s"Answer is: ",
       span(
         styleAttr := "color: green",
-        answer
+        answer.toString
       )
     )

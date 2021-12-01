@@ -58,7 +58,7 @@ const config = {
           },
           {
             type: 'doc',
-            docId: 'puzzles/template1',
+            docId: 'puzzles/day1',
             position: 'left',
             label: 'Puzzles',
           },
