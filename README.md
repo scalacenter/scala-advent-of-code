@@ -14,7 +14,7 @@ We use Visual Studio Code with Metals to write Scala code, and scala-cli to comp
 
 You can follow these [steps](https://scalacenter.github.io/scala-advent-of-code/setup) to set up your environement.
 
-### How ot open in Visual Studio Code
+### How to open in Visual Studio Code
 
 After you clone the repository, open a terminal and run:
 ```
