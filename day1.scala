@@ -15,21 +15,12 @@ import scala.io.Source
   println(s"The solution is $answer")
 
 def part1(input: String): String = 
-  val depths: Seq[Int] = input.split('\n').map(_.toInt).toSeq
-  val pairs: Seq[(Int, Int)] = 
-    for 
-      (depth, i) <- depths.zipWithIndex
-      if i + 1 < depths.size
-    yield (depth, depths(i + 1))
-  pairs.filter((prev, next) => prev < next).size.toString
+  val depths = input.split('\n').iterator.map(_.toInt)
+  val pairs = depths.sliding(2).map(arr => (arr(0), arr(1)))
+  pairs.count((prev, next) => prev < next).toString
 
 def part2(input: String): String =
-  val depths: Seq[Int] = input.split('\n').map(_.toInt).toSeq
-  val sums: Seq[Int] =
-    for
-      (depth, i) <- depths.zipWithIndex
-      if i + 2 < depths.size
-    yield depth + depths(i + 1) + depths(i + 2)
-  val pairs: Seq[(Int, Int)] = sums.sliding(2).map(arr => (arr(0), arr(1))).toSeq
-  pairs.filter((prev, next) => prev < next).size.toString
-
+  val depths = input.split('\n').iterator.map(_.toInt)
+  val sums = depths.sliding(3).map(arr => arr(0) + arr(1) + arr(2))
+  val pairs = sums.sliding(2).map(arr => (arr(0), arr(1)))
+  pairs.count((prev, next) => prev < next).toString
