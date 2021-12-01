@@ -4,7 +4,9 @@ lazy val adventOfCode = crossProject(JSPlatform, JVMPlatform)
   .crossType(CrossType.Pure)
   .in(file("."))
   .settings(
-    Compile / unmanagedSourceDirectories := Seq((ThisBuild / baseDirectory).value / "solutions" / "src"),
+    Compile / unmanagedSourceDirectories := Seq(
+      (ThisBuild / baseDirectory).value / "solutions" / "src"
+    ),
     run / fork := true,
     run / baseDirectory := (ThisBuild / baseDirectory).value / "solutions"
   )
