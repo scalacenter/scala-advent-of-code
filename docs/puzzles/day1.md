@@ -27,8 +27,9 @@ val pairs: Seq[(Int, Int)] =
   yield (depths(i), depths(i + 1))
 ```
 
-::: tip
- `0 until n` does not include the upper bound `n`.
+:::tip
+ `0 until n` is an exclusive range, it does not contain the upper bound `n`.
+ `0 to n` is an inclusive range, it contains the upper bound `n`. 
 :::
 
 For the input `Seq(10, 20, 30, 40)`, pairs is `Seq((10,20), (20, 30), (30, 40))`.
