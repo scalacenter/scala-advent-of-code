@@ -5,59 +5,59 @@ package day2
 import scala.io.Source
 
 @main def part1(): Unit =
-  val input = Source.fromFile("input/day2").mkString
+  val input = util.Using.resource(Source.fromFile("input/day2"))(_.mkString)
   val answer = part1(input)
   println(s"The solution is $answer")
 
 @main def part2(): Unit =
-  val input = Source.fromFile("input/day1").mkString
+  val input = util.Using.resource(Source.fromFile("input/day2"))(_.mkString)
   val answer = part2(input)
   println(s"The solution is $answer")
 
 def part1(input: String): Int =
-  val entries = input.linesIterator.flatMap(Direction.from)
+  val entries = input.linesIterator.map(Command.from).toSeq
   val firstPosition = Position(0, 0)
   val lastPosition = entries.foldLeft(firstPosition)((position, direction) =>
-    position + direction
+    position.move(direction)
   )
   lastPosition.result
 
 def part2(input: String): Int =
-  val entries = input.linesIterator.flatMap(Direction.from)
+  val entries = input.linesIterator.map(Command.from)
   val firstPosition = PositionWithAim(0, 0, 0)
   val lastPosition = entries.foldLeft(firstPosition)((position, direction) =>
-    position + direction
+    position.move(direction)
   )
   lastPosition.result
 
-case class PositionWithAim(x: Int, y: Int, aim: Int):
-  def +(p: Direction): PositionWithAim =
+case class PositionWithAim(horizontal: Int, depth: Int, aim: Int):
+  def move(p: Command): PositionWithAim =
     p match
-      case Direction.Forward(newX) =>
-        PositionWithAim(x + newX, y + newX * aim, aim)
-      case Direction.Down(newY) => PositionWithAim(x, y, aim + newY)
-      case Direction.Up(newY)   => PositionWithAim(x, y, aim - newY)
+      case Command.Forward(x) =>
+        PositionWithAim(horizontal + x, depth + x * aim, aim)
+      case Command.Down(x) => PositionWithAim(horizontal, depth, aim + x)
+      case Command.Up(x)   => PositionWithAim(horizontal, depth, aim - x)
 
-  def result = x * y
+  def result = horizontal * depth
 
-case class Position(x: Int, y: Int):
-  def +(p: Direction): Position =
+case class Position(horizontal: Int, depth: Int):
+  def move(p: Command): Position =
     p match
-      case Direction.Forward(newX) => Position(x + newX, y)
-      case Direction.Down(newY)    => Position(x, y + newY)
-      case Direction.Up(newY)      => Position(x, y - newY)
+      case Command.Forward(x) => Position(horizontal + x, depth)
+      case Command.Down(x)    => Position(horizontal, depth + x)
+      case Command.Up(x)      => Position(horizontal, depth - x)
 
-  def result = x * y
+  def result = horizontal * depth
 
-enum Direction(x: Int, y: Int):
-  case Forward(x: Int) extends Direction(x, 0)
-  case Down(y: Int) extends Direction(0, y)
-  case Up(y: Int) extends Direction(0, y)
+enum Command:
+  case Forward(x: Int)
+  case Down(x: Int)
+  case Up(x: Int)
 
-object Direction:
-  def from(s: String): Option[Direction] =
+object Command:
+  def from(s: String): Command =
     s match
-      case s"forward $x" => x.toIntOption.map(Forward(_))
-      case s"up $y"      => y.toIntOption.map(Up(_))
-      case s"down $y"    => y.toIntOption.map(Down(_))
-      case _             => None
+      case s"forward $x" if x.toIntOption.isDefined => Forward(x.toInt)
+      case s"up $x" if x.toIntOption.isDefined      => Up(x.toInt)
+      case s"down $x" if x.toIntOption.isDefined    => Down(x.toInt)
+      case _ => throw new Exception(s"value $s is not valid command")
