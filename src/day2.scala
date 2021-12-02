@@ -15,7 +15,7 @@ import scala.io.Source
   println(s"The solution is $answer")
 
 def part1(input: String): Int =
-  val entries = input.linesIterator.map(Command.from).toSeq
+  val entries = input.linesIterator.map(Command.from)
   val firstPosition = Position(0, 0)
   val lastPosition = entries.foldLeft(firstPosition)((position, direction) =>
     position.move(direction)
