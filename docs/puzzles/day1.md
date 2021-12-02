@@ -144,5 +144,6 @@ So the second part of the puzzle is almost the same as the first part of the puz
 
 - [Solution](https://github.com/tgodzik/advent-of-code/blob/main/src/main/scala/day1/Main.scala) of @tgodzik.
 - [Solution](https://github.com/otobrglez/aoc2021/blob/master/src/main/scala/com/pinkstack/aoc/day01/Sonar.scala) of [@otobrglez](https://twitter.com/otobrglez).
+- [Solution](https://github.com/keynmol/advent-of-code/blob/main/2021/day1.scala) of @keynmol using C APIs on [Scala Native](https://scala-native.readthedocs.io/en/latest/index.html)
 
 Share your solution to the Scala community by editing this page.
