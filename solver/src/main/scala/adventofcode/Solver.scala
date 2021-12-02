@@ -8,7 +8,9 @@ import scala.scalajs.js.annotation.JSExportTopLevel
 object Solver:
   private val solutions: Map[String, String => Any] = Map(
     "day1-part1" -> day1.part1,
-    "day1-part2" -> day1.part2
+    "day1-part2" -> day1.part2,
+    "day2-part1" -> day2.part1,
+    "day2-part2" -> day2.part2
   )
 
   @JSExportTopLevel("default")
@@ -16,8 +18,7 @@ object Solver:
     for
       solution <- solutions.get(puzzleId)
       div <- Option(document.getElementById(puzzleId))
-    do
-      render(div, solverElement(solution))
+    do render(div, solverElement(solution))
 
   private def solverElement(solution: String => Any): Element =
     val input = Var("")
@@ -34,10 +35,10 @@ object Solver:
           className := Seq("button", "button--primary"),
           "Run Solution",
           onClick.mapTo(Try(solution(input.now()))) --> answer.writer
-        ),
+        )
       ),
       child <-- answer.events.map {
-        case Failure(e) => failureResponse(e)
+        case Failure(e)      => failureResponse(e)
         case Success(answer) => answerResponse(answer)
       }
     )
