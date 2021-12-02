@@ -144,5 +144,6 @@ So the second part of the puzzle is almost the same as the first part of the puz
 
 - [Solution](https://github.com/tgodzik/advent-of-code/blob/main/src/main/scala/day1/Main.scala) of @tgodzik.
 - [Solution](https://github.com/otobrglez/aoc2021/blob/master/src/main/scala/com/pinkstack/aoc/day01/Sonar.scala) of [@otobrglez](https://twitter.com/otobrglez).
+- [Solution](https://github.com/s5bug/aoc/blob/main/src/main/scala/tf/bug/aoc/y2021/Day01.scala) of @s5bug using [cats-effect](https://index.scala-lang.org/typelevel/cats-effect/cats-effect/3.3.0?target=_3.x) and [fs2](https://index.scala-lang.org/typelevel/fs2/fs2-core/3.2.1?target=_3.x)
 
 Share your solution to the Scala community by editing this page.
