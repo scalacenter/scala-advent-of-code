@@ -8,7 +8,9 @@ import scala.scalajs.js.annotation.JSExportTopLevel
 object Solver:
   private val solutions: Map[String, String => Any] = Map(
     "day1-part1" -> day1.part1,
-    "day1-part2" -> day1.part2
+    "day1-part2" -> day1.part2,
+    "day2-part1" -> day2.part1,
+    "day2-part2" -> day2.part2
   )
 
   @JSExportTopLevel("default")
