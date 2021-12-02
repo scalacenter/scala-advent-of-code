@@ -14,7 +14,7 @@ import scala.io.Source
   val answer = part2(input)
   println(s"The solution is $answer")
 
-def part1(input: String): Int = 
+def part1(input: String): Int =
   val depths = input.linesIterator.map(_.toInt)
   val pairs = depths.sliding(2).map(arr => (arr(0), arr(1)))
   pairs.count((prev, next) => prev < next)
