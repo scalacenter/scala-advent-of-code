@@ -33,19 +33,19 @@ function HomepageHeader() {
           <Link
               className={`${styles.button} button button--error button--lg`}
               disabled
-              to="/puzzles/day3">
+              to="/puzzles/day2">
             Day 3
           </Link>
           <Link
               className={`${styles.button} button button--error button--lg`}
               disabled
-              to="/puzzles/day4">
+              to="/puzzles/day2">
             Day 4
           </Link>
           <Link
               className={`${styles.button} button button--error button--lg`}
               disabled
-              to="/puzzles/day5">
+              to="/puzzles/day2">
             Day 5
           </Link>
         </div>
