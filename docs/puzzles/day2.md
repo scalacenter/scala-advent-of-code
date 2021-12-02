@@ -1,6 +1,7 @@
 ---
 sidebar_position: 2
 ---
+import Solver from "../../../../website/src/components/Solver.js"
 
 # Day 2: Dive!
 by [@mlachkar](https://twitter.com/meriamLachkar)
@@ -16,12 +17,28 @@ The first step is to model the problem and to parse the input file.
 
 The command can be either `Forward`, `Down` or `Up`. I use an Enumeration to model it. 
 
+An enumeration is used to define a type consisting of a set of named values. Read [the official documentation](https://docs.scala-lang.org/scala3/reference/enums/enums.html)
+for more details.
+
+Scala 3 enums are more concise and easier to read that the Scala 2 ADTs.
 ```scala
+// in Scala 3:
 enum Command:
   case Forward(x: Int)
   case Down(x: Int)
   case Up(x: Int)
 
+// in Scala 2:
+sealed trait Command
+object Command {
+  case class Forward(x: Int) extends Command
+  case class Down(x: Int) extends Command
+  case class Up(x: Int) extends Command
+}
+```
+
+Now let's parse the input to a Command: 
+```scala
 object Command:
   def from(s: String): Command =
     s match
@@ -52,6 +69,32 @@ case class Position(horizontal: Int, depth: Int):
       case Command.Down(x)    => Position(horizontal, depth + x)
       case Command.Up(x)      => Position(horizontal, depth - x)
 ```
+
+To apply all the commands from the input file, we use `foldLeft` 
+```scala
+val firstPosition = Position(0, 0)
+val lastPosition = entries.foldLeft(firstPosition)((position, command) => position.move(command))
+```
+
+`foldLeft` is a method from the standard library on iterable collections: `Seq`, `List`, `Iterator`...
+
+It's a super convenient method that allows to iterate from left to right on a list.
+
+The signature of `foldLeft` is:
+```scala
+def foldLeft[B](initialElement: B)(op: (B, A) => B): B
+```
+Let's see an example:
+```scala
+// Implementing a sum on a List
+List(1, 3, 2, 4).foldLeft(0)((accumulator, current) => accumulator + current) // 10 
+```
+
+It is the same as:
+```scala
+(((0 + 1) + 3) + 2) + 4
+```
+
 
 ### Final code for part 1
 ```scala
@@ -84,6 +127,8 @@ object Command:
       case s"down $x"    if x.toIntOption.isDefined => Down(x.toInt)
       case _ => throw new Exception(s"value $s is not valid command")
 ```
+
+<Solver puzzle="day2-part1"/>
 
 ## Solution of Part 2
 
@@ -123,50 +168,10 @@ object Command:
       case s"up $x"      if x.toIntOption.isDefined => Up(x.toInt)
       case s"down $x"    if x.toIntOption.isDefined => Down(x.toInt)
       case _ => throw new Exception(s"value $s is not valid command")
-
 ```
 
-## Enum in Scala 3
-An enumeration is used to define a type consisting of a set of named values.
+<Solver puzzle="day2-part2"/>
 
-Scala 3 enums are more concise and easier to read that the Scala 2 ADTs.
-
-```scala
-// in Scala 3:
-enum Command:
-  case Forward(x: Int)
-  case Down(x: Int)
-  case Up(x: Int)
-
-// in Scala 2:
-sealed trait Command
-object Command {
-  case class Forward(x: Int) extends Command
-  case class Down(x: Int) extends Command
-  case class Up(x: Int) extends Command
-}
-
-
-```
-
-Read [the official documentation](https://docs.scala-lang.org/scala3/reference/enums/enums.html) 
-for more details.
-
-## FoldLeft 
-`foldLeft` is a method from the standard library on iterable collections: `Seq`, `List`, `Iterator`...
-It's a super convenient method that allows to iterate from left to right on a list. 
-
-Let's see first an example:
-```scala
-// signature of foldLeft
-def foldLeft[B](initialElement: B)(op: (B, A) => B): B
-
-// sum of a list
-val nums = List(1, 3, 2, 4)
-// equivalent to (((0 + 1) + 3 ) + 2 ) + 4 
-nums.foldLeft(0)((acc, cur) => acc + cur) // 10
-
-```
 ## Run it locally
 
 You can get this solution locally by cloning the [scalacenter/scala-advent-of-code](https://github.com/scalacenter/scala-advent-of-code) repository.
@@ -185,18 +190,6 @@ The answer is 2078985210
 ```
 
 You can replace the content of the `input/day2` file with your own input from [adventofcode.com](https://adventofcode.com/2021/day/1) to get your own solution.
-
-## Run it in the browser
-
-### Part 1
-
-import Solver from "../../../../website/src/components/Solver.js"
-
-<Solver puzzle="day2-part1"/>
-
-### Part 2
-
-<Solver puzzle="day2-part2"/>
 
 ## Solutions from the community
 
