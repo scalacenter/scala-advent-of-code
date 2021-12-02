@@ -12,7 +12,7 @@ https://adventofcode.com/2021/day/2
 ## Solution of Part 1
 
 ### Parsing the file
-The first step is to model the problem correctly and then parse the input file.
+The first step is to model the problem and to parse the input file.
 
 The command can be either `Forward`, `Down` or `Up`. I use an Enumeration to model it. 
 
@@ -30,15 +30,13 @@ object Command:
       case s"down $x"    if x.toIntOption.isDefined => Down(x.toInt)
       case _ => throw new Exception(s"value $s is not valid command")
 
-  def parseFile(): Iterator[Command] = 
-    val input = util.Using.resource(Source.fromFile("input/day2"))(_.mkString)
-    input.linesIterator.map(Command.from)
 ```
 :::info
 Here I have chosen to fail during the parsing method `Command.from` to keep the types as simple as possible. 
 If an input file is not valid, we `throw` an exception. 
 
-It's possible to delay the parsing error to the main method. 
+It's possible to delay the parsing error to the main method, and return an `Option[Command]` or `Try[Command]`
+`Command.from`
 :::
 
 ### Moving the sonar
@@ -57,11 +55,6 @@ case class Position(horizontal: Int, depth: Int):
 
 ### Final code for part 1
 ```scala
-@main def part1(): Unit =
-  val input = util.Using.resource(Source.fromFile("input/day2"))(_.mkString)
-  val answer = part1(input)
-  println(s"The solution is $answer")
-
 def part1(input: String): Int =
   val entries = input.linesIterator.map(Command.from)
   val firstPosition = Position(0, 0)
@@ -109,11 +102,6 @@ case class PositionWithAim(horizontal: Int, depth: Int, aim: Int):
 ```
 ### Final code for part 2
 ```scala
-@main def part2(): Unit =
-  val input = util.Using.resource(Source.fromFile("input/day2"))(_.mkString)
-  val entries: Iterator[Command] = input.linesIterator.map(Command.from)
-  val answer = part2(input)
-
 case class PositionWithAim(horizontal: Int, depth: Int, aim: Int):
   def move(p: Command): PositionWithAim =
     p match
@@ -141,14 +129,31 @@ object Command:
 ## Enum in Scala 3
 An enumeration is used to define a type consisting of a set of named values.
 
-We used to used `sealed trait` with `case class` and `case object` to model this set of named values.
-The syntax is more consise and easier to explain than the combination we had in Scala 2. 
+Scala 3 enums are more concise and easier to read that the Scala 2 ADTs.
+
+```scala
+// in Scala 3:
+enum Command:
+  case Forward(x: Int)
+  case Down(x: Int)
+  case Up(x: Int)
+
+// in Scala 2:
+sealed trait Command
+object Command {
+  case class Forward(x: Int) extends Command
+  case class Down(x: Int) extends Command
+  case class Up(x: Int) extends Command
+}
+
+
+```
 
 Read [the official documentation](https://docs.scala-lang.org/scala3/reference/enums/enums.html) 
 for more details.
 
 ## FoldLeft 
-`foldLeft` is a method from the standard library on `IterableOnce` (ie: Seq, List, Iterator, ...).
+`foldLeft` is a method from the standard library on iterable collections: `Seq`, `List`, `Iterator`...
 It's a super convenient method that allows to iterate from left to right on a list. 
 
 Let's see first an example:
@@ -156,7 +161,7 @@ Let's see first an example:
 // signature of foldLeft
 def foldLeft[B](initialElement: B)(op: (B, A) => B): B
 
-// List sum
+// sum of a list
 val nums = List(1, 3, 2, 4)
 // equivalent to (((0 + 1) + 3 ) + 2 ) + 4 
 nums.foldLeft(0)((acc, cur) => acc + cur) // 10
