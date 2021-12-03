@@ -53,4 +53,29 @@ def bitLineToInt(bitLine: BitLine): Int =
   Integer.parseInt(bitLine.mkString, 2)
 
 def part2(input: String): Int =
-  ???
+  val bitLines = input.linesIterator.map(parseBitLine).toList
+
+  val oxygenGeneratorRatingLine = recursiveFilter(bitLines, 0,
+      (totalOnes, total) => if (totalOnes * 2 >= total) 1 else 0)
+  val oxygenGeneratorRating = bitLineToInt(oxygenGeneratorRatingLine)
+
+  val co2ScrubberRatingLine = recursiveFilter(bitLines, 0,
+      (totalOnes, total) => if (totalOnes * 2 < total) 1 else 0)
+  val co2ScrubberRating = bitLineToInt(co2ScrubberRatingLine)
+
+  oxygenGeneratorRating * co2ScrubberRating
+
+@scala.annotation.tailrec
+def recursiveFilter(bitLines: List[BitLine], bitPosition: Int,
+    bitCriteria: (Int, Int) => Int): BitLine =
+  bitLines match
+    case Nil =>
+      throw new AssertionError("this shouldn't have happened")
+    case onlyLine :: Nil =>
+      onlyLine
+    case _ =>
+      val totalOnes = bitLines.count(line => line(bitPosition) == 1)
+      val total = bitLines.size
+      val bitToKeep = bitCriteria(totalOnes, total)
+      val filtered = bitLines.filter(line => line(bitPosition) == bitToKeep)
+      recursiveFilter(filtered, bitPosition + 1, bitCriteria)
