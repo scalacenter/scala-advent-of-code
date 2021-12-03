@@ -71,8 +71,8 @@ def recursiveFilter(bitLines: List[BitLine], bitPosition: Int,
   bitLines match
     case Nil =>
       throw new AssertionError("this shouldn't have happened")
-    case onlyLine :: Nil =>
-      onlyLine
+    case lastRemainingLine :: Nil =>
+      lastRemainingLine
     case _ =>
       val (bitLinesWithOne, bitLinesWithZero) =
         bitLines.partition(line => line(bitPosition) == 1)
