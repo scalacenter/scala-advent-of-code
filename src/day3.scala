@@ -24,20 +24,20 @@ object NodeFS:
   def readFileSync(path: String, charset: String): String = js.native
 
 def part1(input: String): Int =
-  val bitLines = input.linesIterator.map(parseBitLine).toList
+  val bitLines: List[BitLine] = input.linesIterator.map(parseBitLine).toList
 
-  val sumsOfOneBits = bitLines.reduceLeft((prevSum, line) =>
+  val sumsOfOneBits: IndexedSeq[Int] = bitLines.reduceLeft((prevSum, line) =>
     for ((prevBitSum, lineBit) <- prevSum.zip(line))
       yield prevBitSum + lineBit
   )
   val total = bitLines.size // this will walk the list a second time, but that's OK
 
-  val gammaRateBits =
+  val gammaRateBits: BitLine =
     for (sumOfOneBits <- sumsOfOneBits)
       yield (if (sumOfOneBits * 2 > total) 1 else 0)
   val gammaRate = bitLineToInt(gammaRateBits)
 
-  val epsilonRateBits =
+  val epsilonRateBits: BitLine =
     for (sumOfOneBits <- sumsOfOneBits)
       yield (if (sumOfOneBits * 2 < total) 1 else 0)
   val epsilonRate = bitLineToInt(epsilonRateBits)
@@ -53,13 +53,13 @@ def bitLineToInt(bitLine: BitLine): Int =
   Integer.parseInt(bitLine.mkString, 2)
 
 def part2(input: String): Int =
-  val bitLines = input.linesIterator.map(parseBitLine).toList
+  val bitLines: List[BitLine] = input.linesIterator.map(parseBitLine).toList
 
-  val oxygenGeneratorRatingLine =
+  val oxygenGeneratorRatingLine: BitLine =
     recursiveFilter(bitLines, 0, keepMostCommon = true)
   val oxygenGeneratorRating = bitLineToInt(oxygenGeneratorRatingLine)
 
-  val co2ScrubberRatingLine =
+  val co2ScrubberRatingLine: BitLine =
     recursiveFilter(bitLines, 0, keepMostCommon = false)
   val co2ScrubberRating = bitLineToInt(co2ScrubberRatingLine)
 
