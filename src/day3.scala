@@ -24,7 +24,33 @@ object NodeFS:
   def readFileSync(path: String, charset: String): String = js.native
 
 def part1(input: String): Int =
-  ???
+  val bitLines = input.linesIterator.map(parseBitLine).toList
+
+  val sumsOfOneBits = bitLines.reduceLeft((prevSum, line) =>
+    for ((prevBitSum, lineBit) <- prevSum.zip(line))
+      yield prevBitSum + lineBit
+  )
+  val total = bitLines.size // this will walk the list a second time, but that's OK
+
+  val gammaRateBits =
+    for (sumOfOneBits <- sumsOfOneBits)
+      yield (if (sumOfOneBits * 2 > total) 1 else 0)
+  val gammaRate = bitLineToInt(gammaRateBits)
+
+  val epsilonRateBits =
+    for (sumOfOneBits <- sumsOfOneBits)
+      yield (if (sumOfOneBits * 2 < total) 1 else 0)
+  val epsilonRate = bitLineToInt(epsilonRateBits)
+
+  gammaRate * epsilonRate
+
+type BitLine = IndexedSeq[Int]
+
+def parseBitLine(line: String): BitLine =
+  line.map(c => c - '0') // 1 or 0
+
+def bitLineToInt(bitLine: BitLine): Int =
+  Integer.parseInt(bitLine.mkString, 2)
 
 def part2(input: String): Int =
   ???
