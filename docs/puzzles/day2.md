@@ -195,5 +195,6 @@ You can replace the content of the `input/day2` file with your own input from [a
 
 - [Solution](https://github.com/tgodzik/advent-of-code/blob/main/day2/main.scala) of [@tgodzik](https://github.com/tgodzik).
 - [Solution](https://github.com/otobrglez/aoc2021/blob/master/src/main/scala/com/pinkstack/aoc/day02/Dive.scala) of [@otobrglez](https://twitter.com/otobrglez).
+- [Solution](https://github.com/tOverney/AdventOfCode2021/blob/main/src/main/scala/ch/overney/aoc/day2/) of [@tOverney](https://github.com/tOverney).
 
 Share your solution to the Scala community by editing this page.
