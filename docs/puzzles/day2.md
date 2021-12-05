@@ -196,5 +196,6 @@ You can replace the content of the `input/day2` file with your own input from [a
 - [Solution](https://github.com/tgodzik/advent-of-code/blob/main/day2/main.scala) of [@tgodzik](https://github.com/tgodzik).
 - [Solution](https://github.com/otobrglez/aoc2021/blob/master/src/main/scala/com/pinkstack/aoc/day02/Dive.scala) of [@otobrglez](https://twitter.com/otobrglez).
 - [Solution](https://github.com/s5bug/aoc/blob/main/src/main/scala/tf/bug/aoc/y2021/Day02.scala) of @s5bug using [cats-effect](https://index.scala-lang.org/typelevel/cats-effect/cats-effect/3.3.0?target=_3.x) and [fs2](https://index.scala-lang.org/typelevel/fs2/fs2-core/3.2.1?target=_3.x)
+- [Solution](https://github.com/tOverney/AdventOfCode2021/blob/main/src/main/scala/ch/overney/aoc/day2/) of [@tOverney](https://github.com/tOverney).
 
 Share your solution to the Scala community by editing this page.

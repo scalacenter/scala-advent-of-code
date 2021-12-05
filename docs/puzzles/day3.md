@@ -293,5 +293,6 @@ You can replace the content of the `input/day3` file with your own input from [a
 ## Solutions from the community
 
 - [Solution](https://github.com/s5bug/aoc/blob/main/src/main/scala/tf/bug/aoc/y2021/Day03.scala) of @s5bug using [cats-effect](https://index.scala-lang.org/typelevel/cats-effect/cats-effect/3.3.0?target=_3.x) and [fs2](https://index.scala-lang.org/typelevel/fs2/fs2-core/3.2.1?target=_3.x)
+- [Solution](https://github.com/tOverney/AdventOfCode2021/blob/main/src/main/scala/ch/overney/aoc/day3/) of [@tOverney](https://github.com/tOverney).
 
 Share your solution to the Scala community by editing this page.
