@@ -149,5 +149,5 @@ So the second part of the puzzle is almost the same as the first part of the puz
 - [Solution](https://github.com/erdnaxeli/adventofcode/blob/master/2021/src/main/scala/Day1.scala) of @erdnaxeli.
 - [Solution](https://github.com/tOverney/AdventOfCode2021/blob/main/src/main/scala/ch/overney/aoc/day1/) of [@tOverney](https://github.com/tOverney).
 - [Solution](https://github.com/rpiotrow/advent-of-code-2021/tree/main/src/main/scala/io/github/rpiotrow/advent2021/day01) of [@rpiotrow](https://twitter.com/r_piotrow) using [ZIO](https://zio.dev)
-
+- [Solution](https://github.com/philipschwarz/advent-of-code-2021-scala/blob/master/src/main/scala/DayOne.scala) by [@philip_schwarz](https://twitter.com/philip_schwarz)
 Share your solution to the Scala community by editing this page.
