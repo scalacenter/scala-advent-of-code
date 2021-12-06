@@ -65,17 +65,24 @@ def tick(population: Seq[Fish]): Seq[Fish] =
 
 // "How many lanternfish would there be after 256 days?"
 def part2(input: String): BigInt =
-  Fish.parseSeveral(input)
-    .map(fish => descendants(256 - fish.timer))
+  simulate(
+    days = 256,
+    Fish.parseSeveral(input).groupMapReduce(_.timer)(_ => BigInt(1))(_ + _)
+  )
+
+def simulate(days: Int, initialPopulation: Map[Int, BigInt]): BigInt =
+  (1 to days)
+    .foldLeft(initialPopulation)((population, _) => tick(population))
+    .values
     .sum
 
-// Use a cache to memoize the number of fishes created by one fish for some
-// number of remaining days to live
-val cache = mutable.Map.empty[Int, BigInt]
-
-def descendants(remainingDays: Int): BigInt =
-  cache.getOrElseUpdate(
-    remainingDays,
-    if remainingDays <= 0 then 1
-    else descendants(remainingDays - 7) + descendants(remainingDays - 9)
+def tick(population: Map[Int, BigInt]): Map[Int, BigInt] =
+  def countPopulation(daysLeft: Int): BigInt = population.getOrElse(daysLeft, BigInt(0))
+  Map.from(
+    for day <- 0 until 9
+    yield
+      val newPopulation =
+        if day == 6 then countPopulation(7) + countPopulation(0)
+        else countPopulation((day + 1) % 9)
+      (day, newPopulation)
   )
