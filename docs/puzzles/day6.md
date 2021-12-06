@@ -1,6 +1,7 @@
 ---
 sidebar_position: 6
 ---
+import Solver from "../../../../website/src/components/Solver.js"
 
 # Day 6: Lanternfish
 by [@julienrf](https://github.com/julienrf)
@@ -208,8 +209,8 @@ val population: Map[Int, BigInt] = Map(
 )
 ~~~
 
-By the way, the input data is provided in the "comma-separated timer values" 
-format, how do we compute a `Map` from that?
+The input data is provided in the "comma-separated timer values" 
+format. How do we compute a `Map` from that?
 
 What I did is to parse the timer values from the input data, and then
 compute a `Map` associating each timer value to its number of fish 
