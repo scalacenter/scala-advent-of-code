@@ -1,4 +1,5 @@
 // using scala 3.1.0
+package day6
 
 import scala.util.Using
 import scala.collection.mutable
