@@ -31,22 +31,22 @@ function HomepageHeader() {
             Day 2
           </Link>
           <Link
-              className={`${styles.button} button button--primary button--lg`}
+              className={`${styles.button} button button--secondary button--lg`}
               to="/puzzles/day3">
             Day 3
           </Link>
           <Link
-              className={`${styles.button} button button--error button--lg`}
+              className={`${styles.button} button button--secondary button--lg`}
               to="/puzzles/day4">
             Day 4
           </Link>
           <Link
-              className={`${styles.button} button button--error button--lg`}
+              className={`${styles.button} button button--secondary button--lg`}
               to="/puzzles/day5">
             Day 5
           </Link>
           <Link
-              className={`${styles.button} button button--error button--lg`}
+              className={`${styles.button} button button--primary button--lg`}
               to="/puzzles/day6">
             Day 6
           </Link>
