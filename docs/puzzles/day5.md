@@ -2,9 +2,9 @@
 sidebar_position: 5
 ---
 
-by [@tgodzik](https://github.com/tgodzik)
-
 # Day 5: Hydrothermal Venture
+
+by [@tgodzik](https://github.com/tgodzik)
 
 ## Puzzle description
 
