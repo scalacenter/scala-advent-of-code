@@ -35,7 +35,7 @@ object Fish:
   // internal timer of 2."
   def parseSeveral(input: String): Seq[Fish] =
     for timerString <- input.trim.split(",").toIndexedSeq
-    yield Fish(timerString.toInt.ensuring(_ >= 0))
+    yield Fish(timerString.toInt.ensuring(timer => timer >= 0 && timer <= 8))
 
 /**
  * Simulate the evolution of the population and return the number
