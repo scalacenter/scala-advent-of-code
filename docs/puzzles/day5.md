@@ -32,7 +32,7 @@ case class Vent(start: Point, end: Point)
 
 Let's try to convert the input to our domain and let's start by reading it. I
 will use an extension method on a string so that I can easily just write
-`"input1".input` to recive a list of Vents to anylise.
+`"input1".input` to recive a list of Vents to analyse.
 
 ```scala
 extension (s: String)
@@ -64,7 +64,7 @@ further into the apply metohd of Position:
 object Point:
   def apply(str: String) =
     str.split(",") match
-      case Array(start, end) => new Point(start.trim.toInt, end.trim.toInt)
+      case Array(start, end) => Point(start.trim.toInt, end.trim.toInt)
       case _ =>
         throw new java.lang.IllegalArgumentException(s"Wrong point input $str")
 ```
@@ -151,9 +151,9 @@ end findDangerousPoints
 
 ### Hydrothermal Venture 2: The Diagonal Menace
 
-For the second part of the puzzle we need to take into account also the diagnal
-vents. Fortunately, they can only have an angle of 45 degrees, which means when
-iterating over ranges both x and y positions increment by 1. So we can add
+For the second part of the puzzle we need to take into account also the diagonal
+vents. Fortunately, they can only have an angle of 45 degrees, which means that
+both x and y positions increment by 1 at each step of the range. So we can add
 additional condition to our solution:
 
 ```scala
@@ -196,7 +196,7 @@ end findDangerousPoints
 
 Full solution can be found
 [here](https://gist.github.com/tgodzik/48b300f6719d0235f902e0d2c4853d64) and can
-be run using [scala-cli](https://scala-cli.virtuslab.org/):
+be run using latest [scala-cli](https://scala-cli.virtuslab.org/):
 
 ```
 > scala-cli https://gist.github.com/tgodzik/48b300f6719d0235f902e0d2c4853d64
