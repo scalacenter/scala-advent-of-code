@@ -11,7 +11,7 @@ import scala.io.Source
   println(s"The solution is ${part2(readInput())}")
 
 def readInput(): String =
-  Using.resource(Source.fromFile("input/day6"))(_.mkString.trim)
+  Using.resource(Source.fromFile("input/day6"))(_.mkString)
 
 // "Find a way to simulate lanternfish. How many lanternfish would there be after 80
 // days?"
@@ -34,8 +34,8 @@ object Fish:
   // has an internal timer of 4, and so on until the fifth fish, which has an
   // internal timer of 2."
   def parseSeveral(input: String): Seq[Fish] =
-    for timerStr <- input.split(",")
-      yield Fish(timerStr.toInt.ensuring(_ >= 0))
+    for timerString <- input.trim.split(",").toIndexedSeq
+    yield Fish(timerString.toInt.ensuring(_ >= 0))
 
 /**
  * Simulate the evolution of the population and return the number
