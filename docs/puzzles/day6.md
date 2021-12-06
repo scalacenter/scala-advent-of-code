@@ -2,7 +2,7 @@
 sidebar_position: 6
 ---
 
-# Day 7: Lanternfish
+# Day 6: Lanternfish
 by [@julienrf](https://github.com/julienrf)
 
 ## Puzzle description
@@ -19,14 +19,14 @@ For instance, the problem statement contains:
 > You can model each fish as a single number that represents the number of days
 > until it creates a new lanternfish.
 
-So, I created a fish model as a case class, with exactly one field containing
+So, my fish model is a case class with exactly one field containing
 the number of days until that fish creates a new fish:
 
 ~~~ scala
 case class Fish(timer: Int)
 ~~~
 
-Then, we were asked to compute how does a population of fish evolve after one
+Then, we were asked to compute how a population of fish evolves after one
 day passes:
 
 > Each day, a 0 becomes a 6 and adds a new 8 to the end of the list, while each 
@@ -187,17 +187,17 @@ Since our previous attempt caused a memory issue, I anticipated that the
 number of fish can grow very large, and may exceed the capacity of the type 
 `Int` (about 2 billions). We could use the type `Long` instead, which 
 supports even larger numbers, but I preferred to fix the issue once and for 
-all by using the type `BigInt`, which models number of arbitrary size.
+all by using the type `BigInt`, which models numbers of arbitrary size.
 
 Let’s look at an example of population of fish with this model. In the 
-problem statement, they use as an example the following population, which is 
+problem statement, the following population is used as an example. It is
 described by the “timer” value of every fish:
 
 > 3,4,3,1,2
 
-This population has 5 fish. Two have a timer value of `3`, and the others 
-have timer values of `1`, `2`, and `4`, respectively. Here is how we model 
-it with our `Map`:
+This population has 5 fish. Two of them have a timer value of `3`, and the 
+others have timer values of `1`, `2`, and `4`, respectively. Here is how we 
+model it with our `Map`:
 
 ~~~ scala
 val population: Map[Int, BigInt] = Map(
@@ -211,8 +211,8 @@ val population: Map[Int, BigInt] = Map(
 By the way, the input data is provided in the "comma-separated timer values" 
 format, how do we compute a `Map` from that?
 
-What I did was to parse the input data as a collection of `Int` values, and
-then I computed the `Map` associating each timer value to its number of fish 
+What I did is to parse the timer values from the input data, and then
+compute a `Map` associating each timer value to its number of fish 
 (basically, a map of occurrences) by using the method `groupMapReduce`:
 
 ~~~ scala
@@ -231,12 +231,12 @@ every fish.
 Last, the third argument defines how to combine the fish within a group. 
 Here, we just add the occurrences together.
 
-How do we compute the map of occurrences of the next day, given a map of 
-current occurrences? We create a new map of occurrences where we associate to 
+Next, how do we compute the map of occurrences of the next day, given a current 
+map of occurrences? We create a new map of occurrences where we associate to 
 the timer value `0` the number of current occurrences for the timer value `1`, 
 we associate to the timer value `1` the number of current occurrences for 
 the timer value `2`, and so on, to model time passing. However, there are 
-two special cases due to the fact that every seven days a fish create 
+two special cases due to the fact that every seven days a fish creates 
 another fish. The number of fish whose timer value is `6` is the current 
 number of fish whose timer value is `7` _plus_ the number of fish whose 
 timer value is `0` (those fish created a new fish, and they will create 
