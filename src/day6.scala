@@ -78,11 +78,14 @@ def simulate(days: Int, initialPopulation: Map[Int, BigInt]): BigInt =
 
 def tick(population: Map[Int, BigInt]): Map[Int, BigInt] =
   def countPopulation(daysLeft: Int): BigInt = population.getOrElse(daysLeft, BigInt(0))
-  Map.from(
-    for day <- 0 until 9
-    yield
-      val newPopulation =
-        if day == 6 then countPopulation(7) + countPopulation(0)
-        else countPopulation((day + 1) % 9)
-      (day, newPopulation)
+  Map(
+    0 -> countPopulation(1),
+    1 -> countPopulation(2),
+    2 -> countPopulation(3),
+    3 -> countPopulation(4),
+    4 -> countPopulation(5),
+    5 -> countPopulation(6),
+    6 -> (countPopulation(7) + countPopulation(0)),
+    7 -> countPopulation(8),
+    8 -> countPopulation(0)
   )
