@@ -14,11 +14,11 @@ https://adventofcode.com/2021/day/7
 
 ## Part 1: Fast and craby
 
-The whale is trying to swallow out submarine! Fortunately, there is a small
+The whale is trying to swallow our submarine! Fortunately, there is a small
 armada of crabs, let's call it a crabmada, in their tiny crabmarines that want
-to help us out! However, the crabs are not particularily efficient and will need
+to help us out! However, the crabs are not particularly efficient and will need
 our help, we need to align all their little crabmarines using the least fuel
-possible, so that they can blow a whole in the ocean floor.
+possible, so that they can blow a hole in the ocean floor.
 
 Firstly, let's start with modeling a single crabmarine:
 
@@ -52,7 +52,7 @@ and it can have a method for aliging all its crabs.
 Now the tricky part, how can we figure out the horizontal position that
 minimizes the amount of fuel the crabs will use? We have only two possible
 moves, forwards and backwards, and we know for sure that all the edge crabs will
-need to move. Let's model out solution as doing one of two moves:
+need to move. Let's model our solution as one of two moves:
 
 - moving all the edge crabmarines with the current maximum horizontal position
   backwards
@@ -101,11 +101,11 @@ This can take a form of a recursive function:
 
 First we check if all the crabmarines already align. If not we need to check
 what is the cost of moving all the crabs on each of the edges. We move all the
-ones on the edge that will take a up less fuel (less crabs to move). Then we
+ones on the edge that will use less fuel (less crabs to move). Then we
 invoke the function again with the updated positions of the crabmarines.
 
-Additionally, we use here a `@tailrec` annotation, which makes sure that out
-function can be translated by the compiler into an interative solution without
+Additionally, we use here a `@tailrec` annotation, which makes sure that our
+function can be translated by the compiler into an iterative solution without
 ever exceeding the maximum stack.
 
 ### Final code for Part 1
@@ -169,8 +169,7 @@ further they move. That means our solution will not help out our little sea
 friends. We need to modify the solution to take that into account.
 
 Let's try to model the new and old submarines using a new class hierarchy, we
-will add the current fuel cost for the new model of submarine we are simulating
-:
+will add the current fuel cost for the new model of the submarine we are simulating:
 
 ```scala
 sealed trait Crabmarine:
@@ -196,10 +195,10 @@ We define a new trait `Crabmarine` with all the old properties plus the new fuel
 cost property. We can define the previous model of submarine with a constant
 `fuelCost` of 1 and name it `ConstantCostCrabmarine`.
 
-The new model `IncreasingCostCrabmarine` used for part 2 will have a variable
-`fuelCost` which we can increase on each move.
+The new model `IncreasingCostCrabmarine` used for part 2 has a field
+`fuelCost`, which increases with each move.
 
-Now we only need to modify the way we calculate the fuelCost to actually use our
+Now we only need to modify the way we calculate the `fuelCost` to actually use our
 new property.
 
 ```scala
@@ -279,11 +278,6 @@ case class Crabmada(crabmarines: List[Crabmarine]):
   end align
 end Crabmada
 
-def part1(input: String): Int =
-  val horizontalPositions = input.split(",").map(_.toInt).toList
-  val crabmarines =
-    horizontalPositions.map(horizontal => ConstantCostCrabmarine(horizontal))
-  Crabmada(crabmarines).align()
 
 def part2(input: String): Int =
   val horizontalPositions = input.split(",").map(_.toInt).toList
