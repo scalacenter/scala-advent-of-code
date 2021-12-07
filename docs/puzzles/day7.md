@@ -80,7 +80,7 @@ This can take a form of a recursive function:
       val fuelCostForMax = situation.count {
          crabmarine => crabmarine.horizontal == maxHorizontal.horizontal
       }
-      val fuelCostForMin = situation.collect {
+      val fuelCostForMin = situation.count {
         crabmarine => crabmarine.horizontal == minHorizontal.horizontal
       }
       if fuelCostForMax < fuelCostForMin then
@@ -134,7 +134,7 @@ case class Crabmada(crabmarines: List[Crabmarine]):
       val fuelCostForMax = situation.count {
          crabmarine => crabmarine.horizontal == maxHorizontal.horizontal
       }
-      val fuelCostForMin = situation.collect {
+      val fuelCostForMin = situation.count {
         crabmarine => crabmarine.horizontal == minHorizontal.horizontal
       }
       if fuelCostForMax < fuelCostForMin then
