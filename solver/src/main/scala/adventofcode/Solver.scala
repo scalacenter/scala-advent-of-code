@@ -14,7 +14,9 @@ object Solver:
     "day3-part1" -> day3.part1,
     "day3-part2" -> day3.part2,
     "day6-part1" -> day6.part1,
-    "day6-part2" -> day6.part2
+    "day6-part2" -> day6.part2,
+    "day7-part1" -> day7.part1,
+    "day7-part2" -> day7.part2
   )
 
   @JSExportTopLevel("default")

@@ -331,7 +331,7 @@ $ scala-cli src -M day6.part2
 The solution is 1572643095893
 ```
 
-You can replace the content of the `input/day3` file with your own input from [adventofcode.com](https://adventofcode.com/2021/day/3) to get your own solution.
+You can replace the content of the `input/day6` file with your own input from [adventofcode.com](https://adventofcode.com/2021/day/6) to get your own solution.
 
 ## Solutions from the community
 
