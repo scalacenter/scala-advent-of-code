@@ -335,4 +335,6 @@ You can replace the content of the `input/day6` file with your own input from [a
 
 ## Solutions from the community
 
+- [Solution](https://github.com/tOverney/AdventOfCode2021/blob/main/src/main/scala/ch/overney/aoc/day6/) of [@tOverney](https://github.com/tOverney).
+
 Share your solution to the Scala community by editing this page.
