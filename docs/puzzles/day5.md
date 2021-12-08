@@ -204,4 +204,6 @@ be run using latest [scala-cli](https://scala-cli.virtuslab.org/):
 
 ## Solutions from the community
 
+- [Solution](https://github.com/tOverney/AdventOfCode2021/blob/main/src/main/scala/ch/overney/aoc/day5/) of [@tOverney](https://github.com/tOverney).
+
 Share your solution to the Scala community by editing this page.
