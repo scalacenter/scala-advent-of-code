@@ -122,7 +122,15 @@ const config = {
         darkTheme: darkCodeTheme,
         additionalLanguages : ['java', 'scala', 'batch']
       },
-    })
+    }),
+    scripts: [
+      {
+        src: "https://plausible.scala-lang.org/js/plausible.js",
+        defer: true,
+        async: true,
+        "data-domain": "scalacenter.github.io"
+      }
+    ]
 };
 
 module.exports = config;
