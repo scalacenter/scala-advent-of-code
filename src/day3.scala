@@ -1,5 +1,5 @@
 // using scala 3.0.2
-// using scala-js
+// using target scala-js
 
 package day3
 
