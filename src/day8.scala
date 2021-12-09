@@ -9,14 +9,14 @@ import scala.io.Source
 import Segment.*
 import Digit.*
 
+def readInput(): String =
+  Using.resource(Source.fromFile("input/day8"))(_.mkString)
+
 @main def part1: Unit =
   println(s"The solution is ${part1(readInput())}")
 
 @main def part2: Unit =
   println(s"The solution is ${part2(readInput())}")
-
-def readInput(): String =
-  Using.resource(Source.fromFile("input/day8"))(_.mkString)
 
 enum Segment:
   case A, B, C, D, E, F, G
@@ -24,12 +24,12 @@ enum Segment:
   val char = toString.head.toLower
 
 object Segment:
-  type Segments = Seq[Segment]
+  type Segments = Set[Segment]
 
   val fromChar: Map[Char, Segment] = values.map(s => s.char -> s).toMap
 
-  def parseSeq(s: String): Segments =
-    s.map(fromChar)
+  def parseSegments(s: String): Segments =
+    s.map(fromChar).toSet
 
 end Segment
 
@@ -47,8 +47,10 @@ enum Digit(val segments: Segment*):
 
 object Digit:
 
+  val index: IndexedSeq[Digit] = values.toIndexedSeq
+
   private val uniqueLookup: Map[Int, Digit] =
-    values.groupBy(_.segments.size).collect { case k -> Array(d) => k -> d }
+    index.groupBy(_.segments.size).collect { case k -> Seq(d) => k -> d }
 
   def lookupUnique(segments: Segments): Option[Digit] =
     uniqueLookup.get(segments.size)
@@ -57,10 +59,10 @@ end Digit
 
 def part1(input: String): Int =
 
-  def getDisplay(line: String): String = line.split("\\|")(1).trim
+  def getDisplay(line: String): String = line.split('|')(1).trim
 
-  val parseUniqueDigit: String => Option[Digit] =
-    Segment.parseSeq andThen Digit.lookupUnique
+  def parseUniqueDigit(s: String): Option[Digit] =
+    Digit.lookupUnique(Segment.parseSegments(s))
 
   val uniqueDigits: Iterator[Digit] =
     for
@@ -70,16 +72,16 @@ def part1(input: String): Int =
     yield
       uniqueDigit
 
-  uniqueDigits.length
+  uniqueDigits.size
 end part1
 
 def part2(input: String): Int =
 
   def parseSegmentsSeq(segments: String): Seq[Segments] =
-    segments.trim.split(" ").toSeq.map(Segment.parseSeq)
+    segments.trim.split(" ").toSeq.map(Segment.parseSegments)
 
   def splitParts(line: String): (Seq[Segments], Seq[Segments]) =
-    val Array(cypher, plaintext) = line.split("\\|").map(parseSegmentsSeq)
+    val Array(cypher, plaintext) = line.split('|').map(parseSegmentsSeq)
     (cypher, plaintext)
 
   def digitsToInt(digits: Seq[Digit]): Int =
@@ -97,10 +99,9 @@ end part2
 
 def substitutions(cypher: Seq[Segments]): Segments => Digit =
 
-  def lookup(section: Seq[Segments], withSegments: Set[Segment]): (Segments, Seq[Segments]) =
-    val found = section.find(s => (s.toSet & withSegments) == withSegments).get
-    val remaining = section.filterNot(_ == found)
-    (found, remaining)
+  def lookup(section: Seq[Segments], withSegments: Segments): (Segments, Seq[Segments]) =
+    val (Seq(uniqueMatch), remaining) = section.partition(withSegments.subsetOf)
+    (uniqueMatch, remaining)
 
   val uniques: Map[Digit, Segments] =
     Map.from(
@@ -118,19 +119,18 @@ def substitutions(cypher: Seq[Segments]): Segments => Digit =
   val four = uniques(Four)
   val seven = uniques(Seven)
   val eight = uniques(Eight)
-  val (three, remainingFives) = lookup(ofSizeFive, withSegments = one.toSet)
-  val (nine, remainingSixes) = lookup(ofSizeSix, withSegments = three.toSet)
-  val (zero, Seq(six)) = lookup(remainingSixes, withSegments = seven.toSet)
-  val (five, Seq(two)) = lookup(remainingFives, withSegments = six.toSet &~ (eight.toSet &~ nine.toSet))
+  val (three, remainingFives) = lookup(ofSizeFive, withSegments = one)
+  val (nine, remainingSixes) = lookup(ofSizeSix, withSegments = three)
+  val (zero, Seq(six)) = lookup(remainingSixes, withSegments = seven)
+  val (five, Seq(two)) = lookup(remainingFives, withSegments = six &~ (eight &~ nine))
 
-  val index: Map[Set[Segment], Digit] =
+  val index: Map[Segments, Digit] =
     Seq(zero, one, two, three, four, five, six, seven, eight, nine)
-      .map(_.toSet)
-      .zip(Digit.values)
+      .zip(Digit.index)
       .toMap
 
   def substitute(segments: Segments) =
-    index(segments.toSet)
+    index(segments)
 
   substitute
 end substitutions
