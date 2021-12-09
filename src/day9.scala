@@ -82,15 +82,13 @@ end part1
 
 
 def bassin(lowPoint: Position, heightMap: Heightmap): Set[Position] =
-  val point = heightMap(lowPoint)
-
   @scala.annotation.tailrec
   def iter(visited: Set[Position], toVisit: Queue[(Position, Height)], bassinAcc: Set[Position]): Set[Position] =
     if toVisit.isEmpty then bassinAcc
     else
       val ((currentPos, currentValue), others) = toVisit.dequeue
       val newNodes = heightMap.neighborsOf(currentPos).toList.filter { (pos, height) =>
-        height != 9 && currentValue < height 
+        !visited(currentPos) && height != 9 && currentValue < height 
       }
       iter(visited + currentPos, others ++ newNodes, bassinAcc ++ newNodes.map(_._1))
 
@@ -101,9 +99,7 @@ def bassin(lowPoint: Position, heightMap: Heightmap): Set[Position] =
 
 def part2(input: String): Int =
   val heightMap = Heightmap.fromString(input)
-
   val lowPoints = heightMap.lowPointsPositions
-
   val bassins = lowPoints.map(bassin(_, heightMap))
 
   bassins
