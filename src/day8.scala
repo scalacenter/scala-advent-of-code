@@ -122,7 +122,7 @@ def substitutions(cipher: Seq[Segments]): Map[Segments, Digit] =
   val (three, remainingFives) = lookup(ofSizeFive, withSegments = one)
   val (nine, remainingSixes) = lookup(ofSizeSix, withSegments = three)
   val (zero, Seq(six)) = lookup(remainingSixes, withSegments = seven)
-  val (five, Seq(two)) = lookup(remainingFives, withSegments = six &~ (eight &~ nine))
+  val (five, Seq(two)) = lookup(remainingFives, withSegments = four &~ one)
 
   val decode: Map[Segments, Digit] =
     Seq(zero, one, two, three, four, five, six, seven, eight, nine)
