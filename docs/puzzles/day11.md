@@ -1,10 +1,10 @@
 import Solver from "../../../../website/src/components/Solver.js"
 
-# Day 4: Giant Squid
+# Day 11
 
 ## Puzzle description
 
-https://adventofcode.com/2021/day/4
+https://adventofcode.com/2021/day/11
 
 ## Solutions from the community
 

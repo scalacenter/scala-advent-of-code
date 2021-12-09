@@ -1,7 +1,3 @@
----
-sidebar_position: 1
----
-
 # Day 1: Sonar Sweep 
 by [@adpi2](https://twitter.com/adrienpi2)
 

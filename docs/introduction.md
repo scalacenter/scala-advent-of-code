@@ -1,7 +1,3 @@
----
-sidebar_position: 1
----
-
 # Introduction
 
 Welcome to the Scala Center's take on [Advent of Code](https://adventofcode.com/).

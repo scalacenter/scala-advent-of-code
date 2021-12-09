@@ -1,6 +1,3 @@
----
-sidebar_position: 2
----
 import Solver from "../../../../website/src/components/Solver.js"
 
 # Day 2: Dive!

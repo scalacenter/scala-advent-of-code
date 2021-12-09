@@ -1,6 +1,3 @@
----
-sidebar_position: 6
----
 import Solver from "../../../../website/src/components/Solver.js"
 
 # Day 6: Lanternfish

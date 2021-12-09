@@ -57,10 +57,20 @@ const config = {
             label: 'Setup',
           },
           {
-            type: 'doc',
-            docId: 'puzzles/day1',
+            type: 'dropdown',
             position: 'left',
             label: 'Puzzles',
+            items: [
+              { type: 'doc', label: 'Day 1', docId: 'puzzles/day1' },
+              { type: 'doc', label: 'Day 2', docId: 'puzzles/day2' },
+              { type: 'doc', label: 'Day 3', docId: 'puzzles/day3' },
+              { type: 'doc', label: 'Day 4', docId: 'puzzles/day4' },
+              { type: 'doc', label: 'Day 5', docId: 'puzzles/day5' },
+              { type: 'doc', label: 'Day 6', docId: 'puzzles/day6' },
+              { type: 'doc', label: 'Day 7', docId: 'puzzles/day7' },
+              { type: 'doc', label: 'Day 8', docId: 'puzzles/day8' },
+              { type: 'doc', label: 'Day 9', docId: 'puzzles/day9' }
+            ]
           },
           {
             href: 'https://github.com/scalacenter/scala-advent-of-code',

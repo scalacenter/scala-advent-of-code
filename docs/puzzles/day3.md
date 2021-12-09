@@ -1,6 +1,3 @@
----
-sidebar_position: 3
----
 import Solver from "../../../../website/src/components/Solver.js"
 
 # Day 3: Binary Diagnostic
