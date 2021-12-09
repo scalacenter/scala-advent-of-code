@@ -1,8 +1,8 @@
 ThisBuild / scalaVersion := "3.0.2"
 
-lazy val adventOfCode = crossProject(JSPlatform, JVMPlatform)
-  .crossType(CrossType.Pure)
+lazy val adventOfCode = project
   .in(file("."))
+  .enablePlugins(ScalaJSPlugin)
   .settings(
     Compile / unmanagedSourceDirectories := Seq(
       (ThisBuild / baseDirectory).value / "solutions" / "src"
@@ -34,4 +34,4 @@ lazy val solver = project
     ),
     scalaJSLinkerConfig ~= (_.withModuleKind(ModuleKind.ESModule))
   )
-  .dependsOn(adventOfCode.js)
+  .dependsOn(adventOfCode)
