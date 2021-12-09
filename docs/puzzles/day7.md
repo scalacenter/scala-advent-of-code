@@ -315,4 +315,6 @@ There are most likely some other solutions that we could have used. In
 particular some advent coders had luck with using median and average for
 determining the final horizontal positions of the crabmarines.
 
+- [Solution](https://github.com/tOverney/AdventOfCode2021/blob/main/src/main/scala/ch/overney/aoc/day7/) of [@tOverney](https://github.com/tOverney).
+
 Share your solution to the Scala community by editing this page.
