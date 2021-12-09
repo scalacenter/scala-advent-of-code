@@ -65,7 +65,7 @@ the `exists` methods which returns true if at least one element in the
 collection satisfies the provided predicate.
 Finally, `collect` allows us to simplify chains of `map` and `filter`.
 
-You can have a look at the documentation of these methods [in the
+You can find more information about these methods [in the
 documentation](https://www.scala-lang.org/api/current/scala/collection/immutable/Iterable.html)
 
 We now have all the tools to solve part 1:
