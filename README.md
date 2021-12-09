@@ -43,3 +43,11 @@ $ scala-cli src -M <dayX>.<partX>
 By default the solution programs run on our input files which are stored in the `input` folder.
 To get your solutions you can change the content of those files in the `input` folder.
 
+
+#### How to run day3
+
+The solution of day 3 is written for the javascript target.
+You can run it locally, if you have [Node.js](https://nodejs.org/en/) installed, by adding the `--js` option:
+```
+$ scala-cli src --js -M day3.part1
+```
