@@ -54,8 +54,8 @@ smaller than the values of adjacent cells:
       }
     }
     .collect {
-      case (value, poss, neighbors) if neighbors.forall(value < _) => 
-        poss
+      case (value, pos, neighbors) if neighbors.forall(value < _) => 
+        pos
     }
 ```
 
