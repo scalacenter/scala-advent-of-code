@@ -99,7 +99,7 @@ This is how we can solve part 2 after implementing the basin creation for a sing
     .product
 ```
 
-To build a basin from a low point I use very useful data structure provided in
+To build a basin from a low point I use a data structure provided in
 the standard library:
 [`Queue`](https://www.scala-lang.org/api/current/scala/collection/immutable/Queue.html)
 which implements a first-in-first-out
@@ -107,13 +107,13 @@ which implements a first-in-first-out
 structure.
 
 Starting from the low point, I retrieve the neighbors of a cell and check if
-they should be part of the basin, in other words whether they do not contain the
+they should be part of the basin, in other words whether they contain the
 digit `9`. I also remember the coordinates of the cells I visited using a `Set`
 which provides constant time `contains` checks.  As the basin grows, the cells
 that form it are stored in the `basinAcc` accumulator.  As I continue to
 retrieve neighbors of neighbors, I add the cells that still need to be processed
 in the queue.
-The algorithm stops when no cells to visit are available:
+The algorithm stops when there are no more cells to visit:
 
 ```scala
 def basin(lowPoint: Position, heightMap: Heightmap): Set[Position] =
