@@ -38,7 +38,7 @@ def answers(input: String): (Int, Int) =
     for board <- boards
     yield
       val lineMin = board.lines.map(line => line.max).min
-      val  colMin = board.columns.map(col => col.max).min
+      val colMin = board.columns.map(col => col.max).min
       board -> lineMin.min(colMin)
 
   def score(board: Board, turn: Int) =
