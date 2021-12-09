@@ -80,10 +80,10 @@ def basin(lowPoint: Position, heightMap: Heightmap): Set[Position] =
     if toVisit.isEmpty then basinAcc
     else
       val (currentPos, remaining) = toVisit.dequeue
-      val newNodes = heightMap.neighborsOf(currentPos).toList.filter { (pos, height) =>
-        !visited(currentPos) && height != 9
+      val newNodes = heightMap.neighborsOf(currentPos).toList.collect {
+        case (pos, height) if !visited(currentPos) && height != 9 => pos
       }
-      iter(visited + currentPos, remaining ++ newNodes, basinAcc ++ newNodes.map(_._1))
+      iter(visited + currentPos, remaining ++ newNodes, basinAcc ++ newNodes)
 
   iter(Set.empty, Queue(lowPoint), Set(lowPoint))
 
