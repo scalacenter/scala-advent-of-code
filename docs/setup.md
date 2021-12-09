@@ -1,7 +1,3 @@
----
-sidebar_position: 2
----
-
 # Setup
 
 There are many ways to get started with Scala and we are going to try a new one in this documentation.

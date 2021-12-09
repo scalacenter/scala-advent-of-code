@@ -1,7 +1,3 @@
----
-sidebar_position: 7
----
-
 import Solver from "../../../../website/src/components/Solver.js"
 
 # Day 7: The Treachery of Whales

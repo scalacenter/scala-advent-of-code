@@ -9,7 +9,7 @@
   overflow: hidden;
   background-image: url("/img/background.jpg");
   background-size: cover;
-  height: 550px;
+  min-height: 550px;
   /*background-position: top;*/
 }
 
@@ -21,12 +21,13 @@
 
 .buttons {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: left;
 }
 
 .button {
-  margin: 0 1rem;
+  flex: 0 16%;
+  margin: 1rem;
 }
 
 .scalacenter{

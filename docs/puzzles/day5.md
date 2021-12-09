@@ -1,7 +1,3 @@
----
-sidebar_position: 5
----
-
 # Day 5: Hydrothermal Venture
 
 by [@tgodzik](https://github.com/tgodzik)
