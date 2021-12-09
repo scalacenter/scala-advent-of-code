@@ -81,23 +81,23 @@ def part2(input: String): Int =
     segments.trim.split(" ").toSeq.map(Segment.parseSegments)
 
   def splitParts(line: String): (Seq[Segments], Seq[Segments]) =
-    val Array(cypher, plaintext) = line.split('|').map(parseSegmentsSeq)
-    (cypher, plaintext)
+    val Array(cipher, plaintext) = line.split('|').map(parseSegmentsSeq)
+    (cipher, plaintext)
 
   def digitsToInt(digits: Seq[Digit]): Int =
     digits.foldLeft(0)((acc, d) => acc * 10 + d.ordinal)
 
   val problems = input.linesIterator.map(splitParts)
 
-  val solutions = problems.map((cypher, plaintext) =>
-    plaintext.map(substitutions(cypher))
+  val solutions = problems.map((cipher, plaintext) =>
+    plaintext.map(substitutions(cipher))
   )
 
   solutions.map(digitsToInt).sum
 
 end part2
 
-def substitutions(cypher: Seq[Segments]): Segments => Digit =
+def substitutions(cipher: Seq[Segments]): Map[Segments, Digit] =
 
   def lookup(section: Seq[Segments], withSegments: Segments): (Segments, Seq[Segments]) =
     val (Seq(uniqueMatch), remaining) = section.partition(withSegments.subsetOf)
@@ -106,14 +106,14 @@ def substitutions(cypher: Seq[Segments]): Segments => Digit =
   val uniques: Map[Digit, Segments] =
     Map.from(
       for
-        segments <- cypher
+        segments <- cipher
         digit <- Digit.lookupUnique(segments)
       yield
         digit -> segments
     )
 
-  val ofSizeFive = cypher.filter(_.sizeIs == 5)
-  val ofSizeSix = cypher.filter(_.sizeIs == 6)
+  val ofSizeFive = cipher.filter(_.sizeIs == 5)
+  val ofSizeSix = cipher.filter(_.sizeIs == 6)
 
   val one = uniques(One)
   val four = uniques(Four)
@@ -124,13 +124,10 @@ def substitutions(cypher: Seq[Segments]): Segments => Digit =
   val (zero, Seq(six)) = lookup(remainingSixes, withSegments = seven)
   val (five, Seq(two)) = lookup(remainingFives, withSegments = six &~ (eight &~ nine))
 
-  val index: Map[Segments, Digit] =
+  val decode: Map[Segments, Digit] =
     Seq(zero, one, two, three, four, five, six, seven, eight, nine)
       .zip(Digit.index)
       .toMap
 
-  def substitute(segments: Segments) =
-    index(segments)
-
-  substitute
+  decode
 end substitutions
