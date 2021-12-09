@@ -18,60 +18,53 @@ def readInput(): String =
 type Height = Int
 case class Position(x: Int, y: Int)
 
-class Heightmap(val width: Int, val height: Int, private val data: Array[Height]):
+case class Heightmap(width: Int, height: Int, data: Vector[Vector[Height]]):
 
-  def apply(coord: Position): Height = data(coord.y * width + coord.x)
+  def apply(pos: Position): Height = data(pos.y)(pos.x)
 
-  def neighborsOf(coord: Position): Iterator[(Position, Height)] =
-    val Position(x, y) = coord
-    val idx = coord.y * width + coord.x
-    Iterator(
-      Option.when(x > 0)(Position(x - 1, y) -> data(idx - 1)),
-      Option.when(x < width - 1)(Position(x + 1, y) -> data(idx + 1)),
-      Option.when(y > 0)(Position(x, y - 1) -> data(idx - width)),
-      Option.when(y < height - 1)(Position(x, y + 1) -> data(idx + width))
-    ).flatMap(Iterator.from)
+  def neighborsOf(pos: Position): List[(Position, Height)] =
+    val Position(x, y) = pos
+    List(
+      Option.when(x > 0)(Position(x - 1, y)),
+      Option.when(x < width - 1)(Position(x + 1, y)),
+      Option.when(y > 0)(Position(x, y - 1)),
+      Option.when(y < height - 1)(Position(x, y + 1))
+    ).flatMap(List.from)
+     .map(pos => pos -> apply(pos))
  
-  def lowPointsPositions: Iterator[Position] =
-    Iterator.range(0, data.length).map { idx =>
-      val x = idx % width
-      val y = idx / width
-      val coord = Position(x, y)
-      (
-        data(idx),
-        coord,
-        this.neighborsOf(coord).map(_._2)
-      )
-    }.collect {
-      case (value, coords, neighbors) if neighbors.forall(value < _) => 
-        coords
+  def lowPointsPositions: LazyList[Position] =
+    LazyList.range(0, height).flatMap { y =>
+      LazyList.range(0, width).map { x => 
+        val pos = Position(x, y)
+        (
+          apply(pos),
+          pos,
+          this.neighborsOf(pos).map(_._2)
+        )
+      }
+    }
+    .collect {
+      case (value, poss, neighbors) if neighbors.forall(value < _) => 
+        poss
     }
 end Heightmap
 
  
 object Heightmap:
   def fromString(raw: String): Heightmap =
-    val width = raw.linesIterator.next.length
-    val height = raw.linesIterator.length
-    val data = raw.iterator.filter(_.isDigit).map(_.asDigit).toArray
-
-    Heightmap(width, height, data)
+    val data = raw.linesIterator.map(line => line.map(_.asDigit).toVector).toVector
+    Heightmap(data(0).length, data.length, data)
 end Heightmap
 
 
 def drawGrid(height: Int, width: Int, data: (Position, Height)*) =
   val provided: Map[Position, Height] = data.toMap
-  var x = 0
-  var y = 0
   val result = StringBuilder()
-  while (y < height) do
-    while (x < width) do
+  for y <- 0 until height do
+    for x <- 0 until width do
       val value = provided.getOrElse(Position(x, y), -1)
       result.append(if value >= 0 then value else '-')
-      x += 1
     result.append('\n')
-    y += 1
-    x = 0
   result.toString
 
 def part1(input: String): Int =
@@ -81,30 +74,28 @@ def part1(input: String): Int =
 end part1
 
 
-def bassin(lowPoint: Position, heightMap: Heightmap): Set[Position] =
+def basin(lowPoint: Position, heightMap: Heightmap): Set[Position] =
   @scala.annotation.tailrec
-  def iter(visited: Set[Position], toVisit: Queue[(Position, Height)], bassinAcc: Set[Position]): Set[Position] =
-    if toVisit.isEmpty then bassinAcc
+  def iter(visited: Set[Position], toVisit: Queue[Position], basinAcc: Set[Position]): Set[Position] =
+    if toVisit.isEmpty then basinAcc
     else
-      val ((currentPos, currentValue), others) = toVisit.dequeue
+      val (currentPos, remaining) = toVisit.dequeue
       val newNodes = heightMap.neighborsOf(currentPos).toList.filter { (pos, height) =>
-        !visited(currentPos) && height != 9 && currentValue < height 
+        !visited(currentPos) && height != 9
       }
-      iter(visited + currentPos, others ++ newNodes, bassinAcc ++ newNodes.map(_._1))
+      iter(visited + currentPos, remaining ++ newNodes, basinAcc ++ newNodes.map(_._1))
 
-  val toVisit = Queue(lowPoint -> heightMap(lowPoint))
-
-  iter(Set.empty, toVisit, Set(lowPoint))
+  iter(Set.empty, Queue(lowPoint), Set(lowPoint))
 
 
 def part2(input: String): Int =
   val heightMap = Heightmap.fromString(input)
   val lowPoints = heightMap.lowPointsPositions
-  val bassins = lowPoints.map(bassin(_, heightMap))
+  val basins = lowPoints.map(basin(_, heightMap))
 
-  bassins
-    .map(_.size)
+  basins
     .to(LazyList)
+    .map(_.size)
     .sorted(Ordering[Int].reverse)
     .take(3)
     .product
