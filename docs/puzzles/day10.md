@@ -104,6 +104,26 @@ corrupted ones.  As the symbol causing corruption is maintained inside the
 `IllegalClosing` object, I can compute the score of each mistake and add them
 up.
 
+```scala
+extension (illegalClosing: CheckResult.IllegalClosing)
+  def score: Int = 
+    import Kind.*
+    illegalClosing.found.kind match
+      case Parenthesis => 3
+      case Bracket => 57
+      case Brace => 1197
+      case Diamond => 25137
+
+def part1(input: String): Int =
+  val rows: LazyList[List[Symbol]] =
+    input.linesIterator
+      .to(LazyList)
+      .map(parseRow)
+
+  rows.map(checkChunks)
+    .collect { case illegal: CheckResult.IllegalClosing => illegal.score }
+    .sum
+```
 <Solver puzzle="day10-part1"/>
 
 ## Solution of Part 2
@@ -121,6 +141,8 @@ bottom:
 This iteration is performed by `foldLeft`:
 
 ```scala
+extension (incomplete: CheckResult.Incomplete)
+  def score: BigInt =
     incomplete.pending.foldLeft(BigInt(0)) { (currentScore, symbol) =>
       val points = symbol.kind match
         case Parenthesis => 1
@@ -136,6 +158,12 @@ Once I have the scores of all incomplete lines, I sort the scores and retrieve
 the element in the middle:
 
 ```scala
+def part2(input: String): BigInt =
+  val rows: LazyList[List[Symbol]] =
+    input.linesIterator
+      .to(LazyList)
+      .map(parseRow)
+
   val scores =
     rows.map(checkChunks)
       .collect { case incomplete: CheckResult.Incomplete => incomplete.score } 
