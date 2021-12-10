@@ -71,12 +71,12 @@ function HomepageHeader() {
             Day 10
           </Link>
           <Link
-              className={`${styles.button} button button--secondary button--lg`}
+              className={`${styles.button} button button--secondary button--lg disabled`}
               to="/puzzles/day11">
             Day 11
           </Link>
           <Link
-              className={`${styles.button} button button--secondary button--lg`}
+              className={`${styles.button} button button--secondary button--lg disabled`}
               to="/puzzles/day12">
             Day 12
           </Link>
