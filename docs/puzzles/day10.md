@@ -78,7 +78,7 @@ Otherwise, when the new symbol is a closing marker, we need to check if it
 matches the top of the `pending` stack. Therefore if this stack is empty or if
 the top of the stack has a different `kind` (for example it is brace and the new
 symbol is a bracket) then we can stop and declare the line as corrupted
-(returning a `IllegalClosing`).  If the line is not corrupted, then new symbol
+(returning a `IllegalClosing`).  If the line is not corrupted, then the symbol
 closes the marker opened by the top of the stack: we can remove the top of the
 stack and continue with the rest of the input.
 
