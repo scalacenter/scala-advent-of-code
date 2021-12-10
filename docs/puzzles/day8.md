@@ -88,11 +88,10 @@ If we group the digits by the number of segments they have, we can see the follo
 We can build the table above with the following code:
 ```scala
 val bySizeLookup: Map[Int, Seq[Digit]] =
-  index.groupBy(_.segments.size) // `index` is `Digit.values.toIndexedSeq`
+  Digit.values.toIndexedSeq.groupBy(_.segments.size)
 ```
-
 > In the above, we can access all `Digit` values with the built in `values` method of the companion,
-> here we have converted it to a `Seq` (the `index` value) for convenience.
+> here we have converted it to a `Seq` for convenience.
 
 However we are only interested in the entries where the segment count is linked
 to a single digit. We can remove the entries with more than one digit, and map each key to a single digit
@@ -115,7 +114,7 @@ in the companion of `Digit`, with a method `lookupUnique`. The method takes a se
 
 To implement this, we call `get` on
 `uniqueLookup` with the size of the segment string, which returns an `Option[Digit]`, depending
-on if the key was present.
+on whether the key was present.
 
 Here is the final companion of `Digit` (where `uniqueLookup` inlines the definition of `bySizeLookup`):
 
@@ -174,7 +173,7 @@ To be more explicit with error handling, we could wrap `parseSegments` with a [T
 
 #### Parsing the input file
 
-for part 1 we only need to read the four digit display section of each line, we can parse this from
+For part 1 we only need to read the four digit display section of each line, we can parse this from
 a line with the following function `getDisplay`:
 ```scala
 def getDisplay(line: String): String = line.split('|')(1).trim
@@ -367,10 +366,10 @@ We can continue in this fashion to discover all the remaining encoded digits, fo
 
 :::info
 In the above table (`four` `\` `one`) means the _set difference_, i.e. the set of segments formed from
-removing segments of `one` from segments of `four`
+removing segments of `one` from segments of `four`.
 :::
 
-Once we have discovered all the encoded digits, we then build a dictionary by associating each encoded digit to
+Once we have discovered all the encoded digits, we build a dictionary by associating each encoded digit to
 the original digit.
 
 ### Creating Our Subsitution Map
@@ -426,8 +425,6 @@ We will create sections of encoded digits of size 5 and size 6:
 val ofSizeFive = cipher.filter(encoded => encoded.sizeIs == 5)
 val ofSizeSix = cipher.filter(encoded => encoded.sizeIs == 6)
 ```
-> `filter` is a method defined in the `Seq` class that takes a function argument (evaluated on every element).
-> It will create a new list from `cipher` where elements that do not match its argument are dropped.
 
 #### Decoding the Encoded Digits
 
@@ -493,7 +490,7 @@ a sequence of pairs where the left element is the 10 encoded digits `cipher`, an
 4 encoded digits `plaintext`.
 
 Then for each problem, we can then
-create the substitution map by applying `substitutions` to `cipher`, then we can then
+create the substitution map by applying `substitutions` to `cipher`, then we can
 use the substitution map on each encoded digit of `plaintext` to convert it to a `Digit`.
 
 We are then left with `solutions`, which is a list of decoded displays, where each display is a `Seq[Digit]`.
