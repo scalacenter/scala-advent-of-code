@@ -356,7 +356,7 @@ b    .  b    .  .    c  b    c  b    c
 ```
 
 You might notice that some of the digits fit within another. For example, `One` overlaps with
-all of `Zero`, `Four`, `Seven`, `Eight`, and `Nine`.
+all of `Zero`, `Three`, `Four`, `Seven`, `Eight`, and `Nine`.
 
 We can formalise this by saying the set of segments for `One` is a
 subset of the segments for each of those other digits.
