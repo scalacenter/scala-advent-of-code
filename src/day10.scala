@@ -2,7 +2,6 @@
 
 package day10
 
-import scala.collection.immutable.Queue
 import scala.util.Using
 import scala.io.Source
 
