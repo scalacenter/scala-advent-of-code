@@ -103,7 +103,7 @@ extension (incomplete: CheckResult.Incomplete)
       currentScore * 5 + points
     }
 
-def part2(input: String): Int =
+def part2(input: String): BigInt =
   val rows: LazyList[LazyList[Symbol]] =
     input.linesIterator
       .to(LazyList)
@@ -115,4 +115,4 @@ def part2(input: String): Int =
       .toVector
       .sorted
   
-  scores(scores.length / 2).toInt
+  scores(scores.length / 2)
