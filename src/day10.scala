@@ -41,27 +41,27 @@ case class Symbol(kind: Kind, direction: Direction):
       this.direction == Direction.Open &&
       that.direction == Direction.Close
     
-def checkChunks(expression: LazyList[Symbol]): CheckResult =
+def checkChunks(expression: List[Symbol]): CheckResult =
   @scala.annotation.tailrec
-  def iter(pending: List[Symbol], input: LazyList[Symbol]): CheckResult =
-    if input.isEmpty then
-      if pending.isEmpty then CheckResult.Ok
-      else CheckResult.Incomplete(pending)
-    else
-      val (nextChar #:: remainingChars) = input 
-      if nextChar.isOpen then iter(nextChar :: pending, remainingChars)
-      else pending match
-        case Nil => CheckResult.IllegalClosing(None, nextChar)
-        case lastOpened :: previouslyOpened =>
-          if lastOpened.opens(nextChar) then iter(previouslyOpened, remainingChars)
-          else CheckResult.IllegalClosing(Some(lastOpened), nextChar)
+  def iter(pending: List[Symbol], input: List[Symbol]): CheckResult =
+    input match
+      case Nil =>
+        if pending.isEmpty then CheckResult.Ok
+        else CheckResult.Incomplete(pending)
+      case nextChar :: remainingChars =>
+        if nextChar.isOpen then iter(nextChar :: pending, remainingChars)
+        else pending match
+          case Nil => CheckResult.IllegalClosing(None, nextChar)
+          case lastOpened :: previouslyOpened =>
+            if lastOpened.opens(nextChar) then iter(previouslyOpened, remainingChars)
+            else CheckResult.IllegalClosing(Some(lastOpened), nextChar)
 
   iter(List.empty, expression)
 
-def parseRow(row: String): LazyList[Symbol] =
+def parseRow(row: String): List[Symbol] =
   import Direction.*
   import Kind.*
-  row.to(LazyList).map {
+  row.to(List).map {
     case '(' => Symbol(Parenthesis, Open)
     case ')' => Symbol(Parenthesis, Close)
     case '[' => Symbol(Bracket, Open)
@@ -74,7 +74,7 @@ def parseRow(row: String): LazyList[Symbol] =
   }
 
 def part1(input: String): Int =
-  val rows: LazyList[LazyList[Symbol]] =
+  val rows: LazyList[List[Symbol]] =
     input.linesIterator
       .to(LazyList)
       .map(parseRow)
@@ -97,7 +97,7 @@ extension (incomplete: CheckResult.Incomplete)
     }
 
 def part2(input: String): BigInt =
-  val rows: LazyList[LazyList[Symbol]] =
+  val rows: LazyList[List[Symbol]] =
     input.linesIterator
       .to(LazyList)
       .map(parseRow)
