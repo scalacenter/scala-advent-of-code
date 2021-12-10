@@ -2,6 +2,8 @@ import Solver from "../../../../website/src/components/Solver.js"
 
 # Day 9: Smoke Basin
 
+by [@VincenzoBaz](https://twitter.com/VincenzoBaz)
+
 ## Puzzle description
 
 https://adventofcode.com/2021/day/9
@@ -44,7 +46,7 @@ smaller than the values of adjacent cells:
 ```scala
   def lowPointsPositions: LazyList[Position] =
     LazyList.range(0, height).flatMap { y =>
-      LazyList.range(0, width).map { x => 
+      LazyList.range(0, width).map { x =>
         val pos = Position(x, y)
         (
           apply(pos),
@@ -54,7 +56,7 @@ smaller than the values of adjacent cells:
       }
     }
     .collect {
-      case (value, pos, neighbors) if neighbors.forall(value < _) => 
+      case (value, pos, neighbors) if neighbors.forall(value < _) =>
         pos
     }
 ```

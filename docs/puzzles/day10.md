@@ -2,6 +2,8 @@ import Solver from "../../../../website/src/components/Solver.js"
 
 # Day 10: Syntax Scoring
 
+by [@VincenzoBaz](https://twitter.com/VincenzoBaz)
+
 ## Puzzle description
 
 https://adventofcode.com/2021/day/10
@@ -18,7 +20,7 @@ that will be used in both part 1 and part 2.
 
 An input is represented by a `LazyList[List[Symbol]]` where each `List[Symbol]`
 is a line of the input.
-Symbols are defined by the kind (parenthesis, bracket, brace or diamond) and 
+Symbols are defined by the kind (parenthesis, bracket, brace or diamond) and
 the direction (open or close):
 
 ```scala
@@ -37,14 +39,14 @@ In this encoding, `{` is represented by `Symbol(Brace, Open)`.
 The function that verifies a line produces a value of type `CheckResult` which
 encapsulates the possible results of the check:
 
-- `Ok` if the input is valid 
+- `Ok` if the input is valid
 - `Incomplete(pending)` if the line finishes leaving some markers open. For
 example then line `[` is incomplete and will result in `Incomplete(List(Symbol(Bracket, Open)))`
 - `IllegalClosing(expected, found)` if a line contains a symbol closed by a
 symbol whose kind is not correct. For example `[}` is corrupted and will result in
 `IllegalClosing(Some(Symbol(Bracket, Close)), Symbol(Brace, Close))`
 
-An `enum` is used to encode this hierarchy: 
+An `enum` is used to encode this hierarchy:
 
 ```scala
 enum CheckResult:
@@ -106,7 +108,7 @@ up.
 
 ```scala
 extension (illegalClosing: CheckResult.IllegalClosing)
-  def score: Int = 
+  def score: Int =
     import Kind.*
     illegalClosing.found.kind match
       case Parenthesis => 3
@@ -131,7 +133,7 @@ def part1(input: String): Int =
 In the second part, we focus on incomplete lines.  For each line, I use an
 iteration accumulator `currentScore` initialized to `0` and I iterate over each
 missing symbol, at each step I multiply the accumulator by `5` and add the score
-corresponding to the missing symbol. 
+corresponding to the missing symbol.
 
 I know what symbol is missing from the input because `CheckResult.Incomplete`
 contains all the symbols opening a marker which is not closed. Therefore missing
@@ -148,8 +150,8 @@ extension (incomplete: CheckResult.Incomplete)
         case Parenthesis => 1
         case Bracket => 2
         case Brace => 3
-        case Diamond => 4 
-      
+        case Diamond => 4
+
       currentScore * 5 + points
     }
 ```
@@ -166,10 +168,10 @@ def part2(input: String): BigInt =
 
   val scores =
     rows.map(checkChunks)
-      .collect { case incomplete: CheckResult.Incomplete => incomplete.score } 
+      .collect { case incomplete: CheckResult.Incomplete => incomplete.score }
       .toVector
       .sorted
-  
+
   scores(scores.length / 2)
 ```
 
