@@ -21,33 +21,26 @@ enum CheckResult:
 
 extension (illegalClosing: CheckResult.IllegalClosing)
   def score: Int = 
-    import Symbol.*
-    illegalClosing.found match
-      case Parenthesis(_) => 3
-      case Bracket(_) => 57
-      case Brace(_) => 1197
-      case Diamond(_) => 25137
+    import Kind.*
+    illegalClosing.found.kind match
+      case Parenthesis => 3
+      case Bracket => 57
+      case Brace => 1197
+      case Diamond => 25137
 
-enum SymbolState:
+enum Direction:
   case Open, Close
 
-enum Symbol(val state: SymbolState):
-  case Parenthesis(override val state: SymbolState) extends Symbol(state)
-  case Bracket(override val state: SymbolState) extends Symbol(state)
-  case Brace(override val state: SymbolState) extends Symbol(state)
-  case Diamond(override val state: SymbolState) extends Symbol(state)
+enum Kind:
+  case Parenthesis, Bracket, Brace, Diamond
 
-  def isOpen: Boolean = state == SymbolState.Open
-
-  def opens(that: Symbol): Boolean =
-    import SymbolState.*
-    (this, that) match
-      case (Parenthesis(Open), Parenthesis(Close)) => true
-      case (Bracket(Open), Bracket(Close)) => true
-      case (Brace(Open), Brace(Close)) => true
-      case (Diamond(Open), Diamond(Close)) => true
-      case _ => false
-
+case class Symbol(kind: Kind, direction: Direction):
+  def isOpen: Boolean = direction == Direction.Open
+  def opens(that: Symbol): Boolean = 
+    this.kind == that.kind && 
+      this.direction == Direction.Open &&
+      that.direction == Direction.Close
+    
 def checkChunks(expression: LazyList[Symbol]): CheckResult =
   @scala.annotation.tailrec
   def iter(pending: List[Symbol], input: LazyList[Symbol]): CheckResult =
@@ -66,17 +59,17 @@ def checkChunks(expression: LazyList[Symbol]): CheckResult =
   iter(List.empty, expression)
 
 def parseRow(row: String): LazyList[Symbol] =
-  import SymbolState.*
-  import Symbol.*
+  import Direction.*
+  import Kind.*
   row.to(LazyList).map {
-    case '(' => Parenthesis(Open)
-    case ')' => Parenthesis(Close)
-    case '[' => Bracket(Open)
-    case ']' => Bracket(Close)
-    case '{' => Brace(Open)
-    case '}' => Brace(Close)
-    case '<' => Diamond(Open)
-    case '>' => Diamond(Close)
+    case '(' => Symbol(Parenthesis, Open)
+    case ')' => Symbol(Parenthesis, Close)
+    case '[' => Symbol(Bracket, Open)
+    case ']' => Symbol(Bracket, Close)
+    case '{' => Symbol(Brace, Open)
+    case '}' => Symbol(Brace, Close)
+    case '<' => Symbol(Diamond, Open)
+    case '>' => Symbol(Diamond, Close)
     case _ => throw IllegalArgumentException("Symbol not supported")
   }
 
@@ -92,13 +85,13 @@ def part1(input: String): Int =
 
 extension (incomplete: CheckResult.Incomplete)
   def score: BigInt =
-    import Symbol.*
+    import Kind.*
     incomplete.pending.foldLeft(BigInt(0)) { (currentScore, symbol) =>
-      val points = symbol match
-        case Parenthesis(_) => 1
-        case Bracket(_) => 2
-        case Brace(_) => 3
-        case Diamond(_) => 4 
+      val points = symbol.kind match
+        case Parenthesis => 1
+        case Bracket => 2
+        case Brace => 3
+        case Diamond => 4 
       
       currentScore * 5 + points
     }
