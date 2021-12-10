@@ -74,7 +74,7 @@ When `input` contains at least one symbol, we pop it from the list.
 If the symbol is an open marker (`direction` is `Open`) then we push it
 on the `pending` stack and we continue iterating over the rest of the row.
 
-Otherwise, when the new symbol is a closing marker, we ne need to check if it
+Otherwise, when the new symbol is a closing marker, we need to check if it
 matches the top of the `pending` stack. Therefore if this stack is empty or if
 the top of the stack has a different `kind` (for example it is brace and the new
 symbol is a bracket) then we can stop and declare the line as corrupted
