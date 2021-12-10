@@ -36,10 +36,6 @@ enum Kind:
 
 case class Symbol(kind: Kind, direction: Direction):
   def isOpen: Boolean = direction == Direction.Open
-  def opens(that: Symbol): Boolean = 
-    this.kind == that.kind && 
-      this.direction == Direction.Open &&
-      that.direction == Direction.Close
     
 def checkChunks(expression: List[Symbol]): CheckResult =
   @scala.annotation.tailrec
@@ -53,7 +49,7 @@ def checkChunks(expression: List[Symbol]): CheckResult =
         else pending match
           case Nil => CheckResult.IllegalClosing(None, nextChar)
           case lastOpened :: previouslyOpened =>
-            if lastOpened.opens(nextChar) then iter(previouslyOpened, remainingChars)
+            if lastOpened.kind == nextChar.kind then iter(previouslyOpened, remainingChars)
             else CheckResult.IllegalClosing(Some(lastOpened), nextChar)
 
   iter(List.empty, expression)
