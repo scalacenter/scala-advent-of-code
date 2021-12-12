@@ -201,5 +201,6 @@ solution.
 ## Solutions from the community
 
 - [Solution](https://github.com/tOverney/AdventOfCode2021/blob/main/src/main/scala/ch/overney/aoc/day10/) of [@tOverney](https://github.com/tOverney).
+- [Solution](https://github.com/Jannyboy11/AdventOfCode2021/blob/main/src/main/scala/day10/Day10.scala) by [Jan Boerman](https://twitter.com/JanBoerman95)
 
 Share your solution to the Scala community by editing this page.
