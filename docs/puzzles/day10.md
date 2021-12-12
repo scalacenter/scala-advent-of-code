@@ -200,4 +200,6 @@ solution.
 
 ## Solutions from the community
 
+- [Solution](https://github.com/tOverney/AdventOfCode2021/blob/main/src/main/scala/ch/overney/aoc/day10/) of [@tOverney](https://github.com/tOverney).
+
 Share your solution to the Scala community by editing this page.
