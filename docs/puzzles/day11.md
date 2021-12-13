@@ -1,6 +1,6 @@
 import Solver from "../../../../website/src/components/Solver.js"
 
-# Day 11
+# Day 11: Dumbo Octopus
 
 ## Puzzle description
 

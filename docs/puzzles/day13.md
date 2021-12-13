@@ -1,6 +1,6 @@
 import Solver from "../../../../website/src/components/Solver.js"
 
-# Day 13
+# Day 13: Transparent Origami
 by @adpi2
 
 ## Puzzle description
@@ -21,7 +21,7 @@ enum Fold:
 ```
 
 A `Dot` is made of two integers: `x` and `y`.
-A `Fold` is either `Vertical` if it has an `x` coordinate or `Horizontal` if it has an `y` coordinate. 
+A `Fold` is either `Vertical` if it has an `x` coordinate or `Horizontal` if it has a `y` coordinate. 
 
 ## Parsing
 
@@ -94,7 +94,7 @@ def fold(along: Int)(value: Int): Int =
 
 We can check this formula with some examples:
  - Folding a dot at 2 along 7 does not move the dot because `2 < 7`.
- - Folding a dot at 9 along 7 (`......|.#`) move the dot to `7 - 2 = 5` (`....#.|..`) because `9 = 7 + 2`.
+ - Folding a dot at 9 along 7 (`......|.#`) moves the dot to `7 - 2 = 5` (`....#.|..`).
 
 ## Solution of part 1
 
