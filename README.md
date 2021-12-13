@@ -5,7 +5,7 @@ Scala Center's solutions of [Advent of Code](https://adventofcode.com/).
 To run the website you need to
 
 ```
-$ sbtn mdoc
+$ sbtn docs / mdoc
 $ cd website
 $ yarn install
 $ yarn start
