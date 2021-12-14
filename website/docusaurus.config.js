@@ -140,7 +140,7 @@ const config = {
     }),
     scripts: [
       {
-        src: "https://plausible.scala-lang.org/js/plausible.js",
+        src: "https://plausible.scala-lang.org/js/script.js",
         defer: true,
         async: true,
         "data-domain": "scalacenter.github.io"
