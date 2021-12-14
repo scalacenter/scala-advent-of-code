@@ -34,7 +34,8 @@ const sidebars = {
         'puzzles/day10',
         'puzzles/day11',
         'puzzles/day12',
-        'puzzles/day13'
+        'puzzles/day13',
+        'puzzles/day14'
       ]
     },
   ]

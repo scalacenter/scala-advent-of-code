@@ -1,6 +1,6 @@
 import Solver from "../../../../website/src/components/Solver.js"
 
-# Day 14
+# Day 14: Extended Polymerization
 
 ## Puzzle description
 
