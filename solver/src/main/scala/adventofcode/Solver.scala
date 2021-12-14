@@ -24,6 +24,8 @@ object Solver:
     "day9-part2" -> day9.part2,
     "day10-part1" -> day10.part1,
     "day10-part2" -> day10.part2,
+    "day13-part1" -> day13.part1,
+    "day13-part2" -> day13.part2,
   )
 
   @JSExportTopLevel("default")
@@ -60,7 +62,7 @@ object Solver:
     p(
       "Execution failed: ",
       p(
-        styleAttr := "color: red",
+        color := "red",
         s"\t${e.getClass.getName}: ${e.getMessage}"
       )
     )
@@ -68,8 +70,10 @@ object Solver:
   private def answerResponse(answer: Any): Element =
     p(
       s"Answer is: ",
-      span(
-        styleAttr := "color: green",
-        answer.toString
+      pre(
+        code(
+          className := "codeBlockLines_node_modules-@docusaurus-theme-classic-lib-next-theme-CodeBlock-styles-module",
+          answer.toString.linesIterator.toSeq.map(l => span(l, br()))
+        )
       )
     )

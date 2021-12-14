@@ -1,6 +1,6 @@
 import Solver from "../../../../website/src/components/Solver.js"
 
-# Day 12
+# Day 12: Passage Pathing
 
 ## Puzzle description
 
