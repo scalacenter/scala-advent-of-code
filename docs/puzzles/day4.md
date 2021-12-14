@@ -64,10 +64,10 @@ val numbers: List[Int] = inputSections.head.split(',').map(_.toInt)
 
 ### Parsing Boards
 
-A board is just a table of integers, and a table is just a list of lines, where each line is also list.
+A board is a table of integers, and a table is a list of lines, where each line is also list.
 And so we have our type for the boards: `List[List[Int]]`!
 
-But not so fast, we would like to add some extra operations on boards, so we wrap it in a [case classe](https://docs.scala-lang.org/tour/case-classes.html):
+But not so fast, we would like to add some extra operations on boards, so we wrap it in a [case class](https://docs.scala-lang.org/tour/case-classes.html):
 (don't worry if you don't understand the methods, we'll explain them later)
 ```scala
 case class Board(lines: List[List[Int]]):
@@ -82,8 +82,8 @@ object Board:
   def parse(inputBoard: String): Board = ???
 ```
 
-Let's start easy, assuming we have a line, how do we find all the numbers?
-We can use a [regular expressions](https://en.wikipedia.org/wiki/Regular_expression)(Regexes): 
+Let's start from the ground up. Assuming we have a line, how do we find all the numbers?
+We can use a [regular expression](https://en.wikipedia.org/wiki/Regular_expression)(Regexes): 
  - "digit" -> `\d`
  - "one or more" -> `+`
  - "one or more digits" -> `\d+`
@@ -99,7 +99,7 @@ For each line, `numberParser` finds every number in it, and we parse them to `In
 def parseLine(inputLine: String): List[Int] =
   numberParser.findAllIn(inputLine).toList.map(_.toInt)
 ```
-And the lines are just separated by newlines:
+And the lines are separated by newlines:
 ```scala
 val lines = inputBoard.split('\n').toList
 Board(lines.map(parseLine))
@@ -116,24 +116,26 @@ Since we have multiple `Board`s:
 val originalBoards: List[Board] = inputSections.tail.map(Board.parse)
 ```
 
-## Reasonning about the problem
+## Reasoning about the problem
 
 It's kind of difficult to think about all those numbers being picked at random turn.
 We can simplify the problem by replacing each number by the "turn" at which it was drawn.
 
-`zipWithIndex` transforms our list of numbers into a list of number-index pair, where the index is just the turn at which the number is picked.
+`zipWithIndex` transforms our list of numbers into a list of number-index pair, where the index is, in this case, the turn at which the number is picked.
 We can then convert it to a `Map`, to be able to use it like a function.
 To be able also to go back, we invert our `Map` by swapping its keys and values.
 
 ```scala
 val numberToTurn = numbers.zipWithIndex.toMap
-val turnToNumber = numberToTurn.map((number -> turn) => (turn -> number))
+val turnToNumber = numberToTurn.map(_.swap)
 ```
 
 Our simplified boards are therefore:
 ```scala
 val boards = originalBoards.map(board => board.mapNumbers(numberToTurn))
 ```
+
+The `mapNumbers` method defined in `Board` takes a function and apply it to each number in the `Board` to construct a new `Board`.
 
 It is now time to find when a board wins:
 ```scala
@@ -148,7 +150,8 @@ The columns work the same way:
 ```scala
   val colMin = board.columns.map(col => col.max).min
 ```
-(`Board.columns` is computed using `transpose`, which transforms the lines into columns and the columns into lines)
+
+`Board.columns` is computed using `transpose`, which transforms the lines into columns and the columns into lines.
 
 A board wins if a line wins or if a column wins, so we return the min:
 ```scala
@@ -169,10 +172,10 @@ The score is the sum of all numbers that have not been drawn yet, times the turn
 def score(board: Board, turn: Int) = ???
 ```
 
-For each line, the numbers that have not been drawn are simply the ones bigger than the winning turn of that board.
+For each line, the numbers that have not been drawn are the ones bigger than the winning turn of that board.
 We filter them with `lines.filter(_ > turn)`.
 
-However, simply taking the sum would be wrong, as we are using the turns, and not the original numbers!
+However, only taking the sum would be wrong, as we are using the turns, and not the original numbers!
 We thus need to map them to their original values:
 ```scala
 val sumNumsNotDrawn = board.lines.map{ line => 
@@ -180,7 +183,7 @@ val sumNumsNotDrawn = board.lines.map{ line =>
 }.sum
 ```
 
-The score is then simply:
+The score is then:
 ```scala
 turnToNumber(turn) * sumUnmarkedNums
 ```
