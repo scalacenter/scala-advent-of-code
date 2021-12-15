@@ -7,18 +7,18 @@ import scala.io.Source
 import scala.collection.mutable
 
 type Coord = (Int, Int)
-class GameMap(cells: Seq[Seq[Int]]):
+class GameMap(cells: IndexedSeq[IndexedSeq[Int]]):
   val maxRow = cells.length - 1
   val maxCol = cells.head.length - 1
 
-  def neighboursOf(c: Coord): List[Coord] = c match
-    case (row, col) =>
-      val lb = mutable.ListBuffer.empty[Coord]
-      if row < maxRow then lb.append((row+1, col))
-      if row > 0      then lb.append((row-1, col))
-      if col < maxCol then lb.append((row, col+1))
-      if col > 0      then lb.append((row, col-1))
-      lb.toList
+  def neighboursOf(c: Coord): List[Coord] =
+    val (row, col) = c
+    val lb = mutable.ListBuffer.empty[Coord]
+    if row < maxRow then lb.append((row+1, col))
+    if row > 0      then lb.append((row-1, col))
+    if col < maxCol then lb.append((row, col+1))
+    if col > 0      then lb.append((row, col-1))
+    lb.toList
 
   def costOf(c: Coord): Int = c match
     case (row, col) => cells(row)(col)
@@ -34,8 +34,9 @@ def cheapestDistance(gameMap: GameMap): Int =
     val c = queue.poll()
     visited += c
     val newNodes: List[Coord] = gameMap.neighboursOf(c).filterNot(visited)
+    val cDist = dist(c)
     for n <- newNodes do
-      val newDist = dist(c) + gameMap.costOf(n)
+      val newDist = cDist + gameMap.costOf(n)
       if !dist.contains(n) || dist(n) > newDist then
         dist(n) = newDist
         queue.remove(n)
@@ -44,10 +45,10 @@ def cheapestDistance(gameMap: GameMap): Int =
   dist((gameMap.maxRow, gameMap.maxCol))
 end cheapestDistance
 
-def readInput(): List[List[Int]] =
+def readInput(): IndexedSeq[IndexedSeq[Int]] =
   val text = Using.resource(Source.fromFile("input/day15"))(_.mkString)
-  for line <- text.split("\n").toList yield
-    for char <- line.toList yield char.toString.toInt
+  for line <- text.split("\n").toIndexedSeq yield
+    for char <- line.toIndexedSeq yield char.toString.toInt
 
 @main def part1() =
   val gameMap = GameMap(readInput())
@@ -63,7 +64,7 @@ def readInput(): List[List[Int]] =
           tileIdHorizontal <- 0 until 5
           cell <- row
         yield (cell + tileIdHorizontal + tileIdVertical - 1) % 9 + 1
-      }
-    )
+    }
+  )
   val result = cheapestDistance(gameMap)
   println(s"The solution is: $result")
