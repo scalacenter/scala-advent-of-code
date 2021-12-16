@@ -1,4 +1,5 @@
 // using scala 3.1.0
+
 package day16
 
 import scala.util.Using
@@ -37,125 +38,95 @@ val hexadecimalMapping =
 /*
  * Structures for all possible operators
  */
+enum Packet(version: Int, typeId: Int):
+  case Sum(version: Int, exprs: List[Packet]) extends Packet(version, 0)
+  case Product(version: Int, exprs: List[Packet]) extends Packet(version, 1)
+  case Minimum(version: Int, exprs: List[Packet]) extends Packet(version, 2)
+  case Maximum(version: Int, exprs: List[Packet]) extends Packet(version, 3)
+  case Literal(version: Int, literalValue: Long) extends Packet(version, 4)
+  case GreaterThan(version: Int, lhs: Packet, rhs: Packet) extends Packet(version, 5)
+  case LesserThan(version: Int, lhs: Packet, rhs: Packet) extends Packet(version, 6)
+  case Equals(version: Int, lhs: Packet, rhs: Packet) extends Packet(version, 7)
 
-sealed trait Packet:
-  def version: Int
-  def typeId: Int
-  def value: Long
+  def versionSum: Int =
+    this match
+      case Sum(version, exprs)            => version + exprs.map(_.versionSum).sum
+      case Product(version, exprs)        => version + exprs.map(_.versionSum).sum
+      case Minimum(version, exprs)        => version + exprs.map(_.versionSum).sum
+      case Maximum(version, exprs)        => version + exprs.map(_.versionSum).sum
+      case Literal(version, value)        => version
+      case GreaterThan(version, lhs, rhs) => version + lhs.versionSum + rhs.versionSum
+      case LesserThan(version, lhs, rhs)  => version + lhs.versionSum + rhs.versionSum
+      case Equals(version, lhs, rhs)      => version + lhs.versionSum + rhs.versionSum
 
-sealed trait OperatorPacket extends Packet:
-  def version: Int
-  def typeId: Int
-  def value: Long
-  def exprs: List[Packet]
+  def value: Long =
+    this match
+      case Sum(version, exprs)            => exprs.map(_.value).sum
+      case Product(version, exprs)        => exprs.map(_.value).reduce(_ * _)
+      case Minimum(version, exprs)        => exprs.map(_.value).min
+      case Maximum(version, exprs)        => exprs.map(_.value).max
+      case Literal(version, value)        => value
+      case GreaterThan(version, lhs, rhs) => if lhs.value > rhs.value then 1 else 0
+      case LesserThan(version, lhs, rhs)  => if lhs.value < rhs.value then 1 else 0
+      case Equals(version, lhs, rhs)      => if lhs.value == rhs.value then 1 else 0
+end Packet
 
-sealed trait BinaryOperatorPacket extends OperatorPacket:
-  def version: Int
-  def typeId: Int
-  def value: Long
-  def rhs: Packet
-  def lhs: Packet
-  def exprs = List(lhs, rhs)
+type BinaryData = List[Char]
 
-case class SumPacket(version: Int, exprs: List[Packet]) extends OperatorPacket:
-  val typeId = 0
-  def value = exprs.map(_.value).sum
+def toInt(input: BinaryData): Int =
+  Integer.parseInt(input.mkString, 2)
 
-case class ProductPacket(version: Int, exprs: List[Packet])
-    extends OperatorPacket:
-  val typeId = 1
-  def value = exprs.map(_.value).reduce(_ * _)
-
-case class MinimumPacket(version: Int, exprs: List[Packet])
-    extends OperatorPacket:
-  val typeId = 2
-  def value = exprs.map(_.value).min
-
-case class MaximumPacket(version: Int, exprs: List[Packet])
-    extends OperatorPacket:
-  val typeId = 3
-  def value = exprs.map(_.value).max
-
-case class LiteralPacket(version: Int, value: Long) extends Packet:
-  val typeId = 4
-
-case class GreaterThanPacket(version: Int, lhs: Packet, rhs: Packet)
-    extends BinaryOperatorPacket:
-  val typeId = 5
-  def value = if lhs.value > rhs.value then 1 else 0
-
-case class LesserThanPacket(version: Int, lhs: Packet, rhs: Packet)
-    extends BinaryOperatorPacket:
-  val typeId = 6
-  def value = if lhs.value < rhs.value then 1 else 0
-
-case class EqualsPacket(version: Int, lhs: Packet, rhs: Packet)
-    extends BinaryOperatorPacket:
-  val typeId = 7
-  def value = if lhs.value == rhs.value then 1 else 0
-
-
-/*
- * Parsing of packets
- */
-
-type BinaryData = List[Char] 
-
-inline def toInt(chars: BinaryData): Int =
-  Integer.parseInt(chars.mkString, 2)
-
-inline def toLong(chars: BinaryData): Long =
-  java.lang.Long.parseLong(chars.mkString, 2)
+def toLong(input: BinaryData): Long =
+  java.lang.Long.parseLong(input.mkString, 2)
 
 @tailrec
-def readLiteralBody(tail: BinaryData, numAcc: BinaryData): (Long, BinaryData) =
-  val (num, rest) = tail.splitAt(5)
+def readLiteralBody(input: BinaryData, numAcc: BinaryData): (Long, BinaryData) =
+  val (num, rest) = input.splitAt(5)
   if num(0) == '1' then readLiteralBody(rest, numAcc.appendedAll(num.drop(1)))
   else
     val bits = numAcc.appendedAll(num.drop(1))
     (toLong(bits), rest)
 end readLiteralBody
 
-def readOperatorBody(current: BinaryData): (List[Packet], BinaryData) =
-  val (lenId, rest) = current.splitAt(1)
+def readOperatorBody(input: BinaryData): (List[Packet], BinaryData) =
+  val (lenId, rest) = input.splitAt(1)
 
   @tailrec
   def readMaxBits(
-      current: BinaryData,
+      input: BinaryData,
       remaining: Int,
       acc: List[Packet]
   ): (List[Packet], BinaryData) =
-    if remaining == 0 then (acc, current)
+    if remaining == 0 then (acc, input)
     else
-      val (newExpr, rest) = decodePacket(current)
-      readMaxBits(rest, remaining - (current.size - rest.size), acc :+ newExpr)
+      val (newExpr, rest) = decodePacket(input)
+      readMaxBits(rest, remaining - (input.size - rest.size), acc :+ newExpr)
+  end readMaxBits
 
   @tailrec
   def readMaxPackages(
-      current: BinaryData,
+      input: BinaryData,
       remaining: Int,
       acc: List[Packet]
   ): (List[Packet], BinaryData) =
-    if remaining == 0 then (acc, current)
+    if remaining == 0 then (acc, input)
     else
-      val (newExpr, rest) = decodePacket(current)
+      val (newExpr, rest) = decodePacket(input)
       readMaxPackages(rest, remaining - 1, acc :+ newExpr)
+  end readMaxPackages
 
-  lenId match
-    // read based on length
-    case List('0') =>
-      val (size, packets) = rest.splitAt(15)
-      readMaxBits(packets, toInt(size), Nil)
-
-    // read based on number of packages
-    case _ =>
-      val (size, packets) = rest.splitAt(11)
-      readMaxPackages(packets, toInt(size), Nil)
-  end match
+  // read based on length
+  if lenId(0) == '0' then
+    val (size, packets) = rest.splitAt(15)
+    readMaxBits(packets, toInt(size), Nil)
+  // read based on number of packages
+  else
+    val (size, packets) = rest.splitAt(11)
+    readMaxPackages(packets, toInt(size), Nil)
 end readOperatorBody
 
-def decodePacket(packet: BinaryData): (Packet, BinaryData) =
-  val (versionBits, rest) = packet.splitAt(3)
+def decodePacket(input: BinaryData): (Packet, BinaryData) =
+  val (versionBits, rest) = input.splitAt(3)
   val version = toInt(versionBits)
   val (typeBits, body) = rest.splitAt(3)
   val tpe = toInt(typeBits)
@@ -163,17 +134,17 @@ def decodePacket(packet: BinaryData): (Packet, BinaryData) =
   tpe match
     case 4 =>
       val (value, remaining) = readLiteralBody(body, Nil)
-      (LiteralPacket(version, value), remaining)
+      (Packet.Literal(version, value), remaining)
     case otherTpe =>
       val (values, remaining) = readOperatorBody(body)
       otherTpe match
-        case 0 => (SumPacket(version, values), remaining)
-        case 1 => (ProductPacket(version, values), remaining)
-        case 2 => (MinimumPacket(version, values), remaining)
-        case 3 => (MaximumPacket(version, values), remaining)
-        case 5 => (GreaterThanPacket(version, values(0), values(1)), remaining)
-        case 6 => (LesserThanPacket(version, values(0), values(1)), remaining)
-        case 7 => (EqualsPacket(version, values(0), values(1)), remaining)
+        case 0 => (Packet.Sum(version, values), remaining)
+        case 1 => (Packet.Product(version, values), remaining)
+        case 2 => (Packet.Minimum(version, values), remaining)
+        case 3 => (Packet.Maximum(version, values), remaining)
+        case 5 => (Packet.GreaterThan(version, values(0), values(1)), remaining)
+        case 6 => (Packet.LesserThan(version, values(0), values(1)), remaining)
+        case 7 => (Packet.Equals(version, values(0), values(1)), remaining)
   end match
 end decodePacket
 
@@ -182,20 +153,11 @@ def parse(input: String) =
   val (operator, _) = decodePacket(number)
   operator
 
-/*
- * Solutions
- */
-
-def sumVersions(expr: Packet): Int =
-  expr match
-    case literal: LiteralPacket => literal.version
-    case op: OperatorPacket =>
-      op.exprs.map(sumVersions).sum + op.version
-
 def part1(input: String) =
   val packet = parse(input)
-  sumVersions(packet)
+  packet.versionSum
 
 def part2(input: String) =
   val packet = parse(input)
   packet.value
+end part2
