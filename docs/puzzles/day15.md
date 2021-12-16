@@ -1,6 +1,6 @@
 import Solver from "../../../../website/src/components/Solver.js"
 
-# Day 15
+# Day 15: Chiton
 By @anatoliykmetyuk
 
 ## Puzzle description
