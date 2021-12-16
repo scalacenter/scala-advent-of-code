@@ -6,6 +6,17 @@ import scala.util.Using
 import scala.io.Source
 import scala.collection.mutable
 
+@main def part1(): Unit =
+  val answer = part1(readInput())
+  println(s"The answer is: $answer")
+
+@main def part2(): Unit =
+  val answer = part2(readInput())
+  println(s"The answer is:\n$answer")
+
+def readInput(): String =
+  Using.resource(Source.fromFile("input/day15"))(_.mkString)
+
 type Coord = (Int, Int)
 class GameMap(cells: IndexedSeq[IndexedSeq[Int]]):
   val maxRow = cells.length - 1
@@ -45,18 +56,16 @@ def cheapestDistance(gameMap: GameMap): Int =
   dist((gameMap.maxRow, gameMap.maxCol))
 end cheapestDistance
 
-def readInput(): IndexedSeq[IndexedSeq[Int]] =
-  val text = Using.resource(Source.fromFile("input/day15"))(_.mkString)
+def parse(text: String): IndexedSeq[IndexedSeq[Int]] =
   for line <- text.split("\n").toIndexedSeq yield
     for char <- line.toIndexedSeq yield char.toString.toInt
 
-@main def part1() =
-  val gameMap = GameMap(readInput())
-  val result = cheapestDistance(gameMap)
-  println(s"The solution is: $result")
+def part1(input: String) =
+  val gameMap = GameMap(parse(input))
+  cheapestDistance(gameMap)
 
-@main def part2() =
-  val seedTile = readInput()
+def part2(input: String) =
+  val seedTile = parse(input)
   val gameMap = GameMap(
     (0 until 5).flatMap { tileIdVertical =>
       for row <- seedTile yield
@@ -66,5 +75,4 @@ def readInput(): IndexedSeq[IndexedSeq[Int]] =
         yield (cell + tileIdHorizontal + tileIdVertical - 1) % 9 + 1
     }
   )
-  val result = cheapestDistance(gameMap)
-  println(s"The solution is: $result")
+  cheapestDistance(gameMap)
