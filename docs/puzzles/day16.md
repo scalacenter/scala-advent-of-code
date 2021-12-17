@@ -10,29 +10,28 @@ https://adventofcode.com/2021/day/16
 
 ## Part1: You've got mail!
 
-It seems that that we can split our problem into two parts. First, we need to
-parse the example into structures that we can later use to calculate out
-results.
+It seems that we can split our problem into two parts. First, we need to parse
+the example into structures that we can later use to calculate our results.
 
-Let's start with defining data structures to use:
+Let's start with defining the data structures to use:
 
 ```scala
 enum Packet(version: Int, typeId: Int):
-  case Literal(version: Int, exprs: Long) extends Packet(version, 4)
+  case Literal(version: Int, value: Long) extends Packet(version, 4)
   case Operator(version: Int, typeId: Int, exprs: List[Packet]) extends Packet(version, typeId)
 ```
 
 `Packet.Literal` will represent simple literal packets, that contain only a
-value. We are using Long just in case based on the experience with previous
-Advent of Code puzzles.
+value. We are using Long, just in case of large integer numbers based on the
+experience with previous Advent of Code puzzles.
 
 `Packet.Operator` will represent all the other operators that can contain other
 packets.
 
-Now we need to map our input to these structures that we defined.
+Now we need to map our input to these structures.
 
-Let's start by mapping out hexadecimal input to list of chars that we can
-analyse easier when checking for packets:
+Let's start by mapping the hexadecimal input to a list of chars that we can
+analyze easier when checking for packets:
 
 ```scala
 val hexadecimalMapping =
@@ -112,9 +111,9 @@ output further in a recursive manner, but we'll get back to it.
 
 Let's start with the first undefined function `readLiteralBody`. In the
 description we read that the body of the literal consists of segments of 5 bits,
-where the last segment will start with 0 and all the other with 1. The rest 4
-bits can be used to construct a number. We can create a recursive function that
-will handle it perfectly!
+where the last segment will start with 0 and all the others with 1. The
+remaining 4 bits can be used to construct a number. We can create a recursive
+function that will handle it perfectly!
 
 ```scala
 @tailrec
@@ -175,25 +174,25 @@ end readOperatorBody
 ```
 
 In the above function we first check the first bit of the operator body, which
-tell us how we should check the rest of the body.
+tells us how we should check the rest of the body.
 
 - if the bit is `0` it means that the next 15 bits can be turned into a number,
   that will define how many of the further bits are the subpackets of the
   operator.
 
 - if the bit is `1` it means that the next 11 bits can be turned into a number,
-  that will defining how many subpackets should belong to the operator.
+  that will define how many subpackets should belong to the operator.
 
 We defined two helper recursive functions `readMaxBits` and `readMaxPackets`
-which will check if the stopping condition (either max bits read or max
-packets read) is achieved or read a new packet using recursively the
-`decodePacket` function otherwise. At the end they will both return a list of
-packets, that we can later use to put into the operator packet, and the
-remaining input that we might need to check for more packets.
+which will check if the stopping condition (either max bits read or max packets
+read) is achieved or read a new packet using recursively the `decodePacket`
+function otherwise. At the end they will both return a list of packets, that we
+can later use to put into the operator packet, and the remaining input that we
+might need to check for more packets.
 
 This should already allow us to create a full structure and what remains is
-adding a function that can sum all the versions up. We can just add that
-function to the `Packet` enum and sum it all recursively.
+adding a function that can add up all the versions. We can add that function to
+the `Packet` enum and sum it all recursively.
 
 ```scala
   def versionSum: Int =
@@ -240,7 +239,7 @@ val hexadecimalMapping =
   )
 
 enum Packet(version: Int, typeId: Int):
-  case Literal(version: Int, exprs: Long) extends Packet(version, 4)
+  case Literal(version: Int, value: Long) extends Packet(version, 4)
   case Operator(version: Int, typeId: Int, exprs: List[Packet]) extends Packet(version, typeId)
   def versionSum: Int =
     this match
@@ -332,7 +331,7 @@ def part1(input: String) =
 
 <Solver puzzle="day16-part1"/>
 
-## Part 2: The elven calculus
+## Part 2: The Elven calculus
 
 Turns out that operator packets are actual mathematical operators and we can use
 the type ID to distinguish them!
@@ -376,9 +375,9 @@ we will need to write:
         case 7 => (Packet.Equals(version, values(0), values(1)), remaining)
 ```
 
-This makes are structure to accurately show the mathematical equation that is
+This makes our structure accurately show the mathematical computation that is
 constructed from the packets. The last remaining step is to create a function
-that will calculate the equation. We can do it similar to the `versionsSum`
+that will calculate the equation. We can do it similarly to the `versionsSum`
 function in the previous part:
 
 ```scala
@@ -562,7 +561,7 @@ end part2
 
 ```
 
-You might have noticed that we had to modify the `versionsSum` function slightly
+You might have noticed that we had to slightly modify the `versionsSum` function
 to work with our new structure.
 
 <Solver puzzle="day16-part2"/>
