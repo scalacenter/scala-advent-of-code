@@ -10,7 +10,7 @@ https://adventofcode.com/2021/day/10
 
 ## Solution overview
 
-Day 10 focuses on detecting unabalanced markers in the navigation system of the
+Day 10 focuses on detecting unbalanced markers in the navigation system of the
 submarine. The possible markers are `()[]{}<>`.  The input contains several
 lines, our task is to check whether each line is balanced, incomplete or
 invalid.
