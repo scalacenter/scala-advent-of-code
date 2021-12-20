@@ -65,7 +65,7 @@ def step(probe: Probe): Probe =
 #### A Target Area
 
 Next we are told that a successful launch trajectory causes the probe
-to be within in a target area after at least one of its steps. The area is
+to be within a target area after at least one of its steps. The area is
 defined by the points within a given range in the `x` and `y` directions.
 We can model a target area by a case class with two ranges:
 ```scala
@@ -180,23 +180,47 @@ velocities for the probe.
 We can use some knowledge to help us reduce the search space for
 possible velocities.
 
+##### Lower `x` Bound
+
 First, we assume that the target will always be in a positive direction
 from the probe's initial direction, and that the probe's `x` velocity will
 only get closer to `0`, so we do not need to consider
 negative `x` velocities.
+
+##### Lower `y` Bound
 
 Second, we know that the problem requires us to find the highest positive
 height reached by the probe, and that the probe's `y` velocity can only
 fall once in motion. So we do not need to consider negative `y`
 velocities.
 
-That gives us the lower bounds for `x` and `y` velocities, what about
-the upper bounds for the velocities?
+That gives us a lower bound of `0` for both of the  `x` and `y` velocities, what
+about the upper bounds for these velocities?
+
+##### Upper `x` Bound
 
 We know that a trajectory is invalid if it goes beyond the target in a
-single step, so the largest single step that the probe can move is the
-distance of the furthest corner of the target. For our problem that is the
-lower right corner, so our upper bounds will be the position of that corner.
+single step, so the largest single step that the probe can move in the `x`
+direction (from its initial position) is the distance of the furthest edge
+of the target, giving our upper `x` velocity bound:
+```scala
+val upperBoundX = target.xs.max
+```
+
+##### Upper `y` Bound
+
+For the `y` direction, we know that when a probe launches with an initial
+positive `y` velocity, e.g. `y0`, after some steps its `y` velocity will eventually
+fall below zero and the probe will cross the x axis (i.e. the probe's `y` position is `0`).
+At this point the probe's `y` velocity will be equal to `(y0 + 1) * -1`.
+If we assume that the target will always be below the x axis, and that at the point of crossing
+the x axis, the `y` velocity upper bound should reach the
+furthest edge of the target in one step, then we get the following:
+```scala
+val upperBoundY = -target.ys.min - 1
+```
+
+##### Generating all Maximum Heights
 
 To proceed we create a function `allMaxHeights` to return a sequence
 of possible maximum heights, one for each valid initial velocity. It
@@ -207,7 +231,7 @@ defined:
 def allMaxHeights(target: Target): Seq[Int] =
   val Target(xs, ys) = target
   val upperBoundX = xs.max
-  val upperBoundY = ys.min.abs
+  val upperBoundY = -ys.min - 1
   for
     vx <- 0 to upperBoundX
     vy <- 0 to upperBoundY
@@ -279,16 +303,18 @@ def part1(input: String) =
 ### Updating Our Search Space
 
 The problem for part 2 instead asks us to count the number of all
-possible paths that reach the target area. In this case all we need to
-do is also consider the possible initial negative `y` velocities.
+possible paths that reach the target area. In this case we proceed
+as before, but must also consider the possible initial negative `y`
+velocities. These have an upper bound equal to the furthest `y`
+edge of the target (to travel to the furthest edge in one step).
 
-We adapt `allMaxHeights` for this purpose:
+We adapt `allMaxHeights` with this new rule:
 ```scala
 def allMaxHeights(target: Target)(positiveOnly: Boolean): Seq[Int] =
   val Target(xs, ys) = target
   val upperBoundX = xs.max
-  val upperBoundY = ys.min.abs
-  val lowerBoundY = if positiveOnly then 0 else -upperBoundY
+  val upperBoundY = -ys.min -1
+  val lowerBoundY = if positiveOnly then 0 else ys.min
   for
     vx <- 0 to upperBoundX
     vy <- lowerBoundY to upperBoundY
