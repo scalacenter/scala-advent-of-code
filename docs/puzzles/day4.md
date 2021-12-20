@@ -9,7 +9,7 @@ by [@Sporarum](https://github.com/sporarum) from [LAMP](https://www.epfl.ch/labs
 https://adventofcode.com/2021/day/4
 
 
-## Parsing 
+## Parsing
 
 <details>
   <summary>Example Input</summary>
@@ -83,7 +83,7 @@ object Board:
 ```
 
 Let's start from the ground up. Assuming we have a line, how do we find all the numbers?
-We can use a [regular expression](https://en.wikipedia.org/wiki/Regular_expression)(Regexes): 
+We can use a [regular expression](https://en.wikipedia.org/wiki/Regular_expression)(Regexes):
  - "digit" -> `\d`
  - "one or more" -> `+`
  - "one or more digits" -> `\d+`
@@ -145,7 +145,7 @@ A line is completed at the turn that is its maximum element. Only a single line 
 ```scala
   val lineMin = board.lines.map(line => line.max).min
 ```
-The columns work the same way: 
+The columns work the same way:
 
 ```scala
   val colMin = board.columns.map(col => col.max).min
@@ -161,7 +161,7 @@ A board wins if a line wins or if a column wins, so we return the min:
 Applying `winningTurn` to each board gives us:
 
 ```scala
-val winningTurns: List[(Board, Int)] = 
+val winningTurns: List[(Board, Int)] =
   boards.map(board => (board, winningTurn(board)))
 ```
 
@@ -178,7 +178,7 @@ We filter them with `lines.filter(_ > turn)`.
 However, only taking the sum would be wrong, as we are using the turns, and not the original numbers!
 We thus need to map them to their original values:
 ```scala
-val sumNumsNotDrawn = board.lines.map{ line => 
+val sumNumsNotDrawn = board.lines.map{ line =>
   line.filter(_ > turn).map(turnToNumber(_)).sum
 }.sum
 ```
@@ -209,7 +209,13 @@ val loserScore = score(loserBoard, loserTurn)
 
 ## Run it in the browser
 
-<Solver puzzle="day4"/>
+#### Part 1
+
+<Solver puzzle="day4-part1"/>
+
+#### Part 2
+
+<Solver puzzle="day4-part2"/>
 
 ## Run it locally
 
