@@ -1,6 +1,6 @@
 import Solver from "../../../../website/src/components/Solver.js"
 
-# Day 17
+# Day 17: Trick Shot
 
 ## Puzzle description
 

@@ -1,6 +1,6 @@
 import Solver from "../../../../website/src/components/Solver.js"
 
-# Day 19
+# Day 19: Beacon Scanner
 
 ## Puzzle description
 

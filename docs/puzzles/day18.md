@@ -1,6 +1,6 @@
 import Solver from "../../../../website/src/components/Solver.js"
 
-# Day 18
+# Day 18: Snailfish
 
 ## Puzzle description
 
