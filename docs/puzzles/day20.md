@@ -1,6 +1,6 @@
 import Solver from "../../../../website/src/components/Solver.js"
 
-# Day 20
+# Day 20: Trench Map
 
 ## Puzzle description
 
