@@ -99,7 +99,7 @@ location of the input image. The integer value is made of 9 bits, whose
 value is taken from the state of the 9 pixels around the location (a lit 
 pixel means `1`, and a dark pixel means `0`).
 
-That 9-bits integer value is then used as an index in the enhancement 
+That 9-bit integer value is then used as an index in the enhancement 
 algorithm string to find the state of the output pixel at that location.
 
 We implement the algorithm as a method of the class `Enhancer`:
@@ -129,7 +129,7 @@ Since we look at the 9 pixels around every location, we look at locations
 outside the image rectangle where some of these 9 pixels overlap with the 
 rectangle (hence the bounds `-1` and `height + 1` for the `y` coordinates).
 
-The 9-bits integer value of each location is computed by an auxiliary method,
+The 9-bit integer value of each location is computed by an auxiliary method,
 `locationValue`, which is shown below.
 
 Last, we also compute the “enhancement” of the pixels that are out of the 
@@ -312,7 +312,7 @@ def part2(input: String): Int =
 We parse the input with the same method as in part1, `parseEnhancerAndImage`.
 
 To apply the enhancer 50 times, we use a `LazyList`. First, we create an 
-_inifinite_ lazy list whose first element is the parsed input `image`, and 
+_infinite_ lazy list whose first element is the parsed input `image`, and 
 whose `n + 1` element is computed by calling `enhancer.enhance` on the 
 element `n`. Then, we compute its 50th element by calling `.apply(50)`. As a 
 consequence, only the first 50 elements will be computed at all.
