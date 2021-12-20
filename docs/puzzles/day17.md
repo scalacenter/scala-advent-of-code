@@ -47,7 +47,7 @@ in discrete steps, which we will implement as follows:
 - the `y` of the new position is the sum of `y` of the old position and `y`
   of the old velocity,
 - the `x` of the new velocity is given by subtracting the sign (`-1`, `0`
-  or `1`) of the `x` of the old velocity from itself (drag slows the
+  or `1`) of the `x` of the old velocity from itself (drag slows down the
   projectile),
 - the `y` of the new velocity is given by subtracting `1` from the `y` of
   the old velocity (due to gravity).
@@ -77,14 +77,14 @@ case class Target(xs: Range, ys: Range)
 We are told to first identify the initial velocity of trajectories that will
 hit the target area exactly, meaning that after a given step, the probe will
 be exactly within the target area; and that we must disregard trajectories
-that "overshoot" i.e. pass through the entire target area in a single step.
+that "overshoot", i.e., that pass through the entire target area in a single step.
 
 We are also told to find the maximum height (`y` position) reached out of
 all valid trajectories.
 
 #### Simulating a trajectory
 
-For this problem we will simulate a probe moving along a trajectory, i.e.
+For this problem we will simulate a probe moving along a trajectory, i.e.,
 iterate every step of the trajectory until the probe either collides with
 the target or has moved beyond it. And at each step we will record if the
 current height of the probe is higher than before.
@@ -135,11 +135,11 @@ have negative velocity (due to gravity).
 We can use our two conditions to now simulate the trajectory of a probe:
 - We begin with an initial `probe`, and an initial maximum height `maxY` of
   `0`,
-- We will then iterate these values - on each iteration, we will apply
+- We then iterate these values - on each iteration, we apply
   `step` to the probe, and replace `maxY` by the maximum of `maxY` and
   the `y` position of the current probe,
-- we will ignore any iteration steps where the `probe` does not collide
-  with, or go beyond the target, i.e. the probe is still on a valid
+- we will ignore any iteration step where the `probe` does not collide
+  with, or go beyond the target, i.e., the probe is still on a valid
   trajectory,
 - we then find the first iteration that is not ignored, meaning that at
   that step the probe must have either collided with the target, or gone
@@ -191,7 +191,7 @@ fall once in motion. So we will not need to consider negative `y`
 velocities.
 
 That gives us the lower bounds for `x` and `y` velocities, what about
-the upper bound for the velocities?
+the upper bounds for the velocities?
 
 We know that a trajectory is invalid if it goes beyond the target in a
 single step, so the largest single step that the probe can move is the
@@ -235,7 +235,7 @@ pattern matching, and as we are parsing strings, let's make a type alias
 type Parser[A] = PartialFunction[String, A]
 ```
 
-First, lets make a parser for `Int` values. We use a regex to check
+First, let us make a parser for `Int` values. We use a regex to check
 for a numeric string, and then call `toInt` on the string if it matches:
 ```scala
 val IntOf: Parser[Int] =
