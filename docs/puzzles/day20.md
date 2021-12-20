@@ -335,7 +335,7 @@ of lit pixels.
 You can get this solution locally by cloning the [scalacenter/scala-advent-of-code](https://github.com/scalacenter/scala-advent-of-code) repository.
 ```
 $ git clone https://github.com/scalacenter/scala-advent-of-code
-$ cd advent-of-code
+$ cd scala-advent-of-code
 ```
 
 You can run it with [scala-cli](https://scala-cli.virtuslab.org/).
