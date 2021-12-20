@@ -16,7 +16,7 @@ https://adventofcode.com/2021/day/17
 
 The problem asks us to consider the trajectory of a projectile _probe_
 which has both a _position_ and a _velocity_. Both positions and velocities
-have two directions, `x` and `y`, with integer values. We will model them
+have two directions, `x` and `y`, with integer values. We model them
 with case classes:
 
 ```scala
@@ -33,14 +33,14 @@ case class Probe(position: Position, velocity: Velocity)
 ```
 
 We also find out that a probe always has an initial position of `0,0`, so
-we will model that also:
+we model that also:
 
 ```scala
 val initial = Position(x = 0, y = 0)
 ```
 
 We are also told about the projectile motion of the probe - it moves
-in discrete steps, which we will implement as follows:
+in discrete steps, which we implement as follows:
 - on each step we create a new probe with a new position and a new velocity,
 - the `x` of the new position is the sum of `x` of the old position and `x`
   of the old velocity,
@@ -64,7 +64,7 @@ def step(probe: Probe): Probe =
 
 #### A Target Area
 
-Next we are told that a successful launch trajectory will cause the probe
+Next we are told that a successful launch trajectory causes the probe
 to be within in a target area after at least one of its steps. The area is
 defined by the points within a given range in the `x` and `y` directions.
 We can model a target area by a case class with two ranges:
@@ -84,9 +84,9 @@ all valid trajectories.
 
 #### Simulating a trajectory
 
-For this problem we will simulate a probe moving along a trajectory, i.e.,
+For this problem we simulate a probe moving along a trajectory, i.e.,
 iterate every step of the trajectory until the probe either collides with
-the target or has moved beyond it. And at each step we will record if the
+the target or has moved beyond it. And at each step we record if the
 current height of the probe is higher than before.
 
 ##### Checking Collisions
@@ -126,8 +126,8 @@ def beyond(probe: Probe, target: Target): Boolean =
 :::info
 The above conditions make the assumptions that the `x` velocity is never
 negative, and that the target is always in the positive `x` direction.
-They are also informed by the fact that the probe will eventually always
-have negative velocity (due to gravity).
+They are also informed by the fact that the probe eventually always
+has negative velocity (due to gravity).
 :::
 
 ##### Running the Simulation
@@ -138,7 +138,7 @@ We can use our two conditions to now simulate the trajectory of a probe:
 - We then iterate these values - on each iteration, we apply
   `step` to the probe, and replace `maxY` by the maximum of `maxY` and
   the `y` position of the current probe,
-- we will ignore any iteration step where the `probe` does not collide
+- we ignore any iteration step where the `probe` does not collide
   with, or go beyond the target, i.e., the probe is still on a valid
   trajectory,
 - we then find the first iteration that is not ignored, meaning that at
@@ -174,7 +174,7 @@ def simulate(probe: Probe, target: Target): Option[Int] =
 
 So far we have seen how to simulate the trajectory of a single
 probe. We need to find the best possible height reached by all
-trajectories - meaning that we will need to generate some initial
+trajectories - meaning that we need to generate some initial
 velocities for the probe.
 
 We can use some knowledge to help us reduce the search space for
@@ -182,12 +182,12 @@ possible velocities.
 
 First, we assume that the target will always be in a positive direction
 from the probe's initial direction, and that the probe's `x` velocity will
-only get closer to `0`, so we will not need to consider
+only get closer to `0`, so we do not need to consider
 negative `x` velocities.
 
 Second, we know that the problem requires us to find the highest positive
 height reached by the probe, and that the probe's `y` velocity can only
-fall once in motion. So we will not need to consider negative `y`
+fall once in motion. So we do not need to consider negative `y`
 velocities.
 
 That gives us the lower bounds for `x` and `y` velocities, what about
@@ -226,7 +226,7 @@ a new line char. e.g.
 "target area: x=20..30, y=-10..-5\n"
 ```
 
-From this input we will extract two `Range` values by pattern matching.
+From this input we extract two `Range` values by pattern matching.
 
 Values of type `PartialFunction[A, B]` can be used as extractors in
 pattern matching, and as we are parsing strings, let's make a type alias
@@ -282,7 +282,7 @@ The problem for part 2 instead asks us to count the number of all
 possible paths that reach the target area. In this case all we need to
 do is also consider the possible initial negative `y` velocities.
 
-We will adapt `allMaxHeights` for this purpose:
+We adapt `allMaxHeights` for this purpose:
 ```scala
 def allMaxHeights(target: Target)(positiveOnly: Boolean): Seq[Int] =
   val Target(xs, ys) = target
