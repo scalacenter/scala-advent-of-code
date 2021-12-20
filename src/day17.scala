@@ -24,18 +24,17 @@ val initial = Position(x = 0, y = 0)
 
 case class Probe(position: Position, velocity: Velocity)
 
-def step(p: Probe): Probe =
-  val Probe(Position(px, py), Velocity(vx, vy)) = p
-  val dvx: Int = if vx > 0 then -1 else if vx < 0 then 1 else 0
-  Probe(Position(px + vx, py + vy), Velocity(vx + dvx, vy - 1))
+def step(probe: Probe): Probe =
+  val Probe(Position(px, py), Velocity(vx, vy)) = probe
+  Probe(Position(px + vx, py + vy), Velocity(vx - vx.sign, vy - 1))
 
-def collides(p: Probe, t: Target): Boolean =
-  val Probe(Position(px, py), _) = p
-  val Target(xs, ys) = t
+def collides(probe: Probe, target: Target): Boolean =
+  val Probe(Position(px, py), _) = probe
+  val Target(xs, ys) = target
   xs.contains(px) && ys.contains(py)
 
-def beyond(p: Probe, target: Target): Boolean =
-  val Probe(Position(px, py), Velocity(vx, vy)) = p
+def beyond(probe: Probe, target: Target): Boolean =
+  val Probe(Position(px, py), Velocity(vx, vy)) = probe
   val Target(xs, ys) = target
   val beyondX = (vx == 0 && px < xs.min) || px > xs.max
   val beyondY = vy < 0 && py < ys.min
@@ -43,12 +42,12 @@ def beyond(p: Probe, target: Target): Boolean =
 
 def simulate(probe: Probe, target: Target): Option[Int] =
   LazyList
-    .iterate((probe, 0))((p, m) => (step(p), m `max` p.position.y))
-    .dropWhile((p, _) => !collides(p, target) && !beyond(p, target))
+    .iterate((probe, 0))((probe, maxY) => (step(probe), maxY `max` probe.position.y))
+    .dropWhile((probe, _) => !collides(probe, target) && !beyond(probe, target))
     .headOption
-    .collect { case (p, m) if collides(p, target) => m }
+    .collect { case (probe, maxY) if collides(probe, target) => maxY }
 
-def run(target: Target)(positiveOnly: Boolean) =
+def allMaxHeights(target: Target)(positiveOnly: Boolean): Seq[Int] =
   val upperBoundX = target.xs.max
   val upperBoundY = target.ys.min.abs
   val lowerBoundY = if positiveOnly then 0 else -upperBoundY
@@ -71,7 +70,7 @@ val Input: Parser[Target] =
   case s"target area: x=${RangeOf(xs)}, y=${RangeOf(ys)}" => Target(xs, ys)
 
 def part1(input: String) =
-  run(Input(input.trim))(positiveOnly = true).max
+  allMaxHeights(Input(input.trim))(positiveOnly = true).max
 
 def part2(input: String) =
-  run(Input(input.trim))(positiveOnly = false).size
+  allMaxHeights(Input(input.trim))(positiveOnly = false).size
