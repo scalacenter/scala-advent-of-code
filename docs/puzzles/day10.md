@@ -10,7 +10,7 @@ https://adventofcode.com/2021/day/10
 
 ## Solution overview
 
-Day 10 focuses on detecting unabalanced markers in the navigation system of the
+Day 10 focuses on detecting unbalanced markers in the navigation system of the
 submarine. The possible markers are `()[]{}<>`.  The input contains several
 lines, our task is to check whether each line is balanced, incomplete or
 invalid.
@@ -182,7 +182,7 @@ def part2(input: String): BigInt =
 You can get this solution locally by cloning the [scalacenter/scala-advent-of-code](https://github.com/scalacenter/scala-advent-of-code) repository.
 ```
 $ git clone https://github.com/scalacenter/scala-advent-of-code
-$ cd advent-of-code
+$ cd scala-advent-of-code
 ```
 
 You can run it with [scala-cli](https://scala-cli.virtuslab.org/).
