@@ -24,7 +24,7 @@ In the input text, lit pixels are represented by the character "#", whereas
 dark pixels are represented by the character "." (dot). We use pattern 
 matching to parse them:
 
-~~~
+~~~ scala
 object Pixel:
   def parse(char: Char): Pixel =
     char match
