@@ -92,7 +92,8 @@ const config = {
               { type: 'doc', label: 'Day 15', docId: 'puzzles/day15' },
               { type: 'doc', label: 'Day 16', docId: 'puzzles/day16' },
               { type: 'doc', label: 'Day 17', docId: 'puzzles/day17' },
-              { type: 'doc', label: 'Day 20', docId: 'puzzles/day20' }
+              { type: 'doc', label: 'Day 20', docId: 'puzzles/day20' },
+              { type: 'doc', label: 'Day 21', docId: 'puzzles/day21' }
             ]
           },
           {
