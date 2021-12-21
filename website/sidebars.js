@@ -20,7 +20,7 @@ const sidebars = {
   adventOfCodeSidebar: [
     'introduction',
     'setup',
-    { 
+    {
       Puzzles: [
         'puzzles/day1',
         'puzzles/day2',
@@ -41,7 +41,8 @@ const sidebars = {
         'puzzles/day17',
         'puzzles/day18',
         'puzzles/day19',
-        'puzzles/day20'
+        'puzzles/day20',
+        'puzzles/day21'
       ]
     },
   ]
