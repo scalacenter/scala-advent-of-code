@@ -60,5 +60,37 @@ def playWithDeterministicDie(players: Players, die: DeterministicDie): Long =
     val newPlayer = Player(newCell, newScore)
     playWithDeterministicDie((players(1), newPlayer), die)
 
+final class Wins(var player1Wins: Long, var player2Wins: Long)
+
 def part2(input: String): Long =
-  ???
+  val players = parseInput(input)
+  val wins = new Wins(0L, 0L)
+  playWithDiracDie(players, player1Turn = true, wins, inHowManyUniverses = 1L)
+  Math.max(wins.player1Wins, wins.player2Wins)
+
+/** For each 3-die throw, how many of each total sum do we have? */
+val dieCombinations: List[(Int, Long)] =
+  val possibleRolls: List[Int] =
+    for
+      die1 <- List(1, 2, 3)
+      die2 <- List(1, 2, 3)
+      die3 <- List(1, 2, 3)
+    yield
+      die1 + die2 + die3
+  possibleRolls.groupMapReduce(identity)(_ => 1L)(_ + _).toList
+
+def playWithDiracDie(players: Players, player1Turn: Boolean, wins: Wins, inHowManyUniverses: Long): Unit =
+  for (diesValue, count) <- dieCombinations do
+    val newInHowManyUniverses = inHowManyUniverses * count
+    val player = players(0)
+    val newCell = (player.cell + diesValue) % 10
+    val newScore = player.score + (newCell + 1)
+    if newScore >= 21 then
+      if player1Turn then
+        wins.player1Wins += newInHowManyUniverses
+      else
+        wins.player2Wins += newInHowManyUniverses
+    else
+      val newPlayer = Player(newCell, newScore)
+      playWithDiracDie((players(1), newPlayer), !player1Turn, wins, newInHowManyUniverses)
+  end for
