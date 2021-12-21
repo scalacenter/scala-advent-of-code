@@ -28,12 +28,12 @@ def parsePlayer(line: String): Player =
       Player(cell.toInt - 1, 0L)
 ```
 
-The only thing worth nothing is that we use numbers 0 to 9 for the cells (the "spaces") instead of 1 to 10.
+The only thing worth noting is that we use numbers 0 to 9 for the cells (the "spaces") instead of 1 to 10.
 The only reason is that it simplifies computations for wrapping around.
 
 ## The deterministic die
 
-For the first play with the deterministic die, we have to return the score of the losing player, while keeping tabs on how many times the die was rolled.
+For the first part, with the deterministic die, we have to return the score of the losing player, while keeping tabs on how many times the die was rolled.
 We model the deterministic die as an instance of a class `DeterministicDie`:
 
 ```scala
@@ -190,7 +190,7 @@ def playWithDiracDie(players: Players, player1Turn: Boolean, wins: Wins): Unit =
 
 For every possible outcome, we compute the new cell and score.
 If the game is over, we add 1 to the number of ties that the current player wins.
-Otherwise, we recursive for the next roll.
+Otherwise, we recurse for the next roll.
 
 The problem is that the branching factor is 27, which is too high to run in a reasonable time.
 
