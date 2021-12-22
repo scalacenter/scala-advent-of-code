@@ -9,7 +9,7 @@ https://adventofcode.com/2021/day/21
 
 ## Modeling and parsing the input
 
-There are no more surprises here, so let us directly see the code:
+As we did for previous solutions, we start by modeling the problem and parsing the input.
 
 ```scala
 type Cell = Int // from 0 to 9, to simplify computations
@@ -78,8 +78,8 @@ Other than that, the function is a direct translation from the rules of the game
 3. Compute the new score
 4. Detect the winning condition and return the loser's score, or continue with the next player
 
-If you are not familiar with modular arithmetics (anymore?), it may not be obvious that the computation `(player.cell + diesValue) % 10` is correct.
-A more clearly correct computation would be:
+If you are not familiar with modular arithmetics, it may not be obvious that the computation `(player.cell + diesValue) % 10` is correct.
+Another computation, which is perhaps more straightforward, would be:
 
 ```scala
 val diesValueMod10 = diesValue % 10
@@ -189,7 +189,7 @@ def playWithDiracDie(players: Players, player1Turn: Boolean, wins: Wins): Unit =
 ```
 
 For every possible outcome, we compute the new cell and score.
-If the game is over, we add 1 to the number of ties that the current player wins.
+If the game is over, we add 1 to the number of times that the current player wins.
 Otherwise, we recurse for the next roll.
 
 The problem is that the branching factor is 27, which is too high to run in a reasonable time.
