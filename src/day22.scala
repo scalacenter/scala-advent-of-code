@@ -36,54 +36,58 @@ extension (x1: Int)
   infix def by (x2: Int): Dimension = Dimension(x1, x2)
 
 case class Cuboid(xs: Dimension, ys: Dimension, zs: Dimension):
+
   def volume: BigInt = BigInt(xs.size) * ys.size * zs.size
+
+  infix def intersect(curr: Cuboid): Option[Cuboid] =
+    for
+      xs <- this.xs insersect curr.xs
+      ys <- this.ys insersect curr.ys
+      zs <- this.zs insersect curr.zs
+    yield
+      Cuboid(xs, ys, zs)
 
 enum Command:
   case On, Off
 
 case class Step(command: Command, cuboid: Cuboid)
 
-case class Cube(x: Int, y: Int, z: Int)
-
-def intersect(old: Cuboid, curr: Cuboid): Option[Cuboid] =
-  for
-    xs <- old.xs insersect curr.xs
-    ys <- old.ys insersect curr.ys
-    zs <- old.zs insersect curr.zs
-  yield
-    Cuboid(xs, ys, zs)
-
 def subdivide(old: Cuboid, hole: Cuboid): Set[Cuboid] =
-  var divisions = Set.empty[Cuboid]
+  var on = Set.empty[Cuboid]
   if old.xs.min != hole.xs.min then
-    divisions += Cuboid(xs = old.xs.min by hole.xs.min - 1, ys = old.ys, zs = old.zs)
+    on += Cuboid(xs = old.xs.min by hole.xs.min - 1, ys = old.ys, zs = old.zs)
   if old.xs.max != hole.xs.max then
-    divisions += Cuboid(xs = hole.xs.max + 1 by old.xs.max, ys = old.ys, zs = old.zs)
+    on += Cuboid(xs = hole.xs.max + 1 by old.xs.max, ys = old.ys, zs = old.zs)
   if old.ys.min != hole.ys.min then
-    divisions += Cuboid(xs = hole.xs, ys = old.ys.min by hole.ys.min - 1, zs = old.zs)
+    on += Cuboid(xs = hole.xs, ys = old.ys.min by hole.ys.min - 1, zs = old.zs)
   if old.ys.max != hole.ys.max then
-    divisions += Cuboid(xs = hole.xs, ys = hole.ys.max + 1 by old.ys.max, zs = old.zs)
+    on += Cuboid(xs = hole.xs, ys = hole.ys.max + 1 by old.ys.max, zs = old.zs)
   if old.zs.min != hole.zs.min then
-    divisions += Cuboid(xs = hole.xs, ys = hole.ys, zs = old.zs.min by hole.zs.min - 1)
+    on += Cuboid(xs = hole.xs, ys = hole.ys, zs = old.zs.min by hole.zs.min - 1)
   if old.zs.max != hole.zs.max then
-    divisions += Cuboid(xs = hole.xs, ys = hole.ys, zs = hole.zs.max + 1 by old.zs.max)
-  divisions
+    on += Cuboid(xs = hole.xs, ys = hole.ys, zs = hole.zs.max + 1 by old.zs.max)
+  on
 
 def run(steps: Iterator[Step]): Set[Cuboid] =
-  steps.foldLeft(Set.empty)((on, step) =>
-    on.foldLeft(if step.command == On then Set(step.cuboid) else Set.empty)((newOn, old) =>
-      intersect(old, step.cuboid) match
-        case Some(hole) =>
-          newOn | subdivide(old, hole)
-        case _ =>
-          newOn + old
-    )
-  )
 
-def summary(on: Set[Cuboid]) =
+  def subtract(cuboid: Cuboid)(on: Set[Cuboid], previouslyOn: Cuboid): Set[Cuboid] =
+    previouslyOn intersect cuboid match
+      case Some(hole) =>
+        on | subdivide(previouslyOn, hole)
+      case _ =>
+        on + previouslyOn
+
+  def turnOnCubes(on: Set[Cuboid], step: Step): Set[Cuboid] =
+    val Step(command, cuboid) = step
+    val newOn = if command == On then Set(cuboid) else Set.empty
+    on.foldLeft(newOn)(subtract(cuboid))
+
+  steps.foldLeft(Set.empty)(turnOnCubes)
+
+def summary(on: Set[Cuboid]): BigInt =
   on.foldLeft(BigInt(0))((acc, cuboid) => acc + cuboid.volume)
 
-def challenge(steps: Iterator[Step], filter: Step => Boolean) =
+def challenge(steps: Iterator[Step], filter: Step => Boolean): BigInt =
   summary(run(steps.filter(filter)))
 
 def isInit(cuboid: Cuboid): Boolean =
@@ -107,8 +111,8 @@ val CommandOf: Parser[Command] =
 val StepOf: Parser[Step] =
   case s"${CommandOf(command)} ${CuboidOf(cuboid)}" => Step(command, cuboid)
 
-def part1(input: String) =
+def part1(input: String): BigInt =
   challenge(input.linesIterator.map(StepOf), s => isInit(s.cuboid))
 
-def part2(input: String) =
+def part2(input: String): BigInt =
   challenge(input.linesIterator.map(StepOf), _ => true)
