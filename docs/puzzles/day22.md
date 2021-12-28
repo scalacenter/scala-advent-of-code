@@ -1,6 +1,6 @@
 import Solver from "../../../../website/src/components/Solver.js"
 
-# Day 22
+# Day 22: Reactor Reboot
 
 ## Puzzle description
 

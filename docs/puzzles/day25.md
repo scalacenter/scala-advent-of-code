@@ -1,6 +1,6 @@
 import Solver from "../../../../website/src/components/Solver.js"
 
-# Day 25
+# Day 25: Sea Cucumber
 
 ## Puzzle description
 

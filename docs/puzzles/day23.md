@@ -1,6 +1,6 @@
 import Solver from "../../../../website/src/components/Solver.js"
 
-# Day 23
+# Day 23: Amphipod
 
 ## Puzzle description
 
