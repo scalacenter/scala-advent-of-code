@@ -1,6 +1,6 @@
 import Solver from "../../../../website/src/components/Solver.js"
 
-# Day 24
+# Day 24: Arithmetic Logic Unit
 
 ## Puzzle description
 

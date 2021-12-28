@@ -42,7 +42,11 @@ const sidebars = {
         'puzzles/day18',
         'puzzles/day19',
         'puzzles/day20',
-        'puzzles/day21'
+        'puzzles/day21',
+        'puzzles/day22',
+        'puzzles/day23',
+        'puzzles/day24',
+        'puzzles/day25'
       ]
     },
   ]
