@@ -100,5 +100,6 @@ The innermost loop generates individual cells according to the challenge spec. T
 ## Solutions from the community
 
 - [Solution](https://github.com/Jannyboy11/AdventOfCode2021/blob/main/src/main/scala/day15/Day15.scala) of [Jan Boerman](https://twitter.com/JanBoerman95).
+- [Solution](https://github.com/FlorianCassayre/AdventOfCode-2021/blob/master/src/main/scala/adventofcode/solutions/Day15.scala) of [@FlorianCassayre](https://github.com/FlorianCassayre).
 
 Share your solution to the Scala community by editing this page.
