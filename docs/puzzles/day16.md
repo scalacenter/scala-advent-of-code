@@ -570,5 +570,6 @@ to work with our new structure.
 
 - [Solution](https://github.com/Jannyboy11/AdventOfCode2021/blob/main/src/main/scala/day16/Day16.scala) of [Jan Boerman](https://twitter.com/JanBoerman95).
 - [Solution](https://github.com/misja-alma/aoc2021/blob/master/src/main/scala/aoc2021/Day16.scala) of [Misja Alma](https://github.com/misja-alma).
+- [Solution](https://github.com/FlorianCassayre/AdventOfCode-2021/blob/master/src/main/scala/adventofcode/solutions/Day16.scala) of [@FlorianCassayre](https://github.com/FlorianCassayre).
 
 Share your solution to the Scala community by editing this page.
