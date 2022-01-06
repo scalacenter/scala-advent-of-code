@@ -82,8 +82,8 @@ Lastly we add another method to `Dimension` to get its size:
 
 #### Does one Cuboid `intersect` with Another?
 
-Now that we know how to get the intersection of a single
-dimension, we can extend this to the intersection of two
+Now that we know how to get the intersection of two
+dimensions, we can extend this to the intersection of two
 cuboids, by asserting that there is an intersection in
 each dimension. Here we add a method to `Cuboid`:
 
@@ -104,7 +104,6 @@ With the `size` of each dimension determined, we can add a method
 to `Cuboid` to determine its `volume`, it is computed as a
 `BigInt` to avoid numeric overflow:
 ```scala
-...
   def volume: BigInt = BigInt(1) * xs.size * ys.size * zs.size
 ```
 
@@ -293,7 +292,7 @@ def isInit(cuboid: Cuboid): Boolean =
 ```
 
 The final code for part 1 is then to run the steps
-unly while they fit the initialisation sequence, and then
+only while they fit the initialisation sequence, and then
 summarise the set of cuboids:
 
 ```scala
