@@ -1,3 +1,5 @@
+import Solver from "../../../../website/src/components/Solver.js"
+
 # Day 5: Hydrothermal Venture
 
 by [@tgodzik](https://github.com/tgodzik)
