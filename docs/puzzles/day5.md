@@ -211,7 +211,7 @@ $ scala-cli src -M day5.part2
 The answer is: 20898
 ```
 
-You can replace the content of the `input/day5` file with your own input from [adventofcode.com](https://adventofcode.com/2021/day/6) to get your own solution.
+You can replace the content of the `input/day5` file with your own input from [adventofcode.com](https://adventofcode.com/2021/day/5) to get your own solution.
 
 ## Solutions from the community
 
