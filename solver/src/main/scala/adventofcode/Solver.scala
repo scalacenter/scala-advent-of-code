@@ -15,6 +15,8 @@ object Solver:
     "day3-part2" -> day3.part2,
     "day4-part1" -> (day4.answers(_)(0)),
     "day4-part2" -> (day4.answers(_)(1)),
+    "day5-part1" -> day5.part1,
+    "day5-part2" -> day5.part2,
     "day6-part1" -> day6.part1,
     "day6-part2" -> day6.part2,
     "day7-part1" -> day7.part1,

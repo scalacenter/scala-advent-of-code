@@ -26,17 +26,10 @@ ending one:
 case class Vent(start: Point, end: Point)
 ```
 
-Let's try to convert the input to our domain and let's start by reading it. I
-will use an extension method on a string so that I can easily just write
-`"input1".input` to recive a list of Vents to analyse.
+Let's try to convert the input to a sequence of vents.
 
 ```scala
-extension (s: String)
-  def input: Seq[Vent] =
-    val uri = getClass().getClassLoader().getResource(s).toURI()
-    val path = Paths.get(uri)
-    for line <- Files.readAllLines(path).asScala.toSeq
-    yield Vent(line)
+val allVents = input.linesIterator.map(Vent.apply).toSeq
 ```
 
 As you can see above I actually decide to put the parsing of the lines into the
@@ -188,15 +181,35 @@ end findDangerousPoints
 
 ```
 
-### Full solution
+## Run solution in the browser
 
-Full solution can be found
-[here](https://gist.github.com/tgodzik/48b300f6719d0235f902e0d2c4853d64) and can
-be run using latest [scala-cli](https://scala-cli.virtuslab.org/):
+### Part 1
+
+<Solver puzzle="day5-part1"/>
+
+### Part 2
+
+<Solver puzzle="day5-part2"/>
+
+## Run it locally
+
+You can get this solution locally by cloning the [scalacenter/scala-advent-of-code](https://github.com/scalacenter/scala-advent-of-code) repository.
+```
+$ git clone https://github.com/scalacenter/scala-advent-of-code
+$ cd scala-advent-of-code
+```
+
+You can run it with [scala-cli](https://scala-cli.virtuslab.org/).
 
 ```
-> scala-cli https://gist.github.com/tgodzik/48b300f6719d0235f902e0d2c4853d64
+$ scala-cli src -M day5.part1
+The answer is: 7674
+
+$ scala-cli src -M day5.part2
+The answer is: 20898
 ```
+
+You can replace the content of the `input/day5` file with your own input from [adventofcode.com](https://adventofcode.com/2021/day/6) to get your own solution.
 
 ## Solutions from the community
 
