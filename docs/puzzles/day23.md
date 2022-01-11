@@ -73,7 +73,7 @@ Our intuition here is that the puzzle can be modeled as a graph and solved using
 
 ### A graph of situations
 
-We can think of the puzzle as a graph of situations, where a node is an instance of `Situation`, an edge is an amphipod's move whose weight is the energy cost of the move.
+We can think of the puzzle as a graph of situations, where a node is an instance of `Situation` and an edge is an amphipod's move whose weight is the energy cost of the move.
 
 In such a graph, two situations are connected if there is an amphipod move that transform the first situation into the second.
 

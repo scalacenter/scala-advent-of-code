@@ -2,7 +2,7 @@
 import Solver from "../../../../website/src/components/Solver.js"
 
 # Day 4: Giant Squid
-by [@Sporarum](https://github.com/sporarum) from [LAMP](https://www.epfl.ch/labs/lamp/) at EPFL
+by [@Sporarum](https://github.com/sporarum), student at EPFL.
 
 ## Puzzle description
 
