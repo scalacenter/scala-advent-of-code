@@ -119,7 +119,7 @@ object Situation:
       yield Position(x, y) -> amphipod
     Situation(positions.toMap, roomSize)
 
-class DjikstraSolver(initialSituation: Situation):
+class DijkstraSolver(initialSituation: Situation):
   private val bestSituations = mutable.Map(initialSituation -> 0)
   private val situationsToExplore =
     mutable.PriorityQueue((initialSituation, 0))(Ordering.by((_, energy) => -energy))
@@ -142,10 +142,10 @@ class DjikstraSolver(initialSituation: Situation):
 
 def part1(input: String): Energy =
   val initialSituation = Situation.parse(input, roomSize = 2)
-  DjikstraSolver(initialSituation).solve()
+  DijkstraSolver(initialSituation).solve()
 
 def part2(input: String): Energy =
   val lines = input.linesIterator
   val unfoldedInput = (lines.take(3) ++ Seq("  #D#C#B#A#", "  #D#B#A#C#") ++ lines.take(2)).mkString("\n")
   val initialSituation = Situation.parse(unfoldedInput, roomSize = 4)
-  DjikstraSolver(initialSituation).solve()
+  DijkstraSolver(initialSituation).solve()
