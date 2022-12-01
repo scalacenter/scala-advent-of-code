@@ -21,7 +21,7 @@ const sidebars = {
     'introduction',
     'setup',
     {
-      Puzzles: [
+      "2021 Puzzles": [
         'puzzles/day1',
         'puzzles/day2',
         'puzzles/day3',

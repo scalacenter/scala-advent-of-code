@@ -73,7 +73,7 @@ const config = {
           {
             type: 'dropdown',
             position: 'left',
-            label: 'Puzzles',
+            label: 'Puzzles 2021',
             items: [
               { type: 'doc', label: 'Day 1', docId: 'puzzles/day1' },
               { type: 'doc', label: 'Day 2', docId: 'puzzles/day2' },
@@ -121,7 +121,7 @@ const config = {
                 to: '/setup',
               },
               {
-                label: 'Puzzles',
+                label: 'Puzzles 2021',
                 to: '/puzzles/day1',
               }
             ],

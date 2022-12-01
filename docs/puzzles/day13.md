@@ -21,7 +21,7 @@ enum Fold:
 ```
 
 A `Dot` is made of two integers: `x` and `y`.
-A `Fold` is either `Vertical` if it has an `x` coordinate or `Horizontal` if it has a `y` coordinate. 
+A `Fold` is either `Vertical` if it has an `x` coordinate or `Horizontal` if it has a `y` coordinate.
 
 ## Parsing
 
@@ -106,7 +106,7 @@ def part1(input: String): Int =
   dots.map(folds.head.apply).size
 ```
 
-<Solver puzzle="day13-part1"/>
+<Solver puzzle="day13-part1" year="2021"/>
 
 ## Solution of part 2
 
@@ -119,15 +119,15 @@ Finally we convert this double array to a `String` with `.map(_.mkString).mkStri
 def part2(input: String): String =
   val (dots, folds) = parseInstructions(input)
   val foldedDots = folds.foldLeft(dots)((dots, fold) => dots.map(fold.apply))
-  
+
   val (width, height) = (foldedDots.map(_.x).max + 1, foldedDots.map(_.y).max + 1)
   val paper = Array.fill(height, width)('.')
   for dot <- foldedDots do paper(dot.y)(dot.x) = '#'
-  
+
   paper.map(_.mkString).mkString("\n")
 ```
 
-<Solver puzzle="day13-part2"/>
+<Solver puzzle="day13-part2" year="2021"/>
 
 ## Run it locally
 
@@ -140,10 +140,10 @@ $ cd scala-advent-of-code
 You can run it with [scala-cli](https://scala-cli.virtuslab.org/).
 
 ```
-$ scala-cli src -M day13.part1
+$ scala-cli 2021 -M day13.part1
 The answer is: 788
 
-$ scala-cli src -M day10.part2
+$ scala-cli 2021 -M day10.part2
 The answer is:
 #..#...##.###..#..#.####.#..#.###...##.
 #.#.....#.#..#.#.#..#....#..#.#..#.#..#

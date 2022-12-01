@@ -16,7 +16,7 @@ export default function HomepageFeatures() {
               <h3>Learn Scala 3</h3>
               <p>
                   A simpler, safer and more concise version of Scala,
-                  the famous object-oriented and functionnal programming language.
+                  the famous object-oriented and functional programming language.
               </p>
             </div>
           </div>

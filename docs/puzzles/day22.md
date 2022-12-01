@@ -315,11 +315,11 @@ def part2(input: String): BigInt =
 
 #### Part 1
 
-<Solver puzzle="day22-part1"/>
+<Solver puzzle="day22-part1" year="2021"/>
 
 #### Part 2
 
-<Solver puzzle="day22-part2"/>
+<Solver puzzle="day22-part2" year="2021"/>
 
 ## Run it locally
 
@@ -332,10 +332,10 @@ $ cd scala-advent-of-code
 You can run it with [scala-cli](https://scala-cli.virtuslab.org/).
 
 ```
-$ scala-cli src -M day22.part1
+$ scala-cli 2021 -M day22.part1
 The answer is: 647062
 
-$ scala-cli src -M day22.part2
+$ scala-cli 2021 -M day22.part2
 The answer is: 1319618626668022
 ```
 

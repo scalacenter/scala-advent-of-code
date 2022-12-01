@@ -12,7 +12,7 @@ function HomepageHeader() {
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
-        <h1 className="hero__title">
+        <h1 className="hero__title" style={{ textShadow: "2px 2px 4px #000000"}}>
           Scala Advent of Code by
           <a href="https://scala.epfl.ch/">
             <img className={styles.scalacenter} alt="Scala Center" src={useBaseUrl('/img/scala-center.png')} title="Scala Center"/>
@@ -22,128 +22,8 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className={`${styles.button} button button--secondary button--lg`}
-            to="/puzzles/day1">
-            Day 1
-          </Link>
-          <Link
-              className={`${styles.button} button button--secondary button--lg`}
-              to="/puzzles/day2">
-            Day 2
-          </Link>
-          <Link
-              className={`${styles.button} button button--secondary button--lg`}
-              to="/puzzles/day3">
-            Day 3
-          </Link>
-          <Link
-              className={`${styles.button} button button--secondary button--lg`}
-              to="/puzzles/day4">
-            Day 4
-          </Link>
-          <Link
-              className={`${styles.button} button button--secondary button--lg`}
-              to="/puzzles/day5">
-            Day 5
-          </Link>
-          <Link
-              className={`${styles.button} button button--secondary button--lg`}
-              to="/puzzles/day6">
-            Day 6
-          </Link>
-          <Link
-              className={`${styles.button} button button--secondary button--lg`}
-              to="/puzzles/day7">
-            Day 7
-          </Link>
-          <Link
-              className={`${styles.button} button button--secondary button--lg`}
-              to="/puzzles/day8">
-            Day 8
-          </Link>
-          <Link
-              className={`${styles.button} button button--secondary button--lg`}
-              to="/puzzles/day9">
-            Day 9
-          </Link>
-          <Link
-              className={`${styles.button} button button--secondary button--lg`}
-              to="/puzzles/day10">
-            Day 10
-          </Link>
-          <Link
-              className={`${styles.button} button button--secondary button--lg`}
-              to="/puzzles/day11">
-            Day 11
-          </Link>
-          <Link
-              className={`${styles.button} button button--secondary button--lg`}
-              to="/puzzles/day12">
-            Day 12
-          </Link>
-          <Link
-              className={`${styles.button} button button--secondary button--lg`}
-              to="/puzzles/day13">
-            Day 13
-          </Link>
-          <Link
-              className={`${styles.button} button button--secondary button--lg`}
-              to="/puzzles/day14">
-            Day 14
-          </Link>
-          <Link
-              className={`${styles.button} button button--secondary button--lg`}
-              to="/puzzles/day15">
-            Day 15
-          </Link>
-          <Link
-              className={`${styles.button} button button--secondary button--lg`}
-              to="/puzzles/day16">
-            Day 16
-          </Link>
-          <Link
-            className={`${styles.button} button button--secondary button--lg`}
-            to="/puzzles/day17">
-            Day 17
-          </Link>
-          <Link
-            className={`${styles.button} button button--secondary button--lg`}
-            to="/puzzles/day18">
-            Day 18
-          </Link>
-          <Link
-            className={`${styles.button} button button--secondary button--lg`}
-            to="/puzzles/day19">
-            Day 19
-          </Link>
-          <Link
-            className={`${styles.button} button button--secondary button--lg`}
-            to="/puzzles/day20">
-            Day 20
-          </Link>
-          <Link
-            className={`${styles.button} button button--secondary button--lg`}
-            to="/puzzles/day21">
-            Day 21
-          </Link>
-          <Link
-            className={`${styles.button} button button--secondary button--lg`}
-            to="/puzzles/day22">
-            Day 22
-          </Link>
-          <Link
-            className={`${styles.button} button button--secondary button--lg`}
-            to="/puzzles/day23">
-            Day 23
-          </Link>
-          <Link
-            className={`${styles.button} button button--secondary button--lg`}
-            to="/puzzles/day24">
-            Day 24
-          </Link>
-          <Link
-            className={`${styles.button} button button--secondary button--lg`}
-            to="/puzzles/day25">
-            Day 25
+            to="/2021/">
+            2021
           </Link>
         </div>
       </div>

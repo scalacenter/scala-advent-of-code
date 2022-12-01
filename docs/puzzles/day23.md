@@ -217,10 +217,10 @@ case class Situation(positions: Map[Position, Amphipod], roomSize: Int):
     2.to(roomSize + 1)
       .flatMap(y => positions.get(Position(amphipod.destination.x, y)))
       .forall(_ == amphipod)
-  
+
   // Build the path to go from `start` to `stop`
   private def getPath(start: Position, stop: Position): Seq[Position] =
-    val hallway = 
+    val hallway =
       if start.x < stop.x
       then (start.x + 1).to(stop.x).map(Position(_, 1))
       else (start.x - 1).to(stop.x, step = -1).map(Position(_, 1))
@@ -277,11 +277,11 @@ def part2(input: String): Energy =
 
 ### Part 1
 
-<Solver puzzle="day23-part1"/>
+<Solver puzzle="day23-part1" year="2021"/>
 
 ### Part 2
 
-<Solver puzzle="day23-part2"/>
+<Solver puzzle="day23-part2" year="2021"/>
 
 ## Run it locally
 
@@ -294,10 +294,10 @@ $ cd scala-advent-of-code
 You can run it with [scala-cli](https://scala-cli.virtuslab.org/).
 
 ```
-$ scala-cli src -M day21.part1
+$ scala-cli 2021 -M day21.part1
 The answer is: 855624
 
-$ scala-cli src -M day21.part2
+$ scala-cli 2021 -M day21.part2
 The answer is: 187451244607486
 ```
 

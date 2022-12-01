@@ -303,7 +303,7 @@ def part1(input: String): Int =
 end part1
 ```
 
-<Solver puzzle="day8-part1"/>
+<Solver puzzle="day8-part1" year="2021"/>
 
 ## Solution of Part 2
 
@@ -610,7 +610,7 @@ def substitutions(cipher: Seq[Segments]): Map[Segments, Digit] =
   decode
 end substitutions
 ```
-<Solver puzzle="day8-part2"/>
+<Solver puzzle="day8-part2" year="2021"/>
 
 ## Run it locally
 
@@ -623,10 +623,10 @@ $ cd scala-advent-of-code
 You can run it with [scala-cli](https://scala-cli.virtuslab.org/).
 
 ```
-$ scala-cli src -M day8.part1
+$ scala-cli 2021 -M day8.part1
 The solution is 521
 
-$ scala-cli src -M day8.part2
+$ scala-cli 2021 -M day8.part2
 The solution is 1016804
 ```
 

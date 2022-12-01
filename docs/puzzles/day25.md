@@ -34,7 +34,7 @@ def moveEast(board: Board) = moveImpl(board, SeaCucumber.East)
 def moveSouth(board: Board) = moveImpl(board.transpose, SeaCucumber.South).transpose
 
 def moveImpl(board: Board, cucumber: SeaCucumber): Board =
-  board.map { l => 
+  board.map { l =>
     zip3(l.last +: l.init, l, (l.tail :+ l.head)).map{
       case (`cucumber`, SeaCucumber.Empty, _) => `cucumber`
       case (_, `cucumber`, SeaCucumber.Empty) => SeaCucumber.Empty
@@ -50,7 +50,7 @@ def zip3[A,B,C](l1: Seq[A], l2: Seq[B], l3: Seq[C]): Seq[(A,B,C)] =
 
 ### Part 1
 
-<Solver puzzle="day25-part1"/>
+<Solver puzzle="day25-part1" year="2021"/>
 
 ## Run it locally
 
@@ -63,7 +63,7 @@ $ cd scala-advent-of-code
 You can run it with [scala-cli](https://scala-cli.virtuslab.org/).
 
 ```
-$ scala-cli src -M day25.part1
+$ scala-cli 2021 -M day25.part1
 The answer is: 435
 ```
 

@@ -211,11 +211,11 @@ val loserScore = score(loserBoard, loserTurn)
 
 #### Part 1
 
-<Solver puzzle="day4-part1"/>
+<Solver puzzle="day4-part1" year="2021"/>
 
 #### Part 2
 
-<Solver puzzle="day4-part2"/>
+<Solver puzzle="day4-part2" year="2021"/>
 
 ## Run it locally
 
@@ -228,7 +228,7 @@ $ cd scala-advent-of-code
 You can run it with [scala-cli](https://scala-cli.virtuslab.org/).
 
 ```
-$ scala-cli src -M day4.run
+$ scala-cli 2021 -M day4.run
 The answer of part 1 is 14093.
 The answer of part 2 is 17388.
 ```
