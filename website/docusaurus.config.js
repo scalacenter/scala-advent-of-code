@@ -1,11 +1,36 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
+const fs = require('fs');
+
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 const math = require('remark-math');
 const katex = require('rehype-katex');
+
+const puzzlePage = /(day(\d+))\.md/;
+
+const buildDropdown = (dir) => {
+  const days = fs.readdirSync(`target/mdoc/${dir}`).map((day, i) => {
+    const ns = puzzlePage.exec(day);
+    const id = (
+      (ns === null) ? `<unknown:'${day}'>` : `${dir}/${ns[1]}`
+    );
+    const n = (
+      (ns === null) ? -1 : parseInt(ns[2])
+    );
+    return ({
+      type: 'doc',
+      docId: id,
+      label: `Day ${n}`,
+      n
+    })
+  });
+  const sorted = days.sort((a, b) => a.n - b.n);
+  return sorted
+};
+
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -74,31 +99,7 @@ const config = {
             type: 'dropdown',
             position: 'left',
             label: 'Puzzles 2021',
-            items: [
-              { type: 'doc', label: 'Day 1', docId: 'puzzles/day1' },
-              { type: 'doc', label: 'Day 2', docId: 'puzzles/day2' },
-              { type: 'doc', label: 'Day 3', docId: 'puzzles/day3' },
-              { type: 'doc', label: 'Day 4', docId: 'puzzles/day4' },
-              { type: 'doc', label: 'Day 5', docId: 'puzzles/day5' },
-              { type: 'doc', label: 'Day 6', docId: 'puzzles/day6' },
-              { type: 'doc', label: 'Day 7', docId: 'puzzles/day7' },
-              { type: 'doc', label: 'Day 8', docId: 'puzzles/day8' },
-              { type: 'doc', label: 'Day 9', docId: 'puzzles/day9' },
-              { type: 'doc', label: 'Day 10', docId: 'puzzles/day10' },
-              { type: 'doc', label: 'Day 11', docId: 'puzzles/day11' },
-              { type: 'doc', label: 'Day 12', docId: 'puzzles/day12' },
-              { type: 'doc', label: 'Day 13', docId: 'puzzles/day13' },
-              { type: 'doc', label: 'Day 14', docId: 'puzzles/day14' },
-              { type: 'doc', label: 'Day 15', docId: 'puzzles/day15' },
-              { type: 'doc', label: 'Day 16', docId: 'puzzles/day16' },
-              { type: 'doc', label: 'Day 17', docId: 'puzzles/day17' },
-              { type: 'doc', label: 'Day 20', docId: 'puzzles/day20' },
-              { type: 'doc', label: 'Day 21', docId: 'puzzles/day21' },
-              { type: 'doc', label: 'Day 22', docId: 'puzzles/day22' },
-              { type: 'doc', label: 'Day 23', docId: 'puzzles/day23' },
-              { type: 'doc', label: 'Day 24', docId: 'puzzles/day24' },
-              { type: 'doc', label: 'Day 25', docId: 'puzzles/day25' }
-            ]
+            items: buildDropdown('puzzles')
           },
           {
             href: 'https://github.com/scalacenter/scala-advent-of-code',
