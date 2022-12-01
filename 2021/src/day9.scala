@@ -1,5 +1,3 @@
-// using scala 3.1.0
-
 package day9
 
 import scala.collection.immutable.Queue
@@ -31,10 +29,10 @@ case class Heightmap(width: Int, height: Int, data: Vector[Vector[Height]]):
       Option.when(y < height - 1)(Position(x, y + 1))
     ).flatMap(List.from)
      .map(pos => pos -> apply(pos))
- 
+
   def lowPointsPositions: LazyList[Position] =
     LazyList.range(0, height).flatMap { y =>
-      LazyList.range(0, width).map { x => 
+      LazyList.range(0, width).map { x =>
         val pos = Position(x, y)
         (
           apply(pos),
@@ -44,12 +42,12 @@ case class Heightmap(width: Int, height: Int, data: Vector[Vector[Height]]):
       }
     }
     .collect {
-      case (value, poss, neighbors) if neighbors.forall(value < _) => 
+      case (value, poss, neighbors) if neighbors.forall(value < _) =>
         poss
     }
 end Heightmap
 
- 
+
 object Heightmap:
   def fromString(raw: String): Heightmap =
     val data = raw.linesIterator.map(line => line.map(_.asDigit).toVector).toVector

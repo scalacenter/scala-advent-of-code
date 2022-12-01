@@ -1,5 +1,3 @@
-// using scala 3.0.2
-
 package day14
 
 import scala.collection.mutable

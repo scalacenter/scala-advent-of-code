@@ -34,7 +34,7 @@ def moveEast(board: Board) = moveImpl(board, SeaCucumber.East)
 def moveSouth(board: Board) = moveImpl(board.transpose, SeaCucumber.South).transpose
 
 def moveImpl(board: Board, cucumber: SeaCucumber): Board =
-  board.map { l => 
+  board.map { l =>
     zip3(l.last +: l.init, l, (l.tail :+ l.head)).map{
       case (`cucumber`, SeaCucumber.Empty, _) => `cucumber`
       case (_, `cucumber`, SeaCucumber.Empty) => SeaCucumber.Empty

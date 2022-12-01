@@ -1,5 +1,3 @@
-// using scala 3.1.0
-
 package day23
 
 import scala.util.Using
@@ -95,10 +93,10 @@ case class Situation(positions: Map[Position, Amphipod], roomSize: Int):
     2.to(roomSize + 1)
       .flatMap(y => positions.get(Position(amphipod.destination.x, y)))
       .forall(_ == amphipod)
-  
+
   // Build the path to go from `start` to `stop`
   private def getPath(start: Position, stop: Position): Seq[Position] =
-    val hallway = 
+    val hallway =
       if start.x < stop.x
       then (start.x + 1).to(stop.x).map(Position(_, 1))
       else (start.x - 1).to(stop.x, step = -1).map(Position(_, 1))

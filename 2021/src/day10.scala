@@ -1,5 +1,3 @@
-// using scala 3.1.0
-
 package day10
 
 import scala.util.Using
@@ -20,7 +18,7 @@ enum CheckResult:
   case Incomplete(pending: List[Symbol])
 
 extension (illegalClosing: CheckResult.IllegalClosing)
-  def score: Int = 
+  def score: Int =
     import Kind.*
     illegalClosing.found.kind match
       case Parenthesis => 3
@@ -36,7 +34,7 @@ enum Kind:
 
 case class Symbol(kind: Kind, direction: Direction):
   def isOpen: Boolean = direction == Direction.Open
-    
+
 def checkChunks(expression: List[Symbol]): CheckResult =
   @scala.annotation.tailrec
   def iter(pending: List[Symbol], input: List[Symbol]): CheckResult =
@@ -87,8 +85,8 @@ extension (incomplete: CheckResult.Incomplete)
         case Parenthesis => 1
         case Bracket => 2
         case Brace => 3
-        case Diamond => 4 
-      
+        case Diamond => 4
+
       currentScore * 5 + points
     }
 
@@ -100,8 +98,8 @@ def part2(input: String): BigInt =
 
   val scores =
     rows.map(checkChunks)
-      .collect { case incomplete: CheckResult.Incomplete => incomplete.score } 
+      .collect { case incomplete: CheckResult.Incomplete => incomplete.score }
       .toVector
       .sorted
-  
+
   scores(scores.length / 2)

@@ -1,5 +1,5 @@
-// using scala 3.0.2
-// using target scala-js
+//> using target.platform "scala-js"
+//> using jsModuleKind "common"
 
 package day3
 

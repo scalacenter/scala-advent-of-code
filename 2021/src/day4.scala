@@ -1,5 +1,3 @@
-// using scala 3.0.2
-
 package day4
 
 import scala.io.Source
@@ -27,26 +25,26 @@ object Board:
 def answers(input: String): (Int, Int) =
   val inputSections: List[String] = input.split("\n\n").toList
   val numbers: List[Int] = inputSections.head.split(',').map(_.toInt).toList
-  
+
   val originalBoards: List[Board] = inputSections.tail.map(Board.parse)
-  
+
   val numberToTurn = numbers.zipWithIndex.toMap
   val turnToNumber = numberToTurn.map((number, turn) => (turn, number))
 
   val boards = originalBoards.map(board => board.mapNumbers(numberToTurn))
-  
+
   def winningTurn(board: Board): Int =
     val lineMin = board.lines.map(line => line.max).min
     val colMin = board.columns.map(col => col.max).min
     lineMin min colMin
 
   // for each board, the number of turns until it wins
-  val winningTurns: List[(Board, Int)] = 
+  val winningTurns: List[(Board, Int)] =
     boards.map(board => (board, winningTurn(board)))
 
   def score(board: Board, turn: Int) =
-    val sumNumsNotDrawn = 
-      board.lines.map{ line => 
+    val sumNumsNotDrawn =
+      board.lines.map{ line =>
         line.filter(_ > turn).map(turnToNumber(_)).sum
       }.sum
     turnToNumber(turn) * sumNumsNotDrawn
@@ -54,8 +52,8 @@ def answers(input: String): (Int, Int) =
 
   val (winnerBoard, winnerTurn) = winningTurns.minBy((_, turn) => turn)
   val winnerScore = score(winnerBoard, winnerTurn)
-  
+
   val (loserBoard, loserTurn) = winningTurns.maxBy((_, turn) => turn)
   val loserScore = score(loserBoard, loserTurn)
-  
+
   (winnerScore, loserScore)
