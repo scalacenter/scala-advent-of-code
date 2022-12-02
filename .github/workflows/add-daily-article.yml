@@ -28,7 +28,7 @@ jobs:
 
       - uses: repo-sync/pull-request@v2
         with:
-          destination_branch: add-schedule
+          destination_branch: website
           pr_title: Add Today's Advent of Code Article
           pr_body: |
             This PR was automatically generated to add the article of today.
