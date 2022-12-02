@@ -13,14 +13,14 @@ function HomepageHeader() {
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
         <h1 className="hero__title" style={{ textShadow: "2px 2px 4px #000000"}}>
-          Scala Advent of Code 2021 by
+          Scala Advent of Code 2022 by
           <a href="https://scala.epfl.ch/">
             <img className={styles.scalacenter} alt="Scala Center" src={useBaseUrl('/img/scala-center.png')} title="Scala Center"/>
           </a>
         </h1>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
         <div className={styles.buttons}>
-          <DocsLinks dir="puzzles" linkStyle={`${styles.button} button button--secondary button--lg`} />
+          <DocsLinks dir="2022/puzzles" linkStyle={`${styles.button} button button--secondary button--lg`} />
         </div>
       </div>
     </header>
