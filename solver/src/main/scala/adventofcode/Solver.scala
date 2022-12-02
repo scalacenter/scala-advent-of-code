@@ -6,6 +6,13 @@ import scala.util.{Try, Failure, Success}
 import scala.scalajs.js.annotation.JSExportTopLevel
 
 object Solver:
+  private val solutions2022: Map[String, String => Any] =
+    import adventofcode2022.*
+    Map(
+      "day01-part1" -> day01.part1,
+      "day01-part2" -> day01.part2,
+    )
+
   private val solutions2021: Map[String, String => Any] =
     import adventofcode2021.*
     Map(
@@ -54,7 +61,10 @@ object Solver:
   end solutions2021
 
   private val solutions: Map[String, Map[String, String => Any]] =
-    Map("2021" -> solutions2021)
+    Map(
+      "2022" -> solutions2022,
+      "2021" -> solutions2021,
+    )
 
   private def doSolve(puzzleId: String, year: String): Unit =
     for
@@ -62,10 +72,6 @@ object Solver:
       solution <- solutionOfYear.get(puzzleId)
       div <- Option(document.getElementById(puzzleId))
     do render(div, solverElement(solution))
-
-  @JSExportTopLevel("default")
-  def solver(puzzleId: String): Unit =
-    doSolve(puzzleId, "2021")
 
   @JSExportTopLevel("default")
   def solver(puzzleId: String, year: String): Unit =
