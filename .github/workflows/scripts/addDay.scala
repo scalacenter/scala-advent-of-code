@@ -45,6 +45,7 @@ def createDay(today: Int, year: Int) =
   val file = dest / s"day$id.md"
   scrapeTitle(today, year) match
     case Some(title) =>
+      os.makeDir.all(dest)
       os.write.over(file, template(title, today, year))
       println(s"wrote puzzle doc page `$file`.")
     case None =>
