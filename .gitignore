@@ -3,6 +3,7 @@
 .bsp/
 metals.sbt
 target/
+.scala-build
 .scala/
 website/src/js
 

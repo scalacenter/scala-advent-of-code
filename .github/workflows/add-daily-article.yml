@@ -1,0 +1,35 @@
+name: Add Daily Article
+
+on:
+  push:
+    branches: [add-schedule]
+  schedule:
+    - cron: '0 7 1-24 12 *'  # Every day at 7 AM UTC in December 1st-24th
+
+jobs:
+  add-article:
+    name: Create pull request to add today's article
+    permissions:
+      pull-requests: write  # for repo-sync/pull-request to create a PR
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+
+      - uses: coursier/cache-action@v6
+
+      - uses: VirtusLab/scala-cli-setup@v0.1.18
+        with:
+          jvm: "temurin:17"
+
+      - name: Generate todays article
+        run: scala-cli run .github/workflows/scripts/addDay.scala
+
+      - uses: repo-sync/pull-request@v2
+        with:
+          destination_branch: add-schedule
+          pr_title: Add Today's Advent of Code Article
+          pr_body: |
+            PR automatically generated to add the article of today.
+          pr_assignee: ${{ github.event.head_commit.author.username }}
