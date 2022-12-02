@@ -4,6 +4,7 @@
 metals.sbt
 target/
 .scala/
+.scala-build
 
 # Solutions
 /solutions/

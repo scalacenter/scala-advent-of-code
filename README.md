@@ -1,6 +1,7 @@
-# Scala Advent of Code 2021
+# Scala Advent of Code 2022
 
-Scala Center's solutions of [Advent of Code](https://adventofcode.com/).
+> See earlier editions:
+> - [2021](/2021/README.md)
 
 ## Website
 
@@ -19,35 +20,34 @@ You can follow these [steps](https://scalacenter.github.io/scala-advent-of-code/
 After you clone the repository, open a terminal and run:
 ```
 $ cd scala-advent-of-code
-$ scala-cli setup-ide src
-$ code .
+$ scala-cli setup-ide 2022
+$ code 2022
 ```
 
-`code .` will open Visual Studio Code and start Metals.
+`code 2022` will open Visual Studio Code and start Metals. If not you may have to go to the Metals pane and click
+the button labelled "Start Metals".
+
+When you navigate to a file, e.g. `2022/src/day01.scala` metals should index the project, and then display code lenses
+above each of the main methods `part1` and `part2`, as shown in this image:
+![](img/code-lenses.png)
+
+You can click `run` to see the results of the program run in VS Code. Or `debug`,
+which will let you pause on breakpoints, and execute expressions in the debug console.
 
 ### How to run a solution
 
 In a terminal you can run:
 ```
-$ scala-cli src -M day1.part1
-Compiling project (Scala 3.0.2, JVM)
-Compiled project (Scala 3.0.2, JVM)
-The solution is 1559
+$ scala-cli 2022 -M day01.part01
+Compiling project (Scala 3.2.0, JVM)
+Compiled project (Scala 3.2.0, JVM)
+The solution is 64929
 ```
 
 Or, to run another solution:
 ```
-$ scala-cli src -M <dayX>.<partX>
+$ scala-cli 2022 -M <dayX>.<partX>
 ```
 
-By default the solution programs run on our input files which are stored in the `input` folder.
-To get your solutions you can change the content of those files in the `input` folder.
-
-
-#### How to run day3
-
-The solution of day 3 is written for the javascript target.
-You can run it locally, if you have [Node.js](https://nodejs.org/en/) installed, by adding the `--js` option:
-```
-$ scala-cli src --js -M day3.part1
-```
+By default the solution programs run on our input files which are stored in the `2022/input` folder.
+To get your solutions you can change the content of those files in the `2022/input` folder.

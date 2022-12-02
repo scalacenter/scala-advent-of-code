@@ -1,5 +1,3 @@
-// using scala 3.0.2
-
 package day13
 
 import scala.util.Using
@@ -23,11 +21,11 @@ def part1(input: String): Int =
 def part2(input: String): String =
   val (dots, folds) = parseInstructions(input)
   val foldedDots = folds.foldLeft(dots)((dots, fold) => dots.map(fold.apply))
-  
+
   val (width, height) = (foldedDots.map(_.x).max + 1, foldedDots.map(_.y).max + 1)
   val paper = Array.fill(height, width)('.')
   for dot <- foldedDots do paper(dot.y)(dot.x) = '#'
-  
+
   paper.map(_.mkString).mkString("\n")
 
 def parseInstructions(input: String): (Set[Dot], List[Fold]) =
@@ -56,12 +54,10 @@ enum Fold:
   private def fold(along: Int)(point: Int): Int =
     if point < along then point
     else along - (point - along)
-  
+
 object Fold:
   def parse(line: String): Fold =
     line match
       case s"fold along x=$x" => Vertical(x.toInt)
       case s"fold along y=$y" => Horizontal(y.toInt)
       case _ => throw new Exception(s"Cannot parse '$line' to Fold")
-  
-

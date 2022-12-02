@@ -1,5 +1,3 @@
-// using scala 3.1.0
-
 package day5
 
 import scala.util.Using
