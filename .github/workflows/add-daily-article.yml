@@ -11,6 +11,7 @@ jobs:
     name: Create pull request to add today's article
     permissions:
       pull-requests: write  # for repo-sync/pull-request to create a PR
+      contents: write  # for repo-sync/pull-request to create a PR
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
