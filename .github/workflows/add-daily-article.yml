@@ -24,10 +24,20 @@ jobs:
           jvm: "temurin:17"
 
       - name: Generate todays article
-        run: scala-cli run .github/workflows/scripts/addDay.scala
+        run: |
+          scala-cli run .github/workflows/scripts/addDay.scala
+          git config user.name gh-actions
+          git config user.email actions@github.com
+          git checkout -b "add-day-${{ steps.date.outputs.date }}"
+          git add .
+          if ! git diff-index --quiet HEAD; then
+            git commit -m "Add Article Day ${{ steps.date.outputs.date }}"
+            git push --set-upstream origin add-day-${{ steps.date.outputs.date }}
+          fi
 
       - uses: repo-sync/pull-request@v2
         with:
+          source_branch: add-day-${{ steps.date.outputs.date }}
           destination_branch: website
           pr_title: Add Today's Advent of Code Article
           pr_body: |
