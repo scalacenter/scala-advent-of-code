@@ -25,6 +25,11 @@ function HomepageHeader() {
             to="/2021/">
             2021
           </Link>
+          <Link
+            className={`${styles.button} button button--secondary button--lg`}
+            to="/2022/">
+            2022
+          </Link>
         </div>
       </div>
     </header>
