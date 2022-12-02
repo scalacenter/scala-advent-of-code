@@ -19,7 +19,7 @@ def template(title: String, day: Int, year: Int) =
       |
       |## Solutions from the community
       |
-      |Share your solution to the Scala community by editing this page.""".stripMargin
+      |Share your solution with the Scala community by editing this page.""".stripMargin
 
 def scrapeTitle(day: Int, year: Int) =
   val url = s"https://adventofcode.com/$year/day/$day"
