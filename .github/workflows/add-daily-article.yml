@@ -31,5 +31,5 @@ jobs:
           destination_branch: add-schedule
           pr_title: Add Today's Advent of Code Article
           pr_body: |
-            PR automatically generated to add the article of today.
+            This PR was automatically generated to add the article of today.
           pr_assignee: ${{ github.event.head_commit.author.username }}
