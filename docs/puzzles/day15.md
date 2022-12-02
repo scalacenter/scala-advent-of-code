@@ -73,7 +73,7 @@ dist((gameMap.maxRow, gameMap.maxCol))
 
 We use `queue.remove(n)` followed by `queue.add(n)` here – this is to recompute the position of `n` in the queue following the change in the ordering of the queue (that is, the mutation of `dist`). Ideally, you would need a [decreaseKey](https://www.baeldung.com/cs/min-heaps-decrease-key) operation on the priority queue for the best performance – but that would require writing a dedicated data structure, which is out of scope for this solution.
 
-<Solver puzzle="day15-part1"/>
+<Solver puzzle="day15-part1" year="2021"/>
 
 ## Part 2
 Part 2 is like Part 1 but 25 times larger. The Part 1 algorithm is capable of dealing with scale, and so the only challenge is to construct the game map for part 2.
@@ -95,7 +95,7 @@ val gameMap = GameMap(
 
 The innermost loop generates individual cells according to the challenge spec. The second-level loop pads the 100x100 tiles of the map horizontally, starting from the `seedTile` (the one used in Part 1). Finally, the outermost loop pads the tiles vertically.
 
-<Solver puzzle="day15-part2"/>
+<Solver puzzle="day15-part2" year="2021"/>
 
 ## Solutions from the community
 

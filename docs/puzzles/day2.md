@@ -12,7 +12,7 @@ https://adventofcode.com/2021/day/2
 ### Parsing the file
 The first step is to model the problem and to parse the input file.
 
-The command can be either `Forward`, `Down` or `Up`. I use an Enumeration to model it. 
+The command can be either `Forward`, `Down` or `Up`. I use an Enumeration to model it.
 
 An enumeration is used to define a type consisting of a set of named values. Read [the official documentation](https://docs.scala-lang.org/scala3/reference/enums/enums.html)
 for more details.
@@ -34,7 +34,7 @@ object Command {
 }
 ```
 
-Now let's parse the input to a Command: 
+Now let's parse the input to a Command:
 ```scala
 object Command:
   def from(s: String): Command =
@@ -46,8 +46,8 @@ object Command:
 
 ```
 :::info
-Here I have chosen to fail during the parsing method `Command.from` to keep the types as simple as possible. 
-If an input file is not valid, we `throw` an exception. 
+Here I have chosen to fail during the parsing method `Command.from` to keep the types as simple as possible.
+If an input file is not valid, we `throw` an exception.
 
 It's possible to delay the parsing error to the main method, and return an `Option[Command]` or `Try[Command]`
 `Command.from`
@@ -56,18 +56,18 @@ It's possible to delay the parsing error to the main method, and return an `Opti
 ### Moving the sonar
 Now we need to create a method to compute the new position of a sonar given
 the initial position and a command.
-For that we create a `case class Position(horizontal: Int, depth: Int)`, that will represent a position, 
+For that we create a `case class Position(horizontal: Int, depth: Int)`, that will represent a position,
 and then add a method `move` that will translate the puzzle's rules to a position.
 ```scala
 case class Position(horizontal: Int, depth: Int):
-  def move(p: Command): Position = 
+  def move(p: Command): Position =
     p match
       case Command.Forward(x) => Position(horizontal + x, depth)
       case Command.Down(x)    => Position(horizontal, depth + x)
       case Command.Up(x)      => Position(horizontal, depth - x)
 ```
 
-To apply all the commands from the input file, we use `foldLeft` 
+To apply all the commands from the input file, we use `foldLeft`
 ```scala
 val firstPosition = Position(0, 0)
 val lastPosition = entries.foldLeft(firstPosition)((position, command) => position.move(command))
@@ -84,7 +84,7 @@ def foldLeft[B](initialElement: B)(op: (B, A) => B): B
 Let's see an example:
 ```scala
 // Implementing a sum on a List
-List(1, 3, 2, 4).foldLeft(0)((accumulator, current) => accumulator + current) // 10 
+List(1, 3, 2, 4).foldLeft(0)((accumulator, current) => accumulator + current) // 10
 ```
 
 It is the same as:
@@ -125,11 +125,11 @@ object Command:
       case _ => throw new Exception(s"value $s is not valid command")
 ```
 
-<Solver puzzle="day2-part1"/>
+<Solver puzzle="day2-part1" year="2021"/>
 
 ## Solution of Part 2
 
-The part 2 introduces new rules to move the sonar. 
+The part 2 introduces new rules to move the sonar.
 So we need a new position that takes into account the `aim` and a new method move with the new rules.
 The remaining code remains the same.
 ### Moving the sonar part 2
@@ -167,7 +167,7 @@ object Command:
       case _ => throw new Exception(s"value $s is not valid command")
 ```
 
-<Solver puzzle="day2-part2"/>
+<Solver puzzle="day2-part2" year="2021"/>
 
 ## Run it locally
 
@@ -179,10 +179,10 @@ $ cd scala-advent-of-code
 
 The you can run it with scala-cli:
 ```
-$ scala-cli src -M day2.part1
+$ scala-cli 2021 -M day2.part1
 The answer is 2070300
 
-$ scala-cli src -M day2.part2
+$ scala-cli 2021 -M day2.part2
 The answer is 2078985210
 ```
 

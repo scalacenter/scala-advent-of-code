@@ -1,4 +1,4 @@
-# Day 1: Sonar Sweep 
+# Day 1: Sonar Sweep
 by [@adpi2](https://twitter.com/adrienpi2)
 
 ## Puzzle description
@@ -25,7 +25,7 @@ val pairs: Seq[(Int, Int)] =
 
 :::tip
 - `0 until n` is an exclusive range, it does not contain the upper bound `n`.
-- `0 to n` is an inclusive range, it contains the upper bound `n`. 
+- `0 to n` is an inclusive range, it contains the upper bound `n`.
 :::
 
 For the input `Seq(10, 20, 30, 40)`, pairs is `Seq((10,20), (20, 30), (30, 40))`.
@@ -38,7 +38,7 @@ pairs.count((first, second) => first < second)
 That gives us:
 
 ```scala
-def part1(input: String): Int = 
+def part1(input: String): Int =
   val depths: Seq[Int] = input.linesIterator.map(_.toInt).toSeq
   val pairs: Seq[(Int, Int)] =
     for i <- 0 until depths.size - 1
@@ -86,7 +86,7 @@ We can use the sliding method to make our code shorter and faster.
 ## Final solution
 
 ```scala
-def part1(input: String): Int = 
+def part1(input: String): Int =
   val depths = input.linesIterator.map(_.toInt)
   val pairs = depths.sliding(2).map(arr => (arr(0), arr(1)))
   pairs.count((prev, next) => prev < next)
@@ -108,10 +108,10 @@ $ cd scala-advent-of-code
 
 The you can run it with scala-cli:
 ```
-$ scala-cli src -M day1.part1
+$ scala-cli 2021 -M day1.part1
 The answer is 1559
 
-$ scala-cli src -M template1.part2
+$ scala-cli 2021 -M template1.part2
 The answer is 1600
 ```
 
@@ -123,11 +123,11 @@ You can replace the content of the `input/day1` file with your own input from [a
 
 import Solver from "../../../../website/src/components/Solver.js"
 
-<Solver puzzle="day1-part1"/>
+<Solver puzzle="day1-part1" year="2021"/>
 
 #### Part 2
 
-<Solver puzzle="day1-part2"/>
+<Solver puzzle="day1-part2" year="2021"/>
 
 ## Bonus
 

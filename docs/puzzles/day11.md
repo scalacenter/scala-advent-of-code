@@ -117,11 +117,11 @@ def part2(input: String) =
 
 ### Part 1
 
-<Solver puzzle="day11-part1"/>
+<Solver puzzle="day11-part1" year="2021"/>
 
 ### Part 2
 
-<Solver puzzle="day11-part2"/>
+<Solver puzzle="day11-part2" year="2021"/>
 
 ## Run it locally
 
@@ -134,10 +134,10 @@ $ cd scala-advent-of-code
 You can run it with [scala-cli](https://scala-cli.virtuslab.org/).
 
 ```
-$ scala-cli src -M day11.part1
+$ scala-cli 2021 -M day11.part1
 The answer is: 1673
 
-$ scala-cli src -M day11.part2
+$ scala-cli 2021 -M day11.part2
 The answer is: 279
 ```
 

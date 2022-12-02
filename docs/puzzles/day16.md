@@ -329,7 +329,7 @@ def part1(input: String) =
   packet.versionSum
 ```
 
-<Solver puzzle="day16-part1"/>
+<Solver puzzle="day16-part1" year="2021"/>
 
 ## Part 2: The Elven calculus
 
@@ -564,7 +564,7 @@ end part2
 You might have noticed that we had to slightly modify the `versionsSum` function
 to work with our new structure.
 
-<Solver puzzle="day16-part2"/>
+<Solver puzzle="day16-part2" year="2021"/>
 
 ## Solutions from the community
 

@@ -1,15 +1,41 @@
-ThisBuild / scalaVersion := "3.0.2"
+import java.io.File
+ThisBuild / scalaVersion := "3.2.0"
 
 lazy val adventOfCode = project
   .in(file("."))
   .enablePlugins(ScalaJSPlugin)
   .settings(
-    Compile / unmanagedSourceDirectories := Seq(
-      (ThisBuild / baseDirectory).value / "solutions" / "src"
-    ),
+    (Compile / sourceGenerators) += taskPatchSolutions("2021", _ / "solutions" / "src").taskValue,
+    Compile / managedSourceDirectories := Nil,
     run / fork := true,
     run / baseDirectory := (ThisBuild / baseDirectory).value / "solutions"
   )
+
+def taskPatchSolutions(year: String, getSrcDir: File => File) = Def.task {
+  val s = streams.value
+  val cacheDir = s.cacheDirectory
+  val trgDir = (Compile / sourceManaged).value / s"solutions-$year-src"
+  val srcDir = getSrcDir((ThisBuild / baseDirectory).value)
+
+  FileFunction.cached(cacheDir / s"fetch${year}Solutions",
+      FilesInfo.lastModified, FilesInfo.exists) { dependencies =>
+    s.log.info(s"Unpacking $year solutions sources to $trgDir...")
+    if (trgDir.exists)
+      IO.delete(trgDir)
+    IO.createDirectory(trgDir)
+    IO.copyDirectory(srcDir, trgDir)
+    val sourceFiles = (trgDir ** "*.scala").get.toSet
+    for (f <- sourceFiles)
+      IO.writeLines(f, patchSolutions(year, IO.readLines(f)))
+    sourceFiles
+  } (Set(srcDir)).toSeq
+}
+
+/** adds `package adventofcode${year}` to the file after the last using directive */
+def patchSolutions(year: String, lines: List[String]): List[String] = {
+  val (before, after) = lines.span(line => line.startsWith("// using") || line.startsWith("//> using"))
+  before ::: s"package adventofcode$year" :: after
+}
 
 lazy val docs = project
   .in(file("website"))
@@ -29,8 +55,8 @@ lazy val solver = project
   .enablePlugins(ScalaJSPlugin)
   .settings(
     libraryDependencies ++= Seq(
-      "org.scala-js" %%% "scalajs-dom" % "2.0.0",
-      "com.raquo" %%% "laminar" % "0.14.2"
+      "org.scala-js" %%% "scalajs-dom" % "2.3.0",
+      "com.raquo" %%% "laminar" % "0.14.5"
     ),
     scalaJSLinkerConfig ~= (_.withModuleKind(ModuleKind.ESModule))
   )

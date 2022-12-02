@@ -126,7 +126,7 @@ def part1(input: String): Int =
     .collect { case illegal: CheckResult.IllegalClosing => illegal.score }
     .sum
 ```
-<Solver puzzle="day10-part1"/>
+<Solver puzzle="day10-part1" year="2021"/>
 
 ## Solution of Part 2
 
@@ -175,7 +175,7 @@ def part2(input: String): BigInt =
   scores(scores.length / 2)
 ```
 
-<Solver puzzle="day10-part2"/>
+<Solver puzzle="day10-part2" year="2021"/>
 
 ## Run it locally
 
@@ -188,9 +188,9 @@ $ cd scala-advent-of-code
 You can run it with [scala-cli](https://scala-cli.virtuslab.org/).
 
 ```
-$ scala-cli src -M day10.part1
+$ scala-cli 2021 -M day10.part1
 The solution is 367059
-$ scala-cli src -M day10.part2
+$ scala-cli 2021 -M day10.part2
 The solution is 1952146692
 ```
 

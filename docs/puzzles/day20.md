@@ -10,7 +10,7 @@ https://adventofcode.com/2021/day/20
 
 The input is an image enhancement algorithm string, and an initial input image.
 
-The image is a black and white rectangle. We model the pixels with an 
+The image is a black and white rectangle. We model the pixels with an
 enumeration:
 
 ~~~ scala
@@ -21,7 +21,7 @@ enum Pixel:
 A pixel can either be lit, or dark.
 
 In the input text, lit pixels are represented by the character "#", whereas
-dark pixels are represented by the character "." (dot). We use pattern 
+dark pixels are represented by the character "." (dot). We use pattern
 matching to parse them:
 
 ~~~ scala
@@ -33,10 +33,10 @@ object Pixel:
 end Pixel
 ~~~
 
-In case the input is malformed (ie, it contains a character other than "#" 
+In case the input is malformed (ie, it contains a character other than "#"
 or "."), the method `parse` raises an exception.
 
-The enhancement algorithm string is provided as a line of 512 pixels. We 
+The enhancement algorithm string is provided as a line of 512 pixels. We
 parse it as follows:
 
 ~~~ scala
@@ -48,26 +48,26 @@ object Enhancer:
 end Enhancer
 ~~~
 
-There is a subtlety regarding the input image to which we want to apply the 
-enhancement algorithm: its size is infinite. Initially, its pixels are all 
-dark except in the rectangle we are given as initial input. So, we model an 
-image as a two-dimensional indexed sequence, and the color of all the pixels 
+There is a subtlety regarding the input image to which we want to apply the
+enhancement algorithm: its size is infinite. Initially, its pixels are all
+dark except in the rectangle we are given as initial input. So, we model an
+image as a two-dimensional indexed sequence, and the color of all the pixels
 that are out of the bounds of that two-dimensional indexed sequence:
 
 ~~~ scala
 class Image(pixels: IndexedSeq[IndexedSeq[Pixel]], outOfBoundsPixel: Pixel):
   require(pixels.map(_.length).distinct.size == 1, "All the rows must have the same length")
-  
+
   val height = pixels.length
   val width  = pixels(0).length
 ~~~
 
-Since there is no direct way to model two-dimensional collections in the 
-standard library, we model the table of pixels as a collection of rows, 
-where each row is a collection of pixels. We add the call to `require` to 
+Since there is no direct way to model two-dimensional collections in the
+standard library, we model the table of pixels as a collection of rows,
+where each row is a collection of pixels. We add the call to `require` to
 make sure that all the lines have the same length.
 
-We parse the input image by parsing every line of the provided rectangular 
+We parse the input image by parsing every line of the provided rectangular
 area, and by setting the color of the out-of-bounds pixels to `Dark`:
 
 ~~~ scala
@@ -94,12 +94,12 @@ def parseEnhancerAndImage(input: String): (Enhancer, Image) =
 
 ## Image enhancement algorithm
 
-The image enhancement algorithm needs to compute an integer value for every 
-location of the input image. The integer value is made of 9 bits, whose 
-value is taken from the state of the 9 pixels around the location (a lit 
+The image enhancement algorithm needs to compute an integer value for every
+location of the input image. The integer value is made of 9 bits, whose
+value is taken from the state of the 9 pixels around the location (a lit
 pixel means `1`, and a dark pixel means `0`).
 
-That 9-bit integer value is then used as an index in the enhancement 
+That 9-bit integer value is then used as an index in the enhancement
 algorithm string to find the state of the output pixel at that location.
 
 We implement the algorithm as a method of the class `Enhancer`:
@@ -125,18 +125,18 @@ class Enhancer(enhancementString: IndexedSeq[Pixel]):
 end Enhancer
 ~~~
 
-Since we look at the 9 pixels around every location, we look at locations 
-outside the image rectangle where some of these 9 pixels overlap with the 
+Since we look at the 9 pixels around every location, we look at locations
+outside the image rectangle where some of these 9 pixels overlap with the
 rectangle (hence the bounds `-1` and `height + 1` for the `y` coordinates).
 
 The 9-bit integer value of each location is computed by an auxiliary method,
 `locationValue`, which is shown below.
 
-Last, we also compute the “enhancement” of the pixels that are out of the 
-bounds of the image rectangle. Since these pixels are all the same, the 9 
-pixels around any location out of the bounds of the rectangle will always be 
-either all lit or all dark. The binary value corresponding to all pixels 
-dark is `000000000`, which equals `0`, and the binary value corresponding to 
+Last, we also compute the “enhancement” of the pixels that are out of the
+bounds of the image rectangle. Since these pixels are all the same, the 9
+pixels around any location out of the bounds of the rectangle will always be
+either all lit or all dark. The binary value corresponding to all pixels
+dark is `000000000`, which equals `0`, and the binary value corresponding to
 all pixels lit is `111111111`, which equals `511`.
 
 Here is the implementation of the auxiliary method `locationValue`:
@@ -157,12 +157,12 @@ def locationValue(image: Image, x: Int, y: Int): Int =
 end locationValue
 ~~~
 
-We read the 9 pixels around the provided location, starting from the 
-top-left corner, and going to the right. If a pixel is lit, we interpret it 
-as a `1`. At every iteration, we shift the previously computed result one 
+We read the 9 pixels around the provided location, starting from the
+top-left corner, and going to the right. If a pixel is lit, we interpret it
+as a `1`. At every iteration, we shift the previously computed result one
 bit to the left before reading the new bit.
 
-To read the pixel value in the image, we use a handy method `pixel`, defined 
+To read the pixel value in the image, we use a handy method `pixel`, defined
 in the class `Image`:
 
 ~~~ scala
@@ -172,14 +172,14 @@ def pixel(x: Int, y: Int): Pixel =
   else pixels(y)(x)
 ~~~
 
-This method implements the fact that the image has an infinite size. It 
-checks the bounds of the location to access, and when the location is out of 
-the bounds of the rectangle image, it returns the `outOfBoundsPixel` color 
+This method implements the fact that the image has an infinite size. It
+checks the bounds of the location to access, and when the location is out of
+the bounds of the rectangle image, it returns the `outOfBoundsPixel` color
 of the image.
 
 ## Solution of part 1
 
-We were asked to apply two times in a row the enhancement algorithm on the 
+We were asked to apply two times in a row the enhancement algorithm on the
 input image, and to compute the number of lit pixels in the output image:
 
 ~~~ scala
@@ -198,8 +198,8 @@ class Image(pixels: IndexedSeq[IndexedSeq[Pixel]], outOfBoundsPixel: Pixel):
     pixels.view.flatten.count(_ == Pixel.Lit)
 ~~~
 
-We flatten the rows of pixels into a single collection of pixels, and we 
-count the lit pixels on it. The call to `view` before `flatten` allows us to 
+We flatten the rows of pixels into a single collection of pixels, and we
+count the lit pixels on it. The call to `view` before `flatten` allows us to
 traverse the rows of pixels without constructing the flattened collection.
 
 ## Full code for part 1
@@ -311,24 +311,24 @@ def part2(input: String): Int =
 
 We parse the input with the same method as in part1, `parseEnhancerAndImage`.
 
-To apply the enhancer 50 times, we use a `LazyList`. First, we create an 
-_infinite_ lazy list whose first element is the parsed input `image`, and 
-whose `n + 1` element is computed by calling `enhancer.enhance` on the 
-element `n`. Then, we compute its 50th element by calling `.apply(50)`. As a 
+To apply the enhancer 50 times, we use a `LazyList`. First, we create an
+_infinite_ lazy list whose first element is the parsed input `image`, and
+whose `n + 1` element is computed by calling `enhancer.enhance` on the
+element `n`. Then, we compute its 50th element by calling `.apply(50)`. As a
 consequence, only the first 50 elements will be computed at all.
 
-Finally, we call `countLitPixels()` on the output image to count its number 
+Finally, we call `countLitPixels()` on the output image to count its number
 of lit pixels.
 
 ## Run it in the browser
 
 ### Part 1
 
-<Solver puzzle="day20-part1"/>
+<Solver puzzle="day20-part1" year="2021"/>
 
 ### Part 2
 
-<Solver puzzle="day20-part2"/>
+<Solver puzzle="day20-part2" year="2021"/>
 
 ## Run it locally
 
@@ -341,9 +341,9 @@ $ cd scala-advent-of-code
 You can run it with [scala-cli](https://scala-cli.virtuslab.org/).
 
 ```
-$ scala-cli src -M day20.part1
+$ scala-cli 2021 -M day20.part1
 The solution is: 5301
-$ scala-cli src -M day20.part2
+$ scala-cli 2021 -M day20.part2
 The solution is: 19492
 ```
 

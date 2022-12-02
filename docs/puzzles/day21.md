@@ -140,7 +140,7 @@ def playWithDeterministicDie(players: Players, die: DeterministicDie): Long =
     playWithDeterministicDie((players(1), newPlayer), die)
 ```
 
-<Solver puzzle="day21-part1"/>
+<Solver puzzle="day21-part1" year="2021"/>
 
 ## The Dirac die
 
@@ -285,7 +285,7 @@ def playWithDiracDie(players: Players, player1Turn: Boolean, wins: Wins, inHowMa
   end for
 ```
 
-<Solver puzzle="day21-part2"/>
+<Solver puzzle="day21-part2" year="2021"/>
 
 ## Run it locally
 
@@ -298,10 +298,10 @@ $ cd scala-advent-of-code
 You can run it with [scala-cli](https://scala-cli.virtuslab.org/).
 
 ```
-$ scala-cli src -M day21.part1
+$ scala-cli 2021 -M day21.part1
 The answer is: 855624
 
-$ scala-cli src -M day21.part2
+$ scala-cli 2021 -M day21.part2
 The answer is: 187451244607486
 ```
 

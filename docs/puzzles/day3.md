@@ -135,7 +135,7 @@ def bitLineToInt(bitLine: BitLine): Int =
   Integer.parseInt(bitLine.mkString, 2)
 ```
 
-<Solver puzzle="day3-part1"/>
+<Solver puzzle="day3-part1" year="2021"/>
 
 ## First solution of Part 2
 
@@ -264,7 +264,7 @@ def recursiveFilter(bitLines: List[BitLine], bitPosition: Int,
       recursiveFilter(bitLinesToKeep, bitPosition + 1, keepMostCommon)
 ```
 
-<Solver puzzle="day3-part2"/>
+<Solver puzzle="day3-part2" year="2021"/>
 
 ## Run it locally
 
@@ -278,10 +278,10 @@ You can run it with scala-cli.
 Since today's solution is written in Scala.js, you will need a local setup of [Node.js](https://nodejs.org/en/) to run it.
 
 ```
-$ scala-cli src -M day3.part1 --js-module-kind commonjs
+$ scala-cli 2021 -M day3.part1 --js-module-kind commonjs
 The answer is 1025636
 
-$ scala-cli src -M day3.part2 --js-module-kind commonjs
+$ scala-cli 2021 -M day3.part2 --js-module-kind commonjs
 The answer is 793873
 ```
 

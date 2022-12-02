@@ -1,11 +1,11 @@
 import React from 'react';
 import clsx from 'clsx';
 import Layout from '@theme/Layout';
-import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './index.module.css';
-import HomepageFeatures from '../components/HomepageFeatures';
+import HomepageFeatures from '../../components/HomepageFeatures';
+import DocsLinks from '../../components/DocsLinks';
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
@@ -13,18 +13,14 @@ function HomepageHeader() {
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
         <h1 className="hero__title" style={{ textShadow: "2px 2px 4px #000000"}}>
-          Scala Advent of Code by
+          Scala Advent of Code 2021 by
           <a href="https://scala.epfl.ch/">
             <img className={styles.scalacenter} alt="Scala Center" src={useBaseUrl('/img/scala-center.png')} title="Scala Center"/>
           </a>
         </h1>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
         <div className={styles.buttons}>
-          <Link
-            className={`${styles.button} button button--secondary button--lg`}
-            to="/2021/">
-            2021
-          </Link>
+          <DocsLinks dir="puzzles" linkStyle={`${styles.button} button button--secondary button--lg`} />
         </div>
       </div>
     </header>

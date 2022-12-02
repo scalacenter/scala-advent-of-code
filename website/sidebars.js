@@ -11,6 +11,24 @@
 
 // @ts-check
 
+const fs = require('fs');
+
+const puzzlePage = /(day(\d+))\.md/;
+
+const buildSidebar = (dir) => {
+  const extractDay = (f) => {
+    const ns = puzzlePage.exec(f);
+    if (ns === null) {
+      return { id: `<unknown:'${f}'>`, n: -1 };
+    } else {
+      return { id: `${dir}/${ns[1]}`, n: parseInt(ns[2]) };
+    }
+  }
+  const days = fs.readdirSync(`target/mdoc/${dir}`).map(extractDay);
+  const sorted = days.sort((a, b) => a.n - b.n);
+  return sorted.map((day) => day.id);
+};
+
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
   // By default, Docusaurus generates a sidebar from the docs folder structure
@@ -21,33 +39,7 @@ const sidebars = {
     'introduction',
     'setup',
     {
-      Puzzles: [
-        'puzzles/day1',
-        'puzzles/day2',
-        'puzzles/day3',
-        'puzzles/day4',
-        'puzzles/day5',
-        'puzzles/day6',
-        'puzzles/day7',
-        'puzzles/day8',
-        'puzzles/day9',
-        'puzzles/day10',
-        'puzzles/day11',
-        'puzzles/day12',
-        'puzzles/day13',
-        'puzzles/day14',
-        'puzzles/day15',
-        'puzzles/day16',
-        'puzzles/day17',
-        'puzzles/day18',
-        'puzzles/day19',
-        'puzzles/day20',
-        'puzzles/day21',
-        'puzzles/day22',
-        'puzzles/day23',
-        'puzzles/day24',
-        'puzzles/day25'
-      ]
+      "2021 Puzzles": buildSidebar('puzzles'),
     },
   ]
 };
