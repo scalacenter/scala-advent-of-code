@@ -28,8 +28,10 @@ jobs:
           jvm: "temurin:17"
 
       - name: Generate todays article
+        run: scala-cli run .github/workflows/scripts/addDay.scala
+
+      - name: Push article to new branch
         run: |
-          scala-cli run .github/workflows/scripts/addDay.scala
           git config user.name gh-actions
           git config user.email actions@github.com
           git checkout -b "add-article-${{ steps.date.outputs.date }}"
@@ -39,11 +41,12 @@ jobs:
             git push --set-upstream origin add-article-${{ steps.date.outputs.date }}
           fi
 
-      - uses: repo-sync/pull-request@v2
+      - name: Create PR to merge article
+        uses: repo-sync/pull-request@v2
         with:
           source_branch: add-article-${{ steps.date.outputs.date }}
           destination_branch: website
-          pr_title: Add Today's Advent of Code Article
+          pr_title: Add advent of code article for ${{ steps.date.outputs.date }}
           pr_body: |
             This PR was automatically generated to add the article of today.
           pr_assignee: ${{ github.event.head_commit.author.username }}
