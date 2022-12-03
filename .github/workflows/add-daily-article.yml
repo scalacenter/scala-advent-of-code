@@ -1,6 +1,7 @@
 name: Add Daily Article
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: '0 7 * * *'  # Every day at 7 AM UTC in December 1st-24th
 
