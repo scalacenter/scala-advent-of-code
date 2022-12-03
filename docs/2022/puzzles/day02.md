@@ -1,6 +1,7 @@
 import Solver from "../../../../../website/src/components/Solver.js"
 
 # Day 2: Rock Paper Scissors
+by [@bishabosha](https://twitter.com/bishabosha)
 
 ## Puzzle description
 
