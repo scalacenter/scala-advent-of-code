@@ -11,7 +11,6 @@ jobs:
       pull-requests: write  # for repo-sync/pull-request to create a PR
       contents: write  # for repo-sync/pull-request to create a PR
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/website'
     steps:
       - name: Get current date
         id: date
