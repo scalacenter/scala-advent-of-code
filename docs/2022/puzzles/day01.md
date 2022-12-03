@@ -72,4 +72,6 @@ def maxInventories(inventories: List[Inventory], n: Int): List[Int] =
 
 ## Solutions from the community
 
+- [Solution](https://github.com/Jannyboy11/AdventOfCode2022/blob/master/src/main/scala/day01/Day01.scala) of [Jan Boerman](https://twitter.com/JanBoerman95).
+
 Share your solution to the Scala community by editing this page.
