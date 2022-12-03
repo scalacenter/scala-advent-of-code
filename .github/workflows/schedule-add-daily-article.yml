@@ -1,0 +1,40 @@
+name: Add Daily Article Scheduled
+
+on:
+  schedule:
+    cron: "21 5 1-24 12 *" # every 5:21 AM UTC 1st-24th December
+
+jobs:
+  add-article:
+    name: Add today's article without a PR
+    permissions:
+      pull-requests: write  # for repo-sync/pull-request to create a PR
+      contents: write  # for repo-sync/pull-request to create a PR
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get current date
+        id: date
+        run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+      - uses: actions/checkout@v3
+        with:
+          ref: website
+          submodules: true
+
+      - uses: coursier/cache-action@v6
+
+      - uses: VirtusLab/scala-cli-setup@v0.1.18
+        with:
+          jvm: "temurin:17"
+
+      - name: Generate todays article
+        run: scala-cli run .github/workflows/scripts/addDay.scala
+
+      - name: Push article to website branch
+        run: |
+          git config user.name gh-actions
+          git config user.email actions@github.com
+          git add .
+          if ! git diff-index --quiet HEAD; then
+            git commit -m "Add article of ${{ steps.date.outputs.date }}"
+            git push -f
+          fi
