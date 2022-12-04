@@ -25,6 +25,7 @@ jobs:
       - uses: VirtusLab/scala-cli-setup@v0.1.18
         with:
           jvm: "temurin:17"
+          apps: sbt
 
       - name: Generate todays article
         run: scala-cli run .github/workflows/scripts/addDay.scala
@@ -38,3 +39,8 @@ jobs:
             git commit -m "Add article of ${{ steps.date.outputs.date }}"
             git push -f
           fi
+
+      - name: Publish ${{ github.ref }}
+        run: sbt docs/docusaurusPublishGhpages
+        env:
+          GITHUB_DEPLOY_KEY: ${{ secrets.DOC }}
