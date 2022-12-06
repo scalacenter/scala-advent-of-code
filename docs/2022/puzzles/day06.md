@@ -1,7 +1,7 @@
 import Solver from "../../../../../website/src/components/Solver.js"
 
 # Day 6: Tuning Trouble
-by [@bishabosha](https://twitter.com/bishabosha)
+code by [Jan Boerman](https://twitter.com/JanBoerman95)
 
 ## Puzzle description
 
@@ -16,12 +16,7 @@ def part2(input: String): Int =
   findIndex(input, n = 14)
 
 def findIndex(input: String, n: Int): Int =
-  val firstIndex = input.iterator
-    .zipWithIndex
-    .sliding(n)
-    .find(_.map(_(0)).toSet.size == n)
-    .get
-    .head(1)
+  val firstIndex = input.sliding(n).indexWhere(_.toSet.size == n)
   firstIndex + n
 ```
 
