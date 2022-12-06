@@ -93,5 +93,6 @@ def findIndex(input: String, n: Int): Int =
 - [Solution](https://github.com/Jannyboy11/AdventOfCode2022/blob/master/src/main/scala/day06/Day06.scala) of [Jan Boerman](https://twitter.com/JanBoerman95).
 - [Solution](https://github.com/SimY4/advent-of-code-scala/blob/master/src/main/scala/aoc/y2022/Day6.scala) of [SimY4](https://twitter.com/actinglikecrazy).
 - [Solution](https://github.com/SethTisue/adventofcode/blob/main/2022/src/test/scala/Day06.scala) of [Seth Tisue](https://github.com/SethTisue)
+- [Solution](https://gist.github.com/JavadocMD/100e49509c15283390ee124b2638c1c1) of [Tyler Coles](https://github.com/JavadocMD)
 
 Share your solution to the Scala community by editing this page.
