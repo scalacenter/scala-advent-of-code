@@ -19,6 +19,8 @@ object Solver:
       "day04-part2" -> day04.part2,
       "day05-part1" -> day05.part1,
       "day05-part2" -> day05.part2,
+      "day06-part1" -> day06.part1,
+      "day06-part2" -> day06.part2,
     )
 
   private val solutions2021: Map[String, String => Any] =
