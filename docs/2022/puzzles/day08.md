@@ -73,4 +73,6 @@ def computeScore(ls: HeightField) = ls.map{ line =>
 
 ## Solutions from the community
 
+- [Solution](https://github.com/SethTisue/adventofcode/blob/main/2022/src/test/scala/Day08.scala) of [Seth Tisue](https://github.com/SethTisue)
+
 Share your solution to the Scala community by editing this page.
