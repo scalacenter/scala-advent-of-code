@@ -33,14 +33,14 @@ class DirectoryStructure(val dirName: String,
 We just have to come up with a way to calculate directory size -- we can just use [`sum`](https://www.scala-lang.org/files/archive/api/current/scala/collection/immutable/List.html#sum[B%3E:A](implicitnum:scala.math.Numeric[B]):B) for the size of all files in our directory and define size of all of the following subdirectories recursively, which will take care of our problem:
 
 ```Scala
-def directorySize(dir: DirectoryStructure): Size =
+def directorySize(dir: DirectoryStructure): Int =
     dir.files.values.sum + dir.childDirectories.values.map(directorySize).sum
 ```
 
 After that, we will have to come up with a list of all directories, that will fit our `criteria` in terms of size:
 
 ```Scala
-def collectSizes(dir: DirectoryStructure, criterion: Size => Boolean): Iterable[Size] =
+def collectSizes(dir: DirectoryStructure, criterion: Int => Boolean): Iterable[Int] =
     val mySize = directorySize(dir)
     val children = dir.subDirectories.values.flatMap(collectSizes(_, criterion))
     if criterion(mySize) then 
@@ -76,18 +76,14 @@ main def main: Unit = {
     println(result1)
 
     val result2 = {
-        val totalUsed: Size = directorySize(rootDir)
-        val totalUnused: Size = 70_000_000 - totalUsed
-        val required: Size = 30_000_000 - totalUnused
+        val totalUsed: Int = directorySize(rootDir)
+        val totalUnused: Int = 70_000_000 - totalUsed
+        val required: Int = 30_000_000 - totalUnused
         collectSizes(rootDir, _ >= required).min
     }
     println(result2)
 }
 ```
-
-
-
-
 
 ## Solutions from the community
 
