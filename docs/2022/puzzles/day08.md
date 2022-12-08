@@ -65,11 +65,11 @@ def computeScore(ls: HeightField) = ls.map{ line =>
 
 #### Part 1
 
-<Solver puzzle="day06-part1" year="2022"/>
+<Solver puzzle="day08-part1" year="2022"/>
 
 #### Part 2
 
-<Solver puzzle="day06-part2" year="2022"/>
+<Solver puzzle="day08-part2" year="2022"/>
 
 ## Solutions from the community
 
