@@ -48,7 +48,7 @@ def collectSizes(dir: DirectoryStructure, criterion: Int => Boolean): Iterable[I
     else
         children
 ```
-Now we need to create a function, to transfer our input in directory form. For that we can use ['match'](https://docs.scala-lang.org/tour/pattern-matching.html) and separate input into different cases:
+Now we need to create a function, to transfer our input in directory form. For that we can use [`match`](https://docs.scala-lang.org/tour/pattern-matching.html) and separate input into different cases:
 
 ```Scala
 def buildState(input: List[TerminalOutput], currentDir: DirectoryStructure | Null, rootDir: DirectoryStructure): Unit = input match
@@ -68,7 +68,7 @@ def buildState(input: List[TerminalOutput], currentDir: DirectoryStructure | Nul
 And now, we just need to assemble our programm, using criteria given to us in Advent of Code:
 
 ```Scala
-main def main: Unit = {
+@main def main: Unit = {
     val rootDir = new DirectoryStructure("/", Map.empty, Map.empty, null)
     buildState(input, null, rootDir)
 
@@ -84,6 +84,7 @@ main def main: Unit = {
     println(result2)
 }
 ```
+
 
 ## Solutions from the community
 
