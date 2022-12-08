@@ -1,7 +1,6 @@
 import Solver from "../../../../../website/src/components/Solver.js"
 
 # Day 7: No Space Left On Device
-
 code by [Jan Boerman](https://twitter.com/JanBoerman95)
 
 ## Puzzle description
