@@ -25,17 +25,16 @@ enum Command:
 enum TerminalOutput:
     case Cmd(cmd: Command)
     case Directory(name: String)
-    case File(size: Int, name: String))
+    case File(size: Int, name: String)
 ```
 
-Now let's make a directory structure, in which we will define files as map, that can contain name (String) and size (Integer), will have reference to parent directory, and will be able to contain subdirectories:
+Now let's make a directory structure, in which we will define files as [`Map`](https://www.scala-lang.org/api/2.12.4/scala/collection/immutable/Map.html), that can contain name (String) and size (Integer), will have reference to parent directory, and will be able to contain subdirectories:
 
 ```Scala
 class DirectoryStructure(val dirName: String,
                          val childDirectories: mutable.Map[String, DirectoryStructure],
                          val files: mutable.Map[String, Int],
-                         val parent: DirectoryStructure | Null):
-    override def toString: String = s"DirectoryStructure($dirName, $childDirectories, $files)"
+                         val parent: DirectoryStructure | Null)
 ```
 We just have to come up with a way to calculate directory size -- we can just use [`sum`](https://www.scala-lang.org/files/archive/api/current/scala/collection/immutable/List.html#sum[B%3E:A](implicitnum:scala.math.Numeric[B]):B) for the size of all files in our directory and define size of all of the following subdirectories recursively, which will take care of our problem for us:
 
