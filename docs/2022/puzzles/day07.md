@@ -25,8 +25,8 @@ enum TerminalOutput:
 Now let's make a directory structure, in which we will define files as [`Map`](https://www.scala-lang.org/api/2.12.4/scala/collection/immutable/Map.html), that can contain name (String) and size (Integer), will have reference to parent directory, and will be able to contain subdirectories:
 
 ```Scala
-class DirectoryStructure(val dirName: String,
-                         val childDirectories: Map[String, DirectoryStructure],
+class DirectoryStructure(val name: String,
+                         val subDirectories: Map[String, DirectoryStructure],
                          val files: Map[String, Int],
                          val parent: DirectoryStructure | Null)
 ```
@@ -34,7 +34,7 @@ We just have to come up with a way to calculate directory size -- we can just us
 
 ```Scala
 def directorySize(dir: DirectoryStructure): Int =
-    dir.files.values.sum + dir.childDirectories.values.map(directorySize).sum
+    dir.files.values.sum + dir.subDirectories.values.map(directorySize).sum
 ```
 
 After that, we will have to come up with a list of all directories, that will fit our `criteria` in terms of size:
