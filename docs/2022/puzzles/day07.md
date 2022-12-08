@@ -2,16 +2,11 @@ import Solver from "../../../../../website/src/components/Solver.js"
 
 # Day 7: No Space Left On Device
 
+code by [Jan Boerman](https://twitter.com/JanBoerman95)
+
 ## Puzzle description
 
 https://adventofcode.com/2022/day/7
-
-## Solutions from the community
-
-- [Solution](https://github.com/SimY4/advent-of-code-scala/blob/master/src/main/scala/aoc/y2022/Day7.scala) of [SimY4](https://twitter.com/actinglikecrazy).
-- [Solution](https://github.com/Jannyboy11/AdventOfCode2022/blob/master/src/main/scala/day07/Day07.scala) of [Jan Boerman](https://twitter.com/JanBoerman95).
-
-Share your solution to the Scala community by editing this page.
 
 ## Solution
 
@@ -43,7 +38,7 @@ def directorySize(dir: DirectoryStructure): Size =
     dir.files.values.sum + dir.childDirectories.values.map(directorySize).sum
 ```
 
-After that, we will have to come up with a list of all directories, that will fit our ``criteria`` in terms of size:
+After that, we will have to come up with a list of all directories, that will fit our `criteria` in terms of size:
 
 ```Scala
 def collectSizes(dir: DirectoryStructure, criterion: Size => Boolean): Iterable[Size] =
@@ -54,3 +49,50 @@ def collectSizes(dir: DirectoryStructure, criterion: Size => Boolean): Iterable[
     else
         children
 ```
+Now we need to create a function, to transfer our input in directory form. For that we can use ['match'](https://docs.scala-lang.org/tour/pattern-matching.html) and separate input into different cases:
+
+```Scala
+def buildState(input: List[TerminalOutput], currentDir: DirectoryStructure | Null, rootDir: DirectoryStructure): Unit = input match
+    case Cmd(ChangeDirectory("/")) :: t => buildState(t, rootDir, rootDir)
+    case Cmd(ChangeDirectory("..")) :: t => buildState(t, currentDir.parent, rootDir)
+    case Cmd(ChangeDirectory(name)) :: t => buildState(t, currentDir.subDirectories(name), rootDir)
+    case Cmd(ListFiles) :: t => buildState(t, currentDir, rootDir)
+    case File(size, name) :: t =>
+        currentDir.files.put(name, size)
+        buildState(t, currentDir, rootDir)
+    case Directory(name) :: t =>
+        currentDir.subDirectories.put(name, DirectoryStructure(name, Map.empty, Map.empty, currentDir))
+        buildState(t, currentDir, rootDir)
+    case Nil => ()
+```
+
+And now, we just need to assemble our programm, using criteria given to us in Advent of Code:
+
+```Scala
+main def main: Unit = {
+    val rootDir = new DirectoryStructure("/", Map.empty, Map.empty, null)
+    buildState(input, null, rootDir)
+
+    val result1 = collectSizes(rootDir, _ < 100000).sum
+    println(result1)
+
+    val result2 = {
+        val totalUsed: Size = directorySize(rootDir)
+        val totalUnused: Size = 70_000_000 - totalUsed
+        val required: Size = 30_000_000 - totalUnused
+        collectSizes(rootDir, _ >= required).min
+    }
+    println(result2)
+}
+```
+
+
+
+
+
+## Solutions from the community
+
+- [Solution](https://github.com/SimY4/advent-of-code-scala/blob/master/src/main/scala/aoc/y2022/Day7.scala) of [SimY4](https://twitter.com/actinglikecrazy).
+- [Solution](https://github.com/Jannyboy11/AdventOfCode2022/blob/master/src/main/scala/day07/Day07.scala) of [Jan Boerman](https://twitter.com/JanBoerman95).
+
+Share your solution to the Scala community by editing this page.
