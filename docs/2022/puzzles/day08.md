@@ -60,6 +60,17 @@ def computeScore(ls: HeightField) = ls.map{ line =>
 val scoreField: ScoreField = computeInAllDirections(parsed, computeScore).reduce(combine(_ * _))
 ```
 
+
+### Run it in the browser
+
+#### Part 1
+
+<Solver puzzle="day06-part1" year="2022"/>
+
+#### Part 2
+
+<Solver puzzle="day06-part2" year="2022"/>
+
 ## Solutions from the community
 
 Share your solution to the Scala community by editing this page.
