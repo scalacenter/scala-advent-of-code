@@ -43,7 +43,7 @@ def directorySize(dir: DirectoryStructure): Size =
     dir.files.values.sum + dir.childDirectories.values.map(directorySize).sum
 ```
 
-After that, we will have to come up with a list of all directories, that will fit our `criteria` in terms of size:
+After that, we will have to come up with a list of all directories, that will fit our ``criteria`` in terms of size:
 
 ```Scala
 def collectSizes(dir: DirectoryStructure, criterion: Size => Boolean): Iterable[Size] =
