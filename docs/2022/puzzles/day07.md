@@ -30,7 +30,7 @@ class DirectoryStructure(val name: String,
                          val files: Map[String, Int],
                          val parent: DirectoryStructure | Null)
 ```
-We just have to come up with a way to calculate directory size -- we can just use [`sum`](https://www.scala-lang.org/files/archive/api/current/scala/collection/immutable/List.html#sum[B%3E:A](implicitnum:scala.math.Numeric[B]):B) for the size of all files in our directory and define size of all of the following subdirectories recursively, which will take care of our problem:
+We have to come up with a way to calculate directory size -- we can use [`sum`](https://www.scala-lang.org/files/archive/api/current/scala/collection/immutable/List.html#sum[B%3E:A](implicitnum:scala.math.Numeric[B]):B) for the size of all files in our directory and define size of all of the following subdirectories recursively, which will take care of our problem:
 
 ```Scala
 def directorySize(dir: DirectoryStructure): Int =
@@ -65,7 +65,7 @@ def buildState(input: List[TerminalOutput], currentDir: DirectoryStructure | Nul
     case Nil => ()
 ```
 
-And now, we just need to assemble our programm, using criteria given to us in Advent of Code:
+And now, we need to assemble our programm, using criteria given to us in Advent of Code:
 
 ```Scala
 @main def main: Unit = {
