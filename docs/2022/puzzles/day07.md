@@ -9,7 +9,7 @@ https://adventofcode.com/2022/day/7
 
 ## Solution
 
-We need to create types for our commands, to differentiate our input:
+We need to create types for commands, to differentiate the input:
 
 ```Scala
 enum Command:
@@ -30,14 +30,14 @@ class DirectoryStructure(val name: String,
                          val files: Map[String, Int],
                          val parent: DirectoryStructure | Null)
 ```
-We have to come up with a way to calculate directory size -- we can use [`sum`](https://www.scala-lang.org/files/archive/api/current/scala/collection/immutable/List.html#sum[B%3E:A](implicitnum:scala.math.Numeric[B]):B) for the size of all files in our directory and define size of all of the following subdirectories recursively, which will take care of our problem:
+We have to come up with a way to calculate directory size -- we can use [`sum`](https://www.scala-lang.org/files/archive/api/current/scala/collection/immutable/List.html#sum[B%3E:A](implicitnum:scala.math.Numeric[B]):B) for the size of all files in directory and define size of all of the following subdirectories recursively, which will take care of problem recursively:
 
 ```Scala
 def directorySize(dir: DirectoryStructure): Int =
     dir.files.values.sum + dir.subDirectories.values.map(directorySize).sum
 ```
 
-After that, we will have to come up with a list of all directories, that will fit our `criteria` in terms of size:
+After that, we will have to come up with a list of all directories, that will fit `criteria` in terms of size:
 
 ```Scala
 def collectSizes(dir: DirectoryStructure, criterion: Int => Boolean): Iterable[Int] =
@@ -48,7 +48,7 @@ def collectSizes(dir: DirectoryStructure, criterion: Int => Boolean): Iterable[I
     else
         children
 ```
-Now we need to create a function, to transfer our input in directory form. For that we can use [`match`](https://docs.scala-lang.org/tour/pattern-matching.html) and separate input into different cases:
+Now we need to create a function, to transfer input in directory form. For that we can use [`match`](https://docs.scala-lang.org/tour/pattern-matching.html) and separate input, -- for that we can use cases matching:
 
 ```Scala
 def buildState(input: List[TerminalOutput], currentDir: DirectoryStructure | Null, rootDir: DirectoryStructure): Unit = input match
@@ -65,7 +65,7 @@ def buildState(input: List[TerminalOutput], currentDir: DirectoryStructure | Nul
     case Nil => ()
 ```
 
-And now, we need to assemble our programm, using criteria given to us in Advent of Code:
+And now, we need to assemble program, using criteria given to us in Advent of Code:
 
 ```Scala
 @main def main: Unit = {
