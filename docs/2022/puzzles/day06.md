@@ -1,7 +1,8 @@
 import Solver from "../../../../../website/src/components/Solver.js"
 
 # Day 6: Tuning Trouble
-code by [Jan Boerman](https://twitter.com/JanBoerman95), article by [Quentin Bernet](https://github.com/Sporarum)
+Code by [Jan Boerman](https://twitter.com/JanBoerman95), and [Jamie Thompson](https://github.com/bishabosha).
+Article by [Quentin Bernet](https://github.com/Sporarum) and [Jamie Thompson](https://github.com/bishabosha)
 
 ## Puzzle description
 
@@ -87,6 +88,83 @@ def findIndex(input: String, n: Int): Int =
 #### Part 2
 
 <Solver puzzle="day06-part2" year="2022"/>
+
+### Optimising the Code
+
+The code shown so far is very concise, however it is not optimal for very large input strings. There will be many intermediate objects created, such as the strings in the sliding window, and the sets on each string in the window.
+
+This can make pressure on the garbage collector, slowing down the program.
+
+We can optimise this in two ways:
+- avoid allocating intermediate strings for each window,
+- reusing a mutable set to record which characters are in the window.
+
+For the optimised solution, you can reuse a single, mutable set. As you advance the window by 1 index, you should remove the first element of the previous window, and add the last element of the current window.
+
+There is a problem however, an ordinary set is not enough, you need a multiset to record how many times each character
+appears in the window.
+
+To illustrate, imagine the small input `aabc` and the window size of `3`.
+following the steps above with an ordinary set, after 1 step the set will contain `[ab]`, then in the next step we
+would remove `a`, leaving `[b]`, and then add `c`, leaving `[bc]`. This is incorrect because the set should contain
+`[abc]`, as the sliding window of size `3` contains 3 unique elements.
+
+To fix this problem you should use a multi-set. At the end of the first step you would have `[a:2,b:1]`, then at the next step you would have `[a:1,b:1,c:1]`, which has the same number of elements as the window.
+
+The second optimisation is to avoid creating intermediate strings in the sliding window. Considering the solution with
+the multiset described above, you only care about the first and last element of each window, which can be represented
+by two indexes into the string.
+
+The final optimisation is to only update the set when the last element of the window is different to the first element
+of the previous window.
+
+The final optimised code is presented below, including an implementation of the multiset:
+
+```scala
+def part1(input: String): Int =
+  findIndexOptimal(input, n = 4)
+
+def part2(input: String): Int =
+  findIndexOptimal(input, n = 14)
+
+class MultiSet:
+  private val counts = new Array[Int](26)
+  private var uniqueElems = 0
+
+  def size = uniqueElems
+
+  def add(c: Char) =
+    val count = counts(c - 'a')
+    if count == 0 then
+      uniqueElems += 1
+    counts(c - 'a') += 1
+
+  def remove(c: Char) =
+    val count = counts(c - 'a')
+    if count > 0 then
+      if count == 1 then
+        uniqueElems -= 1
+      counts(c - 'a') -= 1
+end MultiSet
+
+def findIndexOptimal(input: String, n: Int): Int =
+  val counts = MultiSet()
+  def loop(i: Int, j: Int): Int =
+    if counts.size == n then
+      i + n // found the index
+    else if j >= input.length then
+      -1 // window went beyond the end
+    else
+      val previous = input(i)
+      val last = input(j)
+      if previous != last then
+        counts.remove(previous)
+        counts.add(last)
+      loop(i = i + 1, j = j + 1)
+  end loop
+  input.iterator.take(n).foreach(counts.add) // add up-to the first `n` elements
+  loop(i = 0, j = n)
+```
 
 ## Solutions from the community
 
