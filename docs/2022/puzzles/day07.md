@@ -48,7 +48,7 @@ def collectSizes(dir: DirectoryStructure, criterion: Int => Boolean): Iterable[I
     else
         children
 ```
-Now we need to create a function, to transfer input in directory form. For that we can use [`match`](https://docs.scala-lang.org/tour/pattern-matching.html) and separate input, -- for that we can use cases matching and recursion will do the rest for us:
+Now we need to create a function, to transfer input in directory form. For that we can use [`match`](https://docs.scala-lang.org/tour/pattern-matching.html) and separate input, -- for that we can use cases and recursion will do the rest for us:
 
 ```Scala
 def buildState(input: List[TerminalOutput], currentDir: DirectoryStructure | Null, rootDir: DirectoryStructure): Unit = input match
