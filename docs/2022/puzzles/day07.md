@@ -30,7 +30,7 @@ class DirectoryStructure(val name: String,
                          val files: Map[String, Int],
                          val parent: DirectoryStructure | Null)
 ```
-We have to come up with a way to calculate directory size -- we can use [`sum`](https://www.scala-lang.org/files/archive/api/current/scala/collection/immutable/List.html#sum[B%3E:A](implicitnum:scala.math.Numeric[B]):B) for the size of all files in directory and define size of all of the following subdirectories recursively, which will take care of problem recursively:
+We have to come up with a way to calculate directory size -- we can use [`sum`](https://www.scala-lang.org/files/archive/api/current/scala/collection/immutable/List.html#sum[B%3E:A](implicitnum:scala.math.Numeric[B]):B) for the size of all files in directory and define size of all of the following subdirectories recursively, which will take care of problem:
 
 ```Scala
 def directorySize(dir: DirectoryStructure): Int =
@@ -48,7 +48,7 @@ def collectSizes(dir: DirectoryStructure, criterion: Int => Boolean): Iterable[I
     else
         children
 ```
-Now we need to create a function, to transfer input in directory form. For that we can use [`match`](https://docs.scala-lang.org/tour/pattern-matching.html) and separate input, -- for that we can use cases matching:
+Now we need to create a function, to transfer input in directory form. For that we can use [`match`](https://docs.scala-lang.org/tour/pattern-matching.html) and separate input, -- for that we can use cases matching and recursion will do the rest for us:
 
 ```Scala
 def buildState(input: List[TerminalOutput], currentDir: DirectoryStructure | Null, rootDir: DirectoryStructure): Unit = input match
