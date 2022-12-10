@@ -1,6 +1,7 @@
 import Solver from "../../../../../website/src/components/Solver.js"
 
 # Day 10: Cathode-Ray Tube
+code by [Mewen Crespo](https://github.com/MewenCrespo)
 
 ## Puzzle description
 
