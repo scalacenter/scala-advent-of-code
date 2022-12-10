@@ -17,14 +17,14 @@ enum Command {
   }
 ```
 
-Now, we need to parse this commands from the string. This can be done using a simple for loop to match each line of the input. Assuming the input is a string stored in the variable INPUT then the following does the trick:
+Now, we need to parse this commands from the string. This can be done using a simple for loop to match each line of the input:
 
 ```scala
-def commandsIterator: Iterator[Command] = for (line <- INPUT.linesIterator) yield line.strip match {
-    case "noop" => NOOP
-    case s"addx $x" if x.toIntOption.isDefined => ADDX(x.toInt)
-    case _ => throw IllegalArgumentException(s"Invalid command '$line''")
-  }
+def commandsIterator(input: String): Iterator[Command] = for (line <- input.linesIterator) yield line.strip match {
+  case "noop" => NOOP
+  case s"addx $x" if x.toIntOption.isDefined => ADDX(x.toInt)
+  case _ => throw IllegalArgumentException(s"Invalid command '$line''")
+}
 ```
   
 Here we used `linesIterator` to retreive the lines (it returns an `Iterator[String]`) and mapped every line using a for .. yield .. match comprehension. Note the use of `line.strip` to remove any white space character and the string interpolator `s` for an easy string parsing.
@@ -38,14 +38,14 @@ Now we are ready to compute the registers values. We choose to implement it as a
 To circumvent this issue, we choose to generate an `Iterator[List[Int]]` first which we'll flatten afterward. The first iterator is naturraly constructed using the scanLeft method. This yields the following code:
 
 ```scala
-  val REGISTER_START_VALUE = 1
+val RegisterStartValue = 1
 
-  def registerValuesIterator: Iterator[Int] = {
-    commandsIterator.scanLeft(REGISTER_START_VALUE :: Nil) {
-      case (_ :+ value, NOOP) => value :: Nil
-      case (_ :+ value, ADDX(x)) => value :: value + x :: Nil
-    }
-  }.flatten
+def registerValuesIterator(input: String): Iterator[Int] = {
+  commandsIterator(input).scanLeft(RegisterStartValue :: Nil) {
+    case (_ :+ value, NOOP) => value :: Nil
+    case (_ :+ value, ADDX(x)) => value :: value + x :: Nil
+  }
+}.flatten
 ```
 
 Notice the use of the `_ :+ value` pattern to match the last value of the `List[Int]`which, in our case, is the register's value at the start of the last cycle.
@@ -55,16 +55,16 @@ Notice the use of the `_ :+ value` pattern to match the last value of the `List[
 In the first part, we are asked to compute the strength at the 20th cycle and then every 40th cycle. This can be done using a clever combination of `drop` (to skip the first 19 cycles), grouped (to groupe the cycles by 40) and `map(_.head)` (to only take the first cycle of each group of 40). The computation of the strengths is, on the other hand, done using the `zipWithIndex` method and a for ... yield comprehension. This leads to the following code:
 
 ```scala
-  def registerStrengthsIterator: Iterator[Int] = {
-    val it = for ((reg, i) <- registerValuesIterator.zipWithIndex) yield (i + 1) * reg
-    it.drop(19).grouped(40).map(_.head)
-  }
+def registerStrengthsIterator(input: String): Iterator[Int] = {
+  val it = for ((reg, i) <- registerValuesIterator(input).zipWithIndex) yield (i + 1) * reg
+  it.drop(19).grouped(40).map(_.head)
+}
 ```
 
 The result of Part 1 is the sum of this iterator:
 
 ```scala
-  @main def part1(): Unit = println(s"The solution is ${registerStrengthsIterator.sum}")
+def part1(input: String): Int = registerStrengthsIterator(input).sum
 ```
 
 ### Part 2
@@ -74,30 +74,22 @@ In the second part, we are asked to draw a CRT output. As stated in the puzzle d
 First, the CRT's position is just the cycle's index modulo the CRT's width (40 in our puzzle). Then, the CRT draw the sprite if and only if the register's value is the CRT's position, one more or one less. In other words, if `(reg_value - (cycle_id % 40)).abs <= 1`. Using the `zipWithIndex` method to obtain the cycles' indexes we end up with the following code:
 
 ```scala
-  def CRTCharIterator: Iterator[Char] =
-    for ((reg, cycle) <- registerValuesIterator.zipWithIndex) yield {
-      if ((reg - (cycle % CRT_WIDTH)).abs <= 1) '#' else '.'
-    }
+val CRTWidth: Int = 40
+
+def CRTCharIterator(input: String): Iterator[Char] =
+  for ((reg, crt_pos) <- registerValuesIterator(input).zipWithIndex) yield {
+    if ((reg - (crt_pos % CRTWidth)).abs <= 1) '#' else '.'
+  }
 ```
 
 Now, we just need to concatenate the chars and add new lines at the right places. This is done using the `mkString` methods:
 
 ```scala
-  def CRTImage: String = CRTCharIterator.grouped(CRT_WIDTH).map(_.mkString).mkString("\n")
-
-  @main def part2(): Unit = println(s"The CRT output is:\n$CRTImage")```
+def part2(input: String): String = CRTCharIterator(input).grouped(CRTWidth).map(_.mkString).mkString("\n")
+```
 
 ## Final Code
 ```scala
-package day10
-
-import locations.Directory.currentDir
-import inputs.Input.loadFileSync
-
-import Direction.*
-
-def INPUT(): String = loadFileSync(s"$currentDir/../input/day10")
-
 enum Command {
   case NOOP
   case ADDX(X: Int)
@@ -105,38 +97,36 @@ enum Command {
 
 export Command.*
 
-def commandsIterator: Iterator[Command] = for (line <- INPUT.linesIterator) yield line.strip match {
+def commandsIterator(input: String): Iterator[Command] = for (line <- input.linesIterator) yield line.strip match {
   case "noop" => NOOP
   case s"addx $x" if x.toIntOption.isDefined => ADDX(x.toInt)
   case _ => throw IllegalArgumentException(s"Invalid command '$line''")
 }
 
-val REGISTER_START_VALUE = 1
+val RegisterStartValue = 1
 
-def registerValuesIterator: Iterator[Int] = {
-  commandsIterator.scanLeft(REGISTER_START_VALUE :: Nil) {
+def registerValuesIterator(input: String): Iterator[Int] = {
+  commandsIterator(input).scanLeft(RegisterStartValue :: Nil) {
     case (_ :+ value, NOOP) => value :: Nil
     case (_ :+ value, ADDX(x)) => value :: value + x :: Nil
   }
 }.flatten
 
-def registerStrengthsIterator: Iterator[Int] = {
-  val it = for ((reg, i) <- registerValuesIterator.zipWithIndex) yield (i + 1) * reg
+def registerStrengthsIterator(input: String): Iterator[Int] = {
+  val it = for ((reg, i) <- registerValuesIterator(input).zipWithIndex) yield (i + 1) * reg
   it.drop(19).grouped(40).map(_.head)
 }
 
-@main def part1(): Unit = println(s"The solution is ${registerStrengthsIterator.sum}")
+def part1(input: String): Int = registerStrengthsIterator(input).sum
 
-val CRT_WIDTH: Int = 40
+val CRTWidth: Int = 40
 
-def CRTCharIterator: Iterator[Char] =
-  for ((reg, cycle) <- registerValuesIterator.zipWithIndex) yield {
-    if ((reg - (cycle % CRT_WIDTH)).abs <= 1) '#' else '.'
+def CRTCharIterator(input: String): Iterator[Char] =
+  for ((reg, crt_pos) <- registerValuesIterator(input).zipWithIndex) yield {
+    if ((reg - (crt_pos % CRTWidth)).abs <= 1) '#' else '.'
   }
 
-def CRTImage: String = CRTCharIterator.grouped(CRT_WIDTH).map(_.mkString).mkString("\n")
-
-@main def part2(): Unit = println(s"The CRT output is:\n$CRTImage")
+def part2(input: String): String = CRTCharIterator(input).grouped(CRTWidth).map(_.mkString).mkString("\n")
 ```
 
 ### Run it in the browser
