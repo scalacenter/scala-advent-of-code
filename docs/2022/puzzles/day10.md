@@ -13,12 +13,12 @@ Today's goal is to simulate the register's values over time. Once this is done, 
 
 ```scala
 enum Command {
-    case NOOP
-    case ADDX(X: Int)
-  }
+  case NOOP
+  case ADDX(X: Int)
+}
 ```
 
-Now, we need to parse this commands from the string. This can be done using a simple for loop to match each line of the input:
+Now, we need to parse this commands from the string. This can be done using a for loop to match each line of the input:
 
 ```scala
 def commandsIterator(input: String): Iterator[Command] = for (line <- input.linesIterator) yield line.strip match {
@@ -28,15 +28,15 @@ def commandsIterator(input: String): Iterator[Command] = for (line <- input.line
 }
 ```
   
-Here we used `linesIterator` to retreive the lines (it returns an `Iterator[String]`) and mapped every line using a for .. yield .. match comprehension. Note the use of `line.strip` to remove any white space character and the string interpolator `s` for an easy string parsing.
+Here you can use `linesIterator` to retrieve the lines (it returns an `Iterator[String]`) and mapped every line using a for .. yield .. match comprehension. Note the use of `line.strip` to remove any white space character and the string interpolator `s` for a simple way to parse strings.
 
 :::Error checking
-Althought not necessary in this puzzle, it is a good practice to check the validity of the input. Here, we checked that the string matched with `$x` is a valid integer string before entering the second cas and returned an error if none of the first cases were matched.
+Althought not necessary in this puzzle, it is a good practice to check the validity of the input. Here, we checked that the string matched with `$x` is a valid integer string before entering the second case and returned an error if none of the first cases were matched.
 :::
 
-Now we are ready to compute the registers values. We choose to implement it as an `Iterator[Int]` which will return the register's value each cycle at a time. For this, we need to loop throught the commands. If the command is a noop, then the next cycle will have the same value. If the command is a addx x then the next cycle will be the same value and the cycle afterward will be `x` more. We immediatly notice the issue: the addx command generates two cycles whereas the noop command generates only one.
+Now we are ready to compute the registers values. We choose to implement it as an `Iterator[Int]` which will return the register's value each cycle at a time. For this, we need to loop throught the commands. If the command is a noop, then the next cycle will have the same value. If the command is a addx x then the next cycle will be the same value and the cycle afterward will be `x` more. There is an issue here: the addx command generates two cycles whereas the noop command generates only one.
 
-To circumvent this issue, we choose to generate an `Iterator[List[Int]]` first which we'll flatten afterward. The first iterator is naturraly constructed using the scanLeft method. This yields the following code:
+To circumvent this issue, generate an `Iterator[List[Int]]` first which will be flattened afterwards. The first iterator is constructed using the scanLeft method to yield the following code:
 
 ```scala
 val RegisterStartValue = 1
@@ -49,11 +49,11 @@ def registerValuesIterator(input: String): Iterator[Int] = {
 }.flatten
 ```
 
-Notice the use of the `_ :+ value` pattern to match the last value of the `List[Int]`which, in our case, is the register's value at the start of the last cycle.
+Notice the use of the `_ :+ value` pattern to match the last value of the `List[Int]` which, in our case, is the register's value at the start of the last cycle.
 
 ### Part 1
 
-In the first part, we are asked to compute the strength at the 20th cycle and then every 40th cycle. This can be done using a clever combination of `drop` (to skip the first 19 cycles), grouped (to groupe the cycles by 40) and `map(_.head)` (to only take the first cycle of each group of 40). The computation of the strengths is, on the other hand, done using the `zipWithIndex` method and a for ... yield comprehension. This leads to the following code:
+In the first part, we are asked to compute the strength at the 20th cycle and then every 40th cycle. This can be done using a combination of `drop` (to skip the first 19 cycles), grouped (to group the cycles by 40) and `map(_.head)` (to only take the first cycle of each group of 40). The computation of the strengths is, on the other hand, done using the `zipWithIndex` method and a for ... yield comprehension. This leads to the following code:
 
 ```scala
 def registerStrengthsIterator(input: String): Iterator[Int] = {
@@ -83,7 +83,7 @@ def CRTCharIterator(input: String): Iterator[Char] =
   }
 ```
 
-Now, we just need to concatenate the chars and add new lines at the right places. This is done using the `mkString` methods:
+Now, concatenate the chars and add new lines at the required places. This is done using the `mkString` methods:
 
 ```scala
 def part2(input: String): String = CRTCharIterator(input).grouped(CRTWidth).map(_.mkString).mkString("\n")
@@ -141,5 +141,7 @@ def part2(input: String): String = CRTCharIterator(input).grouped(CRTWidth).map(
 <Solver puzzle="day10-part2" year="2022"/>
 
 ## Solutions from the community
+
+- [Solution](https://github.com/prinsniels/AdventOfCode2022/blob/master/src/main/scala/day10.scala) of [Niels Prins](https://github.com/prinsniels)
 
 Share your solution to the Scala community by editing this page.
