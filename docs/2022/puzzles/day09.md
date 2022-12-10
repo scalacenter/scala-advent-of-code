@@ -212,5 +212,6 @@ def uniquePositions(input: String, knots: Int): Int =
 
 - [Solution](https://github.com/MewenCrespo/Advent-Of-Code/blob/main/src/adventofcode/year2022/Day9.scala) of [Mewen Crespo](https://github.com/MewenCrespo)
 - [Solution](https://github.com/Jannyboy11/AdventOfCode2022/blob/master/src/main/scala/day09/Day09.scala) of [Jan Boerman](https://twitter.com/JanBoerman95).
+- [Solution](https://github.com/SimY4/advent-of-code-scala/blob/master/src/main/scala/aoc/y2022/Day9.scala) of [SimY4](https://twitter.com/actinglikecrazy).
 
 Share your solution to the Scala community by editing this page.
