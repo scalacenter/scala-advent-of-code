@@ -76,5 +76,6 @@ end score
 
 - [Solution](https://github.com/Jannyboy11/AdventOfCode2022/blob/master/src/main/scala/day02/Day02.scala) of [Jan Boerman](https://twitter.com/JanBoerman95).
 - [Solution](https://github.com/SimY4/advent-of-code-scala/blob/master/src/main/scala/aoc/y2022/Day2.scala) of [SimY4](https://twitter.com/actinglikecrazy).
+- [Solution](https://github.com/stewSquared/advent-of-code-scala/blob/master/src/main/scala/2022/Day02.worksheet.sc) of [Stewart Stewart](https://twitter.com/stewSqrd).
 
 Share your solution to the Scala community by editing this page.

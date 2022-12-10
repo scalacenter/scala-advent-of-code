@@ -10,5 +10,6 @@ https://adventofcode.com/2022/day/7
 
 - [Solution](https://github.com/SimY4/advent-of-code-scala/blob/master/src/main/scala/aoc/y2022/Day7.scala) of [SimY4](https://twitter.com/actinglikecrazy).
 - [Solution](https://github.com/Jannyboy11/AdventOfCode2022/blob/master/src/main/scala/day07/Day07.scala) of [Jan Boerman](https://twitter.com/JanBoerman95).
+- [Solution](https://github.com/stewSquared/advent-of-code-scala/blob/master/src/main/scala/2022/Day07.worksheet.sc) of [Stewart Stewart](https://twitter.com/stewSqrd).
 
 Share your solution to the Scala community by editing this page.
