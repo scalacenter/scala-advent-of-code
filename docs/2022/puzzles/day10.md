@@ -147,7 +147,7 @@ def CRTImage: String = CRTCharIterator.grouped(CRT_WIDTH).map(_.mkString).mkStri
 
 #### Part 2
 
-<Solver puzzle="day09-part2" year="2022"/>
+<Solver puzzle="day10-part2" year="2022"/>
 
 ## Solutions from the community
 
