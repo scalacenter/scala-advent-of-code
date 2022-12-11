@@ -145,5 +145,6 @@ def part2(input: String): String = CRTCharIterator(input).grouped(CRTWidth).map(
 - [Solution](https://github.com/prinsniels/AdventOfCode2022/blob/master/src/main/scala/day10.scala) of [Niels Prins](https://github.com/prinsniels)
 - [Solution](https://github.com/Jannyboy11/AdventOfCode2022/blob/master/src/main/scala/day10/Day10.scala) of [Jan Boerman](https://twitter.com/JanBoerman95).
 - [Solution](https://github.com/SethTisue/adventofcode/blob/main/2022/src/test/scala/Day10.scala) of [Seth Tisue](https://github.com/SethTisue)
+- [Solution](https://github.com/cosminci/advent-of-code/blob/master/src/main/scala/com/github/cosminci/aoc/_2022/Day10.scala) by Cosmin Ciobanu
 
 Share your solution to the Scala community by editing this page.
