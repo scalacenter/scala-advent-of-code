@@ -19,7 +19,8 @@ We will strive to only use the Scala standard library to solve the puzzles, so t
 
 In addition, if you have your own solution for a puzzle and would like to share it, you can add a link to a gist in the solution page of the puzzles.
 
-If you would like to discuss the puzzles with other developers, or discuss our solutions on the following day, drop by the [the Scala Discord server](https://discord.gg/scala), in the `#advent-of-code` channel.
+If you would like to discuss the puzzles with other developers, or discuss our solutions on the following day, drop by the [the Scala Discord server](https://discord.gg/scala), in the `#advent-of-code` channel. There you can also find a pinned message with the invite code for a private leaderboard
+including those from the Scala community for some friendly competition.
 
 Do you want to get your hands dirty and solve the Advent of Code puzzles in Scala?
 Read ahead to the [Setup](setup.md) page!
