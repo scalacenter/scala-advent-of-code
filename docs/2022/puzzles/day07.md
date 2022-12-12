@@ -63,7 +63,7 @@ def buildState(input: List[TerminalOutput], currentDir: DirectoryStructure | Nul
     case Nil => ()
 ```
 
-And now, we need to assemble the program, in part one, we will just search for all directories with size smaller `100000`, and calculate the sum of their sizes. 
+And now, we need to assemble the program, in part one, we will search for all directories with size smaller `100000`, and calculate the sum of their sizes. 
 
 ```Scala
 def part1(output: String): Int =
