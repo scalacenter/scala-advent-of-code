@@ -173,5 +173,6 @@ def findIndexOptimal(input: String, n: Int): Int =
 - [Solution](https://github.com/SethTisue/adventofcode/blob/main/2022/src/test/scala/Day06.scala) of [Seth Tisue](https://github.com/SethTisue)
 - [Solution](https://gist.github.com/JavadocMD/100e49509c15283390ee124b2638c1c1) of [Tyler Coles](https://github.com/JavadocMD)
 - [Solution](https://github.com/cosminci/advent-of-code/blob/master/src/main/scala/com/github/cosminci/aoc/_2022/Day6.scala) by Cosmin Ciobanu
+- [Solution](https://github.com/prinsniels/AdventOfCode2022/blob/master/src/main/scala/day06.scala) by [Niels Prins](https://github.com/prinsniels)
 
 Share your solution to the Scala community by editing this page.
