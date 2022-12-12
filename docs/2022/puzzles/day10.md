@@ -91,7 +91,8 @@ def CRTCharIterator(input: String): Iterator[Char] =
 Now, concatenate the chars and add new lines at the required places. This is done using the `mkString` methods:
 
 ```scala
-def part2(input: String): String = CRTCharIterator(input).grouped(CRTWidth).map(_.mkString).mkString("\n")
+def part2(input: String): String =
+  CRTCharIterator(input).grouped(CRTWidth).map(_.mkString).mkString("\n")
 ```
 
 ## Final Code
@@ -106,7 +107,7 @@ def part2(input: String): String =
 
 enum Command:
   case Noop
-  case Addx(X: Int)
+  case Addx(x: Int)
 
 def commandsIterator(input: String): Iterator[Command] =
   for line <- input.linesIterator yield line match
