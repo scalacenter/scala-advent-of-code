@@ -46,7 +46,7 @@ def directorySize(dir: DirectoryStructure): Int =
     dir.files.values.sum + dir.subDirectories.values.map(directorySize).sum
 ```
 
-Now we need to create a function, to transfer input in directory form. For that we can use [`match`](https://docs.scala-lang.org/tour/pattern-matching.html) and separate input, -- for that we can use cases and recursion will do the rest for us:
+Now we need to create a function to build the directory structure from the input. For that we can use [`match`](https://docs.scala-lang.org/tour/pattern-matching.html) and separate input, -- for that we can use cases and recursion will do the rest for us:
 
 ```Scala
 def buildState(input: List[TerminalOutput], currentDir: DirectoryStructure | Null, rootDir: DirectoryStructure): Unit = input match
