@@ -70,5 +70,6 @@ end moveAllCrates
 - [Solution](https://github.com/stewSquared/advent-of-code-scala/blob/master/src/main/scala/2022/Day05.worksheet.sc) of [Stewart Stewart](https://twitter.com/stewSqrd).
 - [Solution](https://github.com/cosminci/advent-of-code/blob/master/src/main/scala/com/github/cosminci/aoc/_2022/Day5.scala) by Cosmin Ciobanu
 - [Solution](https://github.com/prinsniels/AdventOfCode2022/blob/master/src/main/scala/day05.scala) by [Niels Prins](https://github.com/prinsniels)
+- [Solution](https://github.com/w-r-z-k/aoc2022/blob/main/src/main/scala/Day5.scala) by [Richard W]
 
 Share your solution to the Scala community by editing this page.
