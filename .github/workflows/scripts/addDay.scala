@@ -19,7 +19,7 @@ def template(title: String, day: Int, year: Int) =
       |
       |## Solutions from the community
       |
-      |Share your solution to the Scala community by editing this page.""".stripMargin
+      |Share your solution to the Scala community by editing this page. (You can even write the whole article!)""".stripMargin
 
 def scrapeTitle(day: Int, year: Int) =
   val url = s"https://adventofcode.com/$year/day/$day"
@@ -58,7 +58,7 @@ def createDay(today: Int, year: Int) =
 
   if month != Month.DECEMBER then
     println("It's not December. No new puzzles for you!")
-  else if today > 24 then
-    println("its after December 24th, I hope you had fun!")
+  else if today > 25 then
+    println("its after December 25th, I hope you had fun!")
   else
     createDay(today, year)
