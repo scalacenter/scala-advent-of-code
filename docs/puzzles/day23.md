@@ -307,4 +307,4 @@ You can replace the content of the `input/day21` file with your own input from [
 
 - [Solution](https://github.com/FlorianCassayre/AdventOfCode-2021/blob/master/src/main/scala/adventofcode/solutions/Day23.scala) of [@FlorianCassayre](https://github.com/FlorianCassayre).
 
-Share your solution to the Scala community by editing this page.
+Share your solution to the Scala community by editing this page. (You can even write the whole article!)

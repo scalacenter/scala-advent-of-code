@@ -14,4 +14,4 @@ https://adventofcode.com/2022/day/11
 - [Solution](https://github.com/TheDrawingCoder-Gamer/adventofcode2022/blob/master/src/main/scala/Day11.worksheet.sc) by Bulby
 - [Solution](https://github.com/prinsniels/AdventOfCode2022/blob/master/src/main/scala/day11.scala) by [Niels Prins](https://github.com/prinsniels)
 
-Share your solution to the Scala community by editing this page.
+Share your solution to the Scala community by editing this page. (You can even write the whole article!)
