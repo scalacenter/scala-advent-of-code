@@ -162,4 +162,4 @@ solution.
 - [Solution](https://github.com/Jannyboy11/AdventOfCode2021/blob/main/src/main/scala/day13/Day13.scala) of [Jan Boerman](https://twitter.com/JanBoerman95).
 - [Solution](https://github.com/FlorianCassayre/AdventOfCode-2021/blob/master/src/main/scala/adventofcode/solutions/Day13.scala) of [@FlorianCassayre](https://github.com/FlorianCassayre).
 
-Share your solution to the Scala community by editing this page.
+Share your solution to the Scala community by editing this page. (You can even write the whole article!)

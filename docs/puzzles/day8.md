@@ -637,4 +637,4 @@ You can replace the content of the `input/day8` file with your own input from [a
 - [Solution](https://github.com/tOverney/AdventOfCode2021/blob/main/src/main/scala/ch/overney/aoc/day8/) of [@tOverney](https://github.com/tOverney).
 - [Solution](https://github.com/Jannyboy11/AdventOfCode2021/blob/main/src/main/scala/day08/Day08.scala) of [Jan Boerman](https://twitter.com/JanBoerman95).
 
-Share your solution to the Scala community by editing this page.
+Share your solution to the Scala community by editing this page. (You can even write the whole article!)

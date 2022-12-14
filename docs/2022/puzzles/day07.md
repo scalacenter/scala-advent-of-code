@@ -67,7 +67,7 @@ def buildState(input: List[TerminalOutput], currentDir: DirectoryStructure | Nul
   case Nil => ()
 ```
 
-And now, we need to assemble the program, in part one, we will search for all directories with size smaller `100000`, and calculate the sum of their sizes. 
+And now, we need to assemble the program, in part one, we will search for all directories with size smaller `100000`, and calculate the sum of their sizes.
 
 ```Scala
 def part1(output: String): Int =
@@ -78,7 +78,7 @@ def part1(output: String): Int =
 In part two, we are looking for the smallest directory, which size is big enough to free up enough space on the filesystem to install update (30,000,00). We have to find out how much space is required for update, considering our available unused space:
 
 ```Scala
-def part2(output: String): Int = 
+def part2(output: String): Int =
   val rootDir = buildData(output)
   val totalUsed = directorySize(rootDir)
   val totalUnused = 70_000_000 - totalUsed
@@ -115,7 +115,7 @@ class DirectoryStructure(val name: String,
                          val subDirectories: mutable.Map[String, DirectoryStructure],
                          val files: mutable.Map[String, Int],
                          val parent: DirectoryStructure | Null)
-                        
+
 def buildState(input: List[TerminalOutput], currentDir: DirectoryStructure | Null, rootDir: DirectoryStructure): Unit = input match
   case Cmd(ChangeDirectory("/")) :: t => buildState(t, rootDir, rootDir)
   case Cmd(ChangeDirectory("..")) :: t => buildState(t, currentDir.parent, rootDir)
@@ -137,7 +137,7 @@ def collectSizes(dir: DirectoryStructure, criterion: Int => Boolean): Iterable[I
   val children = dir.subDirectories.values.flatMap(collectSizes(_, criterion))
   if criterion(mySize) then mySize :: children.toList else children
 
-def buildData(output: String) = 
+def buildData(output: String) =
   val rootDir = new DirectoryStructure("/", mutable.Map.empty, mutable.Map.empty, null)
   buildState(input(output), null, rootDir)
   rootDir
@@ -147,7 +147,7 @@ def part1(output: String): Int =
   val rootDir = buildData(output)
   collectSizes(rootDir, _ < 100000).sum
 
-def part2(output: String): Int = 
+def part2(output: String): Int =
   val rootDir = buildData(output)
   val totalUsed = directorySize(rootDir)
   val totalUnused = 70_000_000 - totalUsed
@@ -164,4 +164,4 @@ def part2(output: String): Int =
 - [Solution](https://github.com/cosminci/advent-of-code/blob/master/src/main/scala/com/github/cosminci/aoc/_2022/Day7.scala) by Cosmin Ciobanu
 - [Solution](https://github.com/prinsniels/AdventOfCode2022/blob/master/src/main/scala/day07.scala) by [Niels Prins](https://github.com/prinsniels)
 
-Share your solution to the Scala community by editing this page.
+Share your solution to the Scala community by editing this page. (You can even write the whole article!)

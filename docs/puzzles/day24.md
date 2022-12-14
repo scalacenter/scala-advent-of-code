@@ -10,4 +10,4 @@ https://adventofcode.com/2021/day/24
 
 - [Solution](https://github.com/FlorianCassayre/AdventOfCode-2021/blob/master/src/main/scala/adventofcode/solutions/Day24.scala) of [@FlorianCassayre](https://github.com/FlorianCassayre).
 
-Share your solution to the Scala community by editing this page.
+Share your solution to the Scala community by editing this page. (You can even write the whole article!)

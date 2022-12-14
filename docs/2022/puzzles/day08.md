@@ -92,7 +92,7 @@ This is beginning to get hard to read, so let's move it all to a function that c
 
 ```scala
 def computeInAllDirections[A, B](xss: Field[A], f: Field[A] => Field[B]): List[Field[B]] =
-  for 
+  for
     transpose <- List(false, true)
     reverse <- List(false, true)
   yield
@@ -217,11 +217,11 @@ extension [A](xss: Field[A])
 def combine[A](op: ((A,A)) => A)(f1: Field[A], f2: Field[A]): Field[A] = f1.megaZip(f2).megaMap(op)
 
 def computeInAllDirections[A, B](xss: Field[A], f: Field[A] => Field[B]): List[Field[B]] =
-  for 
+  for
     transpose <- List(false, true)
     reverse <- List(false, true)
   yield
-    val t = if transpose then xss.transpose else xss 
+    val t = if transpose then xss.transpose else xss
     val in = if reverse then t.map(_.reverse) else t
     val res = f(in)
     val r = if reverse then res.map(_.reverse) else res
@@ -268,4 +268,4 @@ def computeScore(ls: HeightField): ScoreField = ls.map{ line =>
 - [Solution](https://github.com/cosminci/advent-of-code/blob/master/src/main/scala/com/github/cosminci/aoc/_2022/Day8.scala) by Cosmin Ciobanu
 - [Solution](https://github.com/prinsniels/AdventOfCode2022/blob/master/src/main/scala/day08.scala) by [Niels Prins](https://github.com/prinsniels)
 
-Share your solution to the Scala community by editing this page.
+Share your solution to the Scala community by editing this page. (You can even write the whole article!)

@@ -150,4 +150,4 @@ So the second part of the puzzle is almost the same as the first part of the puz
 - [Solution](https://github.com/justinhj/adventofcode2021-day1) with [video tutorial](https://www.youtube.com/watch?v=ziWwsXD9w7M) by [@justinhj](https://twitter.com/justinhj)
 - [Solution](https://github.com/Jannyboy11/AdventOfCode2021/blob/main/src/main/scala/day01/Day01.scala) of [Jan Boerman](https://twitter.com/JanBoerman95).
 
-Share your solution to the Scala community by editing this page.
+Share your solution to the Scala community by editing this page. (You can even write the whole article!)
