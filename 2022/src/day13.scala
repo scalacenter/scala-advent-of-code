@@ -33,9 +33,17 @@ def findOrderedIndices(input: String): Int =
 
 def findDividerIndices(input: String): Int =
   val dividers = List("[[2]]", "[[6]]").map(readPacket)
-  val packets = List.from(input.linesIterator.filter(_.nonEmpty).map(readPacket))
-  val indices = (dividers ++ packets).sorted.zipWithIndex.map((key, value) => key -> (value + 1)).toMap
-  dividers.map(indices(_)).product
+  val lookup = dividers.toSet
+  val packets = input
+    .linesIterator
+    .filter(_.nonEmpty)
+    .map(readPacket)
+  val indices = (dividers ++ packets)
+    .sorted
+    .iterator
+    .zipWithIndex
+    .collect { case (p, i) if lookup.contains(p) => i + 1 }
+  indices.take(2).product
 
 enum Packet:
   case Nested(packets: List[Packet])
