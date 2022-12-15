@@ -55,7 +55,7 @@ def matching(point: Point, net: Map[Point, Char]): Char =
     case other => other
 ```
 
-Now we just need to put the programm together. First of all, let's map out our indices to the source, so we can create a queue for path representation. After that we need to create a map, to keep track the length of our path. For that we will need to map `E` entry to zero. The last part is the implementation of bfs on a `Queue`.
+Now we just need to put the program together. First of all, let's map out our indices to the source, so we can create a queue for path representation. After that we need to create a map, to keep track the length of our path. For that we will need to map `E` entry to zero. The last part is the implementation of bfs on a `Queue`.
 
 ```scala
 def solution(source: IndexedSeq[String], srchChar: Char): Any = {
