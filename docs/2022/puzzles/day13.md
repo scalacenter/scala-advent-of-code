@@ -56,12 +56,10 @@ case class State(number: Int, values: Queue[Packet]):
     if number == -1 then this // no number to commit
     else
       // reset number, add accumulated number to values
-      State(number = -1, values = values :+ Num(number))
+      State.empty.copy(values = values :+ Num(number))
 
 object State:
-  def empty = State(-1, Queue.empty)
-  def fromValues(values: Queue[Packet]) = State(number = -1, values)
-end State
+  val empty = State(-1, Queue.empty)
 
 def readPacket(input: String): Packet =
   def loop(i: Int, state: State, stack: List[Queue[Packet]]): Packet =
@@ -72,7 +70,7 @@ def readPacket(input: String): Packet =
         val packet = Nested(state.nextWithNumber.values.toList)
         stack match
           case values1 :: rest => // restore old state
-            loop(i + 1, State.fromValues(values1 :+ packet), rest)
+            loop(i + 1, State.empty.copy(values = values1 :+ packet), rest)
           case Nil => // terminating case
             packet
       case ',' => loop(i + 1, state.nextWithNumber, stack)
