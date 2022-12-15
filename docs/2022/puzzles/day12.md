@@ -8,7 +8,6 @@ https://adventofcode.com/2022/day/12
 
 ## Solution
 
-import Solver from "../../../../../website/src/components/Solver.js"
 
 # Day 12: Hill Climbing Algorithm
 
