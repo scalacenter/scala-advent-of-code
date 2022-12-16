@@ -75,8 +75,8 @@ def solution(source: IndexedSeq[String], srchChar: Char): Int = {
 In part one srchChar is 'S', but since our method in non-exhaustive, we may apply the same function for 'a'
 
 ```
-def part1(data: Seq[String]): Any = 
-  solution(data, 'S')
+def part1(data: String): Int = 
+  solution(IndexedSeq.from(data.linesIterator), 'S')
 def part2(data: String): Int = 
   solution(IndexedSeq.from(data.linesIterator), 'a')
 ```
