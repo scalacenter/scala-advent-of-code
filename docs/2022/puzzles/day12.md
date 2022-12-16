@@ -8,15 +8,6 @@ https://adventofcode.com/2022/day/12
 
 ## Solution
 
-
-# Day 12: Hill Climbing Algorithm
-
-## Puzzle description
-
-https://adventofcode.com/2022/day/12
-
-## Solution
-
 Today's challenge is to simulate the breadth-first search over a graph. First, let's create a standard Point class and define addition on it:
 
 ```scala
@@ -44,7 +35,7 @@ def path(point: Point, net: Map[Point, Char]): Seq[Point] =
   List(up, down, left, right).map(point.move).filter(net.contains)
 ```
 
-A function that fulfills our need to match entry with the point we are searching for:
+A function that fulfills our need to match an entry with the point we are searching for:
 
 ```scala
 def matching(point: Point, net: Map[Point, Char]): Char = 
