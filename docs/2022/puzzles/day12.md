@@ -57,8 +57,9 @@ def solution(source: IndexedSeq[String], srchChar: Char): Int =
     yield
       Point(x, y) -> source(y)(x)
   val p = points.toMap
-  val queue = collection.mutable.Queue(p.map(_.swap)('E'))
-  val length = collection.mutable.Map(p.map(_.swap)('E') -> 0)
+  val initial = p.map(_.swap)('E')
+  val queue = collection.mutable.Queue(initial)
+  val length = collection.mutable.Map(initial -> 0)
   //bfs
   while queue.nonEmpty do
     val visited = queue.dequeue()
