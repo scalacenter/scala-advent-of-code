@@ -69,7 +69,7 @@ def solution(source: IndexedSeq[String], srchChar: Char): Int = {
       }
     }
   }
-  None
+  throw IllegalStateException("unexpected end of search area")
 }
 ```
 In part one srchChar is 'S', but since our method in non-exhaustive, we may apply the same function for 'a'
