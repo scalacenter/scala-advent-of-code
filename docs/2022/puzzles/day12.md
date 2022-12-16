@@ -77,8 +77,8 @@ In part one srchChar is 'S', but since our method in non-exhaustive, we may appl
 ```
 def part1(data: Seq[String]): Any = 
   solution(data, 'S')
-def part2(data: Seq[String]): Any = 
-  solution(data, 'a')
+def part2(data: String): Int = 
+  solution(IndexedSeq.from(data.linesIterator), 'a')
 ```
 
 And that's it!
