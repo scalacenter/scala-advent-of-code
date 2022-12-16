@@ -26,13 +26,14 @@ val up    = (0, 1)
 val down  = (0, -1)
 val left  = (-1, 0)
 val right = (1, 0)
+val possibleMoves = List(up, down, left, right)
 ```
 
 Let's make a path function that will help us to calculate the length of our path to the point, based on our moves, that we defined before:
 
 ```scala
 def path(point: Point, net: Map[Point, Char]): Seq[Point] = 
-  List(up, down, left, right).map(point.move).filter(net.contains)
+  possibleMoves.map(point.move).filter(net.contains)
 ```
 
 A function that fulfills our need to match an entry with the point we are searching for:
