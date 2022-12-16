@@ -48,33 +48,34 @@ def matching(point: Point, net: Map[Point, Char]): Char =
 Now we just need to put the program together. First of all, let's map out our indices to the source, so we can create a queue for path representation. After that we need to create a map, to keep track the length of our path. For that we will need to map `E` entry to zero. The last part is the implementation of bfs on a `Queue`.
 
 ```scala
-def solution(source: IndexedSeq[String], srchChar: Char): Int = {
+def solution(source: IndexedSeq[String], srchChar: Char): Int =
   // create a sequence of Point objects and their corresponding character in source
-  val points = for {
-    y <- source.indices
-    x <- source.head.indices
-  } yield Point(x, y) -> source(y)(x)
+  val points =
+    for
+      y <- source.indices
+      x <- source.head.indices
+    yield
+      Point(x, y) -> source(y)(x)
   val p = points.toMap
   val queue = collection.mutable.Queue(p.map(_.swap)('E'))
   val length = collection.mutable.Map(p.map(_.swap)('E') -> 0)
   //bfs
-  while (queue.nonEmpty) do {
+  while queue.nonEmpty do
     val visited = queue.dequeue()
-    if (p(visited) == srchChar) 
+    if p(visited) == srchChar then
       return length(visited)
-    path(visited, p).filterNot(length.contains).foreach { newVisited =>
-      if (matching(visited, p) - matching(newVisited, p) - 1 <= 0 && !length.contains(newVisited))  {
+    for newVisited <- path(visited, p).filterNot(length.contains) do
+      if matching(visited, p) - matching(newVisited, p) - 1 <= 0 && !length.contains(newVisited) then
         queue.enqueue(newVisited)
         length(newVisited) = length(visited) + 1
-      }
-    }
-  }
+    end for
+  end while
   throw IllegalStateException("unexpected end of search area")
-}
+end solution
 ```
 In part one srchChar is 'S', but since our method in non-exhaustive, we may apply the same function for 'a'
 
-```
+```scala
 def part1(data: String): Int = 
   solution(IndexedSeq.from(data.linesIterator), 'S')
 def part2(data: String): Int = 
