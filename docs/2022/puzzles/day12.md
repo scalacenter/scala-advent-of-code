@@ -66,13 +66,13 @@ def solution(source: IndexedSeq[String], srchChar: Char): Int =
     val visited = queue.dequeue()
     if p(visited) == srchChar then
       return length(visited)
-    for newVisited <- path(visited, p).filterNot(length.contains) do
+    for visited1 <- path(visited, p) do
       val shouldAdd =
-        matching(visited, p) - matching(newVisited, p) - 1 <= 0
-        && !length.contains(newVisited)
+        !length.contains(visited1)
+        && matching(visited, p) - matching(visited1, p) <= 1
       if shouldAdd then
-        queue.enqueue(newVisited)
-        length(newVisited) = length(visited) + 1
+        queue.enqueue(visited1)
+        length(visited1) = length(visited) + 1
     end for
   end while
   throw IllegalStateException("unexpected end of search area")
