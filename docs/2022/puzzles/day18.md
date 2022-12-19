@@ -10,9 +10,9 @@ https://adventofcode.com/2022/day/18
 
 ### Part 1
 
-To solve the first part, first count the total number of cubes and multiply this by six (as a cube has six sides), then subtract the number of sides that are connected. 
+To solve the first part, we can first count the total number of cubes and multiply this by six (as a cube has six sides), and then subtract the number of sides which are connected. 
 
-As this requires checking if two cubes are adjacent, let's first define a function for identifying all adjacent cubes:
+As this requires checking if two cubes are adjacent, let's first define a function which we can use to determine cubes adjacent to a given cube:
 
 ```scala
 def adjacent(x: Int, y: Int, z: Int): Set[(Int, Int, Int)] = {
@@ -28,10 +28,10 @@ def adjacent(x: Int, y: Int, z: Int): Set[(Int, Int, Int)] = {
 ```
 
 :::info
-Note that since cubes are given to be 1⨉1⨉1, they can be represented as a single integral `(x, y, z)` coordinate which makes up the input for the `adjacent` function.  Then two cubes are adjacent (i.e. one of each of their sides touch) if and only if exactly one of their `(x, y, z)` components differ by one, and the rest by zero.
+Note that since cubes are given to be 1⨉1⨉1, they can be represented as a single integral `(x, y, z)` coordinate which makes up the input for the `adjacent` function.  Then two cubes are adjacent (one of each of their sides touch) if and only if exactly one of their `(x, y, z)` components differ by one, and the rest by zero.
 :::
 
-Now given our cubes, we can implement our strategy in a fairly straight-forward manner with a `fold`:
+Now given our cubes, we can implement our strategy with a `fold`:
 ```scala
 def sides(cubes: Set[(Int, Int, Int)]): Int = {
   cubes.foldLeft(0) { case (total, (x, y, z)) =>
@@ -41,7 +41,7 @@ def sides(cubes: Set[(Int, Int, Int)]): Int = {
   }
 }
 ```
-We use a `Set` for `O(1)` membership lookups which we need to determine which adjacent spaces for a given cube contain other cubes.
+We use a `Set` for fast [fast](https://docs.scala-lang.org/overviews/collections-2.13/performance-characteristics.html) membership lookups which we need to determine which adjacent spaces for a given cube contain other cubes.
 
 ### Part 2
 
@@ -49,7 +49,7 @@ The second part is a bit more tricky.  Lets introduce some nomenclature: we'll s
 
 A useful observation is that if we consider empty spaces which have a [taxicab](https://adventofcode.com/2022/day/18) distance of at most two from any cube, and join these spaces into [connected components](https://en.wikipedia.org/wiki/Component_(graph_theory)), then the connected components we are left with form distinct air pockets in addition to one component containing empty spaces on the exterior.
 
-This component can be easily identified since the space with the largest `x` component will always lie in it.  So we can determine empty spaces in the interior adjacent to cubes like so:
+This component can always be identified since the space with the largest `x` component will always lie in it.  So we can determine empty spaces in the interior adjacent to cubes like so:
 
 ```scala
 def interior(cubes: Set[(Int, Int, Int)]): Set[(Int, Int, Int)] = {
@@ -84,7 +84,7 @@ def sidesNoPockets(cubes: Set[(Int, Int, Int)]): Int = {
 }
 ```
 
-Lets put this all together:
+Let's put this all together:
 
 ```scala
 def part1(input: String): Int = sides(cubes(input))
