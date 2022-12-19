@@ -98,3 +98,7 @@ def cubes(input: String): Set[(Int, Int, Int)] =
 ```
 
 Which gives use our desired results.
+
+## Solutions from the community
+
+Share your solution to the Scala community by editing this page. (You can even write the whole article!)
