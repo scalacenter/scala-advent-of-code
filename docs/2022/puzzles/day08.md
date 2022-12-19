@@ -268,5 +268,6 @@ def computeScore(ls: HeightField): ScoreField = ls.map{ line =>
 - [Solution](https://github.com/cosminci/advent-of-code/blob/master/src/main/scala/com/github/cosminci/aoc/_2022/Day8.scala) by Cosmin Ciobanu
 - [Solution](https://github.com/prinsniels/AdventOfCode2022/blob/master/src/main/scala/day08.scala) by [Niels Prins](https://github.com/prinsniels)
 - [Solution](https://github.com/erikvanoosten/advent-of-code/blob/main/src/main/scala/nl/grons/advent/y2022/Day8.scala) by [Erik van Oosten](https://github.com/erikvanoosten)
+- [Solution](https://github.com/danielnaumau/code-advent-2022/blob/master/src/main/scala/com/adventofcode/Day8.scala) by [Daniel Naumau](https://github.com/danielnaumau)
 
 Share your solution to the Scala community by editing this page. (You can even write the whole article!)

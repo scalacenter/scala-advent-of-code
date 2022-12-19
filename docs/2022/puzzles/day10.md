@@ -157,5 +157,6 @@ def CRTCharIterator(input: String): Iterator[Char] =
 - [Solution](https://github.com/SethTisue/adventofcode/blob/main/2022/src/test/scala/Day10.scala) of [Seth Tisue](https://github.com/SethTisue)
 - [Solution](https://github.com/cosminci/advent-of-code/blob/master/src/main/scala/com/github/cosminci/aoc/_2022/Day10.scala) by Cosmin Ciobanu
 - [Solution](https://github.com/erikvanoosten/advent-of-code/blob/main/src/main/scala/nl/grons/advent/y2022/Day10.scala) by [Erik van Oosten](https://github.com/erikvanoosten)
+- [Solution](https://github.com/danielnaumau/code-advent-2022/blob/master/src/main/scala/com/adventofcode/Day10.scala) by [Daniel Naumau](https://github.com/danielnaumau)
 
 Share your solution to the Scala community by editing this page. (You can even write the whole article!)
