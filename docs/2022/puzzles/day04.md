@@ -46,5 +46,6 @@ def foldPairs(input: String, hasOverlap: (Int, Int) => (Int, Int) => Boolean): I
 - [Solution](https://github.com/w-r-z-k/aoc2022/blob/main/src/main/scala/Day4.scala) by Richard W
 - Solution [part1](https://github.com/erikvanoosten/advent-of-code/blob/main/src/main/scala/nl/grons/advent/y2022/Day4Part1.scala) and [part2](https://github.com/erikvanoosten/advent-of-code/blob/main/src/main/scala/nl/grons/advent/y2022/Day4Part2.scala) by [Erik van Oosten](https://github.com/erikvanoosten)
 - [Solution](https://github.com/danielnaumau/code-advent-2022/blob/master/src/main/scala/com/adventofcode/Day4.scala) by [Daniel Naumau](https://github.com/danielnaumau)
+- [Solution](https://github.com/sierikov/advent-of-code/blob/master/src/main/scala/sierikov/adventofcode/y2022/Day04.scala) by [Artem Sierikov](https://github.com/sierikov)
 
 Share your solution to the Scala community by editing this page. (You can even write the whole article!)
