@@ -56,6 +56,18 @@ def remainingSpots(target: Range, cover: List[Range]): Set[Int] =
 
   rec(List(target), cover).flatten.toSet
 
+def part1(input: String): Int =
+  val parsed: List[(Position, Position)] = parse(input)
+  val beacons: Set[Position] = parsed.map(_._2).toSet
+  val sensorsWithDistances: List[(Position, Int)] =
+    parsed.map( (sensor, beacon) => (sensor, distance(sensor, beacon)) )
+
+  val line = 2000000
+  val cover: List[Range] = coverOfLine(sensorsWithDistances, line)
+  val beaconsOnLine: Set[Position] = beacons.filter(_.y == line)
+  val count: Int = cover.map(_.size).sum - beaconsOnLine.size
+  count
+
 def part2(input: String): Any =
 
   val parsed: List[(Position, Position)] = parse(input)
