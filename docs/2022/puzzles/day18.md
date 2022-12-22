@@ -10,7 +10,7 @@ https://adventofcode.com/2022/day/18
 
 ### Part 1
 
-To solve the first part, we can first count the total number of cubes and multiply this by six (as a cube has six sides), and then subtract the number of sides which are connected. 
+To solve the first part, we can first count the total number of cubes and multiply this by six (as a cube has six sides), and then subtract the number of sides which are connected.
 
 As this requires checking if two cubes are adjacent, let's first define a function which we can use to determine cubes adjacent to a given cube:
 
@@ -98,6 +98,16 @@ def cubes(input: String): Set[(Int, Int, Int)] =
 ```
 
 Which gives use our desired results.
+
+### Run it in the browser
+
+#### Part 1
+
+<Solver puzzle="day18-part1" year="2022"/>
+
+#### Part 2
+
+<Solver puzzle="day18-part2" year="2022"/>
 
 ## Solutions from the community
 
