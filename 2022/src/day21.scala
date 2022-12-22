@@ -14,10 +14,10 @@ import Operation.*
 
 def loadInput(): String = loadFileSync(s"$currentDir/../input/day21")
 
-def part1(input: String): BigInt =
+def part1(input: String): Long =
   resolveRoot(input)
 
-def part2(input: String): BigInt =
+def part2(input: String): Long =
   whichValue(input)
 
 enum Operator(val eval: BinOp, val invRight: BinOp, val invLeft: BinOp):
@@ -28,10 +28,10 @@ enum Operator(val eval: BinOp, val invRight: BinOp, val invLeft: BinOp):
 
 enum Operation:
   case Binary(op: Operator, depA: String, depB: String)
-  case Constant(value: BigInt)
+  case Constant(value: Long)
 
-type BinOp = (BigInt, BigInt) => BigInt
-type Resolved = Map[String, BigInt]
+type BinOp = (Long, Long) => Long
+type Resolved = Map[String, Long]
 type Source = Map[String, Operation]
 type Substitutions = List[(String, PartialFunction[Operation, Operation])]
 
@@ -42,7 +42,7 @@ def readAll(input: String): Map[String, Operation] =
         case s"$x $binop $y" =>
           Binary(Operator.valueOf(binop), x, y)
         case n =>
-          Constant(BigInt(n))
+          Constant(n.toLong)
   )
 
 @tailrec
@@ -63,21 +63,21 @@ def reachable(names: List[String], source: Source, resolved: Resolved): Resolved
     resolved
 end reachable
 
-def resolveRoot(input: String): BigInt =
+def resolveRoot(input: String): Long =
   val values = reachable("root" :: Nil, readAll(input), Map.empty)
   values("root")
 
-def whichValue(input: String): BigInt =
+def whichValue(input: String): Long =
   val source = readAll(input) - "humn"
 
   @tailrec
-  def binarySearch(name: String, goal: Option[BigInt], resolved: Resolved): BigInt =
+  def binarySearch(name: String, goal: Option[Long], resolved: Resolved): Long =
 
     def resolve(name: String) =
       val values = reachable(name :: Nil, source, resolved)
       values.get(name).map(_ -> values)
 
-    def nextGoal(inv: BinOp, value: BigInt): BigInt = goal match
+    def nextGoal(inv: BinOp, value: Long): Long = goal match
       case Some(prev) => inv(prev, value)
       case None => value
 
