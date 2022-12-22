@@ -11,7 +11,7 @@ https://adventofcode.com/2022/day/7
 
 First of all, we need to create types for commands, to differentiate the input:
 
-```Scala
+```scala
 enum Command:
   case ChangeDirectory(directory: String)
   case ListFiles
@@ -24,7 +24,7 @@ enum TerminalOutput:
 
 Let's make a directory structure, in which we will define files as [`mutable.Map`](https://dotty.epfl.ch/api/scala/collection/mutable/Map.html), that can contain name (String) and size (Integer), will have reference to parent directory, and will be able to contain subdirectories:
 
-```Scala
+```scala
 class DirectoryStructure(val name: String,
                          val subDirectories: mutable.Map[String, DirectoryStructure],
                          val files: mutable.Map[String, Int],
@@ -33,7 +33,7 @@ class DirectoryStructure(val name: String,
 
 And now we need to come up with a way to parse out input code:
 
-```Scala
+```scala
 def input (str: String) = str.linesIterator.map {
   case s"$$ cd $directory" => Cmd(ChangeDirectory(directory))
   case s"$$ ls" => Cmd(ListFiles)
@@ -45,14 +45,14 @@ def input (str: String) = str.linesIterator.map {
 
 We have to come up with a way to calculate directory size -- we can use [`sum`](https://www.scala-lang.org/files/archive/api/current/scala/collection/immutable/List.html#sum[B%3E:A](implicitnum:scala.math.Numeric[B]):B) for the size of all files in directory and define size of all of the following subdirectories recursively, which will take care of problem:
 
-```Scala
+```scala
 def directorySize(dir: DirectoryStructure): Int =
   dir.files.values.sum + dir.subDirectories.values.map(directorySize).sum
 ```
 
 Now we need to create a function to build the directory structure from the input. For that we can use [`match`](https://docs.scala-lang.org/tour/pattern-matching.html) and separate input, -- for that we can use cases and recursion will do the rest for us:
 
-```Scala
+```scala
 def buildState(input: List[TerminalOutput], currentDir: DirectoryStructure | Null, rootDir: DirectoryStructure): Unit = input match
   case Cmd(ChangeDirectory("/")) :: t => buildState(t, rootDir, rootDir)
   case Cmd(ChangeDirectory("..")) :: t => buildState(t, currentDir.parent, rootDir)
@@ -69,7 +69,7 @@ def buildState(input: List[TerminalOutput], currentDir: DirectoryStructure | Nul
 
 And now, we need to assemble the program, in part one, we will search for all directories with size smaller `100000`, and calculate the sum of their sizes.
 
-```Scala
+```scala
 def part1(output: String): Int =
   val rootDir = buildData(output)
   collectSizes(rootDir, _ < 100000).sum
@@ -77,7 +77,7 @@ def part1(output: String): Int =
 
 In part two, we are looking for the smallest directory, which size is big enough to free up enough space on the filesystem to install update (30,000,00). We have to find out how much space is required for update, considering our available unused space:
 
-```Scala
+```scala
 def part2(output: String): Int =
   val rootDir = buildData(output)
   val totalUsed = directorySize(rootDir)
@@ -86,9 +86,9 @@ def part2(output: String): Int =
   collectSizes(rootDir, _ >= required).min
 ```
 
-## Final Solution
+## Final Code
 
-```Scala
+```scala
 import scala.annotation.tailrec
 import scala.collection.mutable
 
