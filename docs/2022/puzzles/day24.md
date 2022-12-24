@@ -69,7 +69,7 @@ case class Maze(xDomain: Range, yDomain: Range, blizzards: Seq[Set[Coord]], star
 
 def parseMaze(in: Seq[String]): Maze =
   /* ...omitted for brevity... */
-  def tick(blizzards: Seq[Blizzard]) = blizzards.map(move(_, xBounds, yBounds))
+  def tick(blizzards: Seq[Blizzard]) = blizzards.map(move(_, xDomain, yDomain))
   val allBlizzardLocations = Iterator.iterate(initialBlizzards)(tick)
       .take(xDomain.size * yDomain.size)
       .map(_.map(_.at).toSet)
