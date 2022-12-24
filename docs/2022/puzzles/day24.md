@@ -83,7 +83,7 @@ But! We can do a little better for the blizzards. The blizzards actually cycle f
 ```scala
 def gcd(a: Int, b: Int): Int = if b == 0 then a else gcd(b, a % b)
 def lcm(a: Int, b: Int): Int = a * b / gcd(a, b)
-def tick(blizzards: Seq[Blizzard]) = blizzards.map(move(_, xBounds, yBounds))
+def tick(blizzards: Seq[Blizzard]) = blizzards.map(move(_, xDomain, yDomain))
 val allBlizzardLocations = Iterator.iterate(initialBlizzards)(tick)
     .take(lcm(xDomain.size, yDomain.size))
     .map(_.map(_.at).toSet)
