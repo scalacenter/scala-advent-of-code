@@ -53,9 +53,9 @@ Ok, let's deal with the blizzards. The blizzards move [toroidally](https://en.wi
 
 ```scala
 def move(blizzard: Blizzard, xDomain: Range, yDomain: Range) =
-  blizzard.copy(at = cycle(blizzard.at + blizzard.direction, xBounds, yBounds))
+  blizzard.copy(at = cycle(blizzard.at + blizzard.direction, xDomain, yDomain))
 
-def cycle(coord: Coord, xDomain: Range, yDomain: Range): Coord = (cycle(coord.x, xBounds), cycle(coord.y, yBounds))
+def cycle(coord: Coord, xDomain: Range, yDomain: Range): Coord = (cycle(coord.x, xDomain), cycle(coord.y, yDomain))
 
 def cycle(n: Int, bounds: Range): Int =
   if n > bounds.max then bounds.min // we've fallen off the end, go to start
