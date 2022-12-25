@@ -6,8 +6,7 @@ import Solver from "../../../../../website/src/components/Solver.js"
 
 https://adventofcode.com/2022/day/24
 
-## Solutions from the community
-
+## Solution
 Today's problem is similar to [Day 12](https://scalacenter.github.io/scala-advent-of-code/2022/puzzles/day12), where we need to find our way through a maze. It's made more challenging by impassable blizzards moving through the maze. We can use a similar approach to that of Day 12 still, but we'll improve a little bit further by using [A* search](https://en.wikipedia.org/wiki/A*_search_algorithm) instead of a standard breadth first search.
 
 We'll need some kind of point and a few functions that are useful on the 2d grid. A simple tuple `(Int, Int)` will suffice, and we'll add the functions as extension methods. We'll use Manhattan distance as the A* heuristic function, and we'll need the neighbours in cardinal directions.
@@ -152,5 +151,7 @@ That's Day 24. Huzzah!
 ## Solutions from the community
 - [Solution](https://github.com/twentylemon/advent-of-code/blob/main/src/test/scala/org/lemon/advent/year2022/Day24Test.scala) of [twentylemon](https://github.com/twentylemon)
 
+## Solutions from the community
+- [Solution](https://github.com/erikvanoosten/advent-of-code/blob/main/src/main/scala/nl/grons/advent/y2022/Day24.scala) by [Erik van Oosten](https://github.com/erikvanoosten)
 
 Share your solution to the Scala community by editing this page. (You can even write the whole article!)
