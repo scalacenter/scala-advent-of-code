@@ -10,7 +10,7 @@ https://adventofcode.com/2022/day/24
 
 Today's problem is similar to [Day 12](https://scalacenter.github.io/scala-advent-of-code/2022/puzzles/day12), where we need to find our way through a maze. It's made more challenging by impassable blizzards moving through the maze. We can use a similar approach to that of Day 12 still, but we'll improve a little bit further by using [A* search](https://en.wikipedia.org/wiki/A*_search_algorithm) instead of a standard breadth first search.
 
-We'll need some kind of point and a few functions that are useful on the 2d grid. A simple tuple `(Int, Int)` will suffice, and we'll add the functions as extension methods. We'll use Manhattan distance as the A* heuristic function, and we'll need the neighbours in candinal directions.
+We'll need some kind of point and a few functions that are useful on the 2d grid. A simple tuple `(Int, Int)` will suffice, and we'll add the functions as extension methods. We'll use Manhattan distance as the A* heuristic function, and we'll need the neighbours in cardinal directions.
 ```scala
 type Coord = (Int, Int)
 extension (coord: Coord)
