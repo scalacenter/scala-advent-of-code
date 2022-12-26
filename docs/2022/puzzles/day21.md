@@ -108,5 +108,6 @@ end whichValue
 
 - [Solution](https://gist.github.com/JavadocMD/083eb9fa6aa921d7669e12768c1f6fc1) by [Tyler Coles](https://gist.github.com/JavadocMD)
 - [Solution](https://github.com/erikvanoosten/advent-of-code/blob/main/src/main/scala/nl/grons/advent/y2022/Day21.scala) by [Erik van Oosten](https://github.com/erikvanoosten)
+- [Solution](https://github.com/cosminci/advent-of-code/blob/master/src/main/scala/com/github/cosminci/aoc/_2022/Day21.scala) by Cosmin Ciobanu
 
 Share your solution to the Scala community by editing this page. (You can even write the whole article!)
