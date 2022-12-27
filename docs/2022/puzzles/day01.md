@@ -80,5 +80,6 @@ def maxInventories(inventories: List[Inventory], n: Int): List[Int] =
 - [Solution](https://github.com/prinsniels/AdventOfCode2022/blob/master/src/main/scala/day01.scala) by [Niels Prins](https://github.com/prinsniels)
 - [Solution](https://github.com/sierikov/advent-of-code/blob/master/src/main/scala/sierikov/adventofcode/y2022/Day01.scala) by [Artem Sierikov](https://github.com/sierikov)
 - [Solution](https://github.com/danielnaumau/code-advent-2022/blob/master/src/main/scala/com/adventofcode/Day1.scala) by [Daniel Naumau](https://github.com/danielnaumau)
+- [Solution](https://github.com/AvaPL/Advent-of-Code-2022/tree/main/src/main/scala/day1) by [Paweł Cembaluk](https://github.com/AvaPL)
 
 Share your solution to the Scala community by editing this page. (You can even write the whole article!)

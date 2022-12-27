@@ -150,9 +150,8 @@ That's Day 24. Huzzah!
 
 ## Solutions from the community
 - [Solution](https://github.com/twentylemon/advent-of-code/blob/main/src/test/scala/org/lemon/advent/year2022/Day24Test.scala) of [twentylemon](https://github.com/twentylemon)
-
-## Solutions from the community
 - [Solution](https://github.com/erikvanoosten/advent-of-code/blob/main/src/main/scala/nl/grons/advent/y2022/Day24.scala) by [Erik van Oosten](https://github.com/erikvanoosten)
 - [Solution](https://github.com/cosminci/advent-of-code/blob/master/src/main/scala/com/github/cosminci/aoc/_2022/Day24.scala) by Cosmin Ciobanu
+- [Solution](https://github.com/AvaPL/Advent-of-Code-2022/tree/main/src/main/scala/day24) by [Paweł Cembaluk](https://github.com/AvaPL)
 
 Share your solution to the Scala community by editing this page. (You can even write the whole article!)
