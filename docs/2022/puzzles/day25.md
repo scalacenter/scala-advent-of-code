@@ -6,6 +6,49 @@ import Solver from "../../../../../website/src/components/Solver.js"
 
 https://adventofcode.com/2022/day/25
 
+## Final Code
+```scala
+def part1(input: String): String =
+  totalSnafu(input)
+
+val digitToInt = Map(
+  '0' -> 0,
+  '1' -> 1,
+  '2' -> 2,
+  '-' -> -1,
+  '=' -> -2,
+)
+val intToDigit = digitToInt.map(_.swap)
+
+def showSnafu(value: BigInt): String =
+  val buf = StringBuilder()
+  var v = value
+  while v != 0 do
+    val digit = (v % 5).toInt match
+      case 0 => 0
+      case 1 => 1
+      case 2 => 2
+      case 3 => -2
+      case 4 => -1
+    buf.append(intToDigit(digit))
+    v = (v - digit) / 5
+  buf.reverseInPlace().toString()
+
+def readSnafu(line: String): BigInt =
+  line.foldLeft(BigInt(0))((acc, digit) =>
+    acc * 5 + digitToInt(digit)
+  )
+
+def totalSnafu(input: String): String =
+  showSnafu(value = input.linesIterator.map(readSnafu).sum)
+```
+
+### Run it in the browser
+
+#### Part 1 (Only 1 part today)
+
+<Solver puzzle="day25-part1" year="2022"/>
+
 ## Solutions from the community
 
 - [Solution](https://github.com/erikvanoosten/advent-of-code/blob/main/src/main/scala/nl/grons/advent/y2022/Day25.scala) by [Erik van Oosten](https://github.com/erikvanoosten)
