@@ -30,7 +30,7 @@ def readCode(opponent: String) = opponent match
   case "B" => Paper
   case "C" => Scissors
 
-def scores(input: String, strategy: (Position, String) => Position): IterableOnce[Int] =
+def scores(input: String, strategy: (Position, String) => Position): Iterator[Int] =
   for case s"$x $y" <- input.linesIterator yield
     val opponent = readCode(x)
     score(opponent, strategy(opponent, y))
