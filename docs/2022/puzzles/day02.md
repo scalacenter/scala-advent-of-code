@@ -83,5 +83,6 @@ end score
 - Solution [part1](https://github.com/erikvanoosten/advent-of-code/blob/main/src/main/scala/nl/grons/advent/y2022/Day2Part1.scala) and [part2](https://github.com/erikvanoosten/advent-of-code/blob/main/src/main/scala/nl/grons/advent/y2022/Day2Part2.scala) by [Erik van Oosten](https://github.com/erikvanoosten)
 - [Solution](https://github.com/danielnaumau/code-advent-2022/blob/master/src/main/scala/com/adventofcode/Day2.scala) by [Daniel Naumau](https://github.com/danielnaumau)
 - [Solution](https://github.com/AvaPL/Advent-of-Code-2022/tree/main/src/main/scala/day2) by [Paweł Cembaluk](https://github.com/AvaPL)
+- [Solution](https://github.com/ciuckc/AOC22/blob/master/day2/rock_paper_scissors.scala) by [Cristian Steiciuc](https://github.com/ciuckc)
 
 Share your solution to the Scala community by editing this page. (You can even write the whole article!)
