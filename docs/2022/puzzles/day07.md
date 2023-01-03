@@ -167,5 +167,6 @@ def part2(output: String): Int =
 - [Solution](https://github.com/w-r-z-k/aoc2022/blob/main/src/main/scala/Day7.scala) by Richard W
 - [Solution](https://github.com/danielnaumau/code-advent-2022/blob/master/src/main/scala/com/adventofcode/Day7.scala) by [Daniel Naumau](https://github.com/danielnaumau)
 - [Solution](https://github.com/AvaPL/Advent-of-Code-2022/tree/main/src/main/scala/day7) by [Paweł Cembaluk](https://github.com/AvaPL)
+- [Solution using ZIO](https://github.com/rpiotrow/advent-of-code-2022/tree/main/src/main/scala/io/github/rpiotrow/advent2022/day07) by [Rafał Piotrowski](https://github.com/rpiotrow)
 
 Share your solution to the Scala community by editing this page. (You can even write the whole article!)
