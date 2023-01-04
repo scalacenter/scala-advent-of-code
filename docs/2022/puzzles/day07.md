@@ -160,7 +160,7 @@ def part2(output: String): Int =
 
 - [Solution](https://github.com/SimY4/advent-of-code-scala/blob/master/src/main/scala/aoc/y2022/Day7.scala) of [SimY4](https://twitter.com/actinglikecrazy).
 - [Solution](https://github.com/Jannyboy11/AdventOfCode2022/blob/master/src/main/scala/day07/Day07.scala) of [Jan Boerman](https://twitter.com/JanBoerman95).
-- [Solution](https://github.com/stewSquared/advent-of-code-scala/blob/master/src/main/scala/2022/Day07.worksheet.sc) of [Stewart Stewart](https://twitter.com/stewSqrd).
+- [Solution](https://github.com/stewSquared/advent-of-code/blob/master/src/main/scala/2022/Day07.worksheet.sc) of [Stewart Stewart](https://twitter.com/stewSqrd).
 - [Solution](https://github.com/cosminci/advent-of-code/blob/master/src/main/scala/com/github/cosminci/aoc/_2022/Day7.scala) by Cosmin Ciobanu
 - [Solution](https://github.com/prinsniels/AdventOfCode2022/blob/master/src/main/scala/day07.scala) by [Niels Prins](https://github.com/prinsniels)
 - [Solution](https://github.com/erikvanoosten/advent-of-code/blob/main/src/main/scala/nl/grons/advent/y2022/Day7.scala) by [Erik van Oosten](https://github.com/erikvanoosten)
