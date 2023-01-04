@@ -20,6 +20,15 @@ type Worry = Long
 type Op = Worry => Worry
 type Monkeys = IndexedSeq[Monkey]
 
+case class Monkey(
+  items: Queue[Worry],
+  divisibleBy: Int,
+  ifTrue: Int,
+  ifFalse: Int,
+  op: Op,
+  inspected: Int
+)
+
 def iterate[Z](times: Int)(op: Z => Z)(z: Z): Z =
   (0 until times).foldLeft(z) { (z, _) => op(z) }
 
@@ -54,17 +63,6 @@ def turn(index: Int, monkeys: Monkeys, adjust: Op, lcm: Worry): Monkeys =
   )
   monkeys1.updated(index, monkey1)
 end turn
-
-case class Monkey(
-  items: Queue[Worry],
-  divisibleBy: Int,
-  ifTrue: Int,
-  ifFalse: Int,
-  op: Op,
-  inspected: Int
-)
-
-case class State(monkeys: Monkeys, inspected: IArray[Long])
 
 def parseInput(input: String): Monkeys =
 
