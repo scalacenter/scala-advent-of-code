@@ -20,22 +20,19 @@ val digitToInt = Map(
 )
 val intToDigit = digitToInt.map(_.swap)
 
-def showSnafu(value: BigInt): String =
-  val buf = StringBuilder()
-  var v = value
-  while v != 0 do
-    val digit = (v % 5).toInt match
-      case 0 => 0
-      case 1 => 1
-      case 2 => 2
-      case 3 => -2
-      case 4 => -1
-    buf.append(intToDigit(digit))
-    v = (v - digit) / 5
-  buf.reverseInPlace().toString()
+def showSnafu(value: Long): String =
+  val reverseDigits = Iterator.unfold(value)(v =>
+    Option.when(v != 0) {
+      val mod = math.floorMod(v, 5).toInt
+      val digit = if mod > 2 then mod - 5 else mod
+      intToDigit(digit) -> (v - digit) / 5
+    }
+  )
+  if reverseDigits.isEmpty then "0"
+  else reverseDigits.mkString.reverse
 
-def readSnafu(line: String): BigInt =
-  line.foldLeft(BigInt(0))((acc, digit) =>
+def readSnafu(line: String): Long =
+  line.foldLeft(0L)((acc, digit) =>
     acc * 5 + digitToInt(digit)
   )
 
