@@ -12,5 +12,7 @@ https://adventofcode.com/2022/day/16
 - [Solution](https://gist.github.com/JavadocMD/ad657672282b2b547334f10bd15d3066) by [Tyler Coles](https://github.com/JavadocMD)
 - [Solution](https://github.com/cosminci/advent-of-code/blob/master/src/main/scala/com/github/cosminci/aoc/_2022/Day16.scala) by Cosmin Ciobanu
 - [Solution](https://github.com/AvaPL/Advent-of-Code-2022/tree/main/src/main/scala/day16) by [Paweł Cembaluk](https://github.com/AvaPL)
+- [Solution](https://github.com/w-r-z-k/aoc2022/blob/main/src/main/scala/Day16.scala) by Richard W
+- 
 
 Share your solution to the Scala community by editing this page. (You can even write the whole article!)
