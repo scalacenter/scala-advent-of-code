@@ -2,7 +2,7 @@ import React from 'react'
 import Link from '@docusaurus/Link';
 import useGlobalData from '@docusaurus/useGlobalData';
 
-const puzzlePage = (dir) => RegExp(`${dir}\/day(\\d+)`);
+const puzzlePage = (dir) => RegExp(`^${dir}\/day(\\d+)$`);
 
 const dayN = (rx, day) => {
   const is = rx.exec(day.id);
