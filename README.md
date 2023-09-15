@@ -39,8 +39,8 @@ which will let you pause on breakpoints, and execute expressions in the debug co
 In a terminal you can run:
 ```
 $ scala-cli 2022 -M day01.part01
-Compiling project (Scala 3.2.0, JVM)
-Compiled project (Scala 3.2.0, JVM)
+Compiling project (Scala 3.x.y, JVM)
+Compiled project (Scala 3.x.y, JVM)
 The solution is 64929
 ```
 
