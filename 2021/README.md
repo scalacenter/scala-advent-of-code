@@ -31,8 +31,8 @@ In a terminal you can run:
 ```
 $ cd scala-advent-of-code/2021
 $ scala-cli . -M day1.part1
-Compiling project (Scala 3.2.0, JVM)
-Compiled project (Scala 3.2.0, JVM)
+Compiling project (Scala 3.x.y, JVM)
+Compiled project (Scala 3.x.y, JVM)
 The solution is 1559
 ```
 
