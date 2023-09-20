@@ -4,31 +4,35 @@ import locations.Directory.currentDir
 import inputs.Input.loadFileSync
 
 @main def part1: Unit =
-  val root: Directory = Directory("/")
-  run(loadInput(), List(root))
-  val solution =
-    allSubdirs(root)
-      .map(totalSize)
-      .filter(_ <= 100_000L)
-      .sum
-  println(s"The solution is $solution")
+  println(s"The solution is ${part1(loadInput())}")
 
 @main def part2: Unit =
-  val root: Directory = Directory("/")
-  run(loadInput(), List(root))
-  val sizeNeeded = totalSize(root) - 40_000_000L
-  val solution =
-    allSubdirs(root)
-      .map(totalSize)
-      .filter(_ >= sizeNeeded)
-      .min
-  println(s"The solution is $solution")
+  println(s"The solution is ${part2(loadInput())}")
 
-def loadInput(): List[Command] =
-  loadFileSync(s"$currentDir/../input/day07")
+def loadInput(): String = loadFileSync(s"$currentDir/../input/day07")
+
+def parse(input: String): List[Command] =
+  input
     .linesIterator
     .map(Command.fromString)
     .toList
+
+def part1(input: String): Long =
+  val root: Directory = Directory("/")
+  run(parse(input), List(root))
+  allSubdirs(root)
+    .map(totalSize)
+    .filter(_ <= 100_000L)
+    .sum
+
+def part2(input: String): Long =
+  val root: Directory = Directory("/")
+  run(parse(input), List(root))
+  val sizeNeeded = totalSize(root) - 40_000_000L
+  allSubdirs(root)
+    .map(totalSize)
+    .filter(_ >= sizeNeeded)
+    .min
 
 // data model & parsing: directory tree
 
