@@ -1,4 +1,5 @@
 import java.io.File
+
 ThisBuild / scalaVersion := "3.3.1"
 
 lazy val adventOfCode = project
@@ -43,7 +44,7 @@ lazy val docs = project
   .enablePlugins(MdocPlugin, DocusaurusPlugin)
   .settings(
     mdoc := {
-      val solverJs = (solver / Compile / scalaJSLinkedFile).value.data
+      val solverJs = (solver / Compile / fullLinkJSOutput).value / "main.js"
       val dest = baseDirectory.value / "src" / "js" / "solver.js"
       IO.createDirectory(baseDirectory.value / "src" / "js")
       IO.copy(Seq(solverJs -> dest))

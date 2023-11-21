@@ -155,6 +155,15 @@ def part2(output: String): Int =
   collectSizes(rootDir, _ >= required).min
 ```
 
+### Run it in the browser
+
+#### Part 1
+
+<Solver puzzle="day07-part1" year="2022"/>
+
+#### Part 2
+
+<Solver puzzle="day07-part2" year="2022"/>
 
 ## Solutions from the community
 
