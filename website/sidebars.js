@@ -39,6 +39,9 @@ const sidebars = {
     'introduction',
     'setup',
     {
+      "2023 Puzzles": buildSidebar('2023/puzzles'),
+    },
+    {
       "2022 Puzzles": buildSidebar('2022/puzzles'),
     },
     {
