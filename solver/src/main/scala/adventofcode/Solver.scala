@@ -27,6 +27,8 @@ object Solver:
       "day09-part2" -> day09.part2,
       "day10-part1" -> day10.part1,
       "day10-part2" -> day10.part2,
+      "day11-part1" -> day11.part1,
+      "day11-part2" -> day11.part2,
       "day12-part1" -> day12.part1,
       "day12-part2" -> day12.part2,
       "day13-part1" -> day13.part1,

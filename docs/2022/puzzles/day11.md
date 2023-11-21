@@ -94,6 +94,16 @@ def parseInput(input: String): Monkeys =
 end parseInput
 ```
 
+### Run it in the browser
+
+#### Part 1
+
+<Solver puzzle="day11-part1" year="2022"/>
+
+#### Part 2
+
+<Solver puzzle="day11-part2" year="2022"/>
+
 ## Solutions from the community
 
 - [Solution](https://github.com/Jannyboy11/AdventOfCode2022/blob/master/src/main/scala/day11/Day11.scala) of [Jan Boerman](https://twitter.com/JanBoerman95).
