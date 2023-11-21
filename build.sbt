@@ -1,5 +1,5 @@
 import java.io.File
-ThisBuild / scalaVersion := "3.2.0"
+ThisBuild / scalaVersion := "3.3.1"
 
 lazy val adventOfCode = project
   .in(file("."))
