@@ -98,6 +98,12 @@ const config = {
           {
             type: 'dropdown',
             position: 'left',
+            label: 'Puzzles 2023',
+            items: buildDropdown('2023/puzzles')
+          },
+          {
+            type: 'dropdown',
+            position: 'left',
             label: 'Puzzles 2022',
             items: buildDropdown('2022/puzzles')
           },
@@ -126,6 +132,10 @@ const config = {
               {
                 label: 'Setup',
                 to: '/setup',
+              },
+              {
+                label: 'Puzzles 2023',
+                to: '2023/puzzles/day01',
               },
               {
                 label: 'Puzzles 2022',

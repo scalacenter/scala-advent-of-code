@@ -8,6 +8,7 @@ lazy val adventOfCode = project
   .settings(
     (Compile / sourceGenerators) += taskPatchSolutions("2021", _ / "solutions" / "2021" / "src").taskValue,
     (Compile / sourceGenerators) += taskPatchSolutions("2022", _ / "solutions" / "2022" / "src").taskValue,
+    (Compile / sourceGenerators) += taskPatchSolutions("2023", _ / "solutions" / "2023" / "src").taskValue,
     Compile / managedSourceDirectories := Nil,
     run / fork := true,
     run / baseDirectory := (ThisBuild / baseDirectory).value / "solutions"
