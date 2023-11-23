@@ -1,6 +1,7 @@
 import Solver from "../../../../../website/src/components/Solver.js"
 
 # Day 18: Boiling Boulders
+by [LaurenceWarne](https://www.github.com/LaurenceWarne)
 
 ## Puzzle description
 
