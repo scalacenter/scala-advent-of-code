@@ -1,7 +1,7 @@
 import Solver from "../../../../../website/src/components/Solver.js"
 
 # Day 16: Proboscidea Volcanium
-code by Tyler Coles (javadocmd.com) & Quentin Bernet
+code by Tyler Coles (javadocmd.com), Quentin Bernet, [@sjrd](https://github.com/sjrd), and [@bishabosha](https://github.com/bishabosha)
 
 ## Puzzle description
 
@@ -80,27 +80,39 @@ def bestPath(map: RoomsInfo, start: Id, valves: Set[Id], timeAllowed: Int): Int 
   // we limit our options by only considering the still-closed valves
   // and `valves` has already culled any room with a flow value of 0 -- no point in considering these rooms!
 
-  def recurse(path: List[Id], valvesLeft: Set[Id], timeLeft: Int, totalValue: Int): Int =
+  val valvesLookup = IArray.from(valves)
+  val valveCount = valvesLookup.size
+  val _activeValveIndices = Array.fill[Boolean](valveCount + 1)(true) // add an extra valve for the initial state
+  def valveIndexLeft(i: Int) = _activeValveIndices(i)
+  def withoutValve(i: Int)(f: => Int) =
+    try
+      _activeValveIndices(i) = false
+      f
+    finally _activeValveIndices(i) = true
+  val roomsByIndices = IArray.tabulate(valveCount)(i => map.rooms(valvesLookup(i)))
+
+  def recurse(hiddenValve: Int, current: Id, timeLeft: Int, totalValue: Int): Int = withoutValve(hiddenValve):
     // recursively consider all plausible options
     // we are finished when we no longer have time to reach another valve or all valves are open
-    valvesLeft
-      .flatMap{ id =>
-        val current  = path.head
-        val distance = map.routes(current)(id)
-        // how much time is left after we traverse there and open the valve?
-        val t = timeLeft - distance - 1
-        // if `t` is zero or less this option can be skipped
-        Option.when(t > 0) {
-          // the value of choosing a particular valve (over the life of our simulation)
-          // is its flow rate multiplied by the time remaining after opening it
-          val value = map.rooms(id).flow * t
-          recurse(id :: path, valvesLeft - id, t, totalValue + value)
-        }
-      }
-      .maxOption
-      .getOrElse { totalValue }
+    val routesOfCurrent = map.routes(current)
+    var bestValue = totalValue
+    for index <- valvesLookup.indices if valveIndexLeft(index) do
+      val id = valvesLookup(index)
+      val distance = routesOfCurrent(id)
+      // how much time is left after we traverse there and open the valve?
+      val t = timeLeft - distance - 1
+      // if `t` is zero or less this option can be skipped
+      if t > 0 then
+        // the value of choosing a particular valve (over the life of our simulation)
+        // is its flow rate multiplied by the time remaining after opening it
+        val value = roomsByIndices(index).flow * t
+        val recValue = recurse(hiddenValve = index, id, t, totalValue + value)
+        if recValue > bestValue then
+          bestValue = recValue
+    end for
+    bestValue
   end recurse
-  recurse(start :: Nil, valves, timeAllowed, 0)
+  recurse(valveCount, start, timeAllowed, 0)
 
 def part1(input: String) =
   val time   = 30
