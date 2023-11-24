@@ -12,7 +12,7 @@ import inputs.Input.loadFileSync
 def loadInput(): String = loadFileSync(s"$currentDir/../input/day16")
 
 /*
-Copyright 2022 Tyler Coles (javadocmd.com) & Quentin Bernet
+Copyright 2022 Tyler Coles (javadocmd.com), Quentin Bernet, Sébastien Doeraene and Jamie Thompson
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -98,36 +98,39 @@ def bestPath(map: RoomsInfo, start: Id, valves: Set[Id], timeAllowed: Int): Int 
   // we limit our options by only considering the still-closed valves
   // and `valves` has already culled any room with a flow value of 0 -- no point in considering these rooms!
 
-  val valvesArray = valves.toArray
-  val valveCount = valvesArray.length
-  val valvesIndicesLeft = Array.fill[Boolean](valveCount)(true)
-  val roomsByIndices = Array.tabulate(valveCount)(i => map.rooms(valvesArray(i)))
+  val valvesLookup = IArray.from(valves)
+  val valveCount = valvesLookup.size
+  val _activeValveIndices = Array.fill[Boolean](valveCount + 1)(true) // add an extra valve for the initial state
+  def valveIndexLeft(i: Int) = _activeValveIndices(i)
+  def withoutValve(i: Int)(f: => Int) =
+    try
+      _activeValveIndices(i) = false
+      f
+    finally _activeValveIndices(i) = true
+  val roomsByIndices = IArray.tabulate(valveCount)(i => map.rooms(valvesLookup(i)))
 
-  def recurse(current: Id, timeLeft: Int, totalValue: Int): Int =
+  def recurse(hiddenValve: Int, current: Id, timeLeft: Int, totalValue: Int): Int = withoutValve(hiddenValve):
     // recursively consider all plausible options
     // we are finished when we no longer have time to reach another valve or all valves are open
     val routesOfCurrent = map.routes(current)
     var bestValue = totalValue
-    for index <- 0 until valveCount do
-      if valvesIndicesLeft(index) then
-        val id = valvesArray(index)
-        val distance = routesOfCurrent(id)
-        // how much time is left after we traverse there and open the valve?
-        val t = timeLeft - distance - 1
-        // if `t` is zero or less this option can be skipped
-        if t > 0 then
-          // the value of choosing a particular valve (over the life of our simulation)
-          // is its flow rate multiplied by the time remaining after opening it
-          val value = roomsByIndices(index).flow * t
-          valvesIndicesLeft(index) = false
-          val recValue = recurse(id, t, totalValue + value)
-          valvesIndicesLeft(index) = true
-          if recValue > bestValue then
-            bestValue = recValue
+    for index <- valvesLookup.indices if valveIndexLeft(index) do
+      val id = valvesLookup(index)
+      val distance = routesOfCurrent(id)
+      // how much time is left after we traverse there and open the valve?
+      val t = timeLeft - distance - 1
+      // if `t` is zero or less this option can be skipped
+      if t > 0 then
+        // the value of choosing a particular valve (over the life of our simulation)
+        // is its flow rate multiplied by the time remaining after opening it
+        val value = roomsByIndices(index).flow * t
+        val recValue = recurse(hiddenValve = index, id, t, totalValue + value)
+        if recValue > bestValue then
+          bestValue = recValue
     end for
     bestValue
   end recurse
-  recurse(start, timeAllowed, 0)
+  recurse(valveCount, start, timeAllowed, 0)
 
 def part1(input: String) =
   val time   = 30
@@ -151,7 +154,7 @@ def part2(input: String) =
   // taking the best of those.
 
   // we can now calculate the efforts separately and sum their values to find the best
-  val allPaths = 
+  val allPaths =
     for va <- valvesA yield
       val vb              = map.valves -- va
       val scoreA = bestPath(map, "AA", va, time)
