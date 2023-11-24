@@ -114,7 +114,7 @@ def bestPath(map: RoomsInfo, start: Id, valves: Set[Id], timeAllowed: Int): Int 
     // we are finished when we no longer have time to reach another valve or all valves are open
     val routesOfCurrent = map.routes(current)
     var bestValue = totalValue
-    for index <- valvesLookup.indices do
+    for index <- 0 to valveCount do
       if valveIndexLeft(index) then
         val id = valvesLookup(index)
         val distance = routesOfCurrent(id)
