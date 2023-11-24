@@ -103,10 +103,10 @@ def bestPath(map: RoomsInfo, start: Id, valves: Set[Id], timeAllowed: Int): Int 
   val _activeValveIndices = Array.fill[Boolean](valveCount + 1)(true) // add an extra valve for the initial state
   def valveIndexLeft(i: Int) = _activeValveIndices(i)
   def withoutValve(i: Int)(f: => Int) =
-    try
-      _activeValveIndices(i) = false
-      f
-    finally _activeValveIndices(i) = true
+    _activeValveIndices(i) = false
+    val result = f
+    _activeValveIndices(i) = true
+    result
   val roomsByIndices = IArray.tabulate(valveCount)(i => map.rooms(valvesLookup(i)))
 
   def recurse(hiddenValve: Int, current: Id, timeLeft: Int, totalValue: Int): Int = withoutValve(hiddenValve):
@@ -114,19 +114,22 @@ def bestPath(map: RoomsInfo, start: Id, valves: Set[Id], timeAllowed: Int): Int 
     // we are finished when we no longer have time to reach another valve or all valves are open
     val routesOfCurrent = map.routes(current)
     var bestValue = totalValue
-    for index <- valvesLookup.indices if valveIndexLeft(index) do
-      val id = valvesLookup(index)
-      val distance = routesOfCurrent(id)
-      // how much time is left after we traverse there and open the valve?
-      val t = timeLeft - distance - 1
-      // if `t` is zero or less this option can be skipped
-      if t > 0 then
-        // the value of choosing a particular valve (over the life of our simulation)
-        // is its flow rate multiplied by the time remaining after opening it
-        val value = roomsByIndices(index).flow * t
-        val recValue = recurse(hiddenValve = index, id, t, totalValue + value)
-        if recValue > bestValue then
-          bestValue = recValue
+    for index <- 0 to valveCount do
+      if valveIndexLeft(index) then
+        val id = valvesLookup(index)
+        val distance = routesOfCurrent(id)
+        // how much time is left after we traverse there and open the valve?
+        val t = timeLeft - distance - 1
+        // if `t` is zero or less this option can be skipped
+        if t > 0 then
+          // the value of choosing a particular valve (over the life of our simulation)
+          // is its flow rate multiplied by the time remaining after opening it
+          val value = roomsByIndices(index).flow * t
+          val recValue = recurse(hiddenValve = index, id, t, totalValue + value)
+          if recValue > bestValue then
+            bestValue = recValue
+        end if
+      end if
     end for
     bestValue
   end recurse
