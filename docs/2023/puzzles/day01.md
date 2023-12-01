@@ -199,6 +199,6 @@ end part2
 
 ## Solutions from the community
 
-Share your solution to the Scala community by editing this page.
+- [Solution](https://github.com/spamegg1/advent-of-code-2023-scala/blob/solutions/01.worksheet.sc#L65) by [spamegg1](https://github.com/spamegg1)
 
-[Solution](https://github.com/spamegg1/advent-of-code-2023-scala/blob/solutions/01.worksheet.sc#L65) by [spamegg1](https://github.com/spamegg1)
+Share your solution to the Scala community by editing this page.
