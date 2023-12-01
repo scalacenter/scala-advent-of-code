@@ -208,5 +208,6 @@ end part2
 - [Solution](https://gist.github.com/CJSmith-0141/a84b3d213bdd8ed7c256561132d19b8d) by [CJ Smith](https://github.com/CJSmith-0141)
 - [Solution](https://github.com/ChidiRnweke/AOC23/blob/main/src/main/scala/day1.scala) by [Chidi Nweke](https://github.com/ChidiRnweke)
 - [Solution](https://github.com/YannMoisan/advent-of-code/blob/master/2023/src/main/scala/Day1.scala) by [YannMoisan](https://github.com/YannMoisan)
+- [Solution](https://github.com/bxiang/advent-of-code-2023/blob/main/src/main/scala/com/aoc/day1/Solution.scala) by [Brian Xiang](https://github.com/bxiang)
 
 Share your solution to the Scala community by editing this page.
