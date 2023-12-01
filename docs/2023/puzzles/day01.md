@@ -199,6 +199,6 @@ end part2
 
 ## Solutions from the community
 
-Share your solution to the Scala community by editing this page.
-
 - [Solution](https://github.com/alexandru/advent-of-code/blob/main/scala3/2023/src/main/scala/day1.scala) by [@alexandru](https://github.com/alexandru/)
+
+Share your solution to the Scala community by editing this page.
