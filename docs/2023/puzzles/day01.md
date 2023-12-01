@@ -205,5 +205,8 @@ end part2
 - [Solution](https://github.com/spamegg1/advent-of-code-2023-scala/blob/solutions/01.worksheet.sc#L65) by [Spamegg](https://github.com/spamegg1/)
 - [Solution](https://github.com/jnclt/adventofcode2023/tree/main/day01) by [jnclt](https://github.com/jnclt)
 - [Solution](https://github.com/KristianAN/AoC2023/blob/main/scala/src/Day1.scala) by [KristianAN](https://github.com/KristianAN)
+- [Solution](https://gist.github.com/CJSmith-0141/a84b3d213bdd8ed7c256561132d19b8d) by [CJ Smith](https://github.com/CJSmith-0141)
+- [Solution](https://github.com/ChidiRnweke/AOC23/blob/main/src/main/scala/day1.scala) by [Chidi Nweke](https://github.com/ChidiRnweke)
+- [Solution](https://github.com/YannMoisan/advent-of-code/blob/master/2023/src/main/scala/Day1.scala) by [YannMoisan](https://github.com/YannMoisan)
 
 Share your solution to the Scala community by editing this page.
