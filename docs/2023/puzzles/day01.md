@@ -1,11 +1,11 @@
 import Solver from "../../../../../website/src/components/Solver.js"
 
-# Day 1
+# Day 1: Trebuchet?!
 
 ## Puzzle description
 
-Come back on December 1st 2023 for the challenge description. While you wait, read more at https://adventofcode.com/2023.
+https://adventofcode.com/2023/day/1
 
 ## Solutions from the community
 
-When the challenge is opened, feel free to edit this page to add a link to your solution here.
+Share your solution to the Scala community by editing this page. (You can even write the whole article!)
