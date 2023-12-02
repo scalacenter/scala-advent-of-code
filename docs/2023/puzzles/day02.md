@@ -9,5 +9,6 @@ https://adventofcode.com/2023/day/2
 ## Solutions from the community
 
 - [Solution](https://github.com/SethTisue/adventofcode/blob/main/2023/src/test/scala/Day02.scala) by [Seth Tisue](https://github.com/SethTisue)
+- [Solution](https://github.com/susliko/adventofcode/blob/master/2023/day2/cubeCondurum.scala) by [Vail Markoukin](https://github.com/susliko)
 
 Share your solution to the Scala community by editing this page. (You can even write the whole article!)
