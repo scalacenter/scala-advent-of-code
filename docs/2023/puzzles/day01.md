@@ -199,7 +199,7 @@ end part2
 
 ## Solutions from the community
 
-- [Solution](https://github.com/pkarthick/AdventOfCode/blob/master/2023/day01/day01.scala) of [Karthick Pachiappan](https://github.com/pkarthick).
+- [Solution](https://github.com/pkarthick/AdventOfCode/blob/master/2023/scala/src/main/scala/day01.scala) of [Karthick Pachiappan](https://github.com/pkarthick).
 - [Solution](https://github.com/Jannyboy11/AdventOfCode2023/blob/master/src/main/scala/day01/Day01.scala) of [Jan Boerman](https://twitter.com/JanBoerman95).
 - [Solution](https://github.com/alexandru/advent-of-code/blob/main/scala3/2023/src/main/scala/day1.scala) by [Alexandru Nedelcu](https://github.com/alexandru/)
 - [Solution](https://github.com/spamegg1/advent-of-code-2023-scala/blob/solutions/01.worksheet.sc#L65) by [Spamegg](https://github.com/spamegg1/)
