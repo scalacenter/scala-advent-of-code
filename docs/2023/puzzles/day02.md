@@ -193,5 +193,6 @@ def part2(input: String): Int = solution(input, minimumCubes)
 - [Solution](https://github.com/guycastle/advent_of_code_2023/blob/main/src/main/scala/days/day02/DayTwo.scala) by [Guillaume Vandecasteele](https://github.com/guycastle)
 - [Solution](https://github.com/pkarthick/AdventOfCode/blob/master/2023/scala/src/main/scala/day02.scala) by [Karthick Pachiappan](https://github.com/pkarthick)
 - [Solution](https://github.com/ChidiRnweke/AOC23/blob/main/src/main/scala/day2.scala) by [Chidi Nweke](https://github.com/ChidiRnweke)
+- [Solution](https://github.com/Jannyboy11/AdventOfCode2023/blob/master/src/main/scala/day02/Day02.scala) of [Jan Boerman](https://twitter.com/JanBoerman95).
   
 Share your solution to the Scala community by editing this page. (You can even write the whole article!)
