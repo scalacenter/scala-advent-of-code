@@ -13,13 +13,8 @@ import inputs.Input.loadFileSync
 def loadInput(): String = loadFileSync(s"$currentDir/../input/day02")
 
 case class Colors(color: String, count: Int)
-case class Game(game: Int, hands: List[List[Colors]])
-type Config = Map[String, Int]
-
-def validate(config: Config, game: Game): Boolean =
-  game.hands.forall:
-    _.forall:
-      case Colors(color, count) => config.getOrElse(color, 0) >= count
+case class Game(id: Int, hands: List[List[Colors]])
+type Summary = Game => Int
 
 def parseColors(pair: String): Colors =
   val Array(count0, color0) = pair.split(" ")
@@ -30,26 +25,38 @@ def parse(line: String): Game =
   val Array(_, id) = game0.split(" "): @unchecked
   val hands0 = hands.split("; ").toList
   val hands1 = hands0.map(_.split(", ").map(parseColors).toList)
-  Game(game = id.toInt, hands = hands1)
+  Game(id = id.toInt, hands = hands1)
 
-def part1(input: String): Int =
-  val clauses = input.linesIterator.map(parse).toList
-  val config = Map(
-    "red" -> 12,
-    "green" -> 13,
-    "blue" -> 14,
-  )
-  clauses.collect({ case game if validate(config, game) => game.game }).sum
+def solution(input: String, summarise: Summary): Int =
+  input.linesIterator.map(parse andThen summarise).sum
 
-def part2(input: String): Int =
-  val clauses = input.linesIterator.map(parse).toList
-  val initial = Seq("red", "green", "blue").map(_ -> 0).toMap
+val possibleCubes = Map(
+  "red" -> 12,
+  "green" -> 13,
+  "blue" -> 14,
+)
 
-  def minCubes(game: Game): Int =
-    val maximums = game.hands.foldLeft(initial): (maximums, colors) =>
-      colors.foldLeft(maximums):
-        case (maximums, Colors(color, count)) =>
-          maximums + (color -> (maximums(color) `max` count))
-    maximums.values.product
+def validGame(game: Game): Boolean =
+  game.hands.forall: hand =>
+    hand.forall:
+      case Colors(color, count) =>
+        count <= possibleCubes.getOrElse(color, 0)
 
-  clauses.map(minCubes).sum
+val possibleGame: Summary =
+  case game if validGame(game) => game.id
+  case _ => 0
+
+def part1(input: String): Int = solution(input, possibleGame)
+
+val initial = Seq("red", "green", "blue").map(_ -> 0).toMap
+
+def minimumCubes(game: Game): Int =
+  var maximums = initial
+  for
+    hand <- game.hands
+    Colors(color, count) <- hand
+  do
+    maximums += (color -> (maximums(color) `max` count))
+  maximums.values.product
+
+def part2(input: String): Int = solution(input, minimumCubes)
