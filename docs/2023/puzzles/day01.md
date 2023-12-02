@@ -199,14 +199,19 @@ end part2
 
 ## Solutions from the community
 
-- [Solution](https://github.com/pkarthick/AdventOfCode/blob/master/2023/day01/day01.scala) of [Karthick Pachiappan](https://github.com/pkarthick).
+- [Solution](https://github.com/pkarthick/AdventOfCode/blob/master/2023/scala/src/main/scala/day01.scala) of [Karthick Pachiappan](https://github.com/pkarthick).
 - [Solution](https://github.com/Jannyboy11/AdventOfCode2023/blob/master/src/main/scala/day01/Day01.scala) of [Jan Boerman](https://twitter.com/JanBoerman95).
 - [Solution](https://github.com/alexandru/advent-of-code/blob/main/scala3/2023/src/main/scala/day1.scala) by [Alexandru Nedelcu](https://github.com/alexandru/)
 - [Solution](https://github.com/spamegg1/advent-of-code-2023-scala/blob/solutions/01.worksheet.sc#L65) by [Spamegg](https://github.com/spamegg1/)
 - [Solution](https://github.com/jnclt/adventofcode2023/tree/main/day01) by [jnclt](https://github.com/jnclt)
+- [Solution](https://github.com/KristianAN/AoC2023/blob/main/scala/src/Day1.scala) by [KristianAN](https://github.com/KristianAN)
+- [Solution](https://gist.github.com/CJSmith-0141/a84b3d213bdd8ed7c256561132d19b8d) by [CJ Smith](https://github.com/CJSmith-0141)
+- [Solution](https://github.com/ChidiRnweke/AOC23/blob/main/src/main/scala/day1.scala) by [Chidi Nweke](https://github.com/ChidiRnweke)
 - [Solution](https://github.com/YannMoisan/advent-of-code/blob/master/2023/src/main/scala/Day1.scala) by [YannMoisan](https://github.com/YannMoisan)
 - [Solution](https://github.com/bxiang/advent-of-code-2023/blob/main/src/main/scala/com/aoc/day1/Solution.scala) by [Brian Xiang](https://github.com/bxiang)
 - [Solution](https://github.com/bishabosha/advent-of-code-2023/blob/main/2023-day01.scala) by [Jamie Thompson](https://github.com/bishabosha)
 - [Solution](https://github.com/SethTisue/adventofcode/blob/main/2023/src/test/scala/Day01.scala) by [Seth Tisue](https://github.com/SethTisue)
+- [Solution](https://github.com/Philippus/adventofcode/tree/main/src/main/scala/adventofcode2023/day1/Day1.scala) by [Philippus Baalman](https://github.com/philippus)
+- [Solution](https://github.com/kbielefe/advent-of-code/blob/edf8e706229a5f3785291824f26778de8a583c35/2023/src/main/scala/1.scala) by [Karl Bielefeldt](https://github.com/kbielefe)
 
 Share your solution to the Scala community by editing this page.
