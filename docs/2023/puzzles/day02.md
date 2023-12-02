@@ -17,5 +17,6 @@ https://adventofcode.com/2023/day/2
 - [Solution](https://github.com/jnclt/adventofcode2023/blob/main/day02/cube-conundrum.sc) by [jnclt](https://github.com/jnclt)
 - [Solution](https://github.com/spamegg1/advent-of-code-2023-scala/blob/solutions/02.worksheet.sc#L87) by [Spamegg](https://github.com/spamegg1)
 - [Solution](https://github.com/YannMoisan/advent-of-code/blob/master/2023/src/main/scala/Day2.scala) by [Yann Moisan](https://github.com/YannMoisan)
+- [Solution](https://github.com/guycastle/advent_of_code_2023/blob/main/src/main/scala/days/day02/DayTwo.scala) by [Guillaume Vandecasteele](https://github.com/guycastle)
 
 Share your solution to the Scala community by editing this page. (You can even write the whole article!)
