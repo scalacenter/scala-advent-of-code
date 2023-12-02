@@ -47,15 +47,14 @@ Let's fill in the `parse` function as follows:
 
 ```scala
 def parseColors(pair: String): Colors =
-  val Array(count0, color0) = pair.split(" ")
-  Colors(color = color0, count = count0.toInt)
+  val (s"$value $name") = pair: @unchecked
+  Colors(color = name, count = value.toInt)
 
 def parse(line: String): Game =
-  val Array(game0, hands) = line.split(": "): @unchecked
-  val Array(_, id) = game0.split(" "): @unchecked
-  val hands0 = hands.split("; ").toList
-  val hands1 = hands0.map(_.split(", ").map(parseColors).toList)
-  Game(id = id.toInt, hands = hands1)
+  val (s"Game $id: $hands0") = line: @unchecked
+  val hands1 = hands0.split("; ").toList
+  val hands2 = hands1.map(_.split(", ").toList.map(parseColors))
+  Game(id = id.toInt, hands = hands2)
 ```
 
 #### Summary
@@ -122,15 +121,14 @@ case class Game(id: Int, hands: List[List[Colors]])
 type Summary = Game => Int
 
 def parseColors(pair: String): Colors =
-  val Array(count0, color0) = pair.split(" ")
-  Colors(color = color0, count = count0.toInt)
+  val (s"$value $name") = pair: @unchecked
+  Colors(color = name, count = value.toInt)
 
 def parse(line: String): Game =
-  val Array(game0, hands) = line.split(": "): @unchecked
-  val Array(_, id) = game0.split(" "): @unchecked
-  val hands0 = hands.split("; ").toList
-  val hands1 = hands0.map(_.split(", ").map(parseColors).toList)
-  Game(id = id.toInt, hands = hands1)
+  val (s"Game $id: $hands0") = line: @unchecked
+  val hands1 = hands0.split("; ").toList
+  val hands2 = hands1.map(_.split(", ").toList.map(parseColors))
+  Game(id = id.toInt, hands = hands2)
 
 def solution(input: String, summarise: Summary): Int =
   input.linesIterator.map(parse andThen summarise).sum
