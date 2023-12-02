@@ -119,7 +119,6 @@ def part2(input: String): Int = solution(input, minimumCubes)
 ```scala
 case class Colors(color: String, count: Int)
 case class Game(id: Int, hands: List[List[Colors]])
-type Config = Map[String, Int]
 type Summary = Game => Int
 
 def parseColors(pair: String): Colors =
