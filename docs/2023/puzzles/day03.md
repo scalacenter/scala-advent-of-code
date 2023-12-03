@@ -13,5 +13,6 @@ https://adventofcode.com/2023/day/3
 - [Solution](https://github.com/pkarthick/AdventOfCode/blob/master/2023/scala/src/main/scala/day03.scala) by [Karthick Pachiappan](https://github.com/pkarthick)
 - [Solution](https://github.com/Jannyboy11/AdventOfCode2023/blob/master/src/main/scala/day03/Day03.scala) of [Jan Boerman](https://twitter.com/JanBoerman95).
 - [Solution](https://github.com/spamegg1/advent-of-code-2023-scala/blob/solutions/03.worksheet.sc#L89) by [Spamegg](https://github.com/spamegg1)
+- [Solution](https://github.com/prinsniels/AdventOfCode2023/blob/main/src/main/scala/solutions/day03.scala) by [Niels Prins](https://github.com/prinsniels)
 
 Share your solution to the Scala community by editing this page. (You can even write the whole article!)
