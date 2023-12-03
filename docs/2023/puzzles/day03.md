@@ -49,10 +49,7 @@ To compute the surrounding elements of some `Symbol` or `Number`, define `surrou
 ```scala
 def surrounds[E <: Element](y: Int, from: Element, rows: IArray[IArray[E]]): List[E] =
   val (x0, y0, x1, y1) = (from.x - 1, y - 1, from.x + from.length, y + 1)
-  val width = x0 to x1
-  def overlaps(e: Element) =
-    val eWidth = e.x to (e.x + e.length - 1)
-    width.min <= eWidth.max && width.max >= eWidth.min
+  def overlaps(e: Element) = x0 <= (e.x + e.length - 1) && x1 >= e.x
   def findUp =
     if y0 < 0 then Nil
     else rows(y0).filter(overlaps).toList
@@ -122,10 +119,7 @@ def parse(input: String): Grid =
 
 def surrounds[E <: Element](y: Int, from: Element, rows: IArray[IArray[E]]): List[E] =
   val (x0, y0, x1, y1) = (from.x - 1, y - 1, from.x + from.length, y + 1)
-  val width = x0 to x1
-  def overlaps(e: Element) =
-    val eWidth = e.x to (e.x + e.length - 1)
-    width.min <= eWidth.max && width.max >= eWidth.min
+  def overlaps(e: Element) = x0 <= (e.x + e.length - 1) && x1 >= e.x
   def findUp =
     if y0 < 0 then Nil
     else rows(y0).filter(overlaps).toList
