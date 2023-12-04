@@ -16,5 +16,6 @@ https://adventofcode.com/2023/day/4
 - [Solution](https://github.com/jnclt/adventofcode2023/blob/main/day04/scratchcards.sc) by [jnclt](https://github.com/jnclt)
 - [Solution](https://github.com/guycastle/advent_of_code_2023/blob/main/src/main/scala/days/day04/DayFour.scala) by [Guillaume Vandecasteele](https://github.com/guycastle)
 - [Solution](https://github.com/mpilquist/aoc/blob/main/2023/day4.sc) by [Michael Pilquist](https://github.com/mpilquist)
+- [Solution](https://git.dtth.ch/nki/aoc2023/src/branch/master/Day4.scala) by [natsukagami](https://github.com/natsukagami)
 
 Share your solution to the Scala community by editing this page. (You can even write the whole article!)
