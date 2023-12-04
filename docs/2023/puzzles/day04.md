@@ -19,5 +19,6 @@ https://adventofcode.com/2023/day/4
 - [Solution](https://git.dtth.ch/nki/aoc2023/src/branch/master/Day4.scala) by [natsukagami](https://github.com/natsukagami)
 - [Solution](https://github.com/kbielefe/advent-of-code/blob/master/2023/src/main/scala/4.scala) by [Karl Bielefeldt](https://github.com/kbielefe)
 - [Solution](https://github.com/GrigoriiBerezin/advent_code_2023/tree/master/task04/src/main/scala) by [g.berezin](https://github.com/GrigoriiBerezin)
+- [Solution](https://github.com/alexandru/advent-of-code/blob/main/scala3/2023/src/main/scala/day4.scala) by [Alexandru Nedelcu](https://github.com/alexandru/)
 
 Share your solution to the Scala community by editing this page. (You can even write the whole article!)
