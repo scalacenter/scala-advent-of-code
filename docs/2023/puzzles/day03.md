@@ -219,6 +219,7 @@ def parseRow(row: String): (IArray[Number], IArray[Symbol]) =
 - [Solution](https://github.com/iusildra/advent-of-code-2023-scala/blob/main/03.worksheet.sc) by [Lucas Nouguier](https://github.com/iusildra)
 - [Solution](https://github.com/nryabykh/aoc2023/blob/master/src/main/scala/Day03.scala) by [Nikolai Riabykh](https://github.com/nryabykh/)
 - [Solution](https://github.com/bxiang/advent-of-code-2023/blob/main/src/main/scala/com/aoc/Solution3.scala) by [Brian Xiang](https://github.com/bxiang)
+- [Solution](https://gist.github.com/CJSmith-0141/347a6ec4fd12dce31892046a827dbbc8) by [CJ Smith](https://github.com/CJSmith-0141)
 - [Solution](https://github.com/alexandru/advent-of-code/blob/main/scala3/2023/src/main/scala/day3.scala) by [Alexandru Nedelcu](https://github.com/alexandru/)
 - [Solution](https://github.com/joeledwards/advent-of-code/blob/master/2023/src/main/scala/com/buzuli/advent/days/day3.scala) by [Joel Edwards](https://github.com/joeledwards)
 - [Solution](https://github.com/guycastle/advent_of_code_2023/blob/main/src/main/scala/days/day03/DayThree.scala) by [Guillaume Vandecasteele](https://github.com/guycastle)
