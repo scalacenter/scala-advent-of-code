@@ -219,5 +219,6 @@ def parseRow(row: String): (IArray[Number], IArray[Symbol]) =
 - [Solution](https://github.com/iusildra/advent-of-code-2023-scala/blob/main/03.worksheet.sc) by [Lucas Nouguier](https://github.com/iusildra)
 - [Solution](https://github.com/nryabykh/aoc2023/blob/master/src/main/scala/Day03.scala) by [Nikolai Riabykh](https://github.com/nryabykh/)
 - [Solution](https://github.com/bxiang/advent-of-code-2023/blob/main/src/main/scala/com/aoc/Solution3.scala) by [Brian Xiang](https://github.com/bxiang)
+- [Solution](https://github.com/alexandru/advent-of-code/blob/main/scala3/2023/src/main/scala/day3.scala) by [Alexandru Nedelcu](https://github.com/alexandru/)
 
 Share your solution to the Scala community by editing this page. (You can even write the whole article!)
