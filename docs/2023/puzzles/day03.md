@@ -220,5 +220,8 @@ def parseRow(row: String): (IArray[Number], IArray[Symbol]) =
 - [Solution](https://github.com/nryabykh/aoc2023/blob/master/src/main/scala/Day03.scala) by [Nikolai Riabykh](https://github.com/nryabykh/)
 - [Solution](https://github.com/bxiang/advent-of-code-2023/blob/main/src/main/scala/com/aoc/Solution3.scala) by [Brian Xiang](https://github.com/bxiang)
 - [Solution](https://github.com/jnclt/adventofcode2023/blob/main/day03/gear-ratios.sc) by [jnclt](https://github.com/jnclt)
+- [Solution](https://github.com/wbillingsley/advent-of-code-2023-scala/blob/star6/solver.scala) by [Will Billingsley](https://github.com/wbillingsley)
+- [Solution](https://github.com/SethTisue/adventofcode/blob/main/2023/src/test/scala/Day03.scala) by [Seth Tisue](https://github.com/SethTisue)
+- [Solution](https://github.com/lenguyenthanh/aoc-2023/blob/main/Day03.scala) by [Thanh Le](https://github.com/lenguyenthanh)
 
 Share your solution to the Scala community by editing this page. (You can even write the whole article!)
