@@ -27,18 +27,17 @@ def countWinning(card: String): Int =
     .substring(card.indexOf(":") + 1)   // discard "Card X:"
     .split(" ")
     .filterNot(_.isEmpty())
-  val separatorIndex = numbers.indexOf("|")
-  val (_winningNumbers, _givenNumbers) = numbers.splitAt(separatorIndex)
-  val winningNumbers = _winningNumbers.map(Integer.parseInt).toSet
+  val (winningNumberStrs, givenNumberStrs) = numbers.span(_ != "|")
+  val winningNumbers = winningNumberStrs.map(_.toInt).toSet
   // drop the initial "|"
-  val givenNumbers = _givenNumbers.drop(1).map(Integer.parseInt).toSet
+  val givenNumbers = givenNumberStrs.drop(1).map(_.toInt).toSet
   winningNumbers.intersect(givenNumbers).size
 
 def part1(input: String): String =
   input.linesIterator
     .map{ line =>
       val winning = countWinning(line)
-      if winning > 0 then Math.pow(2, winning - 1).toLong else 0
+      if winning > 0 then Math.pow(2, winning - 1).toInt else 0
     }
     .sum.toString()
 end part1
