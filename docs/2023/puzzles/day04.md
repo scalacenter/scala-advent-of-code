@@ -211,6 +211,7 @@ end part2
 - [Solution](https://gist.github.com/CJSmith-0141/11981323258a79e497539639763777e4) by [CJ Smith](https://github.com/CJSmith-0141/)
 - [Solution](https://github.com/bishabosha/advent-of-code-2023/blob/main/2023-day04.scala) by [Jamie Thompson](https://github.com/bishabosha)
 - [Solution](https://github.com/SethTisue/adventofcode/blob/main/2023/src/test/scala/Day04.scala) by [Seth Tisue](https://github.com/SethTisue/)
+<<<<<<< HEAD
 - [Solution](https://github.com/marconilanna/advent-of-code/blob/master/2023/Day04.scala) by [Marconi Lanna](https://github.com/marconilanna)
 - [Solution](https://github.com/Jannyboy11/AdventOfCode2023/blob/master/src/main/scala/day04/Day04.scala) of [Jan Boerman](https://twitter.com/JanBoerman95).
 - [Solution](https://github.com/wbillingsley/advent-of-code-2023-scala/blob/star8b/solver.scala) by [Will Billingsley](https://github.com/wbillingsley)
