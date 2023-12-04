@@ -60,17 +60,15 @@ def winningCounts(input: String): Iterator[Int] =
 ```scala
 def part1(input: String): String =
   winningCounts(input)
-```
-
-The next line is the core logic for this part.
-
-```scala
     .map(winning => if winning > 0 then Math.pow(2, winning - 1).toInt else 0)
     .sum.toString()
 end part1
 ```
 
 ### Part 2
+
+(This solution is presented in literate programming style with explanations
+interspersed with lines of code.)
 
 ```scala
 def part2(input: String): String =
