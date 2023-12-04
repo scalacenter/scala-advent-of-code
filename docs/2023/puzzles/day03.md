@@ -26,7 +26,7 @@ The solution models the input as a grid of numbers and symbols.
        4. Sum the resulting products
      - a symbol is adjacent to a number (and vice-versa) if that symbol is inside the number's bounding box on the grid at 1 unit away (see manhattan distance)
 
-### Framework
+### Global
 
 We want a convenient way to represent a coordinate to be able to compute whether one element is within the bounding box of another.
 
@@ -54,9 +54,9 @@ Then we need to parse the input to get every `Symbol` and `Number`:
 object IsInt:
   def unapply(in: Match): Option[Int] = in.matched.toIntOption
 
-def findPartsAndSymbols() =
+def findPartsAndSymbols(source: String) =
   val extractor = """(\d+)|[^.\d]""".r
-  source.zipWithIndex.flatMap: (line, i) =>
+  source.split("\n").zipWithIndex.flatMap: (line, i) =>
     extractor
       .findAllMatchIn(line)
       .map:
@@ -88,8 +88,8 @@ Compute `part1` as described above:
   4. Sum the resulting values
 
 ```scala
-def part1 =
-  val all = findPartsAndSymbols()
+def part1(input: String) =
+  val all = findPartsAndSymbols(input)
   val symbols = all.collect { case s: Symbol => s }
   all
     .collect:
@@ -106,6 +106,8 @@ We might want to represent a `Gear` to facilitate the computation of the gear ra
 case class Gear(part: PartNumber, symbol: Symbol)
 ```
 
+*(Note: a case class is not necessary here, a tuple would do the job)*
+
 Compute `part2` as described above:
   
  1. Find all `numbers` and `symbols` in the grid
@@ -118,8 +120,8 @@ Compute `part2` as described above:
  6. For each entry remaining, take the product of its two number values and sum the resulting products
   
 ```scala
-def part2 =
-  val all = findPartsAndSymbols()
+def part2(input: String) =
+  val all = findPartsAndSymbols(input)
   val symbols = all.collect { case s: Symbol => s }
   all
     .flatMap:
@@ -137,17 +139,6 @@ def part2 =
 ## Final code
 
 ```scala
-import scala.util.matching.Regex.Match
-import java.nio.file.Path
-import java.nio.file.Files
-import scala.jdk.CollectionConverters.*
-
-val source = Files
-  .readAllLines:
-    Path.of:
-      "your path to the input file"
-  .asScala
-
 case class Coord(x: Int, y: Int):
   def within(start: Coord, end: Coord) =
     if y < start.y || y > end.y then false
@@ -163,9 +154,9 @@ case class Symbol(sym: String, pos: Coord):
 object IsInt:
   def unapply(in: Match): Option[Int] = in.matched.toIntOption
 
-def findPartsAndSymbols() =
+def findPartsAndSymbols(source: String) =
   val extractor = """(\d+)|[^.\d]""".r
-  source.zipWithIndex.flatMap: (line, i) =>
+  source.split("\n").zipWithIndex.flatMap: (line, i) =>
     extractor
       .findAllMatchIn(line)
       .map:
@@ -173,8 +164,8 @@ def findPartsAndSymbols() =
           PartNumber(nb, Coord(m.start, i), Coord(m.end - 1, i))
         case s => Symbol(s.matched, Coord(s.start, i))
 
-def part1 =
-  val all = findPartsAndSymbols()
+def part1(input: String) =
+  val all = findPartsAndSymbols(input)
   val symbols = all.collect { case s: Symbol => s }
   all
     .collect:
@@ -184,8 +175,8 @@ def part1 =
 
 case class Gear(part: PartNumber, symbol: Symbol)
 
-def part2 =
-  val all = findPartsAndSymbols()
+def part2(input: String) =
+  val all = findPartsAndSymbols(input)
   val symbols = all.collect { case s: Symbol => s }
   all
     .flatMap:
