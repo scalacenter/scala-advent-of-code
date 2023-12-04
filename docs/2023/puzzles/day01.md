@@ -218,5 +218,6 @@ end part2
 - [Solution](https://github.com/joeledwards/advent-of-code/blob/master/2023/src/main/scala/com/buzuli/advent/days/day1.scala) by [Joel Edwards](https://github.com/joeledwards)
 - [Solution](https://github.com/wbillingsley/advent-of-code-2023-scala/blob/star2/solver.scala) by [Will Billingsley](https://github.com/wbillingsley)
 - [Solution](https://github.com/mpilquist/aoc/blob/main/2023/day1.sc) by [Michael Pilquist](https://github.com/mpilquist)
+- [Solution](https://github.com/GrigoriiBerezin/advent_code_2023/tree/master/task01/src/main/scala) by [g.berezin](https://github.com/GrigoriiBerezin)
 
 Share your solution to the Scala community by editing this page.
