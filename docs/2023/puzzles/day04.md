@@ -192,5 +192,6 @@ end part2
 - [Solution](https://github.com/kbielefe/advent-of-code/blob/master/2023/src/main/scala/4.scala) by [Karl Bielefeldt](https://github.com/kbielefe)
 - [Solution](https://github.com/GrigoriiBerezin/advent_code_2023/tree/master/task04/src/main/scala) by [g.berezin](https://github.com/GrigoriiBerezin)
 - [Solution](https://github.com/alexandru/advent-of-code/blob/main/scala3/2023/src/main/scala/day4.scala) by [Alexandru Nedelcu](https://github.com/alexandru/)
+- [Solution](https://github.com/bishabosha/advent-of-code-2023/blob/main/2023-day04.scala) by [Jamie Thompson](https://github.com/bishabosha)
 
 Share your solution to the Scala community by editing this page. (You can even write the whole article!)
