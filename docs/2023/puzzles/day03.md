@@ -50,7 +50,10 @@ case class Symbol(sym: String, pos: Coord):
 ```
 
 Then we need to parse the input to get every `Symbol` and `Number`:
+
 ```scala
+import scala.util.matching.Regex.Match
+
 object IsInt:
   def unapply(in: Match): Option[Int] = in.matched.toIntOption
 
