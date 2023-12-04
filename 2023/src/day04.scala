@@ -32,23 +32,24 @@ def countWinning(card: String): Int =
   // drop the initial "|"
   val givenNumbers = givenNumberStrs.drop(1).map(_.toInt).toSet
   winningNumbers.intersect(givenNumbers).size
+end countWinning
+
+def winningCounts(input: String): Iterator[Int] =
+  input.linesIterator.map(countWinning)
+end winningCounts
 
 def part1(input: String): String =
-  input.linesIterator
-    .map{ line =>
-      val winning = countWinning(line)
-      if winning > 0 then Math.pow(2, winning - 1).toInt else 0
-    }
+  winningCounts(input)
+    .map(winning => if winning > 0 then Math.pow(2, winning - 1).toInt else 0)
     .sum.toString()
 end part1
 
 def part2(input: String): String =
-  input.linesIterator
+  winningCounts(input)
     // we only track the multiplicities of the next few cards as needed, not all of them;
-    // and the first element always exists, and corresponds to the current `line`;
+    // and the first element always exists, and corresponds to the current card;
     // and the elements are always positive (because there is at least 1 original copy of each card)
-    .foldLeft((0, Vector(1))){ case ((numCards, multiplicities), line) =>
-      val winning = countWinning(line)
+    .foldLeft((0, Vector(1))){ case ((numCards, multiplicities), winning) =>
       val thisMult = multiplicities(0)
       val restMult = multiplicities
         .drop(1)
