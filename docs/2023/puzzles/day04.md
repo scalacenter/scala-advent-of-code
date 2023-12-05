@@ -63,7 +63,9 @@ end winningCounts
 ```scala
 def part1(input: String): String =
   winningCounts(input)
-    .map(winning => if winning > 0 then Math.pow(2, winning - 1).toInt else 0)
+    .map(winning =>
+      if winning > 0 then Math.pow(2, winning - 1).toInt
+      else 0)
     .sum.toString()
 end part1
 ```
@@ -84,21 +86,22 @@ cards we've won *relative to the current index* (e.g. "3 copies of the
 next-to-next card"). This is the `Vector` in the accumulator of our fold.
 
 ```scala
-    .foldLeft((0, Vector(1))){ case ((numCards, multiplicities), winning) =>
+    .foldLeft((0, Vector(1))) {
+      case ((numCards, multiplicities), winning) =>
 ```
 
 In each iteration, we remove its first element, i.e. the multiplicity of the
 current card...
 
 ```scala
-      val thisMult = multiplicities(0)
+        val thisMult = multiplicities(0)
 ```
 
 ... and carry forward the rest:
 
 ```scala
-      val restMult = multiplicities
-        .drop(1)
+        val restMult = multiplicities
+          .drop(1)
 ```
 
 If we just won no new cards, then we extend the vector by a single `1` for the 1
@@ -107,16 +110,17 @@ extend the vector by as many elements as required to keep track of the cards we
 just won.
 
 ```scala
-        .padTo(Math.max(1, winning), 1)
+          .padTo(Math.max(1, winning), 1)
 ```
 
 Remember that we win a copy of a later card for every copy we'd already won of
 the current card.
 
 ```scala
-        .zipWithIndex
-        .map((mult, idx) => if idx < winning then mult + thisMult else mult)
-      (numCards + thisMult, restMult)
+          .zipWithIndex
+          .map((mult, idx) =>
+            if idx < winning then mult + thisMult else mult)
+        (numCards + thisMult, restMult)
     }
     ._1.toString()
 end part2
@@ -158,7 +162,9 @@ end winningCounts
 
 def part1(input: String): String =
   winningCounts(input)
-    .map(winning => if winning > 0 then Math.pow(2, winning - 1).toInt else 0)
+    .map(winning =>
+      if winning > 0 then Math.pow(2, winning - 1).toInt
+      else 0)
     .sum.toString()
 end part1
 
@@ -167,16 +173,18 @@ def part2(input: String): String =
     // we only track the multiplicities of the next few cards as needed, not all of them;
     // and the first element always exists, and corresponds to the current card;
     // and the elements are always positive (because there is at least 1 original copy of each card)
-    .foldLeft((0, Vector(1))){ case ((numCards, multiplicities), winning) =>
-      val thisMult = multiplicities(0)
-      val restMult = multiplicities
-        .drop(1)
-        // these are the original copies of the next few cards
-        .padTo(Math.max(1, winning), 1)
-        .zipWithIndex
-        // these are the extra copies we just won
-        .map((mult, idx) => if idx < winning then mult + thisMult else mult)
-      (numCards + thisMult, restMult)
+    .foldLeft((0, Vector(1))) {
+      case ((numCards, multiplicities), winning) =>
+        val thisMult = multiplicities(0)
+        val restMult = multiplicities
+          .drop(1)
+          // these are the original copies of the next few cards
+          .padTo(Math.max(1, winning), 1)
+          .zipWithIndex
+          // these are the extra copies we just won
+          .map((mult, idx) =>
+            if idx < winning then mult + thisMult else mult)
+        (numCards + thisMult, restMult)
     }
     ._1.toString()
 end part2

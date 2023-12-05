@@ -30,13 +30,28 @@ html footer {
   padding: 0 var(--ifm-pre-padding);
 }
 
+/* Code block on top of a literate coding paragraph */
 /* .markdown div[class*='language-']:has( + p.literate-coding) {
   border-bottom-right-radius: 0%;
   border-bottom-left-radius: 0%;
   box-shadow: none !important;
-  .codeBlockLines_node_modules-\@docusaurus-theme-classic-lib-theme-CodeBlock-Content-styles-module {
-    padding-bottom: 5px !important;
-  }
+  --ifm-pre-padding: 16px 16px 5px 16px !important;
+} */
+
+/* Code block on bottom of a literate coding paragraph */
+/* .markdown p.literate-coding+div[class*='language-'] {
+  border-top-right-radius: 0%;
+  border-top-left-radius: 0%;
+  box-shadow: none !important;
+  --ifm-pre-padding: 5px 16px 16px 16px !important;
+} */
+
+/* Code block between two literate coding paragraphs */
+/* .markdown p.literate-coding+div[class*='language-']:has(+ p.literate-coding) {
+  border-top-right-radius: 0%;
+  border-top-left-radius: 0%;
+  box-shadow: none !important;
+  --ifm-pre-padding: 5px 16px 5px 16px !important;
 } */
 
 .markdown p.literate-coding {
@@ -58,15 +73,6 @@ html[data-theme='dark'] .markdown p.literate-coding {
   border-bottom: rgb(59, 65, 80) 1px solid;
   border-top: rgb(59, 65, 80) 1px solid;
 }
-
-/* .markdown p.literate-coding + div[class*='language-'] {
-  border-top-right-radius: 0%;
-  border-top-left-radius: 0%;
-  box-shadow: none !important;
-  div > pre > code[class*='codeBlockLines'] {
-    padding-top: 5px !important;
-  }
-} */
 
 html[data-theme='dark'] .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.3);
