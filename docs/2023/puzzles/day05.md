@@ -8,4 +8,4 @@ https://adventofcode.com/2023/day/5
 
 ## Solutions from the community
 
-Share your solution to the Scala community by editing this page. (You can even write the whole article!)
+* [Solution](https://github.com/RemcoSchrijver/advent-of-code) by [Remco Schrijver](https://github.com/RemcoSchrijver)
