@@ -182,6 +182,16 @@ def part2(input: String): String =
 end part2
 ```
 
+### Run it in the browser
+
+#### Part 1
+
+<Solver puzzle="day04-part1" year="2023"/>
+
+#### Part 2
+
+<Solver puzzle="day04-part2" year="2023"/>
+
 ## Solutions from the community
 
 - [Solution](https://github.com/spamegg1/advent-of-code-2023-scala/blob/solutions/04.worksheet.sc#L116) by [Spamegg](https://github.com/spamegg1)
