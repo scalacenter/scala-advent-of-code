@@ -124,5 +124,10 @@ end part2
 ## Solutions from the community
 - [Solution](https://github.com/spamegg1/advent-of-code-2023-scala/blob/solutions/06.worksheet.sc#L112) by [Spamegg](https://github.com/spamegg1/)
 - [Solution](https://github.com/GrigoriiBerezin/advent_code_2023/tree/master/task06/src/main/scala) by [g.berezin](https://github.com/GrigoriiBerezin)
+- [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2023/Day06.scala) by [Philippus Baalman](https://github.com/philippus)
+- [Solution](https://github.com/lenguyenthanh/aoc-2023/blob/main/Day06.scala) by [Thanh Le](https://github.com/lenguyenthanh)
+- [Solution](https://github.com/mpilquist/aoc/blob/main/2023/day6.sc) by [Michael Pilquist](https://github.com/mpilquist)
+- [Solution (brute-force)](https://github.com/alexandru/advent-of-code/blob/main/scala3/2023/src/main/scala/day6.scala) by [Alexandru Nedelcu](https://github.com/alexandru)
+- [Solution (using math)](https://github.com/radu-n-andrei/advent-2023/blob/main/src/main/scala/day6/Boats.scala) by [Radu Andrei](https://github.com/radu-n-andrei)
 
 Share your solution to the Scala community by editing this page. (You can even write the whole article!)
