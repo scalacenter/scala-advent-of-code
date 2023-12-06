@@ -352,6 +352,7 @@ def part2(input: String): Long =
 
 - [Solution](https://github.com/alexandru/advent-of-code/blob/main/scala3/2023/src/main/scala/day5.scala) by [Alexandru Nedelcu](https://github.com/alexandru/)
 - [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2023/day5/Day5.scala) by [Philippus Baalman](https://github.com/philippus)
+- [Solution](https://github.com/lenguyenthanh/aoc-2023/blob/main/Day05.scala) by [Thanh Le](https://github.com/lenguyenthanh)
 - [Solution](https://github.com/mpilquist/aoc/blob/main/2023/day5.sc) by [Michael Pilquist](https://github.com/mpilquist)
 - [Solution](https://github.com/spamegg1/advent-of-code-2023-scala/blob/solutions/05.worksheet.sc#L164) by [Spamegg](https://github.com/spamegg1)
 - [Solution](https://github.com/kbielefe/advent-of-code/blob/71476c0b5509b9ae1c05a0b74665dba0c7f29dc2/2023/src/main/scala/5.scala) by [Karl Bielefeldt](https://github.com/kbielefe/)
