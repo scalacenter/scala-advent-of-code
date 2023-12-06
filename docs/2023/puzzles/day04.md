@@ -1,4 +1,5 @@
 import Solver from "../../../../../website/src/components/Solver.js"
+import Literate from "../../../../../website/src/components/Literate.js"
 
 # Day 4: Scratchcards
 
@@ -21,12 +22,12 @@ current card; and (2) the number of copies of cards to be processed, i.e. thei
 
 ### Count number of winning numbers
 
+<Literate>
+
 ```scala
 def countWinning(card: String): Int =
 ```
-
 Most of this function is string manipulation:
-
 ```scala
   val numbers = card
     .substring(card.indexOf(":") + 1)   // discard "Card X:"
@@ -37,7 +38,6 @@ Most of this function is string manipulation:
   // drop the initial "|"
   val givenNumbers = givenNumberStrs.drop(1).map(_.toInt).toSet
 ```
-
 Although this is not specified in the puzzle description, it seems like a number
 can appear at most once in the list of winning numbers as well as in the given
 numbers, so it is valid to perform `toSet` and the final counting step, which is
@@ -48,11 +48,14 @@ what we return:
 end countWinning
 ```
 
+</Literate>
+
 Lastly, the standard library conveniently gives us an iterator over lines.
 
 ```scala
 def winningCounts(input: String): Iterator[Int] =
   input.linesIterator.map(countWinning)
+end winningCounts
 ```
 
 ### Part 1
@@ -67,8 +70,7 @@ end part1
 
 ### Part 2
 
-(This solution is presented in literate programming style with explanations
-interspersed with lines of code.)
+<Literate>
 
 ```scala
 def part2(input: String): String =
@@ -119,6 +121,8 @@ the current card.
     ._1.toString()
 end part2
 ```
+
+</Literate>
 
 Throughout the iteration, the vector satisfies the following invariants:
 * It has at least one element.
@@ -177,6 +181,17 @@ def part2(input: String): String =
     ._1.toString()
 end part2
 ```
+
+### Run it in the browser
+
+#### Part 1
+
+<Solver puzzle="day04-part1" year="2023"/>
+
+#### Part 2
+
+<Solver puzzle="day04-part2" year="2023"/>
+
 ## Solutions from the community
 
 - [Solution](https://github.com/spamegg1/advent-of-code-2023-scala/blob/solutions/04.worksheet.sc#L116) by [Spamegg](https://github.com/spamegg1)
