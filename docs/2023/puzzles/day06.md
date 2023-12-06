@@ -122,6 +122,7 @@ end part2
 
 
 ## Solutions from the community
-[Solution](https://github.com/spamegg1/advent-of-code-2023-scala/blob/solutions/06.worksheet.sc#L112) by [Spamegg](https://github.com/spamegg1/)
+- [Solution](https://github.com/spamegg1/advent-of-code-2023-scala/blob/solutions/06.worksheet.sc#L112) by [Spamegg](https://github.com/spamegg1/)
+- [Solution](https://github.com/mpilquist/aoc/blob/main/2023/day6.sc) by [Michael Pilquist](https://github.com/mpilquist)
 
 Share your solution to the Scala community by editing this page. (You can even write the whole article!)
