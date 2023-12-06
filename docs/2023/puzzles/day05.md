@@ -2,7 +2,7 @@ import Solver from "../../../../../website/src/components/Solver.js"
 
 # Day 5: If You Give A Seed A Fertilizer
 
-by [@g.berezin](https://github.com/GrigoriiBerezin)
+by [@g.berezin](https://github.com/GrigoriiBerezin) and [@bishabosha](https://github.com/bishabosha)
 
 ## Puzzle description
 
@@ -10,176 +10,342 @@ https://adventofcode.com/2023/day/5
 
 ## Solution summary
 
+
+### Data Structures
 First and foremost, the data must be parsed from the file into the following classes:
-- ```final case class Resource(start: Long, end: Long, `type`: DestinationEnum)``` the source resource in the second task, in the first one you can use the same model but set `end = 0`
-- I used the following enumeration for storing the type of resource:
-```scala
-enum DestinationEnum:
-  case Seed, Soil, Fertilizer, Water, Light, Temperature, Humidity, Location
-```
-- ```final case class ResourceMap(from: DestinationEnum, to: DestinationEnum, properties: Seq[Property])``` and ```final case class Property(destinationStart: Long, sourceStart: Long, rangeLength: Long):
-  lazy val sourceEnd: Long = sourceStart + rangeLength - 1``` for storing data about converting from one resource type to another
 
-In the second half of the solution, you can do a full iteration, like you can do in first half, but this is very long,
-considering the number of Seeds in the input data, so you should manipulate the models in the form of intervals,
-dividing each Seeds interval into semi-intervals depending on the data in `properties`
+- A data structure representing the pairing of a resource kind and the range it occupies:
 ```scala
-def calculate(seeds: Seq[Resource], maps: Seq[ResourceMap]): Long = // for the first part
-  @tailrec
-  def inner(resource: Resource): Resource = maps.find(_.from == resource.`type`) match {
-    case Some(map) => map.findDestinationResource(resource) match {
-      case _ if resource.`type` == DestinationEnum.Location => resource
-      case Seq(newResource) => inner(newResource)
-      case Seq() => resource
-    }
-    case None => resource
-  }
-  seeds.map(inner).map(_.start).min
-
-def calculate(seeds: Seq[Resource], maps: Seq[ResourceMap]): Long = // for the second part
-  def inner(resource: Resource): Seq[Resource] =
-    maps.find(_.from == resource.`type`) match {
-      case Some(map) => map.findDestinationResource(resource).flatMap {
-        case _ if resource.`type` == DestinationEnum.Location => Seq(resource)
-        case newResource => inner(newResource)
-      }
-      case None => Seq(resource)
-    }
-  seeds.flatMap(inner).minBy(_.start).start
-```
-Remember to consider cases when the resource interval does not fall within the `property`
-interval or only partially falls in, in such cases we just change the resource type, leaving the values
-```scala
-def findDestinationResource(resource: Resource): Seq[Resource] =
-  val sortedProperties = properties.sortBy(_.sourceStart)
-  val (newResources, leftResource) = sortedProperties.foldLeft[(Seq[Resource], Option[Resource])]((Seq.empty[Resource], Some(resource))) {
-    case ((acc, Some(leftResource)), prop) =>
-      val underRange = Option.when(leftResource.start < prop.sourceStart)(Resource(leftResource.start, Math.min(prop.sourceStart - 1, leftResource.end), to))
-      val inRange = Option.when(leftResource.start >= prop.sourceStart && leftResource.start <= prop.sourceEnd ||
-        leftResource.end >= prop.sourceStart && leftResource.end <= prop.sourceEnd ||
-        leftResource.start <= prop.sourceStart && leftResource.end >= prop.sourceEnd) {
-        val delay = prop.destinationStart - prop.sourceStart
-        Resource(Math.max(leftResource.start, prop.sourceStart) + delay, Math.min(leftResource.end, prop.sourceEnd) + delay, to)
-      }
-      val aboveRange = Option.when(leftResource.end > prop.sourceEnd)(Resource(Math.max(leftResource.start, prop.sourceEnd + 1), leftResource.end, to))
-      (Seq(underRange, inRange, acc).flatten, aboveRange)
-    case ((acc, None), _) => (acc, None)
-  }
-  Seq(newResources, leftResource).flatten
+// in the first task you can use the same model but set `end = start`
+final case class Resource(
+  start: Long, end: Long, kind: ResourceKind)
 ```
 
-The full code solution:
+- An enumeration for storing the kind of resource:
 ```scala
-import scala.annotation.tailrec
+enum ResourceKind:
+  case Seed, Soil, Fertilizer, Water,
+    Light, Temperature, Humidity, Location
+```
+- A schema for converting from one resource type to another:
+```scala
+final case class ResourceMap(
+  from: ResourceKind,
+  to: ResourceKind,
+  properties: Seq[Property] // sorted by `sourceStart`
+)
 
-enum DestinationEnum:
-  case Seed, Soil, Fertilizer, Water, Light, Temperature, Humidity, Location
+final case class Property(
+    destinationStart: Long,
+    sourceStart: Long,
+    rangeLength: Long
+  ):
 
-final case class Property(destinationStart: Long, sourceStart: Long, rangeLength: Long):
   lazy val sourceEnd: Long = sourceStart + rangeLength - 1
+end Property
+```
 
-final case class ResourceMap(from: DestinationEnum, to: DestinationEnum, properties: Seq[Property]) {
-  def findDestinationResource(resource: Resource): Seq[Resource] =
-    val sortedProperties = properties.sortBy(_.sourceStart)
-    val (newResources, leftResource) = sortedProperties.foldLeft[(Seq[Resource], Option[Resource])]((Seq.empty[Resource], Some(resource))) {
-      case ((acc, Some(leftResource)), prop) =>
-        val underRange = Option.when(leftResource.start < prop.sourceStart)(Resource(leftResource.start, Math.min(prop.sourceStart - 1, leftResource.end), to))
-        val inRange = Option.when(leftResource.start >= prop.sourceStart && leftResource.start <= prop.sourceEnd ||
-          leftResource.end >= prop.sourceStart && leftResource.end <= prop.sourceEnd ||
-          leftResource.start <= prop.sourceStart && leftResource.end >= prop.sourceEnd) {
-          val delay = prop.destinationStart - prop.sourceStart
-          Resource(Math.max(leftResource.start, prop.sourceStart) + delay, Math.min(leftResource.end, prop.sourceEnd) + delay, to)
+### Parts 1 and 2
+
+It helps to consider parts 1 and 2 together when explaining the solution.
+In part 1, you are required to convert each `Seed` to a `Location`, using a chain of `ResourceMap`.
+In most inputs you likely have about 20 seeds to consider, so this is not an expensive operation.
+However in the second half of the solution, you must actually consider 10 ranges of seeds, where each range can be billions of elements long, so it is not practical to consider individual seeds.
+
+Considering the number of seeds in the input data, so you should manipulate the resources in the form of intervals, and when passing through the `properties` of a `ResourceMap`, you divide an input resource interval into semi-intervals depending on how the interval intersects with an individual `Property`.
+
+Conveniently for part 1, a single seed can be considered as an interval with one element, so we can reuse the same code for both parts.
+
+```scala
+type ParseSeeds = String => Seq[Resource]
+
+def calculate(seeds: Seq[Resource], maps: Seq[ResourceMap]): Long = ???
+
+def solution(input: String, parse: ParseSeeds): Long =
+  val lines = input.linesIterator.toSeq
+  val seeds = lines.headOption.map(parse).getOrElse(Seq.empty)
+  val maps = ResourceMap.buildFromLines(lines)
+  calculate(seeds, maps)
+
+def part1(input: String): Long =
+  solution(input, Seeds.parseWithoutRange)
+
+def part2(input: String): Long =
+  solution(input, Seeds.parse)
+```
+
+The calculation proceeds as follows, iterate through the initial seeds,
+and for each seed interval (typed as `Resource`), iterate, passing the interval through the
+resource map for its `kind`, potentially splitting into several new intervals.
+If after an iteration the resource is a `Location`, then stop.
+
+Once all the valid location intervals are found, find the interval with the smallest `start`
+and return it as the answer:
+
+```scala
+def calculate(seeds: Seq[Resource], maps: Seq[ResourceMap]): Long =
+  def inner(resource: Resource): Seq[Resource] =
+    if resource.kind == ResourceKind.Location then
+      Seq(resource) // We have reached the end!
+    else
+      val map = maps.find(_.from == resource.kind).get
+      findNext(resource, map).flatMap(inner)
+  seeds.flatMap(inner).minBy(_.start).start
+end calculate
+```
+
+The next interesting calculation is sending an individual `Resource` interval through a `ResourceMap`.
+In our representation, the `properties` are sorted by their `sourceStart`.
+From an initial interval, we can then iterate through the `properties`, attempting to
+find any sub-interval that overlaps with its range.
+
+There is a special case for the first property - the interval might actually be `under` the range,
+i.e. some part of it is before the initial property. In this case we should create a new sub-interval
+that just before the `sourceStart` that is sent directly to the next resource kind.
+
+There may be overlap with the property, in this case, we need to create a sub-interval of
+just the intersection with that property, and convert the start to the appropriate offset from the
+`destinationStart`.
+
+Often, there is part of the interval that is `above` the end of the current property range.
+In this case we must make a new sub-interval that begins after the end of the property range.
+
+If we do find an `above` sub-interval, then we need to check that against the next `Property`.
+Otherwise then we can shortcut the computation and not check any of the following properties.
+
+```scala
+def findNext(resource: Resource, map: ResourceMap): Seq[Resource] =
+  val ResourceMap(from, to, properties) = map
+  val (newResources, explore) =
+    val initial = (Seq.empty[Resource], Option(resource))
+    properties.foldLeft(initial) {
+      case ((acc, Some(explore)), prop) =>
+        val Resource(start, end, _) = explore
+        val propStart = prop.sourceStart
+        val propEnd = prop.sourceEnd
+        val underRange = Option.when(start < propStart)(
+          Resource(start, Math.min(propStart - 1, end), to)
+        )
+        val overlaps =
+          start >= propStart && start <= propEnd
+          || end >= propStart && end <= propEnd
+          || start <= propStart && end >= propEnd
+        val inRange = Option.when(overlaps) {
+          val delay = prop.destinationStart - propStart
+          Resource(
+            Math.max(start, propStart) + delay,
+            Math.min(end, propEnd) + delay,
+            to
+          )
         }
-        val aboveRange = Option.when(leftResource.end > prop.sourceEnd)(Resource(Math.max(leftResource.start, prop.sourceEnd + 1), leftResource.end, to))
+        val aboveRange = Option.when(end > propEnd)(
+          Resource(Math.max(start, propEnd + 1), end, to)
+        )
         (Seq(underRange, inRange, acc).flatten, aboveRange)
       case ((acc, None), _) => (acc, None)
     }
-    Seq(newResources, leftResource).flatten
-}
+  Seq(newResources, explore).flatten
+end findNext
+```
 
+### Parsing
+
+In this section we list the code to parse the input into `ResourceMap` and `Resource`.
+
+```scala
 object ResourceMap:
-  def buildFromLines(lines: Seq[String]): Seq[ResourceMap] = // parse resource maps from lines
-    lines.filter(line => (line.endsWith("map:") || line.forall(ch => ch.isDigit || ch.isSpaceChar)) && !line.isBlank)
-      .foldLeft(Seq.empty[(String, Seq[String])]) {
-        case (acc, line) if line.endsWith("map:") => (line, Seq.empty) +: acc
-        case (Seq((definition, properties), last@_*), line) => (definition, line +: properties) +: last
-      }
-      .flatMap {
-        case (definition, properties) => build(definition, properties)
-      }
-
-  def build(definitionLine: String, propertyLines: Seq[String]): Option[ResourceMap] =
-    val destinationRow = definitionLine.replace("map:", "").trim.split("-to-")
-    val properties = propertyLines.map(line => line.split(" ").flatMap(_.toLongOption)).collect {
-      case Array(startFrom, startTo, range) => Property(startFrom, startTo, range)
+  // parse resource maps from lines
+  def buildFromLines(lines: Seq[String]): Seq[ResourceMap] =
+    def isRangeLine(line: String) =
+      line.forall(ch => ch.isDigit || ch.isSpaceChar)
+    lines.filter(line =>
+      !line.isBlank &&
+      (line.endsWith("map:") || isRangeLine(line))
+    ).foldLeft(Seq.empty[(String, Seq[String])]) {
+      case (acc, line) if line.endsWith("map:") =>
+        (line, Seq.empty) +: acc
+      case (Seq((definition, properties), last*), line) =>
+        (definition, line +: properties) +: last
     }
-    for {
-      from <- destinationRow.headOption.map(str => DestinationEnum.valueOf(str.capitalize))
-      to <- destinationRow.lastOption.map(str => DestinationEnum.valueOf(str.capitalize))
-    } yield ResourceMap(from, to, properties)
+    .flatMap(build)
 
-final case class Resource(start: Long, end: Long, `type`: DestinationEnum)
+  def build(map: String, ranges: Seq[String]): Option[ResourceMap] =
+    val mapRow = map.replace("map:", "").trim.split("-to-")
+    val properties = ranges
+      .map(line => line.split(" ").flatMap(_.toLongOption))
+      .collect:
+        case Array(startFrom, startTo, range) =>
+          Property(startFrom, startTo, range)
+    def resourceKindOf(optStr: Option[String]) =
+      optStr.map(_.capitalize).map(ResourceKind.valueOf)
+    for
+      from <- resourceKindOf(mapRow.headOption)
+      to <- resourceKindOf(mapRow.lastOption)
+    yield
+      ResourceMap(from, to, properties.sortBy(_.sourceStart))
+end ResourceMap
 
-object Resource:
-  def parseSeedsWithoutRange(line: String): Seq[Resource] = // parse seeds without range
-    if (!line.startsWith("seeds:")) Seq.empty[Resource]
-    else {
-      line.replace("seeds:", "")
-        .trim
-        .split(" ")
-        .flatMap(_.toLongOption.map(start => Resource(start, start, DestinationEnum.Seed)))
-    }
-
-  def parseSeeds(line: String): Seq[Resource] = // parse seeds with range
-    if !line.startsWith("seeds:") then
-      Seq.empty[Resource]
+object Seeds:
+  private def parseSeedsRaw(line: String): Seq[Long] =
+    if !line.startsWith("seeds:") then Seq.empty[Long]
     else
       line.replace("seeds:", "")
         .trim
         .split(" ")
         .flatMap(_.toLongOption)
-        .grouped(2)
-        .map { case Array(start, range) => Resource(start, start + range - 1, DestinationEnum.Seed) }
-        .toSeq
 
-def part1(input: String): Long = // for the first part
-  def calculate(seeds: Seq[Resource], maps: Seq[ResourceMap]): Long =
-    @tailrec
-    def inner(resource: Resource): Resource = maps.find(_.from == resource.`type`) match {
-      case Some(map) => map.findDestinationResource(resource) match {
-        case _ if resource.`type` == DestinationEnum.Location => resource
-        case Seq(newResource) => inner(newResource)
-        case Seq() => resource
+  // parse seeds without range
+  def parseWithoutRange(line: String): Seq[Resource] =
+    parseSeedsRaw(line).map: start =>
+      Resource(start, start, ResourceKind.Seed)
+
+  // parse seeds with range
+  def parse(line: String): Seq[Resource] =
+    parseSeedsRaw(line)
+      .grouped(2)
+      .map { case Seq(start, length) =>
+        Resource(start, start + length - 1, ResourceKind.Seed)
       }
-      case None => resource
-    }
+      .toSeq
+end Seeds
+```
 
-    seeds.map(inner).map(_.start).min
+## Final Code
+```scala
+final case class Resource(
+  start: Long, end: Long, kind: ResourceKind)
 
-  val lines = input.linesIterator.toSeq
-  val seeds = lines.headOption.map(Resource.parseSeedsWithoutRange).getOrElse(Seq.empty)
-  val maps = ResourceMap.buildFromLines(lines)
+enum ResourceKind:
+  case Seed, Soil, Fertilizer, Water,
+    Light, Temperature, Humidity, Location
 
-  calculate(seeds, maps)
+final case class ResourceMap(
+  from: ResourceKind,
+  to: ResourceKind,
+  properties: Seq[Property]
+)
 
-def part2(input: String): Long = // for the second part
-  def calculate(seeds: Seq[Resource], maps: Seq[ResourceMap]): Long =
-    def inner(resource: Resource): Seq[Resource] =
-      maps.find(_.from == resource.`type`) match {
-        case Some(map) => map.findDestinationResource(resource).flatMap {
-          case _ if resource.`type` == DestinationEnum.Location => Seq(resource)
-          case newResource => inner(newResource)
+final case class Property(
+    destinationStart: Long,
+    sourceStart: Long,
+    rangeLength: Long
+  ):
+
+  lazy val sourceEnd: Long = sourceStart + rangeLength - 1
+end Property
+
+def findNext(resource: Resource, map: ResourceMap): Seq[Resource] =
+  val ResourceMap(from, to, properties) = map
+  val (newResources, explore) =
+    val initial = (Seq.empty[Resource], Option(resource))
+    properties.foldLeft(initial) {
+      case ((acc, Some(explore)), prop) =>
+        val Resource(start, end, _) = explore
+        val propStart = prop.sourceStart
+        val propEnd = prop.sourceEnd
+        val underRange = Option.when(start < propStart)(
+          Resource(start, Math.min(propStart - 1, end), to)
+        )
+        val overlaps =
+          start >= propStart && start <= propEnd
+          || end >= propStart && end <= propEnd
+          || start <= propStart && end >= propEnd
+        val inRange = Option.when(overlaps) {
+          val delay = prop.destinationStart - propStart
+          Resource(
+            Math.max(start, propStart) + delay,
+            Math.min(end, propEnd) + delay,
+            to
+          )
         }
-        case None => Seq(resource)
+        val aboveRange = Option.when(end > propEnd)(
+          Resource(Math.max(start, propEnd + 1), end, to)
+        )
+        (Seq(underRange, inRange, acc).flatten, aboveRange)
+      case ((acc, None), _) => (acc, None)
+    }
+  Seq(newResources, explore).flatten
+end findNext
+
+object ResourceMap:
+  // parse resource maps from lines
+  def buildFromLines(lines: Seq[String]): Seq[ResourceMap] =
+    def isRangeLine(line: String) =
+      line.forall(ch => ch.isDigit || ch.isSpaceChar)
+    lines.filter(line =>
+      !line.isBlank &&
+      (line.endsWith("map:") || isRangeLine(line))
+    ).foldLeft(Seq.empty[(String, Seq[String])]) {
+      case (acc, line) if line.endsWith("map:") =>
+        (line, Seq.empty) +: acc
+      case (Seq((definition, properties), last*), line) =>
+        (definition, line +: properties) +: last
+    }
+    .flatMap(build)
+
+  def build(map: String, ranges: Seq[String]): Option[ResourceMap] =
+    val mapRow = map.replace("map:", "").trim.split("-to-")
+    val properties = ranges
+      .map(line => line.split(" ").flatMap(_.toLongOption))
+      .collect:
+        case Array(startFrom, startTo, range) =>
+          Property(startFrom, startTo, range)
+    def resourceKindOf(optStr: Option[String]) =
+      optStr.map(_.capitalize).map(ResourceKind.valueOf)
+    for
+      from <- resourceKindOf(mapRow.headOption)
+      to <- resourceKindOf(mapRow.lastOption)
+    yield
+      ResourceMap(from, to, properties.sortBy(_.sourceStart))
+end ResourceMap
+
+object Seeds:
+  private def parseSeedsRaw(line: String): Seq[Long] =
+    if !line.startsWith("seeds:") then Seq.empty[Long]
+    else
+      line.replace("seeds:", "")
+        .trim
+        .split(" ")
+        .flatMap(_.toLongOption)
+
+  // parse seeds without range
+  def parseWithoutRange(line: String): Seq[Resource] =
+    parseSeedsRaw(line).map: start =>
+      Resource(start, start, ResourceKind.Seed)
+
+  // parse seeds with range
+  def parse(line: String): Seq[Resource] =
+    parseSeedsRaw(line)
+      .grouped(2)
+      .map { case Seq(start, length) =>
+        Resource(start, start + length - 1, ResourceKind.Seed)
       }
+      .toSeq
+end Seeds
 
-    seeds.flatMap(inner).minBy(_.start).start
+def calculate(seeds: Seq[Resource], maps: Seq[ResourceMap]): Long =
+  def inner(resource: Resource): Seq[Resource] =
+    if resource.kind == ResourceKind.Location then
+      Seq(resource)
+    else
+      val map = maps.find(_.from == resource.kind).get
+      findNext(resource, map).flatMap(inner)
+  seeds.flatMap(inner).minBy(_.start).start
+end calculate
 
+type ParseSeeds = String => Seq[Resource]
+
+def solution(input: String, parse: ParseSeeds): Long =
   val lines = input.linesIterator.toSeq
-  val seeds = lines.headOption.map(Resource.parseSeeds).getOrElse(Seq.empty)
+  val seeds = lines.headOption.map(parse).getOrElse(Seq.empty)
   val maps = ResourceMap.buildFromLines(lines)
-
   calculate(seeds, maps)
+
+def part1(input: String): Long =
+  solution(input, Seeds.parseWithoutRange)
+
+def part2(input: String): Long =
+  solution(input, Seeds.parse)
 ```
 
 ## Solutions from the community
