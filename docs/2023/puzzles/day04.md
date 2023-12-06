@@ -202,6 +202,7 @@ end part2
 - [Solution](https://github.com/jnclt/adventofcode2023/blob/main/day04/scratchcards.sc) by [jnclt](https://github.com/jnclt)
 - [Solution](https://github.com/guycastle/advent_of_code_2023/blob/main/src/main/scala/days/day04/DayFour.scala) by [Guillaume Vandecasteele](https://github.com/guycastle)
 - [Solution](https://github.com/mpilquist/aoc/blob/main/2023/day4.sc) by [Michael Pilquist](https://github.com/mpilquist)
+- [Solution](https://github.com/ChidiRnweke/AOC23/blob/main/src/main/scala/day4.scala) by [Chidi Nweke](https://github.com/ChidiRnweke)
 - [Solution](https://git.dtth.ch/nki/aoc2023/src/branch/master/Day4.scala) by [natsukagami](https://github.com/natsukagami)
 - [Solution](https://github.com/kbielefe/advent-of-code/blob/master/2023/src/main/scala/4.scala) by [Karl Bielefeldt](https://github.com/kbielefe)
 - [Solution](https://github.com/GrigoriiBerezin/advent_code_2023/tree/master/task04/src/main/scala) by [g.berezin](https://github.com/GrigoriiBerezin)
@@ -214,5 +215,6 @@ end part2
 - [Solution](https://github.com/Jannyboy11/AdventOfCode2023/blob/master/src/main/scala/day04/Day04.scala) of [Jan Boerman](https://twitter.com/JanBoerman95).
 - [Solution](https://github.com/wbillingsley/advent-of-code-2023-scala/blob/star8b/solver.scala) by [Will Billingsley](https://github.com/wbillingsley)
 - [Solution](https://github.com/bxiang/advent-of-code-2023/blob/main/src/main/scala/com/aoc/Day04.scala) by [Brian Xiang](https://github.com/bxiang/)
+- [Solution](https://github.com/xRuiAlves/advent-of-code-2023/blob/main/Day4.scala) by [Rui Alves](https://github.com/xRuiAlves/)
 
 Share your solution to the Scala community by editing this page. (You can even write the whole article!)
