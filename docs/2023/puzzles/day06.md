@@ -98,6 +98,7 @@ def parse2(line: String) = line match
 
 def solve(time: Long, distance: Long): Long =
   val (t, d) = (time.toDouble, distance.toDouble)
+  val disc = math.sqrt(t * t - 4 * d)
   val (root1, root2) = (t / 2 - disc / 2, t / 2 + disc / 2)
 
   val int1 = root1.ceil.toLong
