@@ -136,5 +136,6 @@ end part2
 - [Solution](https://github.com/jnclt/adventofcode2023/blob/main/day06/wait-for-it.sc) by [jnclt](https://github.com/jnclt)
 - [Solution](https://github.com/prinsniels/AdventOfCode2023/blob/main/src/main/scala/solutions/day06.scala) by [Niels Prins](https://github.com/prinsniels)
 - [Solution](https://github.com/marconilanna/advent-of-code/blob/master/2023/Day06.scala) by [Marconi Lanna](https://github.com/marconilanna)
+- [Solution](https://github.com/guycastle/advent_of_code_2023/blob/main/src/main/scala/days/day06/DaySix.scala) by [Guillaume Vandecasteele](https://github.com/guycastle)
 
 Share your solution to the Scala community by editing this page. (You can even write the whole article!)
