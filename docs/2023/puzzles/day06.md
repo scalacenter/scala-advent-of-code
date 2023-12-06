@@ -2,6 +2,8 @@ import Solver from "../../../../../website/src/components/Solver.js"
 
 # Day 6: Wait For It
 
+by [Spamegg](https://github.com/spamegg1/)
+
 ## Puzzle description
 
 https://adventofcode.com/2023/day/6
