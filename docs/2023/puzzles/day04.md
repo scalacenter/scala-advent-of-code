@@ -182,6 +182,16 @@ def part2(input: String): String =
 end part2
 ```
 
+### Run it in the browser
+
+#### Part 1
+
+<Solver puzzle="day04-part1" year="2023"/>
+
+#### Part 2
+
+<Solver puzzle="day04-part2" year="2023"/>
+
 ## Solutions from the community
 
 - [Solution](https://github.com/spamegg1/advent-of-code-2023-scala/blob/solutions/04.worksheet.sc#L116) by [Spamegg](https://github.com/spamegg1)
@@ -192,6 +202,7 @@ end part2
 - [Solution](https://github.com/jnclt/adventofcode2023/blob/main/day04/scratchcards.sc) by [jnclt](https://github.com/jnclt)
 - [Solution](https://github.com/guycastle/advent_of_code_2023/blob/main/src/main/scala/days/day04/DayFour.scala) by [Guillaume Vandecasteele](https://github.com/guycastle)
 - [Solution](https://github.com/mpilquist/aoc/blob/main/2023/day4.sc) by [Michael Pilquist](https://github.com/mpilquist)
+- [Solution](https://github.com/ChidiRnweke/AOC23/blob/main/src/main/scala/day4.scala) by [Chidi Nweke](https://github.com/ChidiRnweke)
 - [Solution](https://git.dtth.ch/nki/aoc2023/src/branch/master/Day4.scala) by [natsukagami](https://github.com/natsukagami)
 - [Solution](https://github.com/kbielefe/advent-of-code/blob/master/2023/src/main/scala/4.scala) by [Karl Bielefeldt](https://github.com/kbielefe)
 - [Solution](https://github.com/GrigoriiBerezin/advent_code_2023/tree/master/task04/src/main/scala) by [g.berezin](https://github.com/GrigoriiBerezin)
