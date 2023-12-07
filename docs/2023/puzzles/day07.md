@@ -48,7 +48,7 @@ object HandType:
 
 A `Bet` is created from a `String` of a format `5678A 364` - that is, the hand and the bid amount.
 
-A `HandType` is a bit more complicated: it is calculated from `Hand` - a string of a format `5678A` - according to the rules specified in the challenge. Since the essence of hand scoring lies in how many occurrences of a given card there are in the hand, we utilize Scala's declarative collection capabilities to group the cards and calculate their occurrences. We can then use a `match` statement to look for the occurrances patterns as specified in the challenge, in descending order of value.
+A `HandType` is a bit more complicated: it is calculated from `Hand` - a string of a format `5678A` - according to the rules specified in the challenge. Since the essence of hand scoring lies in how many occurrences of a given card there are in the hand, we utilize Scala's declarative collection capabilities to group the cards and calculate their occurrences. We can then use a `match` expression to look for the occurrences patterns as specified in the challenge, in descending order of value.
 
 ### Comparison
 
