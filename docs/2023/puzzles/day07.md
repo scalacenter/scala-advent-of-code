@@ -94,7 +94,7 @@ We read the bids from the input file, sort them, and calculate the winnings for 
 
 ## Part 2 Solution
 
-The second part of the challenge changes the meaning of the `J` card. Now it's a Jocker, which can be used as any card to produce the best hand possible. In practice, it means determining the prevailing card of the hand and becoming that card: such is the winning strategy of using the Jocker. Another change in the rules is that now `J` is the weakest card when used in tiebreaking comparisons.
+The second part of the challenge changes the meaning of the `J` card. Now it's a Joker, which can be used as any card to produce the best hand possible. In practice, it means determining the prevailing card of the hand and becoming that card: such is the winning strategy of using the Joker. Another change in the rules is that now `J` is the weakest card when used in tiebreaking comparisons.
 
 We can re-use most of the logic of the Part 1 solution. To do so, we need to do two things: abstract the rules into a separate entity and change the hand scoring logic to take the rules into account.
 
