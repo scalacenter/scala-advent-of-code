@@ -241,10 +241,10 @@ def calculateWinnings(bets: List[Bet])(using Rules): Int =
 def parse(input: String): List[Bet] =
   input.linesIterator.toList.map(Bet(_))
 
-def part1(input: String) =
+def part1(input: String): Int =
   println(calculateWinnings(parse(input))(using standardRules))
 
-def part2(input: String) =
+def part2(input: String): Int =
   println(calculateWinnings(parse(input))(using jokerRules))
 ```
 
