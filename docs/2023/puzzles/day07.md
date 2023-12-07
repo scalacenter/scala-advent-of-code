@@ -2,6 +2,8 @@ import Solver from "../../../../../website/src/components/Solver.js"
 
 # Day 7: Camel Cards
 
+by [@anatoliykmetyuk](https://github.com/anatoliykmetyuk)
+
 ## Puzzle description
 
 https://adventofcode.com/2023/day/7
