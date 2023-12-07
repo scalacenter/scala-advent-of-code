@@ -234,7 +234,7 @@ given handOrdering(using Rules): Ordering[Hand] = (h1: Hand, h2: Hand) =>
   val h2Type = HandType(h2)
   if h1Type != h2Type then h1Type.ordinal - h2Type.ordinal
   else h1.zip(h2).find(_ != _).map( (c1, c2) => cardOrdering.compare(c1, c2) ).getOrElse(0)
-given betOrdering(using Rules): Ordering[Bet] = Ordering.by[Bet, Hand](_.hand)(using handOrdering)
+given betOrdering(using Rules): Ordering[Bet] = Ordering.by(_.hand)
 
 def calculateWinnings(bets: List[Bet])(using Rules): Int =
   bets.sorted.zipWithIndex.map { case (bet, index) => bet.bid * (index + 1) }.sum
