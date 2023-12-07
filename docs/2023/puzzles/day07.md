@@ -253,8 +253,7 @@ def part2(input: String) =
 
 ## Solutions from the community
 - [Solution](https://github.com/prinsniels/AdventOfCode2023/blob/main/src/main/scala/solutions/day07.scala) by [Niels Prins](https://github.com/prinsniels)
+- [Solution](https://github.com/lenguyenthanh/aoc-2023/blob/main/Day07.scala) by [Thanh Le](https://github.com/lenguyenthanh)
 - [Solution](https://github.com/xRuiAlves/advent-of-code-2023/blob/main/Day7.scala) by [Rui Alves](https://github.com/xRuiAlves/)
 
 Share your solution to the Scala community by editing this page. (You can even write the whole article!)
-
-
