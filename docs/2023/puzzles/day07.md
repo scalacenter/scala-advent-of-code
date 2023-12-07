@@ -254,6 +254,7 @@ def part2(input: String) =
 ```
 
 ## Solutions from the community
+
 - [Solution](https://github.com/spamegg1/advent-of-code-2023-scala/blob/solutions/07.worksheet.sc#L132) by [Spamegg](https://github.com/spamegg1)
 - [Solution](https://github.com/prinsniels/AdventOfCode2023/blob/main/src/main/scala/solutions/day07.scala) by [Niels Prins](https://github.com/prinsniels)
 - [Solution](https://github.com/lenguyenthanh/aoc-2023/blob/main/Day07.scala) by [Thanh Le](https://github.com/lenguyenthanh)
@@ -261,5 +262,6 @@ def part2(input: String) =
 - [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2023/Day07.scala) by [Philippus Baalman](https://github.com/philippus)
 - [Solution](https://github.com/GrigoriiBerezin/advent_code_2023/tree/master/task07/src/main/scala) by [g.berezin](https://github.com/GrigoriiBerezin)
 - [Solution](https://github.com/bishabosha/advent-of-code-2023/blob/main/2023-day07.scala) by [Jamie Thompson](https://github.com/bishabosha)
+- [Solution](https://github.com/alexandru/advent-of-code/blob/main/scala3/2023/src/main/scala/day7.scala) by [Alexandru Nedelcu](https://github.com/alexandru/)
 
 Share your solution to the Scala community by editing this page. (You can even write the whole article!)
