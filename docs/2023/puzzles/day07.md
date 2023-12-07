@@ -55,6 +55,7 @@ A `HandType` is a bit more complicated: it is calculated from `Hand` - a string 
 The objective of the challenge is to sort bids and calculate the final winnings. Let's address the sorting part. Scala collections are good enough at sorting, so we don't need to implement the sorting proper. But for Scala to do its job, it needs to know the ordering function of the elements. We need to define how to compare bids one to another:
 
 ```scala
+val ranks = "23456789TJQKA"
 given cardOrdering: Ordering[Card] = Ordering.by(ranks.indexOf(_))
 given handOrdering: Ordering[Hand] = (h1: Hand, h2: Hand) =>
   val h1Type = HandType(h1)
