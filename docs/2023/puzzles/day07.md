@@ -239,18 +239,15 @@ given betOrdering(using Rules): Ordering[Bet] = Ordering.by(_.hand)
 def calculateWinnings(bets: List[Bet])(using Rules): Int =
   bets.sorted.zipWithIndex.map { case (bet, index) => bet.bid * (index + 1) }.sum
 
-def readInputFromFile(fileName: String): List[Bet] =
-  val bufferedSource = io.Source.fromFile(fileName)
-  val bids = bufferedSource.getLines.toList.map(Bet(_))
-  bufferedSource.close
-  bids
+def parse(input: String): List[Bet] =
+  input.linesIterator.toList.map(Bet(_))
 
-def part1 =
-  val bids = readInputFromFile("poker.txt")
+def part1(input: String) =
+  val bids = parse(input)
   println(calculateWinnings(bids)(using standardRules))
 
-@main def part2 =
-  val bids = readInputFromFile("poker.txt")
+def part2(input: String) =
+  val bids = parse(input)
   println(calculateWinnings(bids)(using jokerRules))
 ```
 
