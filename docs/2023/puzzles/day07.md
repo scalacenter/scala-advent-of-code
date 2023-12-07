@@ -8,8 +8,6 @@ by [@anatoliykmetyuk](https://github.com/anatoliykmetyuk)
 
 https://adventofcode.com/2023/day/7
 
-The problem, in its essence, is a simplified version of the classic poker problem where you are required to compare poker hands according to certain rules.
-
 ## Part 1 Solution
 
 The problem, in its essence, is a simplified version of the classic poker problem where you are required to compare poker hands according to certain rules.
@@ -26,7 +24,7 @@ enum HandType:
   case HighCard, OnePair, TwoPair, ThreeOfAKind, FullHouse, FourOfAKind, FiveOfAKind
 ```
 
-We can then define the constructors to create a `Bid` and a `HandType`:
+We can then define the constructors to create a `Bet` and a `HandType`:
 
 ```scala
 object Bet:
@@ -48,13 +46,13 @@ object HandType:
   end apply
 ```
 
-A `Bet` is created from a `String` of a format `5678A 364` - that is, the hand and the bid amount.
+A `Bet` is created from a `String` e.g. `"5678A 364"` - that is, the hand and the bid amount.
 
-A `HandType` is a bit more complicated: it is calculated from `Hand` - a string of a format `5678A` - according to the rules specified in the challenge. Since the essence of hand scoring lies in how many occurrences of a given card there are in the hand, we utilize Scala's declarative collection capabilities to group the cards and calculate their occurrences. We can then use a `match` expression to look for the occurrences patterns as specified in the challenge, in descending order of value.
+A `HandType` is a bit more complicated: it is calculated from `Hand` - e.g. `"5678A"` - according to the rules specified in the challenge. Since the essence of hand scoring lies in how many occurrences of a given card there are in the hand, we utilize Scala's declarative collection capabilities to group the cards and calculate their occurrences. We can then use a `match` expression to look for the occurrences patterns as specified in the challenge, in descending order of value.
 
 ### Comparison
 
-The objective of the challenge is to sort bids and calculate the final winnings. Let's address the sorting part. Scala collections are good enough at sorting, so we don't need to implement the sorting proper. But for Scala to do its job, it needs to know the ordering function of the elements. We need to define how to compare bids one to another:
+The objective of the challenge is to sort bets and calculate the final winnings. Let's address the sorting part. Scala collections are good enough at sorting, so we don't need to implement the sorting proper. But for Scala to do its job, it needs to know the ordering function of the elements. We need to define how to compare two bets:
 
 ```scala
 val ranks = "23456789TJQKA"
@@ -75,30 +73,26 @@ The bet ordering is then defined in terms of hand ordering.
 
 ### Calculating the winnings
 
-Given the work we've done so far, calculating the winnings is a matter of sorting the bids and calculating the winnings for each bid:
+Given the work we've done so far, calculating the winnings is a matter of sorting the bets and calculating the winnings for each:
 
 ```scala
 def calculateWinnings(bets: List[Bet]): Int =
   bets.sorted.zipWithIndex.map { case (bet, index) => bet.bid * (index + 1) }.sum
 
-def readInputFromFile(fileName: String): List[Bet] =
-  val bufferedSource = io.Source.fromFile(fileName)
-  val bids = bufferedSource.getLines.toList.map(Bet(_))
-  bufferedSource.close
-  bids
+def parse(input: String): List[Bet] =
+  input.linesIterator.toList.map(Bet(_))
 
-@main def main =
-  val bids = readInputFromFile("poker.txt")
-  println(calculateWinnings(bids))
+def part1(input: String): Int =
+  calculateWinnings(parse(input))
 ```
 
-We read the bids from the input file, sort them, and calculate the winnings for each bid. The result is then printed to the console.
+We read the bets from the input string, sort them, and calculate the winnings for each bet.
 
 ## Part 2 Solution
 
 The second part of the challenge changes the meaning of the `J` card. Now it's a Joker, which can be used as any card to produce the best hand possible. In practice, it means determining the prevailing card of the hand and becoming that card: such is the winning strategy of using the Joker. Another change in the rules is that now `J` is the weakest card when used in tiebreaking comparisons.
 
-We can re-use most of the logic of the Part 1 solution. To do so, we need to do two things: abstract the rules into a separate entity and change the hand scoring logic to take the rules into account.
+We can re-use most of the logic of the Part 1 solution. However because of the different set of rules, we need to create an abstraction to describe the rules for each part, then change the hand scoring logic to take the rules abstraction into account.
 
 ### Rules
 
@@ -170,19 +164,22 @@ given betOrdering(using Rules): Ordering[Bet] = Ordering.by(_.hand)
 
 ### Calculating the winnings
 
+The winnings calculation also stays the same, except for the addition of the `Rules` parameter, which is required for sorting the bets.
+```scala
+def calculateWinnings(bets: List[Bet])(using Rules): Int =
+  bets.sorted.zipWithIndex.map { case (bet, index) => bet.bid * (index + 1) }.sum
+```
+
 Finally, we can calculate the winnings as before while specifying the rules under which to do the calculation:
 
 ```scala
-@main def part2 =
-  val bids = readInputFromFile("poker.txt")
-  println(calculateWinnings(bids)(using jokerRules))
+def part2(input: String): Int =
+  calculateWinnings(parse(input))(using jokerRules)
 ```
 
 ## Complete Code
 
 ```scala
-//> using scala "3.3.1"
-
 type Card = Char
 type Hand = String
 
@@ -244,13 +241,11 @@ def calculateWinnings(bets: List[Bet])(using Rules): Int =
 def parse(input: String): List[Bet] =
   input.linesIterator.toList.map(Bet(_))
 
-def part1(input: String) =
-  val bids = parse(input)
-  println(calculateWinnings(bids)(using standardRules))
+def part1(input: String): Int =
+  println(calculateWinnings(parse(input))(using standardRules))
 
-def part2(input: String) =
-  val bids = parse(input)
-  println(calculateWinnings(bids)(using jokerRules))
+def part2(input: String): Int =
+  println(calculateWinnings(parse(input))(using jokerRules))
 ```
 
 ## Solutions from the community
