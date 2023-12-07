@@ -260,5 +260,6 @@ def part2(input: String) =
 - [Solution](https://github.com/xRuiAlves/advent-of-code-2023/blob/main/Day7.scala) by [Rui Alves](https://github.com/xRuiAlves/)
 - [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2023/Day07.scala) by [Philippus Baalman](https://github.com/philippus)
 - [Solution](https://github.com/GrigoriiBerezin/advent_code_2023/tree/master/task07/src/main/scala) by [g.berezin](https://github.com/GrigoriiBerezin)
+- [Solution](https://github.com/bishabosha/advent-of-code-2023/blob/main/2023-day07.scala) by [Jamie Thompson](https://github.com/bishabosha)
 
 Share your solution to the Scala community by editing this page. (You can even write the whole article!)
