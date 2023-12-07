@@ -256,4 +256,6 @@ def part2(input: String) =
 - [Solution](https://github.com/lenguyenthanh/aoc-2023/blob/main/Day07.scala) by [Thanh Le](https://github.com/lenguyenthanh)
 - [Solution](https://github.com/xRuiAlves/advent-of-code-2023/blob/main/Day7.scala) by [Rui Alves](https://github.com/xRuiAlves/)
 
+- [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2023/Day07.scala) by [Philippus Baalman](https://github.com/philippus)
+
 Share your solution to the Scala community by editing this page. (You can even write the whole article!)
