@@ -2,6 +2,8 @@ import Solver from "../../../../../website/src/components/Solver.js"
 
 # Day 8: Haunted Wasteland
 
+by [@prinsniels](https://github.com/prinsniels)
+
 ## Puzzle description
 
 https://adventofcode.com/2023/day/8
@@ -10,21 +12,21 @@ https://adventofcode.com/2023/day/8
 In its most basic form, we are required to count the number of instructions to follow on a network to reach a desired state. In the example given, we start at `AAA` and are required to reach `ZZZ`. To model this problem I have done the following;
 
 ```scala
-// Describes the Node we are at
+/** Describes the Node we are at */
 type State = String
 
-// Describes how to get from a Starting State to a New State, given an instruction
-type Transition = (State, Instruction) => State
+/** Describes how to get from a Starting State to a New State, given an instruction */
+type Transition = (State, Instr) => State
 
-// The possible instructions given
+/** The possible instructions given */
 enum Instr:
   case GoLeft, GoRight
 
 /**
-* The puzzle describes that the input instructions are infinite, meaning that if there a no instructions left,
-* we start with the first instruction again. To model this I have used a `LazyList[Instruction]`.
-* This allows for an infinite stream of instructions.
-*/
+ * The puzzle describes that the input instructions are infinite, meaning that if there a no instructions left,
+ * we start with the first instruction again. To model this I have used a `LazyList[Instr]`.
+ * This allows for an infinite stream of instructions.
+ */
 object Instr:
   def parse(inp: String): LazyList[Instr] =
     inp
@@ -36,10 +38,10 @@ object Instr:
       .to(LazyList) #::: Instr.parse(inp)
 
 /** Count function.
-* Check if the predicate is met.
-* If true, return the number of steps taken,
-* if false transition into the next state from the current state, given the first instruction.
-*/
+ * Check if the predicate is met.
+ * If true, return the number of steps taken,
+ * if false transition into the next state from the current state, given the first instruction.
+ */
 @tailrec
 def countStepsUntil(state: State, instrs: LazyList[Instr], trans: Transition, count: Int, pred: State => Boolean): Int =
   if pred(state) then count
