@@ -154,10 +154,6 @@ def part2(input: String) =
   starts
     .map(state => countStepsUntil(state, instructions, trans, 0, _.endsWith("Z")).toLong)
     .reduce(lcm) pipe println
-
-object Solution extends App:
-  part1("day08.txt".live)
-  part2("day08.txt".live)
 ```
 
 ## Solutions from the community
