@@ -73,4 +73,5 @@ You can replace the content of the `input/day25` file with your own input from [
 
 - [Solution](https://github.com/FlorianCassayre/AdventOfCode-2021/blob/master/src/main/scala/adventofcode/solutions/Day25.scala) of [@FlorianCassayre](https://github.com/FlorianCassayre).
 
-Share your solution to the Scala community by editing this page. (You can even write the whole article!)
+Share your solution to the Scala community by editing this page.
+You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)

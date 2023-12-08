@@ -369,4 +369,4 @@ Share your solution to the Scala community by editing this page. (You can even w
 - [Solution](https://github.com/prinsniels/AdventOfCode2023/blob/main/src/main/scala/solutions/day05.scala) by [Niels Prins](https://github.com/prinsniels)
 - [Solution](https://github.com/Jannyboy11/AdventOfCode2023/blob/master/src/main/scala/day05/Day05.scala) of [Jan Boerman](https://twitter.com/JanBoerman95).
 
-Share your solution to the Scala community by editing this page. (You can even write the whole article!)
+Share your solution to the Scala community by editing this page.

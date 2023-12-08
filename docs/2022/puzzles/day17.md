@@ -13,4 +13,5 @@ https://adventofcode.com/2022/day/17
 - [Solution](https://github.com/AvaPL/Advent-of-Code-2022/tree/main/src/main/scala/day17) by [Paweł Cembaluk](https://github.com/AvaPL)
 - [Solution](https://github.com/w-r-z-k/aoc2022/blob/main/src/main/scala/Day17.scala) by Richard W
 
-Share your solution to the Scala community by editing this page. (You can even write the whole article!)
+Share your solution to the Scala community by editing this page.
+You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)
