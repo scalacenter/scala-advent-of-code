@@ -67,4 +67,4 @@ end Priorities
 - [Solution](https://github.com/ciuckc/AOC22/blob/master/day3/rucksack_reorg.scala) by [Cristian Steiciuc](https://github.com/ciuckc)
 - [Solution using ZIO](https://github.com/rpiotrow/advent-of-code-2022/tree/main/src/main/scala/io/github/rpiotrow/advent2022/day03) by [Rafał Piotrowski](https://github.com/rpiotrow)
 
-Share your solution to the Scala community by editing this page. (You can even write the whole article!)
+Share your solution to the Scala community by editing this page.

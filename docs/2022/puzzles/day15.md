@@ -10,7 +10,7 @@ https://adventofcode.com/2022/day/15
 
 ### Part 1
 
-We first model and parse the input: 
+We first model and parse the input:
 
 ```scala
 case class Position(x: Int, y: Int)
@@ -37,7 +37,7 @@ We use it to compute how much of a line is covered by one (by `lineCoverage`) an
 ```scala
 def lineCoverage(sensor: Position, radius: Int, lineY: Int): Range =
   val radiusInLine = radius - distanceToLine(sensor, lineY)
-  
+
   // if radiusInLine is smaller than 0, the range will be empty
   (sensor.x - radiusInLine) to (sensor.x + radiusInLine)
 
@@ -79,7 +79,7 @@ def smartDiff(r1: Range, r2: Range): List[Range] =
 This allows us to subtract the cover from our target interval like so:
 
 ```scala
-def remainingSpots(target: Range, cover: List[Range]): Set[Int] = 
+def remainingSpots(target: Range, cover: List[Range]): Set[Int] =
 
   def rec(partialTarget: List[Range], remainingCover: List[Range]): List[Range] =
     if remainingCover.isEmpty then
@@ -106,12 +106,12 @@ def part2(input: String): Any =
 
   val target: Range = 0 to 4_000_000
   val spots: Seq[Position] = target.flatMap{
-    line => 
+    line =>
       val cover: List[Range] = coverOfLine(sensorsWithDistances, line)
       val beaconsOnLine: Set[Position] = beacons.filter(_.y == line)
 
-      val remainingRanges: List[Range] = cover.foldLeft(List(target)){ 
-        case (acc: List[Range], range: Range) => 
+      val remainingRanges: List[Range] = cover.foldLeft(List(target)){
+        case (acc: List[Range], range: Range) =>
           acc.flatMap( r => smartDiff(r, range) )
       }
       val potential = remainingRanges.flatten.toSet
@@ -147,7 +147,7 @@ def distanceToLine(p: Position, y: Int): Int =
 
 def lineCoverage(sensor: Position, radius: Int, lineY: Int): Range =
   val radiusInLine = radius - distanceToLine(sensor, lineY)
-  
+
   // if radiusInLine is smaller than 0, the range will be empty
   (sensor.x - radiusInLine) to (sensor.x + radiusInLine)
 
@@ -163,7 +163,7 @@ def smartDiff(r1: Range, r2: Range): List[Range] =
     List(innit, tail)
   res.filter(_.nonEmpty).toList
 
-def remainingSpots(target: Range, cover: List[Range]): Set[Int] = 
+def remainingSpots(target: Range, cover: List[Range]): Set[Int] =
 
   def rec(partialTarget: List[Range], remainingCover: List[Range]): List[Range] =
     if remainingCover.isEmpty then
@@ -198,12 +198,12 @@ def part2(input: String): Any =
 
   val target: Range = 0 to 4_000_000
   val spots: Seq[Position] = target.flatMap{
-    line => 
+    line =>
       val cover: List[Range] = coverOfLine(sensorsWithDistances, line)
       val beaconsOnLine: Set[Position] = beacons.filter(_.y == line)
 
-      val remainingRanges: List[Range] = cover.foldLeft(List(target)){ 
-        case (acc: List[Range], range: Range) => 
+      val remainingRanges: List[Range] = cover.foldLeft(List(target)){
+        case (acc: List[Range], range: Range) =>
           acc.flatMap( r => smartDiff(r, range) )
       }
       val potential = remainingRanges.flatten.toSet
@@ -225,4 +225,5 @@ def part2(input: String): Any =
 - [Solution](https://github.com/AvaPL/Advent-of-Code-2022/tree/main/src/main/scala/day15) by [Paweł Cembaluk](https://github.com/AvaPL)
 - [Solution](https://github.com/w-r-z-k/aoc2022/blob/main/src/main/scala/Day15.scala) by Richard W.
 
-Share your solution to the Scala community by editing this page. (You can even write the whole article!)
+Share your solution to the Scala community by editing this page.
+You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)

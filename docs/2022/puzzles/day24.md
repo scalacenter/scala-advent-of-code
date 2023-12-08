@@ -100,7 +100,7 @@ def solve(maze: Maze): Step =
   given Ordering[Step] = Ordering[Int].on((step: Step) => step.at.manhattan(maze.end) + step.time).reverse
   val queue = mutable.PriorityQueue[Step]()
   val visited = mutable.Set.empty[Step]
-  
+
   def inBounds(coord: Coord) = coord match
     case c if c == maze.start || c == maze.end => true
     case c => maze.xDomain.contains(c.x) && maze.yDomain.contains(c.y)
@@ -154,4 +154,4 @@ That's Day 24. Huzzah!
 - [Solution](https://github.com/cosminci/advent-of-code/blob/master/src/main/scala/com/github/cosminci/aoc/_2022/Day24.scala) by Cosmin Ciobanu
 - [Solution](https://github.com/AvaPL/Advent-of-Code-2022/tree/main/src/main/scala/day24) by [Paweł Cembaluk](https://github.com/AvaPL)
 
-Share your solution to the Scala community by editing this page. (You can even write the whole article!)
+Share your solution to the Scala community by editing this page.

@@ -201,4 +201,4 @@ def part2(input: String): Int = solution(input, minimumCubes)
 - [Solution](https://github.com/marconilanna/advent-of-code/blob/master/2023/Day02.scala) by [Marconi Lanna](https://github.com/marconilanna)
 - [Solution](https://github.com/xRuiAlves/advent-of-code-2023/blob/main/Day2.scala) by [Rui Alves](https://github.com/xRuiAlves/)
 
-Share your solution to the Scala community by editing this page. (You can even write the whole article!)
+Share your solution to the Scala community by editing this page.

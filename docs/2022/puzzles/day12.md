@@ -107,4 +107,4 @@ And that's it!
 - [Solution](https://github.com/w-r-z-k/aoc2022/blob/main/src/main/scala/Day12.scala) by Richard W
 - [Solution using ZIO](https://github.com/rpiotrow/advent-of-code-2022/tree/main/src/main/scala/io/github/rpiotrow/advent2022/day12) by [Rafał Piotrowski](https://github.com/rpiotrow)
 
-Share your solution to the Scala community by editing this page. (You can even write the whole article!)
+Share your solution to the Scala community by editing this page.

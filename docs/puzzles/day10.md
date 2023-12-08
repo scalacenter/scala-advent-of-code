@@ -204,4 +204,4 @@ solution.
 - [Solution](https://github.com/Jannyboy11/AdventOfCode2021/blob/main/src/main/scala/day10/Day10.scala) by [Jan Boerman](https://twitter.com/JanBoerman95)
 - [Solution](https://github.com/FlorianCassayre/AdventOfCode-2021/blob/master/src/main/scala/adventofcode/solutions/Day10.scala) of [@FlorianCassayre](https://github.com/FlorianCassayre).
 
-Share your solution to the Scala community by editing this page. (You can even write the whole article!)
+Share your solution to the Scala community by editing this page.

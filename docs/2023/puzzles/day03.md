@@ -112,7 +112,7 @@ case class Gear(part: PartNumber, symbol: Symbol)
 *(Note: a case class is not necessary here, a tuple would do the job)*
 
 Compute `part2` as described above:
-  
+
  1. Find all `numbers` and `symbols` in the grid
  2. Filter out the symbols in a separate collection
  3. For each number element of the grid and if it has one `*` neighbor, return a `Gear` with the number and the `*` symbol. For any other cases, return `None`
@@ -121,7 +121,7 @@ Compute `part2` as described above:
     - So we obtain a `Map[Symbol, List[Int]]` instead of a `Map[Symbol, List[Gear]]`
  5. Filter out the symbols with less/more than 2 adjacent numbers
  6. For each entry remaining, take the product of its two number values and sum the resulting products
-  
+
 ```scala
 def part2(input: String) =
   val all = findPartsAndSymbols(input)
@@ -230,4 +230,4 @@ def part2(input: String) =
 - [Solution](https://github.com/marconilanna/advent-of-code/blob/master/2023/Day03.scala) by [Marconi Lanna](https://github.com/marconilanna)
 - [Solution](https://github.com/xRuiAlves/advent-of-code-2023/blob/main/Day3.scala) by [Rui Alves](https://github.com/xRuiAlves/)
 
-Share your solution to the Scala community by editing this page. (You can even write the whole article!)
+Share your solution to the Scala community by editing this page.
