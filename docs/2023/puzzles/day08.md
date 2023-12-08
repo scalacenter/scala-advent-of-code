@@ -8,8 +8,6 @@ https://adventofcode.com/2023/day/8
 
 ## Solutions from the community
 
-Share your solution to the Scala community by editing this page. (You can even write the whole article!)
-
 - [Solution](https://github.com/lenguyenthanh/aoc-2023/blob/main/Day08.scala) by [Thanh Le](https://github.com/lenguyenthanh)
 - [Solution](https://github.com/GrigoriiBerezin/advent_code_2023/tree/master/task08/src/main/scala) by [g.berezin](https://github.com/GrigoriiBerezin)
 - [Solution](https://github.com/xRuiAlves/advent-of-code-2023/blob/main/Day8.scala) by [Rui Alves](https://github.com/xRuiAlves/)
@@ -17,5 +15,8 @@ Share your solution to the Scala community by editing this page. (You can even w
 - [Solution](https://github.com/bishabosha/advent-of-code-2023/blob/main/2023-day08.scala) by [Jamie Thompson](https://github.com/bishabosha)
 - [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2023/Day08.scala) by [Philippus Baalman](https://github.com/philippus)
 - [Solution](https://github.com/jnclt/adventofcode2023/blob/main/day08/haunted-wasteland.sc) by [jnclt](https://github.com/jnclt)
+- [Solution](https://github.com/guycastle/advent_of_code_2023/blob/main/src/main/scala/days/day08/DayEight.scala) by [Guillaume Vandecasteele](https://github.com/guycastle/)
+- [Solution](https://github.com/marconilanna/advent-of-code/blob/master/2023/Day08.scala) by [Marconi Lanna](https://github.com/marconilanna)
+- [Solution](https://github.com/nryabykh/aoc2023/blob/master/src/main/scala/aoc2023/Day08.scala) by [Nikolai Riabykh](https://github.com/nryabykh)
 
 Share your solution to the Scala community by editing this page. (You can even write the whole article!)
