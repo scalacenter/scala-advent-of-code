@@ -14,6 +14,7 @@ https://adventofcode.com/2023/day/8
 - [Solution](https://github.com/alexandru/advent-of-code/blob/main/scala3/2023/src/main/scala/day8.scala) by [Alexandru Nedelcu](https://github.com/alexandru/)
 - [Solution](https://github.com/bishabosha/advent-of-code-2023/blob/main/2023-day08.scala) by [Jamie Thompson](https://github.com/bishabosha)
 - [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2023/Day08.scala) by [Philippus Baalman](https://github.com/philippus)
+- [Solution](https://github.com/jnclt/adventofcode2023/blob/main/day08/haunted-wasteland.sc) by [jnclt](https://github.com/jnclt)
 - [Solution](https://github.com/guycastle/advent_of_code_2023/blob/main/src/main/scala/days/day08/DayEight.scala) by [Guillaume Vandecasteele](https://github.com/guycastle/)
 - [Solution](https://github.com/marconilanna/advent-of-code/blob/master/2023/Day08.scala) by [Marconi Lanna](https://github.com/marconilanna)
 - [Solution](https://github.com/nryabykh/aoc2023/blob/master/src/main/scala/aoc2023/Day08.scala) by [Nikolai Riabykh](https://github.com/nryabykh)
