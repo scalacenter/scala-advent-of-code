@@ -259,6 +259,7 @@ def part2(input: String): Int =
 - [Solution](https://github.com/bishabosha/advent-of-code-2023/blob/main/2023-day07.scala) by [Jamie Thompson](https://github.com/bishabosha)
 - [Solution](https://github.com/alexandru/advent-of-code/blob/main/scala3/2023/src/main/scala/day7.scala) by [Alexandru Nedelcu](https://github.com/alexandru/)
 - [Solution](https://github.com/guycastle/advent_of_code_2023/blob/main/src/main/scala/days/day07/DaySeven.scala) by [Guillaume Vandecasteele](https://github.com/guycastle/)
+- [Solution](https://github.com/YannMoisan/advent-of-code/blob/master/2023/src/main/scala/Day7.scala) by [Yann Moisan](https://github.com/YannMoisan)
 - [Solution](https://github.com/jnclt/adventofcode2023/blob/main/day07/camel-cards.sc) by [jnclt](https://github.com/jnclt)
 - [Solution](https://gist.github.com/thanhbv/38bd6676d3348334db58e4926add0a11) by thanhbv
 
