@@ -65,7 +65,7 @@ def part1(input: String): Int =
   val network      = parseMap(inpL.tail.head.split("\n").toList)
   val trans        = transitions(network)
 
-  countStepsUntil("AAA", instructions, trans, 0, _ == "ZZZ") pipe println
+  countStepsUntil("AAA", instructions, trans, 0, _ == "ZZZ")
 ```
 
 ## Part two solution
@@ -86,7 +86,7 @@ def part2(input: String): Long =
 
   starts
     .map(state => countStepsUntil(state, instructions, trans, 0, _.endsWith("Z")).toLong)  // for each state find the cycle time
-    .reduce(lcm) pipe println
+    .reduce(lcm)
 ```
 
 ## final code
