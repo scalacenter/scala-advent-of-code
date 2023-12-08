@@ -59,8 +59,8 @@ def transitions(network: Map[String, Vector[String]]): Transition =
 
 For the predicate tell the function to stop when `STATE == "ZZZ"`
 ```scala
-def one(inp: String) =
-  val inpL         = inp.split("\n\n")
+def part1(input: String): Int = 
+  val inpL         = input.split("\n\n")
   val instructions = Instr.parse(inpL.head)
   val network      = parseMap(inpL.tail.head.split("\n").toList)
   val trans        = transitions(network)
@@ -73,6 +73,8 @@ The second part is a bit trickier. We are required to find the number of steps t
 Key insight comes from the realization that all `states` in the starting `Set[Sate]` move on their own independent path and keep repeating themselves. By knowing this we can use an LCM to get to the correct answer. 
 
 ```scala
+def part2(input: String): Long = 
+  ...
   def lcm(a: Long, b: Long): Long =
     a * b / gcd(a, b)
 
@@ -125,7 +127,7 @@ def countStepsUntil(state: State, instrs: LazyList[Instr], trans: Transition, co
   if pred(state) then count
   else countStepsUntil(trans(state, instrs.head), instrs.tail, trans, count + 1, pred)
 
-def part1(input: String) = 
+def part1(input: String): Int = 
   val inpL         = input.split("\n\n")
   val instructions = Instr.parse(inpL.head)
   val network      = parseMap(inpL.tail.head.split("\n").toList)
@@ -133,7 +135,7 @@ def part1(input: String) =
 
   countStepsUntil("AAA", instructions, trans, 0, _ == "ZZZ")
 
-def part2(input: String) = 
+def part2(input: String): Long = 
   val inpL         = input.split("\n\n")
   val instructions = Instr.parse(inpL.head)
   val network      = parseMap(inpL.tail.head.split("\n").toList)
