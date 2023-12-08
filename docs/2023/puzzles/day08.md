@@ -35,12 +35,20 @@ enum Instr:
 object Instr:
   def parse(inp: String): LazyList[Instr] =
     inp
-      .map { c =>
-        c match
-          case 'L' => Instr.GoLeft
-          case 'R' => Instr.GoRight
+      .map {
+        case 'L' => Instr.GoLeft
+        case 'R' => Instr.GoRight
       }
       .to(LazyList) #::: Instr.parse(inp)
+
+/**
+ * convert a List of strings (e.g. `"AAA = (BBB, CCC)"`)
+ * to a map of entries, (e.g. `"AAA" -> Vector("BBB", "CCC")`)
+ */
+def parseNetwork(inp: List[String]): Map[String, Vector[String]] =
+  inp.map {
+    case s"$a = ($b, $c)" => (a -> Vector(b, c))
+  }.toMap
 
 /**
  * Count function.
@@ -75,7 +83,7 @@ For the predicate tell the function to stop when `STATE == "ZZZ"`
 def part1(input: String): Int =
   val inpL         = input.split("\n\n")
   val instructions = Instr.parse(inpL.head)
-  val network      = parseMap(inpL.tail.head.split("\n").toList)
+  val network      = parseNetwork(inpL.tail.head.split("\n").toList)
   val trans        = transitions(network)
 
   countStepsUntil("AAA", instructions, trans, 0, _ == "ZZZ")
@@ -87,7 +95,7 @@ Key insight comes from the realization that all `states` in the starting `Set[Sa
 
 ```scala
 def part2(input: String): Long =
-  ...
+  // ... reuse parsing from part 1
   def lcm(a: Long, b: Long): Long =
     a * b / gcd(a, b)
 
@@ -119,17 +127,15 @@ enum Instr:
 object Instr:
   def parse(inp: String): LazyList[Instr] =
     inp
-      .map { c =>
-        c match
-          case 'L' => Instr.GoLeft
-          case 'R' => Instr.GoRight
+      .map {
+        case 'L' => Instr.GoLeft
+        case 'R' => Instr.GoRight
       }
       .to(LazyList) #::: Instr.parse(inp)
 
-def parseMap(inp: List[String]): Map[String, Vector[String]] =
-  inp.map { i =>
-    i match
-      case s"$a = ($b, $c)" => (a -> Vector(b, c))
+def parseNetwork(inp: List[String]): Map[String, Vector[String]] =
+  inp.map {
+    case s"$a = ($b, $c)" => (a -> Vector(b, c))
   }.toMap
 
 def transitions(network: Map[String, Vector[String]]): Transition =
@@ -150,7 +156,7 @@ def countStepsUntil(
 def part1(input: String): Int =
   val inpL         = input.split("\n\n")
   val instructions = Instr.parse(inpL.head)
-  val network      = parseMap(inpL.tail.head.split("\n").toList)
+  val network      = parseNetwork(inpL.tail.head.split("\n").toList)
   val trans        = transitions(network)
 
   countStepsUntil("AAA", instructions, trans, 0, _ == "ZZZ")
@@ -158,7 +164,7 @@ def part1(input: String): Int =
 def part2(input: String): Long =
   val inpL         = input.split("\n\n")
   val instructions = Instr.parse(inpL.head)
-  val network      = parseMap(inpL.tail.head.split("\n").toList)
+  val network      = parseNetwork(inpL.tail.head.split("\n").toList)
   val trans        = transitions(network)
 
   val starts: Set[State] = network.keySet.filter(_.endsWith("A"))
