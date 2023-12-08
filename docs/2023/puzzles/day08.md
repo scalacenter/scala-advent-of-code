@@ -121,24 +121,24 @@ def parseMap(inp: List[String]): Map[String, Vector[String]] =
 def transitions(network: Map[String, Vector[String]]): Transition =
   (n, d) =>
     d match
-      case aoc.solutions.Instr.GoLeft  => network(n)(0)
-      case aoc.solutions.Instr.GoRight => network(n)(1)
+      case Instr.GoLeft  => network(n)(0)
+      case Instr.GoRight => network(n)(1)
 
 @tailrec
 def countStepsUntil(state: State, instrs: LazyList[Instr], trans: Transition, count: Int, pred: State => Boolean): Int =
   if pred(state) then count
   else countStepsUntil(trans(state, instrs.head), instrs.tail, trans, count + 1, pred)
 
-def one(inp: String) =
-  val inpL         = inp.split("\n\n")
+def part1(input: String) = 
+  val inpL         = input.split("\n\n")
   val instructions = Instr.parse(inpL.head)
   val network      = parseMap(inpL.tail.head.split("\n").toList)
   val trans        = transitions(network)
 
   countStepsUntil("AAA", instructions, trans, 0, _ == "ZZZ") pipe println
 
-def two(inp: String) =
-  val inpL         = inp.split("\n\n")
+def part2(input: String) = 
+  val inpL         = input.split("\n\n")
   val instructions = Instr.parse(inpL.head)
   val network      = parseMap(inpL.tail.head.split("\n").toList)
   val trans        = transitions(network)
@@ -156,8 +156,8 @@ def two(inp: String) =
     .reduce(lcm) pipe println
 
 object Solution extends App:
-  one("day08.txt".live)
-  two("day08.txt".live)
+  part1("day08.txt".live)
+  part2("day08.txt".live)
 ```
 
 ## Solutions from the community
