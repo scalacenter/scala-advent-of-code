@@ -19,4 +19,5 @@ https://adventofcode.com/2023/day/8
 - [Solution](https://github.com/marconilanna/advent-of-code/blob/master/2023/Day08.scala) by [Marconi Lanna](https://github.com/marconilanna)
 - [Solution](https://github.com/nryabykh/aoc2023/blob/master/src/main/scala/aoc2023/Day08.scala) by [Nikolai Riabykh](https://github.com/nryabykh)
 
-Share your solution to the Scala community by editing this page. (You can even write the whole article!)
+Share your solution to the Scala community by editing this page.
+You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)
