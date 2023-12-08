@@ -260,5 +260,6 @@ def part2(input: String): Int =
 - [Solution](https://github.com/alexandru/advent-of-code/blob/main/scala3/2023/src/main/scala/day7.scala) by [Alexandru Nedelcu](https://github.com/alexandru/)
 - [Solution](https://github.com/guycastle/advent_of_code_2023/blob/main/src/main/scala/days/day07/DaySeven.scala) by [Guillaume Vandecasteele](https://github.com/guycastle/)
 - [Solution](https://github.com/jnclt/adventofcode2023/blob/main/day07/camel-cards.sc) by [jnclt](https://github.com/jnclt)
+- [Solution](https://gist.github.com/thanhbv/38bd6676d3348334db58e4926add0a11) by thanhbv
 
 Share your solution to the Scala community by editing this page. (You can even write the whole article!)
