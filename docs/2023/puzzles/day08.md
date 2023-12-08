@@ -92,7 +92,6 @@ Key insight comes from the realization that all `states` in the starting `Set[Sa
 package aoc
 package solutions
 
-import scala.util.chaining.*
 import scala.annotation.tailrec
 
 type State = String
@@ -135,7 +134,7 @@ def part1(input: String) =
   val network      = parseMap(inpL.tail.head.split("\n").toList)
   val trans        = transitions(network)
 
-  countStepsUntil("AAA", instructions, trans, 0, _ == "ZZZ") pipe println
+  countStepsUntil("AAA", instructions, trans, 0, _ == "ZZZ")
 
 def part2(input: String) = 
   val inpL         = input.split("\n\n")
@@ -153,7 +152,7 @@ def part2(input: String) =
 
   starts
     .map(state => countStepsUntil(state, instructions, trans, 0, _.endsWith("Z")).toLong)
-    .reduce(lcm) pipe println
+    .reduce(lcm)
 ```
 
 ## Solutions from the community
