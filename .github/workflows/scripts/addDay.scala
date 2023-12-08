@@ -10,16 +10,18 @@ def currentDir = os.Path(sourcecode.File()) / os.up
 
 def template(title: String, day: Int, year: Int) =
   s"""import Solver from "../../../../../website/src/components/Solver.js"
-      |
-      |# $title
-      |
-      |## Puzzle description
-      |
-      |https://adventofcode.com/$year/day/$day
-      |
-      |## Solutions from the community
-      |
-      |Share your solution to the Scala community by editing this page. (You can even write the whole article!)""".stripMargin
+    |
+    |# $title
+    |
+    |## Puzzle description
+    |
+    |https://adventofcode.com/$year/day/$day
+    |
+    |## Solutions from the community
+    |
+    |Share your solution to the Scala community by editing this page.
+    |You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424))
+    |""".stripMargin
 
 def scrapeTitle(day: Int, year: Int) =
   val url = s"https://adventofcode.com/$year/day/$day"
