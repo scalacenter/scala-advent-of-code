@@ -15,7 +15,10 @@ In its most basic form, we are required to count the number of instructions to f
 /** Describes the Node we are at */
 type State = String
 
-/** Describes how to get from a Starting State to a New State, given an instruction */
+/**
+ * Describes how to get from a Starting State
+ * to a New State, given an instruction
+ */
 type Transition = (State, Instr) => State
 
 /** The possible instructions given */
@@ -23,9 +26,11 @@ enum Instr:
   case GoLeft, GoRight
 
 /**
- * The puzzle describes that the input instructions are infinite, meaning that if there a no instructions left,
- * we start with the first instruction again. To model this I have used a `LazyList[Instr]`.
- * This allows for an infinite stream of instructions.
+ * The puzzle describes that the input instructions are infinite,
+ * meaning that if there a no instructions left, we start with
+ * the first instruction again. To model this I have used
+ * a `LazyList[Instr]`. This allows for an infinite stream
+ * of instructions.
  */
 object Instr:
   def parse(inp: String): LazyList[Instr] =
@@ -37,15 +42,21 @@ object Instr:
       }
       .to(LazyList) #::: Instr.parse(inp)
 
-/** Count function.
+/**
+ * Count function.
  * Check if the predicate is met.
  * If true, return the number of steps taken,
- * if false transition into the next state from the current state, given the first instruction.
+ * if false transition into the next state from the current state,
+ * given the first instruction.
  */
 @tailrec
-def countStepsUntil(state: State, instrs: LazyList[Instr], trans: Transition, count: Int, pred: State => Boolean): Int =
+def countStepsUntil(
+    state: State, instrs: LazyList[Instr], trans: Transition,
+    count: Int, pred: State => Boolean): Int =
   if pred(state) then count
-  else countStepsUntil(trans(state, instrs.head), instrs.tail, trans, count + 1, pred)
+  else
+    countStepsUntil(
+      trans(state, instrs.head), instrs.tail, trans, count + 1, pred)
 ```
 
 ## Part one solution
@@ -55,13 +66,13 @@ The transition function needs to know the network it is operating on. To be a bi
 def transitions(network: Map[String, Vector[String]]): Transition =
   (n, d) =>
     d match
-      case aoc.solutions.Instr.GoLeft  => network(n)(0)
-      case aoc.solutions.Instr.GoRight => network(n)(1)
+      case Instr.GoLeft  => network(n)(0)
+      case Instr.GoRight => network(n)(1)
 ```
 
 For the predicate tell the function to stop when `STATE == "ZZZ"`
 ```scala
-def part1(input: String): Int = 
+def part1(input: String): Int =
   val inpL         = input.split("\n\n")
   val instructions = Instr.parse(inpL.head)
   val network      = parseMap(inpL.tail.head.split("\n").toList)
@@ -72,10 +83,10 @@ def part1(input: String): Int =
 
 ## Part two solution
 The second part is a bit trickier. We are required to find the number of steps to take, until all nodes in the state end with a `Z`. One can try to brute force this, by changing the transition function to `(Set[String], Instr) => Set[String]` but this takes way to much processing time.
-Key insight comes from the realization that all `states` in the starting `Set[Sate]` move on their own independent path and keep repeating themselves. By knowing this we can use an LCM to get to the correct answer. 
+Key insight comes from the realization that all `states` in the starting `Set[Sate]` move on their own independent path and keep repeating themselves. By knowing this we can use an LCM to get to the correct answer.
 
 ```scala
-def part2(input: String): Long = 
+def part2(input: String): Long =
   ...
   def lcm(a: Long, b: Long): Long =
     a * b / gcd(a, b)
@@ -87,7 +98,10 @@ def part2(input: String): Long =
   val starts: Set[State] = network.keySet.filter(_.endsWith("A"))
 
   starts
-    .map(state => countStepsUntil(state, instructions, trans, 0, _.endsWith("Z")).toLong)  // for each state find the cycle time
+    .map(state =>
+      // for each state find the cycle time
+      countStepsUntil(
+        state, instructions, trans, 0, _.endsWith("Z")).toLong)
     .reduce(lcm)
 ```
 
@@ -125,11 +139,15 @@ def transitions(network: Map[String, Vector[String]]): Transition =
       case Instr.GoRight => network(n)(1)
 
 @tailrec
-def countStepsUntil(state: State, instrs: LazyList[Instr], trans: Transition, count: Int, pred: State => Boolean): Int =
+def countStepsUntil(
+    state: State, instrs: LazyList[Instr], trans: Transition,
+    count: Int, pred: State => Boolean): Int =
   if pred(state) then count
-  else countStepsUntil(trans(state, instrs.head), instrs.tail, trans, count + 1, pred)
+  else
+    countStepsUntil(
+      trans(state, instrs.head), instrs.tail, trans, count + 1, pred)
 
-def part1(input: String): Int = 
+def part1(input: String): Int =
   val inpL         = input.split("\n\n")
   val instructions = Instr.parse(inpL.head)
   val network      = parseMap(inpL.tail.head.split("\n").toList)
@@ -137,7 +155,7 @@ def part1(input: String): Int =
 
   countStepsUntil("AAA", instructions, trans, 0, _ == "ZZZ")
 
-def part2(input: String): Long = 
+def part2(input: String): Long =
   val inpL         = input.split("\n\n")
   val instructions = Instr.parse(inpL.head)
   val network      = parseMap(inpL.tail.head.split("\n").toList)
@@ -152,7 +170,9 @@ def part2(input: String): Long =
     if b == 0 then a else gcd(b, a % b)
 
   starts
-    .map(state => countStepsUntil(state, instructions, trans, 0, _.endsWith("Z")).toLong)
+    .map(state =>
+      countStepsUntil(
+        state, instructions, trans, 0, _.endsWith("Z")).toLong)
     .reduce(lcm)
 ```
 
