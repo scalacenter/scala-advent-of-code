@@ -89,9 +89,6 @@ Key insight comes from the realization that all `states` in the starting `Set[Sa
 
 ## final code
 ```scala
-package aoc
-package solutions
-
 import scala.annotation.tailrec
 
 type State = String
