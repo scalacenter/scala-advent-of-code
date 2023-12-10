@@ -78,9 +78,10 @@ xs.sliding(2).map:
     x2 - x1
 ```
 
-Instead of recursion, one could also express the algorithm using
-`Iterator.unfold` (as suggested by Stewart Stewart), or tail
-recursion with an accumulator, or an imperative loop.
+Instead of recursion, one could also express the algorithm using an
+iterator (with `Iterator.unfold`, as suggested by Stewart Stewart, or
+`Iterator.iterate`), or tail recursion with an accumulator, or an
+imperative loop.
 
 ### Parsing
 
