@@ -17,6 +17,8 @@ The elves are asking us to construct a ["difference
 table"](https://mathworld.wolfram.com/DifferenceTable.html).
 It is a special case of the more general method of
 ["Lagrange interpolation"](https://mathworld.wolfram.com/LagrangeInterpolatingPolynomial.html).
+The method of differences also gave its name to Charles Babbage's
+famous mechanical ["difference engine"](https://en.wikipedia.org/wiki/Difference_engine).
 
 Even if this mathematical background is unfamiliar to you, the method
 is still straightforward to implement.
