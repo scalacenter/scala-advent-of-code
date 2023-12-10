@@ -69,6 +69,10 @@ Note that doing `xs.tail.lazyZip(xs)` instead of the more obvious
 `xs.lazyZip(xs.tail)` means we don't need to reverse the arguments
 before subtracting, allowing use of the `_ - _` shorthand.
 
+Note also that both `zip` and `lazyZip` discard any extra values,
+so it doesn't matter that one of the sequences being zipped is one
+shorter.
+
 It would be only slightly more awkward to instead use `sliding(2)` to
 iterate over successive pairs, as follows:
 
