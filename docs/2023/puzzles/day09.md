@@ -130,5 +130,17 @@ bottom to top", and this suggestion can be turned into code.
 
 ## Solutions from the community
 
+- [Solution](https://github.com/Jannyboy11/AdventOfCode2023/blob/master/src/main/scala/day09/Day09.scala) of [Jan Boerman](https://twitter.com/JanBoerman95).
+- [Solution](https://github.com/guycastle/advent_of_code_2023/blob/main/src/main/scala/days/day09/DayNine.scala) by [Guillaume Vandecasteele](https://github.com/guycastle/)
+- [Solution](https://github.com/jnclt/adventofcode2023/blob/main/day09/mirage-maintenance.sc) by [jnclt](https://github.com/jnclt)
+- [Solution](https://github.com/lenguyenthanh/aoc-2023/blob/main/Day09.scala) by [Thanh Le](https://github.com/lenguyenthanh)
+- [Solution](https://github.com/spamegg1/advent-of-code-2023-scala/blob/solutions/09.worksheet.sc#L134) by [Spamegg](https://github.com/spamegg1)
+- [Solution](https://github.com/prinsniels/AdventOfCode2023/blob/main/src/main/scala/solutions/day09.scala) by [Niels Prins](https://github.com/prinsniels)
+- [Solution](https://github.com/bishabosha/advent-of-code-2023/blob/main/2023-day09.scala) by [Jamie Thompson](https://github.com/bishabosha)
+- [Solution](https://github.com/xRuiAlves/advent-of-code-2023/blob/main/Day9.scala) by [Rui Alves](https://github.com/xRuiAlves/)
+- [Solution](https://github.com/YannMoisan/advent-of-code/blob/master/2023/src/main/scala/Day9.scala) by [Yann Moisan](https://github.com/YannMoisan)
+- [Solution](https://github.com/GrigoriiBerezin/advent_code_2023/tree/master/task09/src/main/scala) by [g.berezin](https://github.com/GrigoriiBerezin)
+- [Solution](https://github.com/marconilanna/advent-of-code/blob/master/2023/Day09.scala) by [Marconi Lanna](https://github.com/marconilanna)
+
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)
