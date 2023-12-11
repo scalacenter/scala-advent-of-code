@@ -11,7 +11,7 @@ https://adventofcode.com/2023/day/11
 - [Solution](https://github.com/spamegg1/advent-of-code-2023-scala/blob/solutions/11.worksheet.sc#L138) by [Spamegg](https://github.com/spamegg1/)
 - [Solution](https://github.com/rayrobdod/advent-of-code/blob/main/2023/11/day11.scala) by [Raymond Dodge](https://github.com/rayrobdod/)
 - [Solution](https://github.com/xRuiAlves/advent-of-code-2023/blob/main/Day11.scala) by [Rui Alves](https://github.com/xRuiAlves/)
-- [Solution](https://github.com/lenguyenthanh/aoc-2023/blob/main/Day11.scala) by [Thanh Le](https://github.com/lenguyenthanh )
+- [Solution](https://github.com/lenguyenthanh/aoc-2023/blob/main/Day11.scala) by [Thanh Le](https://github.com/lenguyenthanh)
 - [Solution](https://github.com/SethTisue/adventofcode/blob/main/2023/src/test/scala/Day11.scala) by [Seth Tisue](https://github.com/SethTisue))
 
 Share your solution to the Scala community by editing this page.
