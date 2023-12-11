@@ -129,8 +129,8 @@ suggests "Adding the new values on the left side of each sequence from
 bottom to top", and this suggestion can be turned into code.
 
 ## Solutions from the community
+- [Solution](https://github.com/spamegg1/advent-of-code-2023-scala/blob/solutions/09.worksheet.sc#L134) by [Spamegg](https://github.com/spamegg1)
 - [Solution](https://github.com/prinsniels/AdventOfCode2023/blob/main/src/main/scala/solutions/day09.scala) by [Niels Prins](https://github.com/prinsniels)
-
 - [Solution](https://github.com/xRuiAlves/advent-of-code-2023/blob/main/Day9.scala) by [Rui Alves](https://github.com/xRuiAlves/)
 - [Solution](https://github.com/YannMoisan/advent-of-code/blob/master/2023/src/main/scala/Day9.scala) by [Yann Moisan](https://github.com/YannMoisan)
 - [Solution](https://github.com/GrigoriiBerezin/advent_code_2023/tree/master/task09/src/main/scala) by [g.berezin](https://github.com/GrigoriiBerezin)
