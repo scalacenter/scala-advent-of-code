@@ -130,6 +130,7 @@ bottom to top", and this suggestion can be turned into code.
 
 ## Solutions from the community
 
+- [Solution](https://github.com/Jannyboy11/AdventOfCode2023/blob/master/src/main/scala/day09/Day09.scala) of [Jan Boerman](https://twitter.com/JanBoerman95).
 - [Solution](https://github.com/guycastle/advent_of_code_2023/blob/main/src/main/scala/days/day09/DayNine.scala) by [Guillaume Vandecasteele](https://github.com/guycastle/)
 - [Solution](https://github.com/jnclt/adventofcode2023/blob/main/day09/mirage-maintenance.sc) by [jnclt](https://github.com/jnclt)
 - [Solution](https://github.com/lenguyenthanh/aoc-2023/blob/main/Day09.scala) by [Thanh Le](https://github.com/lenguyenthanh)
