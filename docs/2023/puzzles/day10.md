@@ -9,6 +9,7 @@ https://adventofcode.com/2023/day/10
 ## Solutions from the community
 
 - [Solution](https://github.com/xRuiAlves/advent-of-code-2023/blob/main/Day10.scala) by [Rui Alves](https://github.com/xRuiAlves/)
+- [Solution](https://github.com/lenguyenthanh/aoc-2023/blob/main/Day10.scala) by [Thanh Le](https://github.com/lenguyenthanh)
 - [Solution](https://github.com/SethTisue/adventofcode/blob/main/2023/src/test/scala/Day10.scala) by [Seth Tisue](https://github.com/SethTisue)
 
 Share your solution to the Scala community by editing this page.
