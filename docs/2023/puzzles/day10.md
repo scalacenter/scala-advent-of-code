@@ -51,7 +51,8 @@ def findLoop(grid: Seq[String]): Seq[(Int, Int)] =
     val startI = grid.indexWhere(_.contains('S'))
     (startI, grid(startI).indexOf('S'))
 
-  val loop = LazyList.iterate((start, connected(grid)(start).head)): (prev, curr) =>
+  val initial = (start, connected(grid)(start).head)
+  val loop = LazyList.iterate(initial): (prev, curr) =>
     val next = connected(grid)(curr) - prev
     (curr, next.head)
 
@@ -94,13 +95,18 @@ def part2(input: String): Int =
   val grid = parse(input)
   val inLoop = findLoop(grid).toSet
 
-  def connectsNorth(i: Int, j: Int): Boolean = connected(grid)(i,j).contains(i-1, j)
+  def connectsNorth(i: Int, j: Int): Boolean =
+    connected(grid)(i,j).contains(i-1, j)
 
-  def enclosedInLine(i: Int): Int = (grid(i).indices.foldLeft(false, 0):
-    case ((enclosed, count), j) if inLoop(i, j) => (enclosed ^ connectsNorth(i, j), count)
-    case ((true, count), j) => (true, count + 1)
-    case ((false, count), j) => (false, count)
-  )._2
+  def enclosedInLine(i: Int): Int =
+    val (_, count) = grid(i).indices.foldLeft((false, 0)):
+      case ((enclosed, count), j) if inLoop(i, j) =>
+        (enclosed ^ connectsNorth(i, j), count)
+      case ((true, count), j) =>
+        (true, count + 1)
+      case ((false, count), j) =>
+        (false, count)
+    count
 
   grid.indices.map(enclosedInLine).sum
 ```
@@ -132,8 +138,12 @@ def findLoop(grid: Seq[String]): Seq[(Int, Int)] =
     val startI = grid.indexWhere(_.contains('S'))
     (startI, grid(startI).indexOf('S'))
 
-  /** List of connected points starting from 'S' (p0, p1) :: (p1, p2) :: (p2, p3) :: ... */
-  val loop = LazyList.iterate((start, connected(grid)(start).head)): (prev, curr) =>
+  val initial = (start, connected(grid)(start).head)
+
+  /** List of connected points starting from 'S'
+   * e.g. `(y0, x0) :: (y1, x1) :: (y2, x2) :: ...`
+   */
+  val loop = LazyList.iterate(initial): (prev, curr) =>
     val next = connected(grid)(curr) - prev
     (curr, next.head)
 
@@ -151,14 +161,19 @@ def part2(input: String): String =
   val inLoop = findLoop(grid).toSet
 
   /** True iff `grid(i)(j)` is a pipe connecting to the north */
-  def connectsNorth(i: Int, j: Int): Boolean = connected(grid)(i, j).contains(i - 1, j)
+  def connectsNorth(i: Int, j: Int): Boolean =
+    connected(grid)(i, j).contains(i - 1, j)
 
   /** Number of tiles enclosed by the loop in `grid(i)` */
-  def enclosedInLine(i: Int): Int = (grid(i).indices.foldLeft(false, 0):
-    case ((enclosed, count), j) if inLoop(i, j) => (enclosed ^ connectsNorth(i, j), count)
-    case ((true, count), j) => (true, count + 1)
-    case ((false, count), j) => (false, count)
-  )._2
+  def enclosedInLine(i: Int): Int =
+    val (_, count) = grid(i).indices.foldLeft((false, 0)):
+      case ((enclosed, count), j) if inLoop(i, j) =>
+        (enclosed ^ connectsNorth(i, j), count)
+      case ((true, count), j) =>
+        (true, count + 1)
+      case ((false, count), j) =>
+        (false, count)
+    count
 
   grid.indices.map(enclosedInLine).sum.toString
 end part2
