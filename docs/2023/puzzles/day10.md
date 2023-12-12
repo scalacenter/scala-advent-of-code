@@ -11,7 +11,7 @@ https://adventofcode.com/2023/day/10
 
 ## Solution Summary
 
-We can keep the grid as provided in the input, a 2-dimensional array of characters for all intents and purposes. 
+We can keep the grid as provided in the input, a 2-dimensional array of characters for all intents and purposes.
 We will also keep track of tiles throughout the problem as identified by their indexes in the grid.
 ```scala 3
 def parse(input: String) = input.linesIterator.toSeq
@@ -20,8 +20,8 @@ val grid: Seq[String] = parse(input)
 
 ### Part 1
 
-We first implement `connected`, a function returning the tiles connected to a given point `p`, 
-as specified in the problem description, and in no particular order. 
+We first implement `connected`, a function returning the tiles connected to a given point `p`,
+as specified in the problem description, and in no particular order.
 For the starting position `'S'` in particular, as we do not know its direction,
 we can try all the four tiles surrounding it and keep those connecting back to it.
 
@@ -58,9 +58,9 @@ def findLoop(grid: Seq[String]): Seq[(Int, Int)] =
   start +: loop.map(_._2).takeWhile(_ != start)
 ```
 
-Once we have found the loop, 
-the distance from the starting position to the furthest point along the loop 
-is simply half of its length. 
+Once we have found the loop,
+the distance from the starting position to the furthest point along the loop
+is simply half of its length.
 
 ```scala 3
 def part1(input: String): Int = findLoop(parse(input)).length / 2
@@ -71,16 +71,16 @@ def part1(input: String): Int = findLoop(parse(input)).length / 2
 
 First consider the problem of counting the number of tiles enclosed by the loop on a given line.
 We will iterate over the line, keeping track of whether we are not we are inside the loop, which changes each time we cross over the path.
-We start from the beginning of the line as outside the loop, 
+We start from the beginning of the line as outside the loop,
 become enclosed when we cross it for the first time, until we cross the loop again, and so on.
 
-Observe that this not only happens when going over `|` pipes, but also in situations like `..L--7..`, 
-which could be viewed as an elongated `|` from the perspective of our current line. 
-So we can count as crossings, either all pipes connecting to the north ('|', 'L', 'J'`) 
+Observe that this not only happens when going over `|` pipes, but also in situations like `..L--7..`,
+which could be viewed as an elongated `|` from the perspective of our current line.
+So we can count as crossings, either all pipes connecting to the north ('|', 'L', 'J'`)
 or all pipes connecting to south ('|', '7', 'F'), as long as we count a single crossing in either case.
 
-We pick the former in the solution below, 
-`connectesNorth` determines if a pipe connects to the north by checking if the tile above it is in its set of connected pipes.
+We pick the former in the solution below,
+`connectsNorth` determines if a pipe connects to the north by checking if the tile above it is in its set of connected pipes.
 Of course, doing a disjunction of cases as detailed above would also work, but would require treating the starting point `S` separately once again.
 
 [//]: # (Also observe that the `connected` function actually encodes a generalization of the previously described cases.)
@@ -94,10 +94,10 @@ def part2(input: String): Int =
   val grid = parse(input)
   val inLoop = findLoop(grid).toSet
 
-  def connectesNorth(i: Int, j: Int): Boolean = connected(grid)(i,j).contains(i-1, j)
+  def connectsNorth(i: Int, j: Int): Boolean = connected(grid)(i,j).contains(i-1, j)
 
   def enclosedInLine(i: Int): Int = (grid(i).indices.foldLeft(false, 0):
-    case ((enclosed, count), j) if inLoop(i, j) => (enclosed ^ connectesNorth(i, j), count)
+    case ((enclosed, count), j) if inLoop(i, j) => (enclosed ^ connectsNorth(i, j), count)
     case ((true, count), j) => (true, count + 1)
     case ((false, count), j) => (false, count)
   )._2
@@ -151,11 +151,11 @@ def part2(input: String): String =
   val inLoop = findLoop(grid).toSet
 
   /** True iff `grid(i)(j)` is a pipe connecting to the north */
-  def connectesNorth(i: Int, j: Int): Boolean = connected(grid)(i, j).contains(i - 1, j)
+  def connectsNorth(i: Int, j: Int): Boolean = connected(grid)(i, j).contains(i - 1, j)
 
   /** Number of tiles enclosed by the loop in `grid(i)` */
   def enclosedInLine(i: Int): Int = (grid(i).indices.foldLeft(false, 0):
-    case ((enclosed, count), j) if inLoop(i, j) => (enclosed ^ connectesNorth(i, j), count)
+    case ((enclosed, count), j) if inLoop(i, j) => (enclosed ^ connectsNorth(i, j), count)
     case ((true, count), j) => (true, count + 1)
     case ((false, count), j) => (false, count)
   )._2
