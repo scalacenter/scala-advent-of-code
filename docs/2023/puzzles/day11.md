@@ -296,7 +296,7 @@ def loop(
 ### Where to expand on the problem?
 
 Here are some ideas that I think would be interesting to look into:
-- Bigger inputs: what if the space is and incredibly large grid, but the number of `#`s are sparse (for example, about 100000 points in a 10^9-sized grid)?
+- Bigger inputs: what if the space is an incredibly large grid, but the number of `#`s are sparse (for example, about 100000 points in a 10^9-sized grid)?
   Can we leverage the same technique to achieve an efficient counting algorithm?
 - Non-linear *k*: What if instead of expanding empty rows/columns by a constant *k*, we expand the topmost empty row by 1, the second empty row by 2 and so on...
   Same with columns. Can we still keep the counting linear?
