@@ -2,6 +2,8 @@ import Solver from "../../../../../website/src/components/Solver.js"
 
 # Day 11: Cosmic Expansion
 
+by [@natsukagami](https://github.com/natsukagami)
+
 ## Puzzle description
 
 https://adventofcode.com/2023/day/11
@@ -60,7 +62,7 @@ val countByRow = board
 
 ### A cubic solution: calculate for each pair of rows!
 
-Now, since the empty rows are expanded, we simply cannot get the row distance simply by `(a.row - b.row).abs`.
+Now, since the empty rows are expanded, we cannot use the old row distance formula `(a.row - b.row).abs`.
 Instead, we have to *count* the number of empty rows in between:
 
 ```scala 3
@@ -116,56 +118,48 @@ At this point we can leverage [prefix sums](https://en.wikipedia.org/wiki/Prefix
 
 ```scala 3
 // outside of `rowDistance`...
-val expandedSize: Array[Long] = countByRow.map(if _ == 0 then k else 1L)
-val expandedSizePrefix = expandedSize.scan(0L)(_ + _) // expandedSizePrefix(i) = expandedSize(0) + ... + expandedSize(i-1)
+val expandedSize: Array[Long] =
+  countByRow.map(if _ == 0 then k else 1L)
+// expandedSizePrefix(i) = expandedSize(0) + ... + expandedSize(i-1)
+val expandedSizePrefix = expandedSize.scan(0L)(_ + _)
+
 // inside of `rowDistance`...
-val distanceForOnePair = expandedSizePrefix(yRow) - expandedSizePrefix(xRow)
+val distanceForOnePair =
+  expandedSizePrefix(yRow) - expandedSizePrefix(xRow)
 ```
 And we have just lowered the running time of the solution to `O(rows^2)`, by making `rowDistance` constant-time!
 
 Here is the full code.
 
 ```scala 3
-import scala.util.Using
-import scala.io.Source
+def solve(input: String, expand: Int) =
+  val board = input.linesIterator.toSeq
 
-val input = """
-...#......
-.......#..
-#.........
-..........
-......#...
-.#........
-.........#
-..........
-.......#..
-#...#.....
-""".trim()
-
-val board = input.linesIterator.toSeq
-
-val countByRow = board
+  val countByRow = board
     .map(row => row.count(_ == '#'))
     .toArray // get O(1) indexing
-val countByCol = board.transpose // rotate the board!
+  val countByCol = board.transpose // rotate the board!
     .map(col => col.count(_ == '#'))
     .toArray
 
-val part1 = allRowDistances(2, countByRow) + allRowDistances(2, countByCol)
-val part2 = allRowDistances(1_000_000, countByRow) + allRowDistances(1_000_000, countByCol)
+  allRowDistances(expand, countByRow)
+  + allRowDistances(expand, countByCol)
+end solve
+
+def part1(input: String) = solve(input, expand = 2)
+def part2(input: String) = solve(input, expand = 1_000_000)
 
 def allRowDistances(k: Int, counts: Array[Int]): Long =
-    val expandedSize: Array[Long] = counts.map(v => if v == 0 then k else 1L)
-    // expandedSizePrefix(i) = expandedSize(0) + ... + expandedSize(i-1)
-    val expandedSizePrefix = expandedSize.scan(0L)(_ + _)
-    def rowDistance(xRow: Int, yRow: Int): Long =
-        val distanceForOnePair = expandedSizePrefix(yRow) - expandedSizePrefix(xRow)
-        distanceForOnePair * counts(xRow) * counts(yRow)
+  val expandedSize: Array[Long] = counts.map(v => if v == 0 then k else 1L)
+  // expandedSizePrefix(i) = expandedSize(0) + ... + expandedSize(i-1)
+  val expandedSizePrefix = expandedSize.scan(0L)(_ + _)
+  def rowDistance(xRow: Int, yRow: Int): Long =
+    val distanceForOnePair = expandedSizePrefix(yRow) - expandedSizePrefix(xRow)
+    distanceForOnePair * counts(xRow) * counts(yRow)
 
-    (for i <- 0 until counts.length
-        j <- 0 until i
-    yield rowDistance(j, i)).sum
-
+  (for i <- 0 until counts.length
+    j <- 0 until i
+  yield rowDistance(j, i)).sum
 ```
 
 Now, this is enough for the puzzle, as reading the input itself is `O(rows * col)`. But ignoring that, can we do better? Hint: yes.
@@ -178,12 +172,10 @@ Let us apply some mathematical transformations and do some equational reasoning!
 
 ```scala 3
 val result = {
-    for i <- 0 until counts.length
-        j <- 0 until i
-    yield {
-           counts(i) * counts(j) * (expandedSizePrefix(i) - expandedSizePrefix(j))
-        // = counts(i) * (counts(j) * expandedSizePrefix(i) - counts(j) * expandedSizePrefix(j))
-    }
+  for i <- 0 until counts.length
+    j <- 0 until i
+  yield
+    counts(i) * counts(j) * (expandedSizePrefix(i) - expandedSizePrefix(j))
 }.sum
 ```
 
@@ -191,11 +183,11 @@ Let's regroup the `for` loop a bit:
 
 ```scala 3
 val result = {
-    for i <- 0 until counts.length
-    yield counts(i) * {
-        (for j <- 0 until i yield counts(j) * expandedSizePrefix(i) - counts(j) * expandedSizePrefix(j)).sum
+  for i <- 0 until counts.length
+  yield counts(i) * {
+    (for j <- 0 until i yield counts(j) * expandedSizePrefix(i) - counts(j) * expandedSizePrefix(j)).sum
 /* = */ expandedSizePrefix(i) * (for j <- 0 until i yield counts(j)).sum - (for j <- 0 until i yield counts(j) * expandedSizePrefix(j)).sum
-    }.sum
+  }.sum
 }.sum
 ```
 
@@ -204,16 +196,16 @@ We can see the `for j <- 0 until i` pattern here, which means a prefix sum can b
 ```scala 3
 val countsSum = counts.scan(0L)(_ + _)
 val countsTimeExpandedSizePSum = counts
-    .lazyZip(expandedSizePrefix)
-    .map(_.toLong * _) // multiplied together
-    .scan(0L)(_ + _)   // create a prefix sum
+  .lazyZip(expandedSizePrefix)
+  .map(_.toLong * _) // multiplied together
+  .scan(0L)(_ + _)   // create a prefix sum
 
 // and now we have
 val result = {
-    for i <- 0 until counts.length
-    yield counts(i) * {
-        expandedSizePrefix(i) * countsSum(i) - countsTimeExpandedSizePSum(i)
-    }
+  for i <- 0 until counts.length
+  yield counts(i) * {
+    expandedSizePrefix(i) * countsSum(i) - countsTimeExpandedSizePSum(i)
+  }
 }
 ```
 
@@ -246,7 +238,7 @@ def totalDistance(i) =
         (for j <- 0 to i yield counts(j) * distance(j, i)).sum
 /* = */ (for j <- 0 to i-1 yield counts(j) * distance(j, i)).sum + counts(i) * distance(i, i) /* this part is always 0! */
 /* = */ (for j <- 0 to i-1
-         yield count(j) * 
+         yield count(j) *
             if j == i then 0 /* never happens */
             else if counts(i) == 0 then distance(j, i-1) + k // i was expanded
             else                        distance(j, i-1) + 1 // i was not expanded
@@ -302,16 +294,6 @@ Here are some ideas that I think would be interesting to look into:
   Same with columns. Can we still keep the counting linear?
 - (Squared) Euclidean distance: what if our distance is the square of the *actual* distance between the `#`s (i.e. `(a.x - b.x)^2 + (a.y - b.y)^2`)?
   We *should* be able to *still* keep the counting algorithm linear with some math!
-
-### Run it in the browser
-
-#### Part 1
-
-<Solver puzzle="day11-part1" year="2023"/>
-
-#### Part 2
-
-<Solver puzzle="day11-part2" year="2023"/>
 
 ## Solutions from the community
 
