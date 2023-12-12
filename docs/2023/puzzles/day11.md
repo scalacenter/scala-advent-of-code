@@ -16,6 +16,8 @@ One caveat: each row and each column that has no `#` actually represents `k` emp
 
 ## Solution Summary
 
+by [@natsukagami](https://github.com/natsukagami)
+
 We start by parsing the input into a board structure (a `Seq[String]`, with each string *representing a row*).
 
 ```scala 3
@@ -300,6 +302,16 @@ Here are some ideas that I think would be interesting to look into:
   Same with columns. Can we still keep the counting linear?
 - (Squared) Euclidean distance: what if our distance is the square of the *actual* distance between the `#`s (i.e. `(a.x - b.x)^2 + (a.y - b.y)^2`)?
   We *should* be able to *still* keep the counting algorithm linear with some math!
+
+### Run it in the browser
+
+#### Part 1
+
+<Solver puzzle="day11-part1" year="2023"/>
+
+#### Part 2
+
+<Solver puzzle="day11-part2" year="2023"/>
 
 ## Solutions from the community
 
