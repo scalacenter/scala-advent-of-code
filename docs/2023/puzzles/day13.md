@@ -10,7 +10,7 @@ https://adventofcode.com/2023/day/13
 
 ## Solution summary
 
-- Iterate over each line of the input to create a list of patterns
+- Convert the input to a sequence of patterns.
 - Iterate over each pattern to detect its reflection. If there is no reflection on a pattern we try to find it in the transposition of the pattern.
 - Sum up all the reflection numbers.
 
@@ -24,30 +24,22 @@ type Line = Seq[Tile]
 type Pattern = Seq[Line]
 ```
 
-To parse the input we iterate over each line:
-  - if the line is not empty we add it to the `currentPattern` buffer
-  - if the line is empty we add the `currentPattern` to the buffer of all patterns, and we reset the `currentPattern`
+To parse the input we split the full input by empty lines, (expressed with the regex `\R\R`, which works multiplatform).
+This gives a sequence of strings representing the patterns. Then split each pattern by a new line (regex `\R`). Then for
+each line we assert that all the characters are valid tiles.
 
 ```scala
-def parseInput(input: Seq[String]): Seq[Pattern] =
-  val currentPattern = Buffer.empty[Line]
-  val patterns = Buffer.empty[Pattern]
-  def addPattern() =
-    patterns += currentPattern.toSeq
-    currentPattern.clear()
-  for lineStr <- input do
-    if lineStr.isEmpty then addPattern()
-    else
-      val line = lineStr.collect[Tile] { case tile: Tile => tile }
-      currentPattern += line
-  addPattern()
-  patterns.toSeq
+def parseInput(input: String): Seq[Pattern] =
+  val patterns = input.split(raw"\R\R").toSeq
+  patterns.map: patternStr =>
+    patternStr.split(raw"\R").toSeq.map: lineStr =>
+      lineStr.collect[Tile] { case tile: Tile => tile }
 ```
 
-In Scala we tend to prefer using immutable collections over mutable ones.
-However, in this specific case, I made a deliberate choice to use `Buffer`s which are mutable.
-This decision is deemed safe because these mutable buffers are confined within the `parseInput` method and do not escape its scope.
-An alternative and more functional approach could involve folding the input into an immutable sequence of sequences, but this might compromise the code's readability.
+:::info
+In Scala we tend to prefer a declarative style. An alternative imperative option would be to iterate over each line,
+accumulating lines into a buffer as we encounter them, and then at each empty line transfer all the accumulated lines as a group to a separate pattern buffer.
+:::
 
 ## Part 1: detecting pure reflection
 
@@ -60,7 +52,7 @@ The resulting code is:
 
 ```scala
 def findReflection(pattern: Pattern): Option[Int] =
-  1.until(pattern.size).find: i => 
+  (1 until pattern.size).find: i =>
     val (leftPart, rightPart) = pattern.splitAt(i)
     leftPart.reverse.zip(rightPart).forall(_ == _)
 ```
@@ -89,46 +81,36 @@ smudges == 1
 ## Final code
 
 ```scala
-import scala.collection.mutable.Buffer
-
 type Tile = '.' | '#'
 type Line = Seq[Tile]
 type Pattern = Seq[Line]
 
-def part1(input: Seq[String]): Int =
+def part1(input: String): Int =
   parseInput(input)
     .flatMap: pattern =>
       findReflection(pattern).map(100 * _).orElse(findReflection(pattern.transpose))
     .sum
 
-def part2(input: Seq[String]) =
+def part2(input: String) =
   parseInput(input)
     .flatMap: pattern =>
       findReflectionWithSmudge(pattern).map(100 * _)
         .orElse(findReflectionWithSmudge(pattern.transpose))
     .sum
 
-def parseInput(input: Seq[String]): Seq[Pattern] =
-  val currentPattern = Buffer.empty[Line]
-  val patterns = Buffer.empty[Pattern]
-  def addPattern() =
-    patterns += currentPattern.toSeq
-    currentPattern.clear()
-  for lineStr <- input do
-    if lineStr.isEmpty then addPattern()
-    else
-      val line = lineStr.collect[Tile] { case tile: Tile => tile }
-      currentPattern += line
-  addPattern()
-  patterns.toSeq
+def parseInput(input: String): Seq[Pattern] =
+  val patterns = input.split(raw"\R\R").toSeq
+  patterns.map: patternStr =>
+    patternStr.split(raw"\R").toSeq.map: lineStr =>
+      lineStr.collect[Tile] { case tile: Tile => tile }
 
 def findReflection(pattern: Pattern): Option[Int] =
-  1.until(pattern.size).find: i => 
+  (1 until pattern.size).find: i =>
     val (leftPart, rightPart) = pattern.splitAt(i)
     leftPart.reverse.zip(rightPart).forall(_ == _)
 
 def findReflectionWithSmudge(pattern: Pattern): Option[Int] =
-  1.until(pattern.size).find: i => 
+  (1 until pattern.size).find: i =>
     val (leftPart, rightPart) = pattern.splitAt(i)
     val smudges = leftPart.reverse
       .zip(rightPart)
