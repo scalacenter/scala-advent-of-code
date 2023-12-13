@@ -69,28 +69,28 @@ In the same folder, we create a file `day12.test.scala` to hold our tests. we wr
 
 class Day12Test extends munit.FunSuite:
   test("example row 1"):
-    assertEquals(countRow(examplePuzzle(0)), 1)
+    assertEquals(countRow(examplePuzzle(0)), 1L)
 
   test("example row 2"):
-    assertEquals(countRow(examplePuzzle(1)), 4)
+    assertEquals(countRow(examplePuzzle(1)), 4L)
 
   test("example row 3"):
-    assertEquals(countRow(examplePuzzle(2)), 1)
+    assertEquals(countRow(examplePuzzle(2)), 1L)
 
   test("example row 4"):
-    assertEquals(countRow(examplePuzzle(3)), 1)
+    assertEquals(countRow(examplePuzzle(3)), 1L)
 
   test("example row 5"):
-    assertEquals(countRow(examplePuzzle(4)), 4)
+    assertEquals(countRow(examplePuzzle(4)), 4L)
 
   test("example row 6"):
-    assertEquals(countRow(examplePuzzle(5)), 10)
+    assertEquals(countRow(examplePuzzle(5)), 10L)
 
   test("example"):
-    assertEquals(countAll(examplePuzzle.mkString("\n")), 21)
+    assertEquals(countAll(examplePuzzle.mkString("\n")), 21L)
 
   test("puzzle input"):
-    assertEquals(countAll(personalPuzzle), 7118)
+    assertEquals(countAll(personalPuzzle), 7118L)
 ```
 
 Thanks to scala-cli we can easily run the tests with:
