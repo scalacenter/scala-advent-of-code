@@ -304,6 +304,7 @@ Here are some ideas that I think would be interesting to look into:
 - [Solution](https://github.com/SethTisue/adventofcode/blob/main/2023/src/test/scala/Day11.scala) by [Seth Tisue](https://github.com/SethTisue)
 - [Solution](https://github.com/jnclt/adventofcode2023/blob/main/day11/cosmic-expansion.sc) by [jnclt](https://github.com/jnclt)
 - [Solution](https://github.com/GrigoriiBerezin/advent_code_2023/tree/solution_11/task11/src/main/scala) by [g.berezin](https://github.com/GrigoriiBerezin)
+- [Solution](https://github.com/marconilanna/advent-of-code/blob/master/2023/Day11.scala) by [Marconi Lanna](https://github.com/marconilanna)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)
