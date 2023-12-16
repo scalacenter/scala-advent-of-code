@@ -16,9 +16,9 @@ Let's create a folder with a file `day12.scala` to hold the core of our code.
 We start by writing two examples and defining three functions `countAll`, `countRow`, and `count` that we will implement later:
 
 ```scala
-// A using scala-cli using directive to set the Scala version to 3.3.1
-// See https://scala-cli.virtuslab.org/docs/reference/directives#scala-version
 //> using scala 3.3.1
+
+import scala.io.Source
 
 /** The example puzzle from the problem description. */
 val examplePuzzle = IArray(
@@ -29,8 +29,9 @@ val examplePuzzle = IArray(
   "????.######..#####. 1,6,5",
   "###???????? 3,2,1"
 )
+
 /** Our personal puzzle input. */
-val personalPuzzle = scala.io.Source.fromFile("input.txt").mkString.trim()
+val personalPuzzle = Source.fromFile("input.txt").mkString.trim()
 
 /** Entry point for part 1. */
 @main def part1(): Unit = println(countAll(personalPuzzle))
@@ -38,12 +39,13 @@ val personalPuzzle = scala.io.Source.fromFile("input.txt").mkString.trim()
 /** Sums `countRow` over all rows in `input`. */
 def countAll(input: String): Long = ???
 
-/** Counts all of the different valid arrangements of operational and broken
-  * springs in the given row.
+/** Counts all of the different valid arrangements of
+  * operational and broken springs in the given row.
   */
 def countRow(input: String): Long = ???
 
-/** Helper recursive function for `countRow` that does the actual work.
+/** Helper recursive function for `countRow` that does
+  * the actual work.
   *
   * @param input
   *   the remaining input to process
@@ -134,24 +136,27 @@ For our first implementation, we'll iterate through the input string character b
 def count(input: List[Char], ds: List[Int], d: Int = 0): Long =
   // We've reached the end of the input.
   if input.isEmpty then
-    // This is a valid arrangement if there are no sequences of damaged springs
-    // left to place (ds.isEmpty) and  we're not currently in a sequence of
-    // damaged springs (d == 0).
+    // This is a valid arrangement if there are no sequences of
+    // damaged springs left to place (ds.isEmpty) and  we're
+    // not currently in a sequence of damaged springs (d == 0).
     if ds.isEmpty && d == 0 then 1L
-    // This is also a valid arrangement if there is one sequence of damaged
-    // springs left to place (ds.length == 1) and its size is d (ds.head == d).
+    // This is also a valid arrangement if there is one sequence
+    // of damaged springs left to place (ds.length == 1) and its
+    // size is d (ds.head == d).
     else if ds.length == 1 && ds.head == d then 1L
     // Otherwise, this is not a valid arrangement.
     else 0
   else
     def operationalCase() =
-      // If we're not currently in a sequence of damaged springs, then we can
-      // consume an operational spring.
+      // If we're not currently in a sequence of damaged springs,
+      // then we can consume an operational spring.
       if d == 0 then count(input.tail, ds, 0)
-      // We are currently in a sequence of damaged springs, which this
-      // operational spring ends. If the length of the damaged sequence is the
-      // expected one, the we can continue with the next damaged sequence.
-      else if !ds.isEmpty && ds.head == d then count(input.tail, ds.tail, 0)
+      // We are currently in a sequence of damaged springs,
+      // which this operational spring ends. If the length
+      // of the damaged sequence is the expected one, the we can
+      // continue with the next damaged sequence.
+      else if !ds.isEmpty && ds.head == d then
+        count(input.tail, ds.tail, 0)
       // Otherwise, this is not a valid arrangement.
       else 0L
     def damagedCase() =
@@ -164,10 +169,11 @@ def count(input: List[Char], ds: List[Int], d: Int = 0): Long =
       // Otherwise, we can consume a damaged spring.
       else count(input.tail, ds, d + 1)
     input.head match
-      // If we encounter a question mark, this position can have either an
-      // operational or a damaged spring.
+      // If we encounter a question mark, this position can have
+      // either an operational or a damaged spring.
       case '?' => operationalCase() + damagedCase()
-      // If we encounter a dot, this position has an operational spring.
+      // If we encounter a dot, this position has an operational
+      // spring.
       case '.' => operationalCase()
       // If we encounter a hash, this position has damaged spring.
       case '#' => damagedCase()
@@ -190,7 +196,8 @@ And consider the following example puzzle in addition to our two existing exampl
 
 ```scala
 val slowPuzzleSize = 16
-val slowPuzzle = ("??." * slowPuzzleSize) + " " + ("1," * (slowPuzzleSize - 1)) + "1"
+val slowPuzzle =
+  ("??." * slowPuzzleSize) + " " + ("1," * (slowPuzzleSize - 1)) + "1"
 ```
 
 To see how many times `count` is called for our example puzzles, we add the following function:
@@ -229,7 +236,9 @@ We can use a [`mutable.Map`](https://www.scala-lang.org/api/current/scala/collec
 Here is the memoized version of `count`:
 
 ```scala
-val cache = collection.mutable.Map.empty[(List[Char], List[Int], Long), Long]
+import scala.collection.mutable
+
+val cache = mutable.Map.empty[(List[Char], List[Int], Long), Long]
 private def count(input: List[Char], ds: List[Int], d: Int = 0): Long =
   cache.getOrElseUpdate((input, ds, d), countUncached(input, ds, d))
 
@@ -270,15 +279,20 @@ Oh, there is a second part to this puzzle!
 The only change needed to implement the second part is to unfold the input rows before counting them. We add the `unfoldRow` function to do that, and call it from `countAllUnfolded`:
 
 ```scala
-@main def part2(): Unit = println(countAllUnfolded(personalPuzzle))
+/** Entry point for part 2 */
+@main def part2(): Unit =
+  println(countAllUnfolded(personalPuzzle))
 
 def countAllUnfolded(input: String): Long =
   input.split("\n").map(unfoldRow).map(countRow).sum
 
 def unfoldRow(input: String): String =
-  val Array(conditions, damagedCounts) = input.split(" ")
-  val conditionsUnfolded = (0 until 5).map(_ => conditions).mkString("?")
-  val damagedCountUnfolded = (0 until 5).map(_ => damagedCounts).mkString(",")
+  val Array(conditions, damagedCounts) =
+    input.split(" ")
+  val conditionsUnfolded =
+    (0 until 5).map(_ => conditions).mkString("?")
+  val damagedCountUnfolded =
+    (0 until 5).map(_ => damagedCounts).mkString(",")
   f"$conditionsUnfolded $damagedCountUnfolded"
 ```
 
@@ -300,44 +314,52 @@ Our first implementation of `count` works. Recursing character by character thro
 To know if a group of damaged springs of length $n$ can be at a given position, we can consume the next $n$ characters of the input and check if they can all be damaged springs (i.e. none of them is a `.`), and if the following character can be an operational spring (i.e. it is not a `#`).
 
 ```scala
-extension (b: Boolean) private inline def toLong: Long = if b then 1L else 0L
+import scala.collection.mutable
 
-val cache2 = collection.mutable.Map.empty[(List[Char], List[Int]), Long]
+extension (b: Boolean) private inline def toLong: Long =
+  if b then 1L else 0L
+
+val cache2 = mutable.Map.empty[(List[Char], List[Int]), Long]
 
 private def count2(input: List[Char], ds: List[Int]): Long =
   cache2.getOrElseUpdate((input, ds), count2Uncached(input, ds))
 
 def count2Uncached(input: List[Char], ds: List[Int]): Long =
   ops += 1
-  // We've  seen all expected damaged sequences. The arrangement is therefore
-  // valid only if the input does not contain damaged springs.
+  // We've  seen all expected damaged sequences. The arrangement
+  // is therefore valid only if the input does not contain
+  // damaged springs.
   if ds.isEmpty then input.forall(_ != '#').toLong
-  // The input is empty but we expected some damaged springs, so this is not a
-  // valid arrangement.
+  // The input is empty but we expected some damaged springs,
+  // so this is not a valid arrangement.
   else if input.isEmpty then 0L
   else
     def operationalCase(): Long =
       // We can consume all following operational springs.
       count2(input.tail.dropWhile(_ == '.'), ds)
     def damagedCase(): Long =
-      // If the length of the input is less than the expected length of the
-      // damaged sequence, then this is not a valid arrangement.
+      // If the length of the input is less than the expected
+      // length of the damaged sequence, then this is not a
+      // valid arrangement.
       if input.length < ds.head then 0L
       else
-        // Split the input into a group of length ds.head and the rest.
+        // Split the input into a group of length ds.head and
+        // the rest.
         val (group, rest) = input.splitAt(ds.head)
-        // If the group contains any operational springs, then this is not a a
-        // group of damaged springs, so this is not a valid arrangement.
+        // If the group contains any operational springs, then
+        // this is not a a group of damaged springs, so this
+        // is not a valid arrangement.
         if !group.forall(_ != '.') then 0L
-        // If the rest of the input is empty, then this is a valid arrangement
-        // only if the damaged sequence is the last one expected.
+        // If the rest of the input is empty, then this is a
+        // valid arrangement only if the damaged sequence is
+        // the last one expected.
         else if rest.isEmpty then ds.tail.isEmpty.toLong
-        // If we now have a damaged spring, then this is not the end of a
-        // damaged sequence as expected, and therefore not a valid
-        // arrangement.
+        // If we now have a damaged spring, then this is not
+        // the end of a damaged sequence as expected, and
+        // therefore not a valid arrangement.
         else if rest.head == '#' then 0L
-        // Otherwise, we can continue with the rest of the input and the next
-        // expected damaged sequence.
+        // Otherwise, we can continue with the rest of the
+        // input and the next expected damaged sequence.
         else count2(rest.tail, ds.tail)
     input.head match
       case '?' => operationalCase() + damagedCase()
@@ -361,8 +383,10 @@ personal unfolded: 7030194981795 (235829 calls,  497 ms)
 We implemented memoization by using a global mutable map. What happens if we use a local, distinct one for each call to `count` instead?
 
 ```scala
+import scala.collection.mutable
+
 def count2(input: List[Char], ds: List[Int]): Long =
-  val cache2 = collection.mutable.Map.empty[(List[Char], List[Int]), Long]
+  val cache2 = mutable.Map.empty[(List[Char], List[Int]), Long]
 
   def count2Cached(input: List[Char], ds: List[Int]): Long =
     cache2.getOrElseUpdate((input, ds), count2Uncached(input, ds))
@@ -386,11 +410,16 @@ personal unfolded: 7030194981795 (   260272 calls,  407 ms)
 Because we will always consider the same sublists of `input` and `ds` for the lifetime of the cache, we can just use the lengths of these lists as keys:
 
 ```scala
+import scala.collection.mutable
+
 def count2(input: List[Char], ds: List[Int]): Long =
-  val cache2 = collection.mutable.Map.empty[(Int, Int), Long]
+  val cache2 = mutable.Map.empty[(Int, Int), Long]
 
   def count2Cached(input: List[Char], ds: List[Int]): Long =
-    cache2.getOrElseUpdate((input.length, ds.length), count2Uncached(input, ds))
+    val key = (input.length, ds.length)
+    cache2.getOrElseUpdate(key, count2Uncached(input, ds))
+
+  // ... def count2Uncached as before
 ```
 
 Which further reduces the running time of the unfolded version to ~320 ms on my machine:
@@ -420,6 +449,8 @@ def count2(input: List[Char], ds: List[Int]): Long =
       cache(key) = result
       result
     else result
+
+  // ... def count2Uncached as before
 ```
 
 This reduces the running time of the unfolded version down to ~200 ms on my machine:
@@ -534,6 +565,7 @@ def count2(input: List[Char], ds: List[Int]): Long =
   count2Cached(input, ds)
 end count2
 
+/** Entry point for part 2 */
 def part2(input: String): Unit =
   println(countAllUnfolded(input))
 
