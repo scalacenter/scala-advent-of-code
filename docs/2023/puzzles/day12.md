@@ -71,28 +71,28 @@ In the same folder, we create a file `day12.test.scala` to hold our tests. We wr
 
 class Day12Test extends munit.FunSuite:
   test("example row 1"):
-    assertEquals(countRow(examplePuzzle(0)), 1)
+    assertEquals(countRow(examplePuzzle(0)), 1L)
 
   test("example row 2"):
-    assertEquals(countRow(examplePuzzle(1)), 4)
+    assertEquals(countRow(examplePuzzle(1)), 4L)
 
   test("example row 3"):
-    assertEquals(countRow(examplePuzzle(2)), 1)
+    assertEquals(countRow(examplePuzzle(2)), 1L)
 
   test("example row 4"):
-    assertEquals(countRow(examplePuzzle(3)), 1)
+    assertEquals(countRow(examplePuzzle(3)), 1L)
 
   test("example row 5"):
-    assertEquals(countRow(examplePuzzle(4)), 4)
+    assertEquals(countRow(examplePuzzle(4)), 4L)
 
   test("example row 6"):
-    assertEquals(countRow(examplePuzzle(5)), 10)
+    assertEquals(countRow(examplePuzzle(5)), 10L)
 
   test("example"):
-    assertEquals(countAll(examplePuzzle.mkString("\n")), 21)
+    assertEquals(countAll(examplePuzzle.mkString("\n")), 21L)
 
   test("puzzle input"):
-    assertEquals(countAll(personalPuzzle), 7118)
+    assertEquals(countAll(personalPuzzle), 7118L)
 ```
 
 We can run the tests with:
@@ -226,7 +226,7 @@ personal:  7118 (   149712 calls,   37 ms)
 
 Many of the calls to `count` are redundant: they are made with the same arguments as previous calls. A quick way to improve algorithmic complexity and the performance of this function is to [_memoize_](https://en.wikipedia.org/wiki/Memoization) it: we can cache the results of previous calls to `count` and reuse them when the same arguments are passed again.
 
-In Scala, we can use a [`mutable.Map`](https://www.scala-lang.org/api/current/scala/collection/mutable/Map.html) to store the results of previous calls. We use tuples containing the arguments `(input, ds, d)` as keys, and we use the [`getOrElseUpdate`](https://www.scala-lang.org/api/current/scala/collection/mutable/Map.html#getOrElseUpdate-fffff230) method to either retrieve the cached result or compute it and store it in the map.
+We can use a [`mutable.Map`](https://www.scala-lang.org/api/current/scala/collection/mutable/Map.html) to store the results of previous calls. We use tuples containing the arguments `(input, ds, d)` as keys, and we use the [`getOrElseUpdate`](https://www.scala-lang.org/api/current/scala/collection/mutable/Map.html#getOrElseUpdate-fffff230) method to either retrieve the cached result or compute it and store it in the map.
 
 Here is the memoized version of `count`:
 
@@ -294,7 +294,6 @@ personal unfolded: 7030194981795 (681185 calls, 815 ms)
 ```
 
 Can we do better?
-
 
 ### Group-level implementation of `count`
 
