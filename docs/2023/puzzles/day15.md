@@ -201,5 +201,7 @@ end part2
 
 ## Solutions from the community
 
+- [Solution](https://github.com/YannMoisan/advent-of-code/blob/master/2023/src/main/scala/Day15.scala) by [YannMoisan](https://github.com/YannMoisan)
+
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)
