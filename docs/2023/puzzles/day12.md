@@ -13,10 +13,6 @@ https://adventofcode.com/2023/day/12
 
 Let's create a folder with a file `day12.scala` to hold the core of our code.
 
-## Scaffold
-
-Let's create a folder with a file `day12.scala` to hold the core of our code.
-
 We start by writing two examples and defining three functions `countAll`, `countRow`, and `count` that we will implement later:
 
 ```scala
@@ -254,7 +250,7 @@ personal:  7118 (    38382 calls,   74 ms)
 That's much better! The number of operations is lower, and the running time is faster in the pathological `slow` puzzle case.
 
 
-:::note
+:::info
 
 The number of operations is a good primary metric here, because it is completely deterministic, stable across runs and is a good proxy for the complexity of the algorithm.
 
@@ -406,7 +402,7 @@ Which further reduces the running time of the unfolded version to ~320 ms on my 
 personal unfolded: 7030194981795 (   260272 calls,  320 ms)
 ```
 
-### Simplify the cache structure
+### Simplify the cache structure
 
 Our cache key is now just a pair of integers, so we don't need a `Map`; an `Array` can do the job just as well.
 
