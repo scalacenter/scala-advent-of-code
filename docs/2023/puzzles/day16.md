@@ -271,8 +271,6 @@ def part1(input: String) =
   solution(input.split("\n"), Coord(0, 0), Direction.Right)
 ```
 
-Which yields `7939`
-
 ### Part 2
 
 Here we need to find the starting point and direction that maximize the number of activated cells. To do so, we'll just try every possible combination and keep the best one.
@@ -293,8 +291,6 @@ def part2(input: String) =
   val borders = horizontal ++ vertical
   borders.map((coord, dir) => solution(lines, coord, dir)).max
 ```
-
-Which yields `8318`
 
 ## Full code
 
