@@ -201,6 +201,7 @@ end part2
 
 ## Solutions from the community
 
+- [Solution](https://github.com/jnclt/adventofcode2023/blob/main/day15/lens-library.sc) by [jnclt](https://github.com/jnclt)
 - [Solution](https://github.com/spamegg1/advent-of-code-2023-scala/blob/solutions/15.worksheet.sc#L208) by [Spamegg](https://github.com/spamegg1)
 - [Solution](https://github.com/YannMoisan/advent-of-code/blob/master/2023/src/main/scala/Day15.scala) by [YannMoisan](https://github.com/YannMoisan)
 - [Solution](https://github.com/xRuiAlves/advent-of-code-2023/blob/main/Day15.scala) by [Rui Alves](https://github.com/xRuiAlves/)
