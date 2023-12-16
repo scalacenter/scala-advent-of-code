@@ -8,8 +8,6 @@ By [@iusildra](https://github.com/iusildra)
 
 https://adventofcode.com/2023/day/16
 
-## Solutions from the community
-
 ## Solution summary
 
 The solution models the input as a grid with 3 types of cells:
@@ -31,7 +29,7 @@ Then once we have the model with some helper functions, we can solve the problem
 
 ### Global model
 
-We start by defining the direction of the lava flow, which is a simple enum, and the coordinates of a cell (a cas):
+We start by defining the direction of the lava flow, which is a simple enum, and the coordinates of a cell (a case class):
 
 ```scala
 enum Direction:
@@ -108,7 +106,11 @@ case class Empty(override val pos: Coord) extends Element:
     throw new UnsupportedOperationException
 ```
 
-Now that we have the model, we can parse the input and create a dense grid of cells. A dense collection is a collection without empty spaces. A dense collection is useful because when searching for the next cell, we can just look at the next/previous element in the collection instead of iterating
+Now that we have the model, we can parse the input and create a sparse grid of cells.
+
+:::info
+Beware of terminology, a sparse collection is a collection that is optimised for representing a few non-empty elements in a mostly empty space. A sparse collection is useful because when searching for the next cell, we can just look at the next/previous element in the collection instead of iterating and skipping-over empty elements.
+:::
 
 To do so, we need to `map` over each line with their index (to get the `y` coordinate) and for each character of a line, if it is not an empty cell, we create the corresponding element.
 
@@ -129,10 +131,10 @@ def solution(input: Array[String], origin: Coord, dir: Direction) =
 
 Then, we'll use some more memory to have faster access to the elements and avoid recomputing the same path several times.
 
-- `elements` is a dense grid of elements (only used as an intermediate step)
+- `elements` is a sparse grid of elements (only used as an intermediate step)
 - `elementsByRow` is a map of `y` coordinates to the elements on that row, to quickly to find the next cell in the same row
 - `elementsByColumn` is a map of `x` coordinates to the elements on that column, to quickly to find the next cell in the same column
-- Since we have a dense collection, the coordinates of the elements to not match the coordinates of the input, so we need to find the min/max `x` and `y` values of the elements to know when to stop the simulation
+- Since we have a sparse collection, the coordinates of the elements to not match the coordinates of the input, so we need to find the min/max `x` and `y` values of the elements to know when to stop the simulation
 - `activated` is a grid of booleans to know if a cell has already been activated by the lava flow. Note: `Array` is a mutable type
 
 ```scala
@@ -147,7 +149,7 @@ Then, we'll use some more memory to have faster access to the elements and avoid
   val activated = Array.fill(input.length)(Array.fill(input(0).length())(false))
 ```
 
-To find the next element in the lava flow, we only need the current element and the direction of the lava flow. But since we are using dense collections, we cannot just check if `x > 0` or `x < line.size`. An input's line can have 10 elements but only 4 non-`Empty` ones, so calling the 5-th element would crash with an `IndexOutOfBoundsExceptions`.
+To find the next element in the lava flow, we only need the current element and the direction of the lava flow. But since we are using sparse collections, we cannot just check if `x > 0` or `x < line.size`. An input's line can have 10 elements but only 4 non-`Empty` ones, so calling the 5-th element would crash with an `IndexOutOfBoundsExceptions`.
 
 Yet, this constraint comes with a benefit, we can just check if the next element is in the collection or not, and "jump" to it if it is. If it is not, we can just return an `Empty` cell (which will later be used to stop the simulation)
 
@@ -469,6 +471,8 @@ def part2(input: String) =
   val borders = horizontal ++ vertical
   borders.map((coord, dir) => solution(lines, coord, dir)).max
 ```
+
+## Solutions from the community
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)
