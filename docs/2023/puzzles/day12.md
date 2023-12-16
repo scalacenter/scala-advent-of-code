@@ -2,6 +2,8 @@ import Solver from "../../../../../website/src/components/Solver.js"
 
 # Day 12: Hot Springs
 
+by [@mbovel](https://github.com/mbovel)
+
 ## Puzzle description
 
 https://adventofcode.com/2023/day/12
