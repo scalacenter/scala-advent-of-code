@@ -2,9 +2,10 @@
 // https://scala-cli.virtuslab.org/docs/reference/directives#scala-version
 //> using scala 3.3.1
 
-import scala.concurrent.{Await, Future}
-import scala.concurrent.duration.DurationInt
-import scala.concurrent.ExecutionContext.Implicits.global
+package day12
+
+import locations.Directory.currentDir
+import inputs.Input.loadFileSync
 
 /** The example puzzle from the problem description. */
 val examplePuzzle = IArray(
@@ -17,7 +18,7 @@ val examplePuzzle = IArray(
 )
 
 /** Our personal puzzle input. */
-val personalPuzzle = scala.io.Source.fromFile("input.txt").mkString.trim()
+val personalPuzzle = loadFileSync(s"$currentDir/../input/day12")
 
 val slowPuzzleSize = 16
 val slowPuzzle =
@@ -161,9 +162,7 @@ def count2(input: List[Char], ds: List[Int]): Long =
   println(countAllUnfolded(personalPuzzle))
 
 def countAllUnfolded(input: String): Long =
-  input.split("\n").map(r => Future(countRow(unfoldRow(r)))).map(f =>
-    Await.result(f, 200.millis)
-  ).sum
+  input.split("\n").map(unfoldRow).map(countRow).sum
 
 def unfoldRow(input: String): String =
   val Array(conditions, damagedCounts) = input.split(" ")
