@@ -470,6 +470,7 @@ def part2(input: String) =
 
 ## Solutions from the community
 
+- [Solution](https://github.com/jnclt/adventofcode2023/blob/main/day16/floor-will-be-lava.sc) by [jnclt](https://github.com/jnclt)
 - [Solution](https://github.com/spamegg1/advent-of-code-2023-scala/blob/solutions/16.worksheet.sc#L131) by [Spamegg](https://github.com/spamegg1/)
 - [Solution](https://github.com/beneyal/aoc-2023/blob/main/src/main/scala/day16.scala) by [Ben Eyal](https://github.com/beneyal/)
 - [Solution](https://github.com/xRuiAlves/advent-of-code-2023/blob/main/Day16.scala) by [Rui Alves](https://github.com/xRuiAlves/)
