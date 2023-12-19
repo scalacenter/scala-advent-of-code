@@ -44,7 +44,7 @@ We can represent the model as a 2D array of chars:
 
 ```scala
 class Model(state: String):
-  private var dataN: Array[Array[Char]] = Array.empty
+  private var dataN: Array[Array[Char]] = Array.empty  // The array is indexed as dataN(x)(y), where x is the column and y - the row.
   setState(state)
 
   def setState(newState: String): Unit =
@@ -242,7 +242,7 @@ def mkInverse(direction: Direction, offsetX: Int, offsetY: Int): CoordTransform 
   case Direction.E => mkTransform(Direction.W, offsetX, offsetY)
 
 class Model(state: String):
-  private var dataN: Array[Array[Char]] = Array.empty
+  private var dataN: Array[Array[Char]] = Array.empty  // The array is indexed as dataN(x)(y), where x is the column and y - the row.
   setState(state)
 
   var rotation = Direction.N
