@@ -197,33 +197,37 @@ To optimize, we will use the intent of the operation: we cycle for so many times
 
 So, there's a possibility that the desired state will be achieved earlier than the billion cycles. Looks like a good case for a dynamic programming approach: we need to remember the states of the model we've seen before and what they look like after one cycle. And if the current state is in our cache, no need to compute the next state again.
 
-```scala
-def cycle(model: Model, times: Int): Unit =
-  val cache: collection.mutable.Map[String, String] = collection.mutable.Map.empty
-  var currentState = model.toString
-  for i <- 1 to times do
-    if i % 10_000_000 == 0 then
-      println(s"Cycle $i of ${times}; cache size: ${cache.size}")
+Furthermore, since the transitions between states are deterministic (a state A always leads to state B), the moment one state in our cache is followed by another, previously encountered, state from that cache, we can stop cycling and just calculate the final state from the cache.
 
-    if cache.keySet.contains(currentState) then
-      currentState = cache(currentState)
-    else
-      model.setState(currentState)
-      println(s"$i: State is not in cache")
+```scala
+import scala.util.boundary, boundary.break
+
+def cycle(model: Model, times: Int): Unit =
+  val chain = collection.mutable.ListBuffer.empty[String]
+  var currentState = model.toString
+  boundary:
+    for cyclesDone <- 0 until times do
+      if chain.contains(currentState) then
+        val cycleStart = chain.indexOf(currentState)
+        val cycleLength = chain.length - cycleStart
+        val cycleIndex = (times - cyclesDone) % cycleLength
+        currentState = chain(cycleIndex + cycleStart)
+        model.setState(currentState)
+        break()
+
+      chain += currentState
       for cse <- Direction.values do
         model.rotation = cse
         rollUp(model)
-      model.rotation = Direction.N
-      val newState = model.toString
-      cache(currentState) = newState
-      currentState = newState
-  model.setState(currentState)
+      currentState = model.toString
 ```
 
 ## Complete Code
 
 ```scala
 //> using scala "3.3.1"
+
+import scala.util.boundary, boundary.break
 
 type CoordTransform = (Int, Int) => (Int, Int)
 
@@ -277,7 +281,7 @@ class Model(state: String):
     val sb = new StringBuilder
     for y <- (0 until extentY).toIterator do
       for x <- (0 until extentX).toIterator do
-        sb.append(this(x, y))
+        sb.append(dataN(x)(y))
       sb.append('\n')
     sb.toString
 end Model
@@ -302,25 +306,23 @@ def rollUp(model: Model): Unit =
 end rollUp
 
 def cycle(model: Model, times: Int): Unit =
-  val cache: collection.mutable.Map[String, String] = collection.mutable.Map.empty
+  val chain = collection.mutable.ListBuffer.empty[String]
   var currentState = model.toString
-  for i <- 1 to times do
-    if i % 10_000_000 == 0 then
-      println(s"Cycle $i of ${times}; cache size: ${cache.size}")
+  boundary:
+    for cyclesDone <- 0 until times do
+      if chain.contains(currentState) then
+        val cycleStart = chain.indexOf(currentState)
+        val cycleLength = chain.length - cycleStart
+        val cycleIndex = (times - cyclesDone) % cycleLength
+        currentState = chain(cycleIndex + cycleStart)
+        model.setState(currentState)
+        break()
 
-    if cache.keySet.contains(currentState) then
-      currentState = cache(currentState)
-    else
-      model.setState(currentState)
-      println(s"$i: State is not in cache")
+      chain += currentState
       for cse <- Direction.values do
         model.rotation = cse
         rollUp(model)
-      model.rotation = Direction.N
-      val newState = model.toString
-      cache(currentState) = newState
-      currentState = newState
-  model.setState(currentState)
+      currentState = model.toString
 
 def debug(model: Model): Unit =
   println(s"=== ${model.rotation}; W: ${ model.extentX }, H: ${ model.extentY } ===")
@@ -333,12 +335,6 @@ def totalLoading(model: Model): Int =
     case 'O' => loading += model.extentY - y
     case _ =>
   loading
-
-def readInput(filename: String): String =
-  val source = io.Source.fromFile(filename)
-  val input = source.getLines().toList.mkString("\n")
-  source.close()
-  input
 
 def part1(input: String) =
   val model = Model(input)
