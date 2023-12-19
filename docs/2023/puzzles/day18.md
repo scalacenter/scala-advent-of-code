@@ -7,6 +7,7 @@ import Solver from "../../../../../website/src/components/Solver.js"
 https://adventofcode.com/2023/day/18
 
 ## Solutions from the community
+
 - [Solution](https://github.com/merlinorg/aoc2023/blob/main/src/main/scala/Day18.scala) by [merlin](https://github.com/merlinorg/)
 
 Share your solution to the Scala community by editing this page.
