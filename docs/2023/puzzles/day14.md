@@ -320,17 +320,15 @@ def totalLoading(model: Model): Int =
     case _ =>
   loading
 
-def part1(input: String) =
+def part1(input: String): Int =
   val model = Model(input)
   rollUp(model)
-  val loading = totalLoading(model)
-  println(loading)
+  totalLoading(model)
 
-def part2(input: String) =
+def part2(input: String): Int =
   val model = Model(input)
   cycle(model, 1_000_000_000)
-  val loading = totalLoading(model)
-  println(loading)
+  totalLoading(model)
 ```
 
 ## Solutions from the community
