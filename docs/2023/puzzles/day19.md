@@ -9,6 +9,7 @@ https://adventofcode.com/2023/day/19
 ## Solutions from the community
 
 - [Solution](https://github.com/merlinorg/aoc2023/blob/main/src/main/scala/Day19.scala) by [merlin](https://github.com/merlinorg/)
+- [Solution](https://github.com/jnclt/adventofcode2023/blob/main/day19/aplenty.sc) by [jnclt](https://github.com/jnclt)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)
