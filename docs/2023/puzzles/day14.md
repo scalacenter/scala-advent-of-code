@@ -48,15 +48,7 @@ class Model(state: String):
   setState(state)
 
   def setState(newState: String): Unit =
-    val lines = newState.split('\n').toList
-    val extentX = lines(0).length
-    val extentY = lines.length
-    val array = Array.fill(extentX)(Array.fill(extentY)('.'))
-    for
-      (line, y) <- lines.zipWithIndex
-      (char, x) <- line.zipWithIndex
-    do array(x)(y) = char
-    dataN = array
+    dataN = newState.split('\n').map(_.toArray).transpose
 ```
 
 We'll need to change the model a lot in a succession of many steps, so we build it with mutability in mind. We parse the input `String` into the `dataN` array (`N` for "North" - the default orientation of the model, against which all the views will be calculated).
@@ -267,15 +259,7 @@ class Model(state: String):
     dataN(xN)(yN) = char
 
   def setState(newState: String): Unit =
-    val lines = newState.split('\n').toList
-    val extentX = lines(0).length
-    val extentY = lines.length
-    val array = Array.fill(extentX)(Array.fill(extentY)('.'))
-    for
-      (line, y) <- lines.zipWithIndex
-      (char, x) <- line.zipWithIndex
-    do array(x)(y) = char
-    dataN = array
+    dataN = newState.split('\n').map(_.toArray).transpose
 
   override def toString =
     val sb = new StringBuilder
