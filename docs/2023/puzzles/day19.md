@@ -8,7 +8,7 @@ https://adventofcode.com/2023/day/19
 
 ## Data structures
 
-We define following data structures for today's puzzle:
+We define the following data structures for today's puzzle:
 
 ```scala
 enum Channel:
@@ -177,7 +177,9 @@ case class AbstractPart(x: Range, m: Range, a: Range, s: Range):
 
 We will start the evaluation with abstract parts that contain all possible values for each channel: four ranges from 1 until 4001.
 
-When we evaluate an `IfThenElse` instruction, we need to split the argument `AbstractPart` into two parts, one that contains only the values that satisfy the condition, and one that contains only the values that do not satisfy the condition. This is implemented by the `split` method of `AbstractPart`:
+When we evaluate an `IfThenElse` instruction, we split the argument `AbstractPart` into two parts, one that contains only the values that satisfy the condition, and one that contains only the values that do not satisfy the condition.
+
+This is achieved with the `split` method of `AbstractPart`:
 
 ```scala
   def split(
