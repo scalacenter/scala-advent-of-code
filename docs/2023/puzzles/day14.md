@@ -57,14 +57,6 @@ class Model(state: String):
       (char, x) <- line.zipWithIndex
     do array(x)(y) = char
     dataN = array
-
-  override def toString =
-    val sb = new StringBuilder
-    for y <- (0 until extentY).toIterator do
-      for x <- (0 until extentX).toIterator do
-        sb.append(this(x, y))
-      sb.append('\n')
-    sb.toString
 ```
 
 We'll need to change the model a lot in a succession of many steps, so we build it with mutability in mind. We parse the input `String` into the `dataN` array (`N` for "North" - the default orientation of the model, against which all the views will be calculated).
@@ -119,6 +111,14 @@ Then, we are going to teach our model to work with the rotated coordinate system
   def update(x: Int, y: Int, char: Char): Unit =
     val (xN, yN) = toNorth(x, y)
     dataN(xN)(yN) = char
+
+  override def toString =
+    val sb = new StringBuilder
+    for y <- (0 until extentY).toIterator do
+      for x <- (0 until extentX).toIterator do
+        sb.append(this(x, y))
+      sb.append('\n')
+    sb.toString
 ```
 
 The rotation of the coordinate system in which the model works is done by assigning the public variable `rotation`. The `extentX` and `extentY` functions return the width and height of the model in the rotated coordinate system. The `toNorth` function returns a transformation function that converts coordinates from the rotated coordinate system back to the original, northern, coordinate system. This is needed because the `dataN` array is always in the northern coordinate system.
