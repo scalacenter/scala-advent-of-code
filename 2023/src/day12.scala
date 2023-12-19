@@ -1,7 +1,3 @@
-// A using scala-cli using directive to set the Scala version to 3.3.1 See
-// https://scala-cli.virtuslab.org/docs/reference/directives#scala-version
-//> using scala 3.3.1
-
 package day12
 
 import locations.Directory.currentDir
