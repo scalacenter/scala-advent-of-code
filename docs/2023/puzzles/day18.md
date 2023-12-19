@@ -30,7 +30,7 @@ Provided our current position, we can then keep track of the lagoon area as foll
   Of course, we may be including too much at this point,
   since we do not yet know what part of the left is actually in the lagoon,
   but we will account for it later.
-- When going `Right`: there is nothing to add,
+- When going `Left`: there is nothing to add,
   the position could only have been reached from a downwards trench,
   hence the area has already been counted.
 - When going `Up`: we now know by how much we had over increased the area when going down,
