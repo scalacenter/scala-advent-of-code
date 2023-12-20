@@ -196,7 +196,7 @@ This is achieved with the `split` method of `AbstractPart`:
 Using these helpers, we can implement the abstract evaluator as follows:
 
 ```scala
-@main def part2: Unit = println(part2(personalPuzzle, 4001))
+def part2(input: String): Long = part2(input, 4001)
 
 extension [T](part: (T, T)) private inline def swap: (T, T) = (part._2, part._1)
 
