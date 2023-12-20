@@ -110,8 +110,6 @@ object Part:
 These helpers allow us to implement the core logic succinctly:
 
 ```scala
-def part1(input: String): Int = part1(input)
-
 def part1(input: String): Int =
   val Array(workflowLines, partLines) = input.split("\n\n")
   val workflow = Workflow.parse(workflowLines.trim())
