@@ -9,6 +9,7 @@ https://adventofcode.com/2023/day/19
 ## Solutions from the community
 
 - [Solution](https://github.com/merlinorg/aoc2023/blob/main/src/main/scala/Day19.scala) by [merlin](https://github.com/merlinorg/)
+- [Solution](https://github.com/jnclt/adventofcode2023/blob/main/day19/aplenty.sc) by [jnclt](https://github.com/jnclt)
 - [Solution](https://github.com/rayrobdod/advent-of-code/blob/main/2023/19/day19.scala) by [Raymond Dodge](https://github.com/rayrobdod/)
 - [Solution](https://github.com/spamegg1/advent-of-code-2023-scala/blob/solutions/19.worksheet.sc#L101) by [Spamegg](https://github.com/spamegg1/)
 
