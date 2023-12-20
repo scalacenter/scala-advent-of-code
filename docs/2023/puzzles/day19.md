@@ -194,11 +194,11 @@ This is achieved with the `split` method of `AbstractPart`:
 Using these helpers, we can implement the abstract evaluator as follows:
 
 ```scala
-def part2(input: String): Long = part2(input, 4001)
+def part2(input: String): Long = combinations(input, 4001)
 
 extension [T](part: (T, T)) private inline def swap: (T, T) = (part._2, part._1)
 
-def part2(input: String, until: Long): Long =
+def combinations(input: String, until: Long): Long =
   val Array(workflowLines, _) = input.split("\n\n")
   val workflow = Workflow.parse(workflowLines.trim())
 
