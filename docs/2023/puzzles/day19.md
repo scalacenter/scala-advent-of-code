@@ -110,7 +110,7 @@ object Part:
 These helpers allow us to implement the core logic succinctly:
 
 ```scala
-@main def part1: Unit = println(part1(personalPuzzle))
+def part1(input: String): Int = part1(input)
 
 def part1(input: String): Int =
   val Array(workflowLines, partLines) = input.split("\n\n")
