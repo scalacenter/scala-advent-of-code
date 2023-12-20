@@ -234,6 +234,7 @@ def combinations(input: String, until: Long): Long =
 - [Solution](https://github.com/jnclt/adventofcode2023/blob/main/day19/aplenty.sc) by [jnclt](https://github.com/jnclt)
 - [Solution](https://github.com/rayrobdod/advent-of-code/blob/main/2023/19/day19.scala) by [Raymond Dodge](https://github.com/rayrobdod/)
 - [Solution](https://github.com/spamegg1/advent-of-code-2023-scala/blob/solutions/19.worksheet.sc#L101) by [Spamegg](https://github.com/spamegg1/)
+- [Solution](https://github.com/xRuiAlves/advent-of-code-2023/blob/main/Day19.scala) by [Rui Alves](https://github.com/xRuiAlves/)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)
