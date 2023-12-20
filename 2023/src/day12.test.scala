@@ -1,5 +1,4 @@
-//> using scala 3.3.1
-//> using test.dep org.scalameta::munit::1.0.0-M10
+package day12
 
 class Day12Test extends munit.FunSuite:
   test("example row 1"):
