@@ -261,7 +261,7 @@ def part1(input: String): Long =
 ## Part 2
 
 Part 2 asks how many button presses are required for a particular output
-module "rv" to receive a high pulse.
+module "rx" to receive a high pulse.
 
 This can crudely be solved by just running the Elves' state machine
 until you find such a pulse:
@@ -269,12 +269,9 @@ until you find such a pulse:
 ```scala
 Iterator
   .iterate(MachineFSM(machine))(_.nextState)
-  .find: state =>
-    state.queue.headOption match
-      case Some(Pulse(_, "rv", true)) => true
-      case _                          => false
-  .get
-  .presses
+  .findMap: state =>
+    state.queue.headOption.collect:
+      case Pulse(_, "rx", false) => state.presses
 ```
 
 Knowing the Advent of Code, this will not complete in any reasonable
@@ -285,13 +282,13 @@ The state machine also does not obviously lend itself to a mathematical
 reduction, at least not within the available time constraints.
 
 Instead, we have to look at the actual input text itself. Analyzing the
-structure of the machine, it turns out that the "rv" module is fed by a
+structure of the machine, it turns out that the "rx" module is fed by a
 conjunction module which is itself fed by four completely independent
 subgraphs. This terminal conjunction will emit a high pulse when it
 receives a high pulse from each of the subgraphs.
 
 Each subgraph emits a high pulse on a repeating cycle. This reminds us of
-[day 8](5); the soonest point at which all the subgraphs will simultaneously
+[day 8](day05.md); the soonest point at which all the subgraphs will simultaneously
 emit a high pulse will be the
 [least common multiple](https://en.wikipedia.org/wiki/Least_common_multiple)
 of the subgraph cycle times. It is not uncommon for AoC problems to
@@ -332,10 +329,10 @@ object Problem2FSM:
 #### Subgraphs
 
 The terminal module is a module that doesn't serve as an input to
-any other module. We could hardcode "rv", but this is more general.
+any other module. We could hardcode "rx", but this is more general.
 The output modules of the independent subgraphs are then all the
 inputs to the sole input to this terminal conjunction:
-("a", "b", "c", "d") -> "penultimate" -> "rv".
+("a", "b", "c", "d") -> "penultimate" -> "rx".
 
 ```scala
 private def subgraphs(machine: Machine): Set[ModuleName] =
