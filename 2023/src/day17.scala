@@ -36,58 +36,56 @@ val xRange = grid.head.indices
 val yRange = grid.indices
 
 case class Point(x: Int, y: Int):
-  def inBounds = xRange.contains(x) && yRange.contains(y)
-
   def move(dir: Dir) = dir match
     case Dir.N => copy(y = y - 1)
     case Dir.S => copy(y = y + 1)
     case Dir.E => copy(x = x + 1)
     case Dir.W => copy(x = x - 1)
 
-def heatLoss(p: Point) =
-  if p.inBounds then grid(p.y)(p.x) else 0
+def inBounds(p: Point) =
+  xRange.contains(p.x) && yRange.contains(p.y)
 
-case class State(pos: Point, dir: Dir, streak: Int, totalHeatLoss: Int):
+def heatLoss(p: Point) =
+  if inBounds(p) then grid(p.y)(p.x) else 0
+
+case class State(pos: Point, dir: Dir, streak: Int):
   def straight: State =
-    val newPos = pos.move(dir)
-    State(pos.move(dir), dir, streak + 1, totalHeatLoss + heatLoss(newPos))
+    State(pos.move(dir), dir, streak + 1)
 
   def turnLeft: State =
     val newDir = dir.turnLeft
-    val newPos = pos.move(newDir)
-    State(newPos, newDir, 1, totalHeatLoss + heatLoss(newPos))
+    State(pos.move(newDir), newDir, 1)
 
   def turnRight: State =
     val newDir = dir.turnRight
-    val newPos = pos.move(newDir)
-    State(pos.move(newDir), newDir, 1, totalHeatLoss + heatLoss(newPos))
+    State(pos.move(newDir), newDir, 1)
 
   def nextStates: List[State] =
     List(straight, turnLeft, turnRight).filter: s =>
-      s.pos.inBounds && s.streak <= 3
+      inBounds(s.pos) && s.streak <= 3
 
   def nextStates2: List[State] =
     if streak < 4 then List(straight)
     else List(straight, turnLeft, turnRight).filter: s =>
-      s.pos.inBounds && s.streak <= 10
-
-  def motion = (pos, dir, streak)
+      inBounds(s.pos) && s.streak <= 10
 
 def search(next: State => List[State]): Int =
-  import collection.mutable.{PriorityQueue, Set}
+  import collection.mutable.{PriorityQueue, Map}
 
-  given Ordering[State] = Ordering.by(_.totalHeatLoss)
+  val minHeatLoss = Map.empty[State, Int]
+
+  given Ordering[State] = Ordering.by(minHeatLoss)
   val pq = PriorityQueue.empty[State].reverse
 
-  var visiting = State(Point(0, 0), Dir.E, 0, 0)
-  val visited = Set(visiting.motion)
+  var visiting = State(Point(0, 0), Dir.E, 0)
+  minHeatLoss(visiting) = 0
 
   val end = Point(xRange.max, yRange.max)
   while visiting.pos != end do
-    val states = next(visiting).filterNot(s => visited(s.motion))
-    states.foreach(s => s"enqueuing: $s")
-    pq.enqueue(states*)
-    visited ++= states.map(_.motion)
+    val states = next(visiting).filterNot(minHeatLoss.contains)
+    states.foreach: s =>
+      minHeatLoss(s) = minHeatLoss(visiting) + heatLoss(s.pos)
+      pq.enqueue(s)
     visiting = pq.dequeue()
 
-  visiting.totalHeatLoss
+  minHeatLoss(visiting)
