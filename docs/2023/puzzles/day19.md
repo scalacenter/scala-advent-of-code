@@ -140,13 +140,11 @@ def part1(input: String): Int =
     .sum
 ```
 
-## Part 2 – Abstract evaluation
+## Part 2 – Symbolic execution
 
-To solve the second part efficiently, we use [abstract interpretation](https://en.wikipedia.org/wiki/Abstract_interpretation) to count the number of executions of the workflow that lead to an `Accept` result.
+To solve the second part efficiently, we use [symbolic execution](https://en.wikipedia.org/wiki/Symbolic_execution) to count the number of executions of the workflow that lead to an `Accept` result.
 
-The _abstract domain_ in our case is sets of `Part`s.
-
-We represent such sets with the `AbstractPart` structure, where the value associated to each channel is not a number, but a range of possible values:
+We represent symbolic values with the `AbstractPart` structure, where the value associated to each channel is not a number, but a range of possible values:
 
 ```scala
 case class Range(from: Long, until: Long):
