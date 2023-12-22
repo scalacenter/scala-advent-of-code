@@ -267,9 +267,6 @@ We also measure the actual running time of the function as an indicator, but a n
 
 :::
 
-## Local memoization
-
-
 ## Part 2
 
 Oh, there is a second part to this puzzle!
