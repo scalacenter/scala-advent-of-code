@@ -116,7 +116,7 @@ object Machine:
       case s"$name -> $targets"  =>
         PassThrough(name, targets.split(", ").toVector)
     modules.foldLeft(Initial)(_ + _)
-``````
+```
 
 ## The Elves' State Machine
 
