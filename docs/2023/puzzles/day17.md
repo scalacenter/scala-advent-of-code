@@ -12,7 +12,7 @@ https://adventofcode.com/2023/day/17
 
 This is a classic search problem with an interesting restriction on state transformations.
 
-We will solve this using Djikstra's Algorithm to find a path through the grid, using the heat loss of each position as our node weights. However, the states in our priority queue will need to include more than just position and accumulated heat loss, since the streak of forward movements in a given direction affects which positions are accessible from a given state.
+We will solve this using Dijkstra's Algorithm to find a path through the grid, using the heat loss of each position as our node weights. However, the states in our priority queue will need to include more than just position and accumulated heat loss, since the streak of forward movements in a given direction affects which positions are accessible from a given state.
 
 Since the restrictions on state transformations differ in part 1 and part 2, we'll model them separately from the base state transformations.
 
@@ -96,9 +96,9 @@ Next let's define some methods for transitioning to new states. We know that we 
 
 Note that the streak resets to one when we turn right or turn left, since we also move the position forward in that new direction.
 
-### Djikstra's Algorithm
+### Dijkstra's Algorithm
 
-Finally, let's lay the groundwork for an implementation of Djikstra's algorithm.
+Finally, let's lay the groundwork for an implementation of Dijkstra's algorithm.
 
 Since our valid state transformations vary between part 1 and part 2, let's parameterize our search method by a function:
 
