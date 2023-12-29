@@ -27,13 +27,15 @@ final case class Hail(x: Long, y: Long, z: Long, vx: Long, vy: Long, vz: Long)
 ### 2D Hail
 
 The first part of this problem asks us to consider just the two-dimensional
-XY trajectory of the hailstone, so we add a model for this and a method on
-hail to get a 2D projection.
+XY trajectory of the hailstone, so we add a model for this:
 
 ```scala
 final case class Hail2D(x: Long, y: Long, vx: Long, vy: Long)
+```
 
-final case class Hail(x: Long, y: Long, z: Long, vx: Long, vy: Long, vz: Long):
+and then add a method `xyProjection` method to Hail to get a 2D projection:
+```scala
+// Inside class Hail:
   def xyProjection: Hail2D = Hail2D(x, y, vx, vy)
 ```
 
@@ -43,12 +45,11 @@ To parse the input we just pattern match each line. The sample input
 has some extra whitespace so we need to trim the numbers.
 
 ```scala
-object Hail:
-  def parseAll(input: String): Vector[Hail] =
-    input.linesIterator.toVector.map:
-      case s"$x, $y, $z @ $dx, $dy, $dz" =>
-        Hail(x.trim.toLong, y.trim.toLong, z.trim.toLong,
-             dx.trim.toLong, dy.trim.toLong, dz.trim.toLong)
+def parseAll(input: String): Vector[Hail] =
+  input.linesIterator.toVector.map:
+    case s"$x, $y, $z @ $dx, $dy, $dz" =>
+      Hail(x.trim.toLong, y.trim.toLong, z.trim.toLong,
+            dx.trim.toLong, dy.trim.toLong, dz.trim.toLong)
 ```
 
 ## 2D Line Intersection
@@ -58,12 +59,15 @@ will always intersect at some point unless they are parallel.
 
 ### Point of Intersection
 
-To help my brain, I just express the lines in the general form
-*ax + by + c = 0* and use [an equation](https://www.cuemath.com/geometry/intersection-of-two-lines/) for the intersection. If the denominator
-is zero then the lines are parallel and there is no solution.
+To help solve the problem, you can represent the trajectory of the hail as a general polynomial
+*ax + by + c = 0* and use [an equation](https://www.cuemath.com/geometry/intersection-of-two-lines/)
+for the intersection.
+If the denominator is zero then the lines are parallel and there is no solution.
+
+Add `intersect` to Hail2D as follows:
 
 ```scala
-final case class Hail2D(x: Long, y: Long, vx: Long, vy: Long):
+// inside class Hail2D
   private val a: BigDecimal = BigDecimal(vy)
   private val b: BigDecimal = BigDecimal(-vx)
   private val c: BigDecimal = BigDecimal(vx * y - vy * x)
@@ -80,10 +84,12 @@ final case class Hail2D(x: Long, y: Long, vx: Long, vy: Long):
 In addition to knowing where the hailstone trajectories intersect,
 we need to know when the hailstones arrive at this point. This lets
 us know whether the intersection occurs in the hailstone's future or
-past. 
+past.
+
+Add `timeTo` to Hail2D as follows:
 
 ```scala
-final case class Hail2D(x: Long, y: Long, vx: Long, vy: Long):
+// inside class Hail2D
   def timeTo(posX: BigDecimal, posY: BigDecimal): BigDecimal =
     if vx == 0 then (posY - y) / vy else (posX - x) / vx
 ```
@@ -125,7 +131,7 @@ the XY plane and then count the intersections.
 
 ```scala
 def part1(input: String): Long =
-  val hails = Hail.parseAll(input)
+  val hails = parseAll(input)
   val hailsXY = hails.map(_.xyProjection)
   intersections(hailsXY, 200000000000000L, 400000000000000L).size
 ```
@@ -188,7 +194,9 @@ We add a method to shift the velocity of a hailstone to a moving
 observer's frame of reference.
 
 ```scala
-def deltaV(dvx: Long, dvy: Long): Hail2D = copy(vx = vx - dvx, vy = vy - dvy)
+// Inside class Hail2D
+  def deltaV(dvx: Long, dvy: Long): Hail2D =
+    copy(vx = vx - dvx, vy = vy - dvy)
 ```
 
 ### Determining the Origin of the Rock
@@ -268,9 +276,24 @@ to find the Z origin of the rock. This search could be optimized
 since the x velocity is already known, so we only need to test z
 candidates, but this is less effort.
 
+First add a method `xzProjection` method to Hail to get a 2D projection:
+```scala
+// Inside class Hail:
+  def xzProjection: Hail2D = Hail2D(x, z, vx, vz)
+```
+
+Next, add a helper method to find a value in an iterator:
+```scala
+// An unruly and lawless find-map-get
+extension [A](self: Iterator[A])
+  def findMap[B](f: A => Option[B]): B = self.flatMap(f).next()
+```
+
+Finally solve part 2
+
 ```scala
 def part2(input: String): Long =
-  val hails = Hail.parseAll(input)
+  val hails = parseAll(input)
 
   val hailsXY = hails.map(_.xyProjection)
   val (x, y)  = Iterator
@@ -293,39 +316,15 @@ end part2
 The complete solution follows:
 
 ```scala
-package day24
-
-import locations.Directory.currentDir
-import inputs.Input.loadFileSync
-
-@main def part1: Unit =
-  println(s"The solution is ${part1(loadInput())}")
-  // println(s"The solution is ${part1(sample1)}")
-
-@main def part2: Unit =
-  println(s"The solution is ${part2(loadInput())}")
-  // println(s"The solution is ${part2(sample1)}")
-
-def loadInput(): String = loadFileSync(s"$currentDir/../input/day24")
-
-val sample1 = """
-19, 13, 30 @ -2,  1, -2
-18, 19, 22 @ -1, -1, -2
-20, 25, 34 @ -2, -2, -4
-12, 31, 28 @ -1, -2, -1
-20, 19, 15 @  1, -5, -3
-""".strip
-
 final case class Hail(x: Long, y: Long, z: Long, vx: Long, vy: Long, vz: Long):
   def xyProjection: Hail2D = Hail2D(x, y, vx, vy)
   def xzProjection: Hail2D = Hail2D(x, z, vx, vz)
 
-object Hail:
-  def parseAll(input: String): Vector[Hail] =
-    input.linesIterator.toVector.map:
-      case s"$x, $y, $z @ $dx, $dy, $dz" =>
-        Hail(x.trim.toLong, y.trim.toLong, z.trim.toLong,
-             dx.trim.toLong, dy.trim.toLong, dz.trim.toLong)
+def parseAll(input: String): Vector[Hail] =
+  input.linesIterator.toVector.map:
+    case s"$x, $y, $z @ $dx, $dy, $dz" =>
+      Hail(x.trim.toLong, y.trim.toLong, z.trim.toLong,
+            dx.trim.toLong, dy.trim.toLong, dz.trim.toLong)
 
 final case class Hail2D(x: Long, y: Long, vx: Long, vy: Long):
   private val a: BigDecimal = BigDecimal(vy)
@@ -341,7 +340,7 @@ final case class Hail2D(x: Long, y: Long, vx: Long, vy: Long):
       ((b * hail.c - hail.b * c) / denominator,
        (c * hail.a - hail.c * a) / denominator)
 
-  // Return the time at which this hail will intersect the given point 
+  // Return the time at which this hail will intersect the given point
   def timeTo(posX: BigDecimal, posY: BigDecimal): BigDecimal =
     if vx == 0 then (posY - y) / vy else (posX - x) / vx
 end Hail2D
@@ -426,7 +425,6 @@ def part2(input: String): Long =
 end part2
 ```
 
->>>>>>> 2aaae228 (day 24)
 ## Solutions from the community
 
 Share your solution to the Scala community by editing this page.
