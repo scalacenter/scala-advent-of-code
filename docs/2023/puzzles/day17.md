@@ -1,4 +1,5 @@
 import Solver from "../../../../../website/src/components/Solver.js"
+import Literate from "../../../../../website/src/components/Literate.js"
 
 # Day 17: Clumsy Crucible
 
@@ -18,7 +19,33 @@ Since the restrictions on state transformations differ in part 1 and part 2, we'
 
 ### Framework
 
-First, for convenience, let's introduce classes for presenting position and direction:
+First, we will need a `Grid` class to represent the possible positions, and store the heat at each position.
+It will be represented by a 2D vector:
+```scala
+case class Grid(grid: Vector[Vector[Int]]):
+  val xRange = grid.head.indices
+  val yRange = grid.indices
+```
+
+We can parse the input and store it in the `Grid` class. Each line is treated as a row, and each character in the row is treated as a single column, and required to be a digit:
+
+```scala
+def loadGrid(input: String): Grid =
+  Grid:
+    Vector.from:
+      for line <- input.split("\n")
+      yield line.map(_.asDigit).toVector
+```
+
+We can define some accessors to make it more convenient to work with a `Grid` that is available in the [context](https://docs.scala-lang.org/scala3/book/ca-context-parameters.html).
+
+```scala
+def grid(using Grid) = summon[Grid].grid
+def xRange(using Grid) = summon[Grid].xRange
+def yRange(using Grid) = summon[Grid].yRange
+```
+
+Second, for convenience, let's introduce a class for presenting direction:
 
 ```scala
 enum Dir:
@@ -35,9 +62,19 @@ enum Dir:
     case Dir.W => S
     case Dir.S => E
     case Dir.E => N
+```
 
+Since moving forward, turning left, and turning right are common operations, convenience methods for each are included here.
+
+Third, a class for position:
+
+```scala
 case class Point(x: Int, y: Int):
-  def inBounds = xRange.contains(x) && yRange.contains(y)
+  def inBounds(using Grid) =
+    xRange.contains(x) && yRange.contains(y)
+
+  def heatLoss(using Grid) =
+    if inBounds then grid(y)(x) else 0
 
   def move(dir: Dir) = dir match
     case Dir.N => copy(y = y - 1)
@@ -46,33 +83,14 @@ case class Point(x: Int, y: Int):
     case Dir.W => copy(x = x - 1)
 ```
 
-Since moving forward, turning left, and turning right are common operations, convenience methods for each are included here.
-
-Next, let's work with our input. We'll parse it as a 2D vector of integers:
-
-```scala
-val grid: Vector[Vector[Int]] = Vector.from:
-  val file = loadFileSync(s"$currentDir/../input/day17")
-  for line <- file.split("\n")
-  yield line.map(_.asDigit).toVector
-```
-
-And now a few convenience methods that need the input:
-
-```scala
-val xRange = grid.head.indices
-val yRange = grid.indices
-
-def inBounds(p: Point) =
-  xRange.contains(p.x) && yRange.contains(p.y)
-
-def heatLoss(p: Point) =
-  if inBounds(p) then grid(p.y)(p.x) else 0
-```
+Here we provide some convenience methods for checking if a point is `inBounds` on the grid,
+and the `heatLoss` of a point on the grid.
 
 ### Search State
 
-Now we want to be able to model our state as we're searching. The state will track our position. To know what transitions are possible, we need to keep track of our streak of movements in a given direction. We'll also keep track of the heat lost while getting to a state.
+Now we want to be able to model our state as we're searching. The state will track our position (`pos`). To know what transitions are possible, we need to keep track of our `streak` of movements in a given direction (`dir`). Later, we'll also keep track of the heat lost while getting to a state.
+
+<Literate>
 
 ```scala
 case class State(pos: Point, dir: Dir, streak: Int):
@@ -81,7 +99,6 @@ case class State(pos: Point, dir: Dir, streak: Int):
 Next let's define some methods for transitioning to new states. We know that we can chose to move forward, turn left, or turn right. For now, we won't consider the restrictions from Part 1 or Part 2 on whether or not you can move forward:
 
 ```scala
-// inside case class State:
   def straight: State =
     State(pos.move(dir), dir, streak + 1)
 
@@ -93,6 +110,8 @@ Next let's define some methods for transitioning to new states. We know that we 
     val newDir = dir.turnRight
     State(pos.move(newDir), newDir, 1)
 ```
+
+</Literate>
 
 Note that the streak resets to one when we turn right or turn left, since we also move the position forward in that new direction.
 
@@ -102,55 +121,74 @@ Finally, let's lay the groundwork for an implementation of Dijkstra's algorithm.
 
 Since our valid state transformations vary between part 1 and part 2, let's parameterize our search method by a function:
 
+<Literate>
+
 ```scala
-def search(next: State => List[State]): Int
+import collection.mutable.{PriorityQueue, Map}
+
+type StateTransform = Grid ?=> State => List[State]
+
+def search(next: StateTransform)(using Grid): Int =
 ```
 
 The algorithm uses Map to track the minimum total heat loss for each state, and a Priority Queue prioritizing by this heatloss to choose the next state to visit:
 
 ```scala
-// inside def search:
-  import collection.mutable.{PriorityQueue, Map}
-
   val minHeatLoss = Map.empty[State, Int]
 
   given Ordering[State] = Ordering.by(minHeatLoss)
   val pq = PriorityQueue.empty[State].reverse
 
   var visiting = State(Point(0, 0), Dir.E, 0)
-  val minHeatLoss(visiting) = 0
+  minHeatLoss(visiting) = 0
 ```
 
 As we generate new states to add to the priority Queue, we need to make sure not to add suboptimal states. The first time we visit any state, it will be with a minimum possible cost, because we're visiting this new state from an adjacent minimum heatloss state in our priority queue.
 So any state we've already visited will be discarded. This is what our loop will look like:
 
 ```scala
-// inside def search:
   val end = Point(xRange.max, yRange.max)
   while visiting.pos != end do
     val states = next(visiting).filterNot(minHeatLoss.contains)
     states.foreach: s =>
-      minHeatLoss(s) = minHeatLoss(visiting) + heatLoss(s)
+      minHeatLoss(s) = minHeatLoss(visiting) + s.pos.heatLoss
       pq.enqueue(s)
     visiting = pq.dequeue()
 
-  minHeatLoss(visting)
+  minHeatLoss(visiting)
 ```
 
-Notice how `minHeatLoss`` is always updated to the minimum of the state we're visiting from plus the incremental heatloss of the new state we're adding to the queue.
+</Literate>
+
+Notice how `minHeatLoss` is always updated to the minimum of the state we're visiting from plus the incremental heatloss of the new state we're adding to the queue.
+
+We can then provide a framework for calling the `search` function using the input with `solve`.
+It parses the input to a `Grid`, defining it as a [given instance](https://docs.scala-lang.org/scala3/book/ca-context-parameters.html).
+```scala
+def solve(input: String, next: StateTransform): Int =
+  given Grid = loadGrid(input)
+  search(next)
+```
 
 ### Part 1
 
-Now we need to model our state transformation restrictions for Part 1. We can typically move straight, left, and right, but we need to make sure our streak straight streak never exceeds 3:
+Now we need to model our state transformation restrictions for Part 1. We can typically move straight, left, and right, but we need to make sure our streak while moving straight never exceeds 3:
 
 ```scala
 // Inside case class State:
-  def nextStates: List[State] =
+  def nextStates(using Grid): List[State] =
     List(straight, turnLeft, turnRight).filter: s =>
-      inBounds(s.pos) && s.streak <= 3
+      s.pos.inBounds && s.streak <= 3
 ```
 
 This will only ever filter out the forward movement, since moving to the left or right resets the streak to 1.
+
+We can then call `solve` with `nextStates` from our entry point for `part1`:
+
+```scala
+def part1(input: String): Int =
+  solve(input, _.nextStates)
+```
 
 ### Part 2
 
@@ -159,28 +197,39 @@ Furthermore, while the streak is less than four, only a forward movement is poss
 
 ```scala
 // inside case class State:
-  def nextStates2: List[State] =
+  def nextStates2(using Grid): List[State] =
     if streak < 4 then List(straight)
     else List(straight, turnLeft, turnRight).filter: s =>
-      inBounds(s.pos) && s.streak <= 10
+      s.pos.inBounds && s.streak <= 10
+```
+
+And we call solve with `nextStates2` to solve `part2`:
+
+```scala
+def part2(input: String): Int =
+  solve(input, _.nextStates2)
 ```
 
 ## Final Code
 
 ```scala
-import locations.Directory.currentDir
-import inputs.Input.loadFileSync
+import collection.mutable.{PriorityQueue, Map}
 
-@main def part1: Unit =
-  println(s"The solution is ${search(_.nextStates)}")
+def part1(input: String): Int =
+  solve(input, _.nextStates)
 
-@main def part2: Unit =
-  println(s"The solution is ${search(_.nextStates2)}")
+def part2(input: String): Int =
+  solve(input, _.nextStates2)
 
-def loadInput(): Vector[Vector[Int]] = Vector.from:
-  val file = loadFileSync(s"$currentDir/../input/day17")
-  for line <- file.split("\n")
-  yield line.map(_.asDigit).toVector
+def loadGrid(input: String): Grid =
+  Grid:
+    Vector.from:
+      for line <- input.split("\n")
+      yield line.map(_.asDigit).toVector
+
+case class Grid(grid: Vector[Vector[Int]]):
+  val xRange = grid.head.indices
+  val yRange = grid.indices
 
 enum Dir:
   case N, S, E, W
@@ -197,23 +246,22 @@ enum Dir:
     case Dir.S => E
     case Dir.E => N
 
-val grid = loadInput()
-
-val xRange = grid.head.indices
-val yRange = grid.indices
+def grid(using Grid) = summon[Grid].grid
+def xRange(using Grid) = summon[Grid].xRange
+def yRange(using Grid) = summon[Grid].yRange
 
 case class Point(x: Int, y: Int):
+  def inBounds(using Grid) =
+    xRange.contains(x) && yRange.contains(y)
+
+  def heatLoss(using Grid) =
+    if inBounds then grid(y)(x) else 0
+
   def move(dir: Dir) = dir match
     case Dir.N => copy(y = y - 1)
     case Dir.S => copy(y = y + 1)
     case Dir.E => copy(x = x + 1)
     case Dir.W => copy(x = x - 1)
-
-def inBounds(p: Point) =
-  xRange.contains(p.x) && yRange.contains(p.y)
-
-def heatLoss(p: Point) =
-  if inBounds(p) then grid(p.y)(p.x) else 0
 
 case class State(pos: Point, dir: Dir, streak: Int):
   def straight: State =
@@ -227,17 +275,22 @@ case class State(pos: Point, dir: Dir, streak: Int):
     val newDir = dir.turnRight
     State(pos.move(newDir), newDir, 1)
 
-  def nextStates: List[State] =
+  def nextStates(using Grid): List[State] =
     List(straight, turnLeft, turnRight).filter: s =>
-      inBounds(s.pos) && s.streak <= 3
+      s.pos.inBounds && s.streak <= 3
 
-  def nextStates2: List[State] =
+  def nextStates2(using Grid): List[State] =
     if streak < 4 then List(straight)
     else List(straight, turnLeft, turnRight).filter: s =>
-      inBounds(s.pos) && s.streak <= 10
+      s.pos.inBounds && s.streak <= 10
 
-def search(next: State => List[State]): Int =
-  import collection.mutable.{PriorityQueue, Map}
+type StateTransform = Grid ?=> State => List[State]
+
+def solve(input: String, next: StateTransform): Int =
+  given Grid = loadGrid(input)
+  search(next)
+
+def search(next: StateTransform)(using Grid): Int =
 
   val minHeatLoss = Map.empty[State, Int]
 
@@ -251,11 +304,11 @@ def search(next: State => List[State]): Int =
   while visiting.pos != end do
     val states = next(visiting).filterNot(minHeatLoss.contains)
     states.foreach: s =>
-      minHeatLoss(s) = minHeatLoss(visiting) + heatLoss(s.pos)
+      minHeatLoss(s) = minHeatLoss(visiting) + s.pos.heatLoss
       pq.enqueue(s)
     visiting = pq.dequeue()
 
-  minHeatLoss(end)
+  minHeatLoss(visiting)
 ```
 
 ### Run it in the browser
