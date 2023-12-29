@@ -196,7 +196,7 @@ Part 2 is similar, but our streak limit increases to 10.
 Furthermore, while the streak is less than four, only a forward movement is possible:
 
 ```scala
-// inside case class State:
+// Inside case class State:
   def nextStates2(using Grid): List[State] =
     if streak < 4 then List(straight)
     else List(straight, turnLeft, turnRight).filter: s =>
@@ -323,7 +323,7 @@ def search(next: StateTransform)(using Grid): Int =
 
 ## Solutions from the community
 
-- [Solution](https://github.com/stewSquared/advent-of-code/blob/master/src/main/scala/2021/Day17.worksheet.sc) by [stewSquared](https://github.com/stewSquared)
+- [Solution](https://github.com/stewSquared/advent-of-code/blob/master/src/main/scala/2023/Day17.worksheet.sc) by [stewSquared](https://github.com/stewSquared)
 - [Solution](https://github.com/merlinorg/aoc2023/blob/main/src/main/scala/Day17.scala) by [merlin](https://github.com/merlinorg/)
 - [Solution](https://github.com/xRuiAlves/advent-of-code-2023/blob/main/Day17.scala) by [Rui Alves](https://github.com/xRuiAlves/)
 
