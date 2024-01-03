@@ -140,13 +140,11 @@ def part1(input: String): Int =
     .sum
 ```
 
-## Part 2 – Abstract evaluation
+## Part 2 – Symbolic execution
 
-To solve the second part efficiently, we use [abstract interpretation](https://en.wikipedia.org/wiki/Abstract_interpretation) to count the number of executions of the workflow that lead to an `Accept` result.
+To solve the second part efficiently, we use [symbolic execution](https://en.wikipedia.org/wiki/Symbolic_execution) to count the number of executions of the workflow that lead to an `Accept` result.
 
-The _abstract domain_ in our case is sets of `Part`s.
-
-We represent such sets with the `AbstractPart` structure, where the value associated to each channel is not a number, but a range of possible values:
+We represent symbolic values with the `AbstractPart` structure, where the value associated to each channel is not a number, but a range of possible values:
 
 ```scala
 case class Range(from: Long, until: Long):
@@ -234,6 +232,7 @@ def combinations(input: String, until: Long): Long =
 - [Solution](https://github.com/jnclt/adventofcode2023/blob/main/day19/aplenty.sc) by [jnclt](https://github.com/jnclt)
 - [Solution](https://github.com/rayrobdod/advent-of-code/blob/main/2023/19/day19.scala) by [Raymond Dodge](https://github.com/rayrobdod/)
 - [Solution](https://github.com/spamegg1/advent-of-code-2023-scala/blob/solutions/19.worksheet.sc#L101) by [Spamegg](https://github.com/spamegg1/)
+- [Solution](https://github.com/xRuiAlves/advent-of-code-2023/blob/main/Day19.scala) by [Rui Alves](https://github.com/xRuiAlves/)
 - [Solution](https://github.com/GrigoriiBerezin/advent_code_2023/tree/master/task19/src/main/scala) by [g.berezin](https://github.com/GrigoriiBerezin)
 
 Share your solution to the Scala community by editing this page.

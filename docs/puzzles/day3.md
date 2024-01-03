@@ -293,5 +293,6 @@ You can replace the content of the `input/day3` file with your own input from [a
 - [Solution](https://github.com/tOverney/AdventOfCode2021/blob/main/src/main/scala/ch/overney/aoc/day3/) of [@tOverney](https://github.com/tOverney).
 - [Solution](https://github.com/philipschwarz/advent-of-code-2021-scala/tree/master/src/main/scala/day3) by [@philip_schwarz](https://twitter.com/philip_schwarz)
 - [Solution](https://github.com/Jannyboy11/AdventOfCode2021/blob/main/src/main/scala/day03/Day03.scala) of [Jan Boerman](https://twitter.com/JanBoerman95).
+- [Solution](https://github.com/xRuiAlves/advent-of-code-2021/tree/master/src/main/scala/rui/aoc/year2021/day3) by [Rui Alves](https://github.com/xRuiAlves/)
 
 Share your solution to the Scala community by editing this page.
