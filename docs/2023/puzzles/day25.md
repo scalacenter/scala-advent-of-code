@@ -8,6 +8,7 @@ https://adventofcode.com/2023/day/25
 
 ## Solutions from the community
 
+- [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2023/Day25.scala) by [Philippus Baalman](https://github.com/philippus)
 - [Solution](https://github.com/xRuiAlves/advent-of-code-2023/blob/main/Day25.scala) by [Rui Alves](https://github.com/xRuiAlves/)
 
 Share your solution to the Scala community by editing this page.
