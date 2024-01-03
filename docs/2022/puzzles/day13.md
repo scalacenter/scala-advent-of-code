@@ -121,6 +121,7 @@ end PacketOrdering
 - [Solution](https://github.com/AvaPL/Advent-of-Code-2022/tree/main/src/main/scala/day13) by [Paweł Cembaluk](https://github.com/AvaPL)
 - [Solution](https://github.com/w-r-z-k/aoc2022/blob/main/src/main/scala/Day13.scala) by Richard W
 - [Solution using ZIO](https://github.com/rpiotrow/advent-of-code-2022/tree/main/src/main/scala/io/github/rpiotrow/advent2022/day13) by [Rafał Piotrowski](https://github.com/rpiotrow)
+- [Solution](https://github.com/xRuiAlves/advent-of-code-2022/tree/main/src/main/scala/rui/aoc/year2022/day13) by [Rui Alves](https://github.com/xRuiAlves/)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)

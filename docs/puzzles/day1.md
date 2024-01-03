@@ -149,5 +149,6 @@ So the second part of the puzzle is almost the same as the first part of the puz
 - [Solution](https://github.com/FlorianCassayre/AdventOfCode-2021/blob/master/src/main/scala/adventofcode/solutions/Day01.scala) of [@FlorianCassayre](https://github.com/FlorianCassayre).
 - [Solution](https://github.com/justinhj/adventofcode2021-day1) with [video tutorial](https://www.youtube.com/watch?v=ziWwsXD9w7M) by [@justinhj](https://twitter.com/justinhj)
 - [Solution](https://github.com/Jannyboy11/AdventOfCode2021/blob/main/src/main/scala/day01/Day01.scala) of [Jan Boerman](https://twitter.com/JanBoerman95).
+- [Solution](https://github.com/xRuiAlves/advent-of-code-2021/tree/master/src/main/scala/rui/aoc/year2021/day1) by [Rui Alves](https://github.com/xRuiAlves/)
 
 Share your solution to the Scala community by editing this page.

@@ -75,5 +75,6 @@ end moveAllCrates
 - [Solution](https://github.com/danielnaumau/code-advent-2022/blob/master/src/main/scala/com/adventofcode/Day5.scala) by [Daniel Naumau](https://github.com/danielnaumau)
 - [Solution](https://github.com/AvaPL/Advent-of-Code-2022/tree/main/src/main/scala/day5) by [Paweł Cembaluk](https://github.com/AvaPL)
 - [Solution using ZIO](https://github.com/rpiotrow/advent-of-code-2022/tree/main/src/main/scala/io/github/rpiotrow/advent2022/day05) by [Rafał Piotrowski](https://github.com/rpiotrow)
+- [Solution](https://github.com/xRuiAlves/advent-of-code-2022/tree/main/src/main/scala/rui/aoc/year2022/day5) by [Rui Alves](https://github.com/xRuiAlves/)
 
 Share your solution to the Scala community by editing this page.
