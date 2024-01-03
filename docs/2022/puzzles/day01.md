@@ -83,5 +83,6 @@ def maxInventories(inventories: List[Inventory], n: Int): List[Int] =
 - [Solution](https://github.com/AvaPL/Advent-of-Code-2022/tree/main/src/main/scala/day1) by [Paweł Cembaluk](https://github.com/AvaPL)
 - [Solution](https://github.com/ciuckc/AOC22/blob/master/day1/calorie_count.scala) by [Cristian Steiciuc](https://github.com/ciuckc)
 - [Solution using ZIO](https://github.com/rpiotrow/advent-of-code-2022/tree/main/src/main/scala/io/github/rpiotrow/advent2022/day01) by [Rafał Piotrowski](https://github.com/rpiotrow)
+- [Solution](https://github.com/xRuiAlves/advent-of-code-2022/tree/main/src/main/scala/rui/aoc/year2022/day1) by [Rui Alves](https://github.com/xRuiAlves/)
 
 Share your solution to the Scala community by editing this page.

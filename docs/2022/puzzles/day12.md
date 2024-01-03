@@ -106,5 +106,6 @@ And that's it!
 - [Solution](https://github.com/AvaPL/Advent-of-Code-2022/tree/main/src/main/scala/day12) by [Paweł Cembaluk](https://github.com/AvaPL)
 - [Solution](https://github.com/w-r-z-k/aoc2022/blob/main/src/main/scala/Day12.scala) by Richard W
 - [Solution using ZIO](https://github.com/rpiotrow/advent-of-code-2022/tree/main/src/main/scala/io/github/rpiotrow/advent2022/day12) by [Rafał Piotrowski](https://github.com/rpiotrow)
+- [Solution](https://github.com/xRuiAlves/advent-of-code-2022/tree/main/src/main/scala/rui/aoc/year2022/day12) by [Rui Alves](https://github.com/xRuiAlves/)
 
 Share your solution to the Scala community by editing this page.
