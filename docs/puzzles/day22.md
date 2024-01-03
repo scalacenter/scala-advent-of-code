@@ -344,5 +344,6 @@ You can replace the content of the `input/day22` file with your own input from [
 ## Solutions from the community
 
 - [Solution](https://github.com/FlorianCassayre/AdventOfCode-2021/blob/master/src/main/scala/adventofcode/solutions/Day22.scala) of [@FlorianCassayre](https://github.com/FlorianCassayre).
+- [Solution](https://github.com/xRuiAlves/advent-of-code-2021/tree/master/src/main/scala/rui/aoc/year2021/day22) by [Rui Alves](https://github.com/xRuiAlves/)
 
 Share your solution to the Scala community by editing this page.
