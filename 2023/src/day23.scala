@@ -7,12 +7,12 @@ import locations.Directory.currentDir
 import inputs.Input.loadFileSync
 
 @main def part1: Unit =
-  val ans = longestDownhillHike(start, 0)
-  println(s"The solution is $ans")
+  given maze: Maze = Maze(loadInput())
+  println(s"The solution is $longestDownhillHike")
 
 @main def part2: Unit =
-  val ans = longestHike(indexOf(start), BitSet.empty, 0)
-  println(s"The solution is $ans")
+  given maze: Maze = Maze(loadInput())
+  println(s"The solution is $longestHike")
 
 def loadInput(): Vector[Vector[Char]] = Vector.from:
   val file = loadFileSync(s"$currentDir/../input/day23")
@@ -44,68 +44,78 @@ case class Point(x: Int, y: Int):
     case Dir.E => copy(x = x + 1)
     case Dir.W => copy(x = x - 1)
 
-val grid = loadInput()
+case class Maze(grid: Vector[Vector[Char]]):
 
-val xRange = grid.head.indices
-val yRange = grid.indices
+  def apply(p: Point): Char = grid(p.y)(p.x)
 
-def points: Iterator[Point] = for
-  y <- yRange.iterator
-  x <- xRange.iterator
-yield Point(x, y)
+  val xRange = grid.head.indices
+  val yRange = grid.indices
 
-val slopes = Map.from[Point, Dir]:
-  points.collect:
-    case p if grid(p.y)(p.x) == '^' => p -> Dir.N
-    case p if grid(p.y)(p.x) == 'v' => p -> Dir.S
-    case p if grid(p.y)(p.x) == '>' => p -> Dir.E
-    case p if grid(p.y)(p.x) == '<' => p -> Dir.W
+  def points: Iterator[Point] = for
+    y <- yRange.iterator
+    x <- xRange.iterator
+  yield Point(x, y)
 
-val walkable = points.filter(p => grid(p.y)(p.x) != '#').toSet
-val start = walkable.minBy(_.y)
-val end = walkable.maxBy(_.y)
+  val walkable = points.filter(p => grid(p.y)(p.x) != '#').toSet
+  val start = walkable.minBy(_.y)
+  val end = walkable.maxBy(_.y)
 
-val nodes: Set[Point] = walkable.filter: p =>
-  Dir.values.map(p.move).count(walkable) > 2
-.toSet + start + end
+  val slopes = Map.from[Point, Dir]:
+    points.collect:
+      case p if apply(p) == '^' => p -> Dir.N
+      case p if apply(p) == 'v' => p -> Dir.S
+      case p if apply(p) == '>' => p -> Dir.E
+      case p if apply(p) == '<' => p -> Dir.W
 
-def next(pos: Point, dir: Dir): List[(Point, Dir)] =
+  val nodes: Set[Point] = walkable.filter: p =>
+    Dir.values.map(p.move).count(walkable) > 2
+  .toSet + start + end
+
+
+def next(pos: Point, dir: Dir)(using maze: Maze): List[(Point, Dir)] =
   for
     d <- List(dir, dir.turnRight, dir.turnLeft)
     p = pos.move(d)
-    if slopes.get(p).forall(_ == d)
-    if walkable(p)
+    if maze.slopes.get(p).forall(_ == d)
+    if maze.walkable(p)
   yield p -> d
 
-def nodesFrom(pos: Point) = List.from[(Point, Int)]:
+def nodesFrom(pos: Point)(using maze: Maze) = List.from[(Point, Int)]:
   def search(p: Point, d: Dir, dist: Int): Option[(Point, Int)] =
     next(p, d) match
-      case (p, d) :: Nil if nodes(p) => Some(p, dist + 1)
+      case (p, d) :: Nil if maze.nodes(p) => Some(p, dist + 1)
       case (p, d) :: Nil => search(p, d, dist + 1)
       case _ => None
 
   Dir.values.flatMap(next(pos, _)).distinct.flatMap(search(_, _, 1))
 
-def longestDownhillHike(pos: Point, dist: Int): Int =
-  if pos == end then dist else
-    nodesFrom(pos).foldLeft(0):
-      case (max, (n, d)) => max.max(longestDownhillHike(n, dist + d))
+def longestDownhillHike(using maze: Maze): Int =
+  def search(pos: Point, dist: Int)(using maze: Maze): Int =
+    if pos == maze.end then dist else
+      nodesFrom(pos).foldLeft(0):
+        case (max, (n, d)) => max.max(search(n, dist + d))
 
-type Node = Int
-val indexOf: Map[Point, Node] =
-  nodes.toList.sortBy(_.dist(start)).zipWithIndex.toMap
+  search(maze.start, 0)
 
-val fullAdj: Map[Node, List[(Node, Int)]] =
-  nodes.toList.flatMap: p1 =>
-    nodesFrom(p1).flatMap: (p2, d) =>
-      val forward = indexOf(p1) -> (indexOf(p2), d)
-      val reverse = indexOf(p2) -> (indexOf(p1), d)
-      List(forward, reverse)
-  .groupMap(_._1)(_._2)
+def longestHike(using maze: Maze): Int =
+  type Index = Int
 
-def longestHike(node: Node, visited: BitSet, dist: Int): Int =
-  if node == indexOf(end) then dist else
-    fullAdj(node).foldLeft(0):
-      case (max, (n, d)) =>
-        if visited(n) then max else
-          max.max(longestHike(n, visited + n, dist + d))
+  val indexOf: Map[Point, Index] =
+    maze.nodes.toList.sortBy(_.dist(maze.start)).zipWithIndex.toMap
+
+  val adjacent: Map[Index, List[(Index, Int)]] =
+    maze.nodes.toList.flatMap: p1 =>
+      nodesFrom(p1).flatMap: (p2, d) =>
+        val forward = indexOf(p1) -> (indexOf(p2), d)
+        val reverse = indexOf(p2) -> (indexOf(p1), d)
+        List(forward, reverse)
+    .groupMap(_._1)(_._2)
+
+  def search(node: Index, visited: BitSet, dist: Int): Int =
+    if node == indexOf(maze.end) then dist else
+      adjacent(node).foldLeft(0):
+        case (max, (n, d)) =>
+          if visited(n) then max else
+            max.max(search(n, visited + n, dist + d))
+
+  search(indexOf(maze.start), BitSet.empty, 0)
