@@ -48,17 +48,21 @@ case class Maze(grid: Vector[Vector[Char]]):
 
   def apply(p: Point): Char = grid(p.y)(p.x)
 
-  val xRange = grid.head.indices
-  val yRange = grid.indices
+  val xRange: Range = grid.head.indices
+  val yRange: Range = grid.indices
 
   def points: Iterator[Point] = for
     y <- yRange.iterator
     x <- xRange.iterator
   yield Point(x, y)
 
-  val walkable = points.filter(p => grid(p.y)(p.x) != '#').toSet
-  val start = walkable.minBy(_.y)
-  val end = walkable.maxBy(_.y)
+  val walkable: Set[Point] = points.filter(p => grid(p.y)(p.x) != '#').toSet
+  val start: Point = walkable.minBy(_.y)
+  val end: Point = walkable.maxBy(_.y)
+
+  val junctions: Set[Point] = walkable.filter: p =>
+    Dir.values.map(p.move).count(walkable) > 2
+  .toSet + start + end
 
   val slopes = Map.from[Point, Dir]:
     points.collect:
@@ -67,32 +71,30 @@ case class Maze(grid: Vector[Vector[Char]]):
       case p if apply(p) == '>' => p -> Dir.E
       case p if apply(p) == '<' => p -> Dir.W
 
-  val nodes: Set[Point] = walkable.filter: p =>
-    Dir.values.map(p.move).count(walkable) > 2
-  .toSet + start + end
+def connectedJunctions(pos: Point)(using maze: Maze) = List.from[(Point, Int)]:
+  def walk(pos: Point, dir: Dir): Option[Point] =
+    val p = pos.move(dir)
+    Option.when(maze.walkable(p) && maze.slopes.get(p).forall(_ == dir))(p)
 
+  def search(pos: Point, facing: Dir, dist: Int): Option[(Point, Int)] =
+    if maze.junctions.contains(pos) then Some(pos, dist) else
+      val adjacentSearch = for
+        nextFacing <- LazyList(facing, facing.turnRight, facing.turnLeft)
+        nextPos <- walk(pos, nextFacing)
+      yield search(nextPos, nextFacing, dist + 1)
 
-def next(pos: Point, dir: Dir)(using maze: Maze): List[(Point, Dir)] =
+      if adjacentSearch.size == 1 then adjacentSearch.head else None
+
   for
-    d <- List(dir, dir.turnRight, dir.turnLeft)
-    p = pos.move(d)
-    if maze.slopes.get(p).forall(_ == d)
-    if maze.walkable(p)
-  yield p -> d
-
-def nodesFrom(pos: Point)(using maze: Maze) = List.from[(Point, Int)]:
-  def search(p: Point, d: Dir, dist: Int): Option[(Point, Int)] =
-    next(p, d) match
-      case (p, d) :: Nil if maze.nodes(p) => Some(p, dist + 1)
-      case (p, d) :: Nil => search(p, d, dist + 1)
-      case _ => None
-
-  Dir.values.flatMap(next(pos, _)).distinct.flatMap(search(_, _, 1))
+    d <- Dir.values
+    p <- walk(pos, d)
+    junction <- search(p, d, 1)
+  yield junction
 
 def longestDownhillHike(using maze: Maze): Int =
   def search(pos: Point, dist: Int)(using maze: Maze): Int =
     if pos == maze.end then dist else
-      nodesFrom(pos).foldLeft(0):
+      connectedJunctions(pos).foldLeft(0):
         case (max, (n, d)) => max.max(search(n, dist + d))
 
   search(maze.start, 0)
@@ -101,21 +103,21 @@ def longestHike(using maze: Maze): Int =
   type Index = Int
 
   val indexOf: Map[Point, Index] =
-    maze.nodes.toList.sortBy(_.dist(maze.start)).zipWithIndex.toMap
+    maze.junctions.toList.sortBy(_.dist(maze.start)).zipWithIndex.toMap
 
   val adjacent: Map[Index, List[(Index, Int)]] =
-    maze.nodes.toList.flatMap: p1 =>
-      nodesFrom(p1).flatMap: (p2, d) =>
+    maze.junctions.toList.flatMap: p1 =>
+      connectedJunctions(p1).flatMap: (p2, d) =>
         val forward = indexOf(p1) -> (indexOf(p2), d)
         val reverse = indexOf(p2) -> (indexOf(p1), d)
         List(forward, reverse)
     .groupMap(_._1)(_._2)
 
-  def search(node: Index, visited: BitSet, dist: Int): Int =
-    if node == indexOf(maze.end) then dist else
-      adjacent(node).foldLeft(0):
-        case (max, (n, d)) =>
-          if visited(n) then max else
-            max.max(search(n, visited + n, dist + d))
+  def search(junction: Index, visited: BitSet, totalDist: Int): Int =
+    if junction == indexOf(maze.end) then totalDist else
+      adjacent(junction).foldLeft(0):
+        case (longest, (nextJunct, dist)) =>
+          if visited(nextJunct) then longest else
+            longest.max(search(nextJunct, visited + nextJunct, totalDist + dist))
 
   search(indexOf(maze.start), BitSet.empty, 0)
