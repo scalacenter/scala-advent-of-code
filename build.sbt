@@ -29,15 +29,18 @@ def taskPatchSolutions(year: String, getSrcDir: File => File) = Def.task {
     IO.copyDirectory(srcDir, trgDir)
     val sourceFiles = (trgDir ** "*.scala").get.toSet
     for (f <- sourceFiles)
-      IO.writeLines(f, patchSolutions(year, IO.readLines(f)))
+      IO.writeLines(f, patchSolutions(f.getName, year, IO.readLines(f)))
     sourceFiles
   } (Set(srcDir)).toSeq
 }
 
 /** adds `package adventofcode${year}` to the file after the last using directive */
-def patchSolutions(year: String, lines: List[String]): List[String] = {
-  val (before, after) = lines.span(line => line.startsWith("// using") || line.startsWith("//> using"))
-  before ::: s"package adventofcode$year" :: after
+def patchSolutions(name: String, year: String, lines: List[String]): List[String] = {
+  if (name.contains(".test.scala")) Nil // hack to avoid compiling test files
+  else {
+    val (before, after) = lines.span(line => line.startsWith("// using") || line.startsWith("//> using"))
+    before ::: s"package adventofcode$year" :: after
+  }
 }
 
 lazy val docs = project
