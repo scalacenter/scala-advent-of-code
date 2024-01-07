@@ -266,7 +266,7 @@ Here are some footnotes to explain the differences with the [pseudocode](#minumu
 9. extract `t` and `s`, the two "added-last" nodes of `A`.
 10. return a tuple of a shrunk graph, by merging `t` and `s`, and the cut of the phase made by removing `t` from `g`.
 
-#### minimumCutPhase
+#### minimumCut
 
 11. `Graph` is an immutable data structure, but each iteration demands that we shrink the graph (i.e produce a new data structure containing the updated vertices, edges and weights), so `g0` stores the "current" graph being inspected.
 12. For our specific problem, we also need to find the partition caused by the minimum cut, so as well as storing the minimum cut, store the graph of the phase that produced the cut. At the end of all iterations we can compute the partition using the minimum cut.
