@@ -326,6 +326,7 @@ def search(next: StateTransform)(using Grid): Int =
 - [Solution](https://github.com/stewSquared/advent-of-code/blob/master/src/main/scala/2023/Day17.worksheet.sc) by [stewSquared](https://github.com/stewSquared)
 - [Solution](https://github.com/merlinorg/aoc2023/blob/main/src/main/scala/Day17.scala) by [merlin](https://github.com/merlinorg/)
 - [Solution](https://github.com/xRuiAlves/advent-of-code-2023/blob/main/Day17.scala) by [Rui Alves](https://github.com/xRuiAlves/)
+- [Solution](https://github.com/bishabosha/advent-of-code-2023/blob/main/2023-day17.scala) by [Jamie Thompson](https://github.com/bishabosha)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)

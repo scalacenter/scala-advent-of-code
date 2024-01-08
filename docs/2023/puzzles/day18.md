@@ -75,7 +75,7 @@ yield Trench(dir, len.toInt)
 ### Part 2
 
 We do the same for part 2, except we use the color to
-get the trench fields: 
+get the trench fields:
 its direction from the last digit,
 and its length by converting from the hexadecimal encoding of the remaining digits.
 
@@ -119,7 +119,7 @@ def part1(input: String): String =
     case s"$dirC $len (#$_)" <- input.linesIterator
     dir = Direction.fromChar(dirC.head)
   yield Trench(dir, len.toInt)
-  
+
   area(digPlan.toSeq).toString
 
 def part2(input: String): String =
@@ -138,6 +138,7 @@ def part2(input: String): String =
 - [Solution](https://github.com/spamegg1/advent-of-code-2023-scala/blob/solutions/18.worksheet.sc#L101) by [Spamegg](https://github.com/spamegg1/)
 - [Solution](https://github.com/xRuiAlves/advent-of-code-2023/blob/main/Day18.scala) by [Rui Alves](https://github.com/xRuiAlves/)
 - [Solution](https://github.com/GrigoriiBerezin/advent_code_2023/tree/master/task18/src/main/scala) by [g.berezin](https://github.com/GrigoriiBerezin)
+- [Solution](https://github.com/bishabosha/advent-of-code-2023/blob/main/2023-day18.scala) by [Jamie Thompson](https://github.com/bishabosha)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)

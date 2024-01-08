@@ -138,5 +138,6 @@ end part2
 - [Solution](https://github.com/marconilanna/advent-of-code/blob/master/2023/Day06.scala) by [Marconi Lanna](https://github.com/marconilanna)
 - [Solution](https://github.com/guycastle/advent_of_code_2023/blob/main/src/main/scala/days/day06/DaySix.scala) by [Guillaume Vandecasteele](https://github.com/guycastle)
 - [Solution](https://github.com/Jannyboy11/AdventOfCode2023/blob/master/src/main/scala/day06/Day06.scala) of [Jan Boerman](https://twitter.com/JanBoerman95).
+- [Solution](https://github.com/bishabosha/advent-of-code-2023/blob/main/2023-day06.scala) by [Jamie Thompson](https://github.com/bishabosha)
 
 Share your solution to the Scala community by editing this page.
