@@ -1,11 +1,11 @@
 # Scala Advent of Code 2021
 
-Scala Center's solutions of [Advent of Code](https://adventofcode.com/).
+Solutions in Scala for the annual [Advent of Code](https://adventofcode.com/) challenge. _Note: this repo is not affiliated with Advent of Code._
 
 ## Website
 
 The [Scala Advent of Code](https://scalacenter.github.io/scala-advent-of-code/) website contains:
-- some explanation of our solutions
+- some explanation of our solutions to [Advent of Code (adventofcode.com)](https://adventofcode.com/)
 - more solutions from the community
 
 ## Setup
@@ -20,6 +20,7 @@ After you clone the repository, open a terminal and run:
 ```
 $ cd scala-advent-of-code/2021
 $ scala-cli setup-ide src
+$ mkdir input
 $ code .
 ```
 
@@ -27,7 +28,9 @@ $ code .
 
 ### How to run a solution
 
-In a terminal you can run:
+First copy your input to the folder `scala-advent-of-code/2021/input`.
+
+Next, in a terminal you can run:
 ```
 $ cd scala-advent-of-code/2021
 $ scala-cli . -M day1.part1
@@ -35,6 +38,8 @@ Compiling project (Scala 3.x.y, JVM)
 Compiled project (Scala 3.x.y, JVM)
 The solution is 1559
 ```
+
+The result will likely be different for you, as inputs are different for each user.
 
 Or, to run another solution:
 ```
@@ -52,3 +57,6 @@ You can run it locally, if you have [Node.js](https://nodejs.org/en/) installed,
 ```
 $ scala-cli . --js -M day3.part1
 ```
+
+## Contributing
+- Please do not commit your puzzle inputs, we can not accept them as they are protected by copyright
