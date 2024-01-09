@@ -1,6 +1,6 @@
 # Scala Advent of Code
 
-Scala Center's solutions of [Advent of Code](https://adventofcode.com/).
+Solutions in Scala for the annual [Advent of Code](https://adventofcode.com/) challenge. _Note: this repo is not affiliated with Advent of Code._
 
 ## Prerequisites
 
