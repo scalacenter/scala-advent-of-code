@@ -15,7 +15,7 @@ The solution models the input as a grid of numbers and symbols.
     - `case class Coord(x: Int, y: Int)` to represent one coordinate on the grid
     - `case class Symbol(sym: String, pos: Coord)` to represent one symbol and its location
     - `case class PartNumber(value: Int, start: Coord, end: Coord)` to represent one number and its starting/ending location
-2. Parse the input to create a dense collection of symbols and numbers
+2. Parse the input to create a sparse collection of symbols and numbers
 3. Separate the symbols from the numbers
 4. Then summarise the whole grid as follows:
      - in `part1`, find all `numbers` adjacent to a `symbol`, and sum the total of the resulting `number` values,
@@ -38,7 +38,7 @@ case class Coord(x: Int, y: Int):
     else true
 ```
 
-We also want to easily distinguish a `Symbol` from a `Number`, and to know wether a `Symbol` is adjacent to a `Number`:
+We also want to easily distinguish a `Symbol` from a `Number`, and to know whether a `Symbol` is adjacent to a `Number`:
 
 ```scala
 case class PartNumber(value: Int, start: Coord, end: Coord)
@@ -68,7 +68,7 @@ def findPartsAndSymbols(source: String) =
         case s => Symbol(s.matched, Coord(s.start, i))
 ```
 
-The `object IsInt` with the `.unapply` method is called an extractor. It allows to define patterns to match on. Here it will give me a number if it can parse it from a string
+The `object IsInt` with the `.unapply` method is called an extractor. It allows to define patterns to match on. Here it will give me a number if it can parse it from a string.
 
 The `findPartsAndSymbols` does the parsing and returns a collection of `PartNumber` and `Symbol`. What we want to match on is either a number or a symbol (which is anything except the `.` and a `digit`). The regex match gives us some information (such as starting / ending position of the matched string) which we use to create the `PartNumber` and `Symbol` instances.
 
