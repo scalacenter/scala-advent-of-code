@@ -2,6 +2,8 @@ import Solver from "../../../../../website/src/components/Solver.js"
 
 # Day 15: Lens Library
 
+by [@sjrd](https://github.com/sjrd)
+
 ## Puzzle description
 
 https://adventofcode.com/2023/day/15
