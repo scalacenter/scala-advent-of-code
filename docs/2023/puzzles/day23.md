@@ -1,5 +1,6 @@
 import Solver from "../../../../../website/src/components/Solver.js"
 import Literate from "../../../../../website/src/components/Literate.js"
+import ExpandImage from "../../../../../website/src/components/ExpandImage.js"
 
 # Day 23: A Long Walk
 
@@ -25,7 +26,13 @@ Each junction might have two or three adjacent paths we can enter. When we exit 
 
 - For each iteration of the search through this graph, we check all adjacent junctions against the visited set. When using a hash set, this will result in computing hashes of position coordinates tens of millions of times. We can avoid this by giving each junction an index and using a BitSet of these indices as our visited set. Checking for membership in a BitSet only requires a bitshift and a bitwise AND mask. On my machine, this drops the run time from ~7 seconds to ~2 seconds (70%).
 
-For part 1, neither of these optimizations are necessary. To understand why, notice that every junction is surrounded by slopes. When a junction is surrounded by four slopes, as most of them are, two are incoming and two are outgoing. For part 1, these are arranged in such a way that the adjacency graph becomes a directed acyclic graph, with a greatly reduced search space. One way to notice this early on is to generate a [visualization via GraphViz](https://dreampuf.github.io/GraphvizOnline/#digraph%20G%20%7B%0A%220%22%20-%3E%20%221%22%20%5Blabel%3D159%5D%3B%0A%221%22%20-%3E%20%223%22%20%5Blabel%3D138%5D%3B%0A%221%22%20-%3E%20%222%22%20%5Blabel%3D80%5D%3B%0A%222%22%20-%3E%20%224%22%20%5Blabel%3D170%5D%3B%0A%222%22%20-%3E%20%225%22%20%5Blabel%3D310%5D%3B%0A%223%22%20-%3E%20%224%22%20%5Blabel%3D72%5D%3B%0A%223%22%20-%3E%20%226%22%20%5Blabel%3D334%5D%3B%0A%224%22%20-%3E%20%2211%22%20%5Blabel%3D232%5D%3B%0A%224%22%20-%3E%20%229%22%20%5Blabel%3D116%5D%3B%0A%225%22%20-%3E%20%2211%22%20%5Blabel%3D184%5D%3B%0A%225%22%20-%3E%20%227%22%20%5Blabel%3D112%5D%3B%0A%226%22%20-%3E%20%229%22%20%5Blabel%3D38%5D%3B%0A%226%22%20-%3E%20%228%22%20%5Blabel%3D44%5D%3B%0A%227%22%20-%3E%20%2212%22%20%5Blabel%3D222%5D%3B%0A%227%22%20-%3E%20%2213%22%20%5Blabel%3D66%5D%3B%0A%228%22%20-%3E%20%2210%22%20%5Blabel%3D38%5D%3B%0A%228%22%20-%3E%20%2215%22%20%5Blabel%3D440%5D%3B%0A%229%22%20-%3E%20%2214%22%20%5Blabel%3D188%5D%3B%0A%229%22%20-%3E%20%2210%22%20%5Blabel%3D20%5D%3B%0A%2210%22%20-%3E%20%2216%22%20%5Blabel%3D120%5D%3B%0A%2210%22%20-%3E%20%2219%22%20%5Blabel%3D222%5D%3B%0A%2211%22%20-%3E%20%2214%22%20%5Blabel%3D72%5D%3B%0A%2211%22%20-%3E%20%2213%22%20%5Blabel%3D74%5D%3B%0A%2212%22%20-%3E%20%2218%22%20%5Blabel%3D144%5D%3B%0A%2212%22%20-%3E%20%2220%22%20%5Blabel%3D520%5D%3B%0A%2213%22%20-%3E%20%2217%22%20%5Blabel%3D202%5D%3B%0A%2213%22%20-%3E%20%2218%22%20%5Blabel%3D140%5D%3B%0A%2214%22%20-%3E%20%2216%22%20%5Blabel%3D196%5D%3B%0A%2214%22%20-%3E%20%2217%22%20%5Blabel%3D152%5D%3B%0A%2215%22%20-%3E%20%2219%22%20%5Blabel%3D184%5D%3B%0A%2215%22%20-%3E%20%2222%22%20%5Blabel%3D472%5D%3B%0A%2216%22%20-%3E%20%2223%22%20%5Blabel%3D94%5D%3B%0A%2216%22%20-%3E%20%2221%22%20%5Blabel%3D198%5D%3B%0A%2217%22%20-%3E%20%2224%22%20%5Blabel%3D56%5D%3B%0A%2217%22%20-%3E%20%2221%22%20%5Blabel%3D102%5D%3B%0A%2218%22%20-%3E%20%2224%22%20%5Blabel%3D146%5D%3B%0A%2218%22%20-%3E%20%2220%22%20%5Blabel%3D60%5D%3B%0A%2219%22%20-%3E%20%2222%22%20%5Blabel%3D60%5D%3B%0A%2219%22%20-%3E%20%2223%22%20%5Blabel%3D40%5D%3B%0A%2220%22%20-%3E%20%2228%22%20%5Blabel%3D280%5D%3B%0A%2221%22%20-%3E%20%2227%22%20%5Blabel%3D162%5D%3B%0A%2221%22%20-%3E%20%2226%22%20%5Blabel%3D82%5D%3B%0A%2222%22%20-%3E%20%2225%22%20%5Blabel%3D124%5D%3B%0A%2223%22%20-%3E%20%2226%22%20%5Blabel%3D190%5D%3B%0A%2223%22%20-%3E%20%2225%22%20%5Blabel%3D112%5D%3B%0A%2224%22%20-%3E%20%2227%22%20%5Blabel%3D104%5D%3B%0A%2224%22%20-%3E%20%2228%22%20%5Blabel%3D250%5D%3B%0A%2225%22%20-%3E%20%2230%22%20%5Blabel%3D336%5D%3B%0A%2226%22%20-%3E%20%2231%22%20%5Blabel%3D128%5D%3B%0A%2226%22%20-%3E%20%2230%22%20%5Blabel%3D98%5D%3B%0A%2227%22%20-%3E%20%2229%22%20%5Blabel%3D156%5D%3B%0A%2227%22%20-%3E%20%2231%22%20%5Blabel%3D132%5D%3B%0A%2228%22%20-%3E%20%2229%22%20%5Blabel%3D58%5D%3B%0A%2229%22%20-%3E%20%2232%22%20%5Blabel%3D392%5D%3B%0A%2230%22%20-%3E%20%2233%22%20%5Blabel%3D188%5D%3B%0A%2231%22%20-%3E%20%2233%22%20%5Blabel%3D62%5D%3B%0A%2231%22%20-%3E%20%2232%22%20%5Blabel%3D84%5D%3B%0A%2232%22%20-%3E%20%2234%22%20%5Blabel%3D92%5D%3B%0A%2233%22%20-%3E%20%2234%22%20%5Blabel%3D158%5D%3B%0A%2234%22%20-%3E%20%2235%22%20%5Blabel%3D49%5D%3B%0A%7D).
+For part 1, neither of these optimizations are necessary. To understand why, notice that every junction is surrounded by slopes. When a junction is surrounded by four slopes, as most of them are, two are incoming and two are outgoing. For part 1, these are arranged in such a way that the adjacency graph becomes a directed acyclic graph, with a greatly reduced search space. One way to notice this early on is to generate a visualization via GraphViz, such as the following:
+
+import GraphVizSvg from '/img/2023-day23/graphviz.svg';
+
+<ExpandImage>
+  <GraphVizSvg />
+</ExpandImage>
 
 ### Framework
 
@@ -88,13 +95,17 @@ So far we just have helper methods. The next few definitions are the things we'l
   val junctions: Set[Point] = walkable.filter: p =>
     Dir.values.map(p.move).count(walkable) > 2
   .toSet + start + end
+```
 
-  val slopes = Map.from[Point, Dir]:
+Here we can populate which points are slopes by looking up a point with `this.apply(p)`, shortened to `this(p)`.
+```scala
+  val slopes: Map[Point, Dir] = Map.from:
     points.collect:
-      case p if apply(p) == '^' => p -> Dir.N
-      case p if apply(p) == 'v' => p -> Dir.S
-      case p if apply(p) == '>' => p -> Dir.E
-      case p if apply(p) == '<' => p -> Dir.W
+      case p if this(p) == '^' => p -> Dir.N
+      case p if this(p) == 'v' => p -> Dir.S
+      case p if this(p) == '>' => p -> Dir.E
+      case p if this(p) == '<' => p -> Dir.W
+end Maze
 ```
 
 </Literate>
@@ -112,15 +123,19 @@ Next, we need an algorithm for finding junctions that are connected to a given j
 <Literate>
 
 ```scala
-def connectedJunctions(pos: Point)(using maze: Maze) = List.from[(Point, Int)]:
+def connectedJunctions(pos: Point)(using maze: Maze) = List.from:
   assert(maze.junctions.contains(pos))
+```
 
+This `walk` helper method attempts to move in a given direction from a given position, accounting for walls and slopes in the maze. This alternatively could have been defined as a method on `Point` itself.
+
+```scala
   def walk(pos: Point, dir: Dir): Option[Point] =
     val p = pos.move(dir)
     Option.when(maze.walkable(p) && maze.slopes.get(p).forall(_ == dir))(p)
 ```
 
-This `walk` helper method attempts to move in a given direction from a given position, accounting for walls and slopes in the maze. This alternatively could have been defined as a method on `Point` itself.
+This `search` helper method walks down a path from a junction while tracking the current direction and distance. `adjacentSearch` attempts to walk recursively in directions that don't go backwards. A LazyList is used here to prevent stack overflows. If there is only one adjacent path to walk too, we continue searching that path recursively until we reach a junction, otherwise, we have reached a dead end; `None` represents the fact that no new junctions are reachable down this path.
 
 ```scala
   def search(pos: Point, facing: Dir, dist: Int): Option[(Point, Int)] =
@@ -133,7 +148,7 @@ This `walk` helper method attempts to move in a given direction from a given pos
       if adjacentSearch.size == 1 then adjacentSearch.head else None
 ```
 
-This `search` helper method walks down a path from a junction while tracking the current direction and distance. `adjacentSearch` attempts to walk recursively in directions that don't go backwards. A LazyList is used here to prevent stack overflows. If there is only one adjacent path to walk too, we continue searching that path recursively until we reach a junction, otherwise, we have reached a dead end; `None` represents the fact that no new junctions are reachable down this path.
+Finally, we begin the search in each direction from our current junction, returning all the connected junctions found.
 
 ```scala
   for
@@ -141,10 +156,8 @@ This `search` helper method walks down a path from a junction while tracking the
     p <- walk(pos, d)
     junction <- search(p, d, 1)
   yield junction
-
+end connectedJunctions
 ```
-
-Finally, we begin the search in each direction from our current junction, returning all the connected junctions found.
 
 </Literate>
 
@@ -153,13 +166,22 @@ Finally, we begin the search in each direction from our current junction, return
 `connectedJunctions` is sufficient to solve Part 1 quickly:
 
 ```scala
+def part1(input: String): Int =
+  given Maze = Maze(parseInput(input))
+  longestDownhillHike
+
+def parseInput(fileContents: String): Vector[Vector[Char]] =
+  Vector.from:
+    fileContents.split("\n").map(_.toVector)
+
 def longestDownhillHike(using maze: Maze): Int =
-  def search(pos: Point, dist: Int)(using maze: Maze): Int =
+  def search(pos: Point, dist: Int): Int =
     if pos == maze.end then dist else
       connectedJunctions(pos).foldLeft(0):
         case (max, (n, d)) => max.max(search(n, dist + d))
 
   search(maze.start, 0)
+end longestDownhillHike
 ```
 
 This uses a recursive helper method named `search`. Beginning with `start`, we recursively search for the longest path starting at each of the connected junctions.
@@ -170,17 +192,23 @@ For part 2, we'll implement the optimization mentioned in the overview, namely, 
 
 <Literate>
 
+```scala
+def part2(input: String): Int =
+  given Maze = Maze(parseInput(input))
+  longestHike
+
+def longestHike(using maze: Maze): Int =
+  type Index = Int
+```
+
 We begin by assigning indices to each of the junctions, by sorting them (in any way, as long as the ordering is well-defined) and zipping with an index:
 
 ```scala
-def longestHike(using maze: Maze): Int =
-  type Index = Int
-
   val indexOf: Map[Point, Index] =
     maze.junctions.toList.sortBy(_.dist(maze.start)).zipWithIndex.toMap
 ```
 
-Next, we define an adjacency graph. Since `connectedJunctinos` takes slopes into account, and we no longer care about slopes for part 2, we add both the forward and reverse directinos into our Map. Note how we translate the Point locations used by `connectedJunctions` into indices using `indexOf`, defined above:
+Next, we define an adjacency graph. Since `connectedJunctions` takes slopes into account, and we no longer care about slopes for part 2, we add both the forward and reverse directions into our Map. Note how we translate the Point locations used by `connectedJunctions` into indices using `indexOf`, defined above:
 
 ```scala
   val adjacent: Map[Index, List[(Index, Int)]] =
@@ -193,7 +221,7 @@ Next, we define an adjacency graph. Since `connectedJunctinos` takes slopes into
 ```
 
 Finally, we perform a depth-first search that is very similar to what we used in Part 1.
-The main differences are that we now use indices of junctions rather than `Point`s reperesenting current position, and we now check adjacent junctions against a BitSet of visited points, which we now track as we search recursively.
+The main differences are that we now use indices of junctions rather than `Point`s representing current position, and we now check adjacent junctions against a BitSet of visited points, which we now track as we search recursively.
 
 ```scala
   def search(junction: Index, visited: BitSet, totalDist: Int): Int =
@@ -204,6 +232,7 @@ The main differences are that we now use indices of junctions rather than `Point
             longest.max(search(nextJunct, visited + nextJunct, totalDist + dist))
 
   search(indexOf(maze.start), BitSet.empty, 0)
+end longestHike
 ```
 
 </Literate>
@@ -213,19 +242,17 @@ The main differences are that we now use indices of junctions rather than `Point
 ```scala
 import collection.immutable.BitSet
 
-import locations.Directory.currentDir
-import inputs.Input.loadFileSync
-
 def part1(input: String): Int =
-  given maze: Maze = Maze(loadInput(input))
-  println(s"The solution is $longestDownhillHike")
+  given Maze = Maze(parseInput(input))
+  longestDownhillHike
 
-@main def part2(input: String): Unit =
-  given maze: Maze = Maze(parseInput(input))
-  println(s"The solution is $longestHike")
+def part2(input: String): Int =
+  given Maze = Maze(parseInput(input))
+  longestHike
 
-def parseInput(fileContents: String): Vector[Vector[Char]] = Vector.from:
-  fileContents.split("\n").map(_.toVector)
+def parseInput(fileContents: String): Vector[Vector[Char]] =
+  Vector.from:
+    fileContents.split("\n").map(_.toVector)
 
 enum Dir:
   case N, S, E, W
@@ -272,14 +299,15 @@ case class Maze(grid: Vector[Vector[Char]]):
     Dir.values.map(p.move).count(walkable) > 2
   .toSet + start + end
 
-  val slopes = Map.from[Point, Dir]:
+  val slopes: Map[Point, Dir] = Map.from:
     points.collect:
-      case p if apply(p) == '^' => p -> Dir.N
-      case p if apply(p) == 'v' => p -> Dir.S
-      case p if apply(p) == '>' => p -> Dir.E
-      case p if apply(p) == '<' => p -> Dir.W
+      case p if this(p) == '^' => p -> Dir.N
+      case p if this(p) == 'v' => p -> Dir.S
+      case p if this(p) == '>' => p -> Dir.E
+      case p if this(p) == '<' => p -> Dir.W
+end Maze
 
-def connectedJunctions(pos: Point)(using maze: Maze) = List.from[(Point, Int)]:
+def connectedJunctions(pos: Point)(using maze: Maze) = List.from:
   def walk(pos: Point, dir: Dir): Option[Point] =
     val p = pos.move(dir)
     Option.when(maze.walkable(p) && maze.slopes.get(p).forall(_ == dir))(p)
@@ -298,14 +326,16 @@ def connectedJunctions(pos: Point)(using maze: Maze) = List.from[(Point, Int)]:
     p <- walk(pos, d)
     junction <- search(p, d, 1)
   yield junction
+end connectedJunctions
 
 def longestDownhillHike(using maze: Maze): Int =
-  def search(pos: Point, dist: Int)(using maze: Maze): Int =
+  def search(pos: Point, dist: Int): Int =
     if pos == maze.end then dist else
       connectedJunctions(pos).foldLeft(0):
         case (max, (n, d)) => max.max(search(n, dist + d))
 
   search(maze.start, 0)
+end longestDownhillHike
 
 def longestHike(using maze: Maze): Int =
   type Index = Int
@@ -329,6 +359,7 @@ def longestHike(using maze: Maze): Int =
             longest.max(search(nextJunct, visited + nextJunct, totalDist + dist))
 
   search(indexOf(maze.start), BitSet.empty, 0)
+end longestHike
 ```
 
 ## Solutions from the community
