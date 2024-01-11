@@ -1,22 +1,29 @@
 package day23
 // based on solution from https://github.com/stewSquared/adventofcode/blob/src/main/scala/2023/Day23.worksheet.sc
 
-import collection.immutable.BitSet
-
 import locations.Directory.currentDir
 import inputs.Input.loadFileSync
 
 @main def part1: Unit =
-  given maze: Maze = Maze(loadInput())
-  println(s"The solution is $longestDownhillHike")
+  println(s"The solution is ${part1(loadInput())}")
 
 @main def part2: Unit =
-  given maze: Maze = Maze(loadInput())
-  println(s"The solution is $longestHike")
+  println(s"The solution is ${part2(loadInput())}")
 
-def loadInput(): Vector[Vector[Char]] = Vector.from:
-  val file = loadFileSync(s"$currentDir/../input/day23")
-  for line <- file.split("\n")
+def loadInput(): String = loadFileSync(s"$currentDir/../input/day23")
+
+import collection.immutable.BitSet
+
+def part1(input: String): Int =
+  given maze: Maze = Maze(parseInput(input))
+  longestDownhillHike
+
+def part2(input: String): Int =
+  given maze: Maze = Maze(parseInput(input))
+  longestHike
+
+def parseInput(fileInput: String): Vector[Vector[Char]] = Vector.from:
+  for line <- fileInput.split("\n")
   yield line.toVector
 
 enum Dir:
