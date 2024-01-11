@@ -17,6 +17,58 @@
   --ifm-footer-background-color: #0c2c40
 }
 
+.image-container-175mw {
+  position: relative;
+  max-width: 175px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* from https: //stackoverflow.com/questions/19104018/how-to-expand-an-image-in-html-by-clicking-on-it  */
+.image-container-175mw::after {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-weight: 600;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  text-align: center;
+  text-shadow: 0 0 30px #000;
+  transition: .5s ease;
+  background-color: rgba(0, 0, 0, 0.4);
+  content: "Hover to expand";
+}
+
+.image-container-175mw:hover::after {
+  opacity: 0;
+}
+
+.image-container-175mw > svg {
+  max-width: 175px;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  opacity: 0.8;
+}
+
+.image-container-175mw:hover > svg {
+  color: #424242;
+  -webkit-transition: all .3s ease-in;
+  -moz-transition: all .3s ease-in;
+  -ms-transition: all .3s ease-in;
+  -o-transition: all .3s ease-in;
+  transition: all .3s ease-in;
+  opacity: 1;
+  transform: scale(1.55);
+  -ms-transform: scale(1.55); /* IE 9 */
+  -webkit-transform: scale(1.55); /* Safari and Chrome */
+}
+
 html footer {
   --ifm-footer-title-color: rgb(255, 255, 255);
   --ifm-footer-link-color: #dadde1;
