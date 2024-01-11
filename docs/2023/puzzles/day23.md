@@ -123,7 +123,7 @@ Next, we need an algorithm for finding junctions that are connected to a given j
 <Literate>
 
 ```scala
-def connectedJunctions(pos: Point)(using maze: Maze) = List.from:
+def connectedJunctions(pos: Point)(using maze: Maze): List[(Point, Int)] = List.from:
   assert(maze.junctions.contains(pos))
 ```
 
@@ -139,7 +139,9 @@ This `search` helper method walks down a path from a junction while tracking the
 
 ```scala
   def search(pos: Point, facing: Dir, dist: Int): Option[(Point, Int)] =
-    if maze.junctions.contains(pos) then Some(pos, dist) else
+    if maze.junctions.contains(pos) then
+      Some(pos, dist)
+    else
       val adjacentSearch = for
         nextFacing <- LazyList(facing, facing.turnRight, facing.turnLeft)
         nextPos <- walk(pos, nextFacing)
@@ -176,7 +178,9 @@ def parseInput(fileContents: String): Vector[Vector[Char]] =
 
 def longestDownhillHike(using maze: Maze): Int =
   def search(pos: Point, dist: Int): Int =
-    if pos == maze.end then dist else
+    if pos == maze.end then
+      dist
+    else
       connectedJunctions(pos).foldLeft(0):
         case (max, (n, d)) => max.max(search(n, dist + d))
 
@@ -212,12 +216,13 @@ Next, we define an adjacency graph. Since `connectedJunctions` takes slopes into
 
 ```scala
   val adjacent: Map[Index, List[(Index, Int)]] =
-    maze.junctions.toList.flatMap: p1 =>
-      connectedJunctions(p1).flatMap: (p2, d) =>
-        val forward = indexOf(p1) -> (indexOf(p2), d)
-        val reverse = indexOf(p2) -> (indexOf(p1), d)
-        List(forward, reverse)
-    .groupMap(_._1)(_._2)
+    maze.junctions.toList
+      .flatMap: p1 =>
+        connectedJunctions(p1).flatMap: (p2, d) =>
+          val forward = indexOf(p1) -> (indexOf(p2), d)
+          val reverse = indexOf(p2) -> (indexOf(p1), d)
+          List(forward, reverse)
+      .groupMap(_(0))(_(1))
 ```
 
 Finally, we perform a depth-first search that is very similar to what we used in Part 1.
@@ -225,7 +230,9 @@ The main differences are that we now use indices of junctions rather than `Point
 
 ```scala
   def search(junction: Index, visited: BitSet, totalDist: Int): Int =
-    if junction == indexOf(maze.end) then totalDist else
+    if junction == indexOf(maze.end) then
+      totalDist
+    else
       adjacent(junction).foldLeft(0):
         case (longest, (nextJunct, dist)) =>
           if visited(nextJunct) then longest else
@@ -307,13 +314,15 @@ case class Maze(grid: Vector[Vector[Char]]):
       case p if this(p) == '<' => p -> Dir.W
 end Maze
 
-def connectedJunctions(pos: Point)(using maze: Maze) = List.from:
+def connectedJunctions(pos: Point)(using maze: Maze): List[(Point, Int)] = List.from:
   def walk(pos: Point, dir: Dir): Option[Point] =
     val p = pos.move(dir)
     Option.when(maze.walkable(p) && maze.slopes.get(p).forall(_ == dir))(p)
 
   def search(pos: Point, facing: Dir, dist: Int): Option[(Point, Int)] =
-    if maze.junctions.contains(pos) then Some(pos, dist) else
+    if maze.junctions.contains(pos) then
+      Some(pos, dist)
+    else
       val adjacentSearch = for
         nextFacing <- LazyList(facing, facing.turnRight, facing.turnLeft)
         nextPos <- walk(pos, nextFacing)
@@ -330,7 +339,9 @@ end connectedJunctions
 
 def longestDownhillHike(using maze: Maze): Int =
   def search(pos: Point, dist: Int): Int =
-    if pos == maze.end then dist else
+    if pos == maze.end then
+      dist
+    else
       connectedJunctions(pos).foldLeft(0):
         case (max, (n, d)) => max.max(search(n, dist + d))
 
@@ -344,15 +355,18 @@ def longestHike(using maze: Maze): Int =
     maze.junctions.toList.sortBy(_.dist(maze.start)).zipWithIndex.toMap
 
   val adjacent: Map[Index, List[(Index, Int)]] =
-    maze.junctions.toList.flatMap: p1 =>
-      connectedJunctions(p1).flatMap: (p2, d) =>
-        val forward = indexOf(p1) -> (indexOf(p2), d)
-        val reverse = indexOf(p2) -> (indexOf(p1), d)
-        List(forward, reverse)
-    .groupMap(_._1)(_._2)
+    maze.junctions.toList
+      .flatMap: p1 =>
+        connectedJunctions(p1).flatMap: (p2, d) =>
+          val forward = indexOf(p1) -> (indexOf(p2), d)
+          val reverse = indexOf(p2) -> (indexOf(p1), d)
+          List(forward, reverse)
+      .groupMap(_(0))(_(1))
 
   def search(junction: Index, visited: BitSet, totalDist: Int): Int =
-    if junction == indexOf(maze.end) then totalDist else
+    if junction == indexOf(maze.end) then
+      totalDist
+    else
       adjacent(junction).foldLeft(0):
         case (longest, (nextJunct, dist)) =>
           if visited(nextJunct) then longest else
