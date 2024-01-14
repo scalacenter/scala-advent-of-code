@@ -589,6 +589,7 @@ def unfoldRow(input: String): String =
 - [Solution](https://github.com/SethTisue/adventofcode/blob/main/2023/src/test/scala/Day12.scala) by [Seth Tisue](https://github.com/SethTisue)
 - [Solution](https://github.com/GrigoriiBerezin/advent_code_2023/tree/master/task12/src/main/scala) by [g.berezin](https://github.com/GrigoriiBerezin)
 - [Solution](https://github.com/bishabosha/advent-of-code-2023/blob/main/2023-day12.scala) by [Jamie Thompson](https://github.com/bishabosha)
+- [Solution](https://github.com/AvaPL/Advent-of-Code-2023/tree/main/src/main/scala/day12) by [Paweł Cembaluk](https://github.com/AvaPL)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)

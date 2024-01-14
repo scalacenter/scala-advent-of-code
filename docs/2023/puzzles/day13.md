@@ -127,5 +127,6 @@ def findReflectionWithSmudge(pattern: Pattern): Option[Int] =
 - [Solution](https://github.com/merlinorg/aoc2023/blob/main/src/main/scala/Day13.scala) by [merlin](https://github.com/merlinorg/)
 - [Solution](https://github.com/GrigoriiBerezin/advent_code_2023/tree/master/task13/src/main/scala) by [g.berezin](https://github.com/GrigoriiBerezin)
 - [Solution](https://github.com/bishabosha/advent-of-code-2023/blob/main/2023-day13.scala) by [Jamie Thompson](https://github.com/bishabosha)
+- [Solution](https://github.com/AvaPL/Advent-of-Code-2023/tree/main/src/main/scala/day13) by [Paweł Cembaluk](https://github.com/AvaPL)
 
 Share your solution to the Scala community by editing this page.

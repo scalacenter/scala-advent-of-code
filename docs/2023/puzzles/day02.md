@@ -200,5 +200,6 @@ def part2(input: String): Int = solution(input, minimumCubes)
 - [Solution](https://github.com/GrigoriiBerezin/advent_code_2023/tree/master/task02/src/main/scala) by [g.berezin](https://github.com/GrigoriiBerezin)
 - [Solution](https://github.com/marconilanna/advent-of-code/blob/master/2023/Day02.scala) by [Marconi Lanna](https://github.com/marconilanna)
 - [Solution](https://github.com/xRuiAlves/advent-of-code-2023/blob/main/Day2.scala) by [Rui Alves](https://github.com/xRuiAlves/)
+- [Solution](https://github.com/AvaPL/Advent-of-Code-2023/tree/main/src/main/scala/day2) by [Paweł Cembaluk](https://github.com/AvaPL)
 
 Share your solution to the Scala community by editing this page.

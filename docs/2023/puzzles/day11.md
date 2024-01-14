@@ -309,6 +309,7 @@ Here are some ideas that I think would be interesting to look into:
 - [Solution](https://github.com/joeledwards/advent-of-code/blob/master/2023/src/main/scala/com/buzuli/advent/days/day11.scala) by [Joel Edwards](https://github.com/joeledwards)
 - [Solution](https://github.com/mpilquist/aoc/blob/main/2023/day11.sc) by [Michael Pilquist](https://github.com/mpilquist)
 - [Solution](https://github.com/bishabosha/advent-of-code-2023/blob/main/2023-day11.scala) by [Jamie Thompson](https://github.com/bishabosha)
+- [Solution](https://github.com/AvaPL/Advent-of-Code-2023/tree/main/src/main/scala/day11) by [Paweł Cembaluk](https://github.com/AvaPL)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)
