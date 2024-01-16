@@ -380,6 +380,7 @@ end longestHike
 
 - [Solution](https://github.com/stewSquared/advent-of-code/blob/master/src/main/scala/2023/Day23.worksheet.sc) by [Stewart Stewart](https://github.com/stewSquared)
 - [Solution](https://github.com/xRuiAlves/advent-of-code-2023/blob/main/Day23.scala) by [Rui Alves](https://github.com/xRuiAlves/)
+- [Solution](https://github.com/AvaPL/Advent-of-Code-2023/tree/main/src/main/scala/day23) by [Paweł Cembaluk](https://github.com/AvaPL)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)

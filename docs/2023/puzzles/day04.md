@@ -217,5 +217,6 @@ end part2
 - [Solution](https://github.com/bxiang/advent-of-code-2023/blob/main/src/main/scala/com/aoc/Day04.scala) by [Brian Xiang](https://github.com/bxiang/)
 - [Solution](https://github.com/joeledwards/advent-of-code/blob/master/2023/src/main/scala/com/buzuli/advent/days/day4.scala) by [Joel Edwards](https://github.com/joeledwards/)
 - [Solution](https://github.com/xRuiAlves/advent-of-code-2023/blob/main/Day4.scala) by [Rui Alves](https://github.com/xRuiAlves/)
+- [Solution](https://github.com/AvaPL/Advent-of-Code-2023/tree/main/src/main/scala/day4) by [Paweł Cembaluk](https://github.com/AvaPL)
 
 Share your solution to the Scala community by editing this page.

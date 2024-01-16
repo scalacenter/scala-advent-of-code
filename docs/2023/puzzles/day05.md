@@ -368,5 +368,6 @@ Share your solution to the Scala community by editing this page. (You can even w
 - [Solution](https://github.com/jnclt/adventofcode2023/blob/main/day05/fertilizer.sc) by [jnclt](https://github.com/jnclt)
 - [Solution](https://github.com/prinsniels/AdventOfCode2023/blob/main/src/main/scala/solutions/day05.scala) by [Niels Prins](https://github.com/prinsniels)
 - [Solution](https://github.com/Jannyboy11/AdventOfCode2023/blob/master/src/main/scala/day05/Day05.scala) of [Jan Boerman](https://twitter.com/JanBoerman95).
+- [Solution](https://github.com/AvaPL/Advent-of-Code-2023/tree/main/src/main/scala/day5) by [Paweł Cembaluk](https://github.com/AvaPL)
 
 Share your solution to the Scala community by editing this page.

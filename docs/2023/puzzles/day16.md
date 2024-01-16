@@ -477,6 +477,7 @@ def part2(input: String) =
 - [Solution](https://github.com/merlinorg/aoc2023/blob/main/src/main/scala/Day16.scala) by [merlin](https://github.com/merlinorg/)
 - [Solution](https://github.com/GrigoriiBerezin/advent_code_2023/tree/master/task15/src/main/scala) by [g.berezin](https://github.com/GrigoriiBerezin)
 - [Solution](https://github.com/bishabosha/advent-of-code-2023/blob/main/2023-day16.scala) by [Jamie Thompson](https://github.com/bishabosha)
+- [Solution](https://github.com/AvaPL/Advent-of-Code-2023/tree/main/src/main/scala/day16) by [Paweł Cembaluk](https://github.com/AvaPL)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)
