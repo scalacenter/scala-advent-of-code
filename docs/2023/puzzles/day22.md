@@ -1,4 +1,5 @@
 import Solver from "../../../../../website/src/components/Solver.js"
+import Literate from "../../../../../website/src/components/Literate.js"
 
 # Day 22: Sand Slabs
 
@@ -60,7 +61,7 @@ Another vital operation involves determining whether two bricks collide with eac
 1D line segments on X axis collide with each other when:
 
 ```scala 3
-maxX >= otherMinX && otherMaxX >= minX 
+maxX >= otherMinX && otherMaxX >= minX
 ```
 
 We are not guaranteed the order of coordinates, so we have to determine min values and max values ourselves. Let's
@@ -101,32 +102,61 @@ def collidesWith(other: Brick): Boolean =
 
 ### Dropping groups of bricks
 
-As the input is a snapshot of falling bricks, we must first drop them all to a stationary position. Additionally, since
-we will determine the collisions at this point, we'll create a `Map` that will associate each brick with the bricks
-supporting it. Let's define the `dropBricks` function.
+As the input is a snapshot of falling bricks, we must first drop them all to a stationary position.
+
+First, define a way to check if a brick has collided with the ground, determined with a simple check on the `z` axis:
+
+```scala 3
+def collidesWithGround(brick: Brick): Boolean =
+  brick.start.z == 0 || brick.end.z == 0
+```
+
+Next, since we will determine the collisions at this point, we'll create a `Map` that will associate each brick with the bricks supporting it.
+
+Let's define the `dropBricks` function that can do this:
+
+<Literate>
+
+```scala 3
+import scala.collection.mutable
+
+def dropBricks(bricks: Seq[Brick]): Map[Brick, Set[Brick]] = {
+```
 
 First, sort the bricks by the `z` axis to handle the falling order. This is necessary because the input doesn't
 guarantee the order of the bricks:
 
 ```scala 3
-val bricksByZAsc = bricks.sortBy(brick => (brick.start.z) min (brick.end.z))
+  val bricksByZAsc = bricks.sortBy(brick => (brick.start.z) min (brick.end.z))
 ```
 
-Next, initialize the collection of bricks to drop and the `Map` of already dropped ones:
+Next, initialize the `Stack` of bricks to drop and the `Map` of already dropped ones:
 
 ```scala 3
-import scala.collection.mutable
-
-val remainingBricks = mutable.Stack.from(bricksByZAsc)
-val droppedBricks = mutable.Map[Brick, Set[Brick]]()
+  val remainingBricks = mutable.Stack.from(bricksByZAsc)
+  val droppedBricks = mutable.Map[Brick, Set[Brick]]()
 ```
 
-Then, loop over the remaining bricks with `while (remainingBricks.nonEmpty)`. On each iteration, simulate the fall of a
-single brick:
+Then, loop over the remaining bricks with `while (remainingBricks.nonEmpty)`.
 
 ```scala 3
-val brick = remainingBricks.pop()
-val brickMovedDown = brick.moveDown
+  while (remainingBricks.nonEmpty) {
+```
+
+On each iteration, simulate the fall of a single brick:
+
+```scala
+    val brick = remainingBricks.pop()
+    val brickMovedDown = brick.moveDown
+```
+
+First, determine if there are any colliding bricks from the currently known `droppedBricks`. We can produce this as a `Set`, with contents determined using the previously defined `Brick#collidesWith` method:
+
+```scala 3
+    val collidingBricks = droppedBricks.collect {
+      case (droppedBrick, _) if brickMovedDown.collidesWith(droppedBrick) =>
+        droppedBrick
+    }.toSet
 ```
 
 Now, determine whether the brick is stationary. "Stationary" means that it either collides with the ground or another
@@ -134,58 +164,22 @@ brick. If it is stationary, put it into the `droppedBricks` along with the dropp
 put it back into the `remainingBricks` to move it further down in the next step:
 
 ```scala 3
-if (collidesWithGround(brickMovedDown) || collidingBricks.nonEmpty)
-  droppedBricks.put(brick, collidingBricks)
-else
-  remainingBricks.push(brickMovedDown)
-```
-
-The collision with the ground is determined with a simple check on the `z` axis:
-
-```scala 3
-def collidesWithGround(brick: Brick): Boolean =
-  brick.start.z == 0 || brick.end.z == 0
-```
-
-The `Set` of colliding dropped bricks is determined using the previously defined `Brick#collidesWith` method:
-
-```scala 3
-val collidingBricks = droppedBricks.collect {
-  case (droppedBrick, _) if brickMovedDown.collidesWith(droppedBrick) =>
-    droppedBrick
-}.toSet
-```
-
-After all the bricks finish falling, return the `droppedBricks` as an immutable `Map`. The full function looks like
-this:
-
-```scala 3
-import scala.collection.mutable
-
-def dropBricks(bricks: Seq[Brick]): Map[Brick, Set[Brick]] = {
-  val bricksByZAsc = bricks.sortBy(brick => (brick.start.z) min (brick.end.z))
-  val remainingBricks = mutable.Stack.from(bricksByZAsc)
-  val droppedBricks = mutable.Map[Brick, Set[Brick]]()
-
-  while (remainingBricks.nonEmpty) {
-    val brick = remainingBricks.pop()
-    val brickMovedDown = brick.moveDown
-    val collidingBricks = droppedBricks.collect {
-      case (droppedBrick, _) if brickMovedDown.collidesWith(droppedBrick) =>
-        droppedBrick
-    }.toSet
     if (collidesWithGround(brickMovedDown) || collidingBricks.nonEmpty)
       droppedBricks.put(brick, collidingBricks)
     else
       remainingBricks.push(brickMovedDown)
   }
+```
 
+After all the bricks finish falling, return the `droppedBricks` by converting to an immutable `Map`.
+
+```scala 3
   droppedBricks.toMap
 }
-
-def collidesWithGround(brick: Brick): Boolean =
-  brick.start.z == 0 || brick.end.z == 0
 ```
+
+</Literate>
+
 
 ### Determining the disintegrable bricks
 
