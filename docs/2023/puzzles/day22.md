@@ -153,10 +153,8 @@ On each iteration, simulate the fall of a single brick:
 First, determine if there are any colliding bricks from the currently known `droppedBricks`. We can produce this as a `Set`, with contents determined using the previously defined `Brick#collidesWith` method:
 
 ```scala 3
-    val collidingBricks = droppedBricks.collect {
-      case (droppedBrick, _) if brickMovedDown.collidesWith(droppedBrick) =>
-        droppedBrick
-    }.toSet
+    val collidingBricks =
+      droppedBricks.keys.filter(brickMovedDown.collidesWith).toSet
 ```
 
 Now, determine whether the brick is stationary. "Stationary" means that it either collides with the ground or another
@@ -191,8 +189,9 @@ for disintegration:
 ```scala 3
 def getDisintegrableBricks(brickToSupportingBricks: Map[Brick, Set[Brick]]): Set[Brick] = {
   val nonDisintegrableBricks = brickToSupportingBricks.collect {
-    case (_, supportingBricks) if supportingBricks.size == 1 =>
-      supportingBricks.head // the only brick that holds the brick above
+    case singleton if singleton.sizeIs == 1 =>
+      // the only brick that holds the brick above
+      singleton.head
   }.toSet
   brickToSupportingBricks.keySet diff nonDisintegrableBricks
 }
@@ -215,67 +214,56 @@ def part1(input: String): Int = {
 number of bricks that will fall after the removal of a specific brick. To accomplish this, we'll define the
 `countFallingChain` function. We'll utilize `brickToSupportingBricks` and `brick` as function arguments.
 
+<Literate>
+
+```scala 3
+def countFallingChain(brickToSupportingBricks: Map[Brick, Set[Brick]])(brick: Brick): Int = {
+```
+
 Initially, we set up the collection of `disintegratedBricks`, `remainingBricks` to check, and a flag to determine the
 completion of the chain reaction:
 
 ```scala 3
-val disintegratedBricks = mutable.Set[Brick](brick)
-var remainingBricks = brickToSupportingBricks.removed(brick)
-var isChainReactionFinished = false
+  val disintegratedBricks = mutable.Set[Brick](brick)
+  var remainingBricks = brickToSupportingBricks.removed(brick)
+  var isChainReactionFinished = false
 ```
 
-In each iteration of the `while (!isChainReactionFinished)` loop, we identify the bricks that have fallen (considered
-disintegrated) and those that remain untouched:
+Next, loop while the chain reaction is not finished
 
 ```scala 3
-val (newDisintegratedBricks, newRemainingBricks) = remainingBricks
-  .partition { (_, supportingBricks) =>
-    supportingBricks.nonEmpty && supportingBricks.subsetOf(disintegratedBricks)
-  }
+  while (!isChainReactionFinished) {
+```
+
+In each iteration of the loop, we identify the bricks that have fallen (considered disintegrated) and those that remain untouched:
+
+```scala 3
+    val (newDisintegratedBricks, newRemainingBricks) = remainingBricks
+      .partition { (_, supportingBricks) =>
+        supportingBricks.nonEmpty && supportingBricks.subsetOf(disintegratedBricks)
+      }
 ```
 
 If no bricks have fallen, indicating the completion of the chain reaction, we conclude the process. Otherwise, we add
 all the fallen bricks to `disintegratedBricks` and update `remainingBricks` for further checking:
 
 ```scala 3
-if (newDisintegratedBricks.isEmpty)
-  isChainReactionFinished = true
-else
-  disintegratedBricks.addAll(newDisintegratedBricks.keySet)
-  remainingBricks = newRemainingBricks
-```
-
-Finally, after the chain reaction is complete, we return the count of disintegrated bricks, excluding the initial one:
-
-```scala 3
-disintegratedBricks.size - 1 // don't include the initial brick
-```
-
-Combining these elements, the `countFallingChain` function is structured as shown here:
-
-```scala 3
-def countFallingChain(brickToSupportingBricks: Map[Brick, Set[Brick]])(brick: Brick): Int = {
-  val disintegratedBricks = mutable.Set[Brick](brick)
-  var remainingBricks = brickToSupportingBricks.removed(brick)
-  var isChainReactionFinished = false
-
-  while (!isChainReactionFinished) {
-    val (newDisintegratedBricks, newRemainingBricks) = remainingBricks
-      .partition { (_, supportingBricks) =>
-        supportingBricks.nonEmpty && supportingBricks.subsetOf(
-          disintegratedBricks
-        )
-      }
     if (newDisintegratedBricks.isEmpty)
       isChainReactionFinished = true
     else
       disintegratedBricks.addAll(newDisintegratedBricks.keySet)
       remainingBricks = newRemainingBricks
   }
+```
 
+Finally, after the chain reaction is complete, we return the count of disintegrated bricks, excluding the initial one:
+
+```scala 3
   disintegratedBricks.size - 1 // don't include the initial brick
 }
 ```
+
+</Literate>
 
 With `countFallingChain` defined, we can utilize it to calculate the falling chain for each brick:
 
@@ -346,10 +334,8 @@ def dropBricks(bricks: Seq[Brick]): Map[Brick, Set[Brick]] = {
   while (remainingBricks.nonEmpty) {
     val brick = remainingBricks.pop()
     val brickMovedDown = brick.moveDown
-    val collidingBricks = droppedBricks.collect {
-      case (droppedBrick, _) if brickMovedDown.collidesWith(droppedBrick) =>
-        droppedBrick
-    }.toSet
+    val collidingBricks =
+      droppedBricks.keys.filter(brickMovedDown.collidesWith).toSet
     if (collidesWithGround(brickMovedDown) || collidingBricks.nonEmpty)
       droppedBricks.put(brick, collidingBricks)
     else
@@ -363,9 +349,9 @@ def collidesWithGround(brick: Brick): Boolean =
   brick.start.z == 0 || brick.end.z == 0
 
 def getDisintegrableBricks(brickToSupportingBricks: Map[Brick, Set[Brick]]): Set[Brick] = {
-  val nonDisintegrableBricks = brickToSupportingBricks.collect {
-    case (_, supportingBricks) if supportingBricks.size == 1 =>
-      supportingBricks.head // the only brick that holds the brick above
+  val nonDisintegrableBricks = brickToSupportingBricks.values.collect {
+    case supporting if supporting.sizeIs == 1 =>
+      supporting.head // the only brick that holds the brick above
   }.toSet
   brickToSupportingBricks.keySet diff nonDisintegrableBricks
 }
