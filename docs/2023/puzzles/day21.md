@@ -2,6 +2,8 @@ import Solver from "../../../../../website/src/components/Solver.js"
 
 # Day 21: Step Counter
 
+by [@stewSquared](https://github.com/stewSquared)
+
 ## Puzzle description
 
 https://adventofcode.com/2023/day/21
@@ -23,9 +25,6 @@ The grid class will be used to represent the problem input.
 Notably, it defines the starting point, and the set of points occupied by rocks:
 
 ```scala
-case class Point(x: Int, y: Int):
-  def dist(p: Point): Int = (x - p.x).abs + (y - p.y).abs
-
 case class Grid(rows: Vector[Vector[Char]]):
   val xRange = rows.head.indices
   val yRange = rows.indices
