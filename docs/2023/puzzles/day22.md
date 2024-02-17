@@ -188,10 +188,9 @@ for disintegration:
 
 ```scala 3
 def getDisintegrableBricks(brickToSupportingBricks: Map[Brick, Set[Brick]]): Set[Brick] = {
-  val nonDisintegrableBricks = brickToSupportingBricks.collect {
-    case singleton if singleton.sizeIs == 1 =>
-      // the only brick that holds the brick above
-      singleton.head
+  val nonDisintegrableBricks = brickToSupportingBricks.values.collect {
+    case supporting if supporting.sizeIs == 1
+      supporting.head // the only brick that holds the brick above
   }.toSet
   brickToSupportingBricks.keySet diff nonDisintegrableBricks
 }
