@@ -8,9 +8,7 @@ by [@stewSquared](https://github.com/stewSquared)
 
 https://adventofcode.com/2023/day/21
 
-## Solution
-
-### Framework
+## Solution Framework
 
 Since we're once again working with grids, we first introduce `Point` and `Grid` types to represent our problem.
 
@@ -51,7 +49,7 @@ object Grid:
       yield line.toVector
 ```
 
-### Part 1
+## Part 1
 
 Part 1 needs no optimizations. Given a set of points that are reachable after `n` steps, we can calculate the set points reachable after `n+1` steps by looking at adjacent points, and filtering out points that are inaccessible (out of bounds or rocks). Let's define this method, `next` with the assistance from a couple helper methods:
 
@@ -87,7 +85,136 @@ def part1(input: String): Int =
   reachableAfter(64).size
 ```
 
-### Part 2
+## Part 2
+
+Part 2 uses the same original map, but repeats it infinitely. We'll call these repeated sections tiles.
+
+Fortunately, Part 2 doesn't require optimization either; it only needs a little bit of math, which we can use to create a direct formula that makes use of the Part 1 algorithm.
+
+### Initial Observations
+
+It will be important to notice that the input for this problem is fairly sparse. We'll discuss the implications more thoroughly later, but for now, that allows us to start by considering what would happen if there were no rocks in the grid at all.
+
+Let's start at the center of a 5x5 grid. In the following illustrations, `O` marks the points reachable in the given number of steps:
+
+```text
+. . . . .
+. . . . .
+. . O . .
+. . . . .
+. . . . .
+```
+
+After 1 step (4 reachable):
+
+```text
+. . . . .
+. . O . .
+. O . O .
+. . O . .
+. . . . .
+```
+
+After 2 steps (9 reachable):
+
+```text
+. . O . .
+. O . O .
+O . O . O
+. O . O .
+. . O . .
+```
+
+After 3 steps (12 reachable):
+
+```text
+. O . O .
+O . O . O
+. O . O .
+O . O . O
+. O . O .
+```
+
+After 4 steps (13 reachable):
+
+```text
+O . O . O
+. O . O .
+O . O . O
+. O . O .
+O . O . O
+```
+
+After 5 steps (12 reachable, same as 3 steps):
+
+```text
+. O . O .
+O . O . O
+. O . O .
+O . O . O
+. O . O .
+```
+
+After 6 steps (13 reachable, same as 4 steps):
+
+```text
+O . O . O
+. O . O .
+O . O . O
+. O . O .
+O . O . O
+```
+
+There are three important things to notice here:
+
+1. The set of reachable points is growing in the shape of a diamond.
+2. There is no overlap between reachable points in odd and even numbered steps.
+3. After 4 steps, when the corners have been reached, the reachable points begin alternating between two checkerboard patterns.
+
+Because the rocks in the input are relatively sparse, by the time we reach the far corner of a grid, any point that could have been reached has been reached, and the set of reachable points will alternate as in the rockless case. This would not be the case if, for example, the grid contained a maze of rocks that was only reachable after reaching the corner. This also means that the growing diamond pattern holds as the grid grows.
+
+We will call a grid *filled* when enough steps have passed to move from the starting point to the furthest corner from that point. I assert that it does not matter where the starting point is.
+
+We need to define *parity* TODO
+
+(One might consider that certain edge cases from a random input might disrupt our calculations, even if sparse. As it happens, the pattern of rocks is more than just sparse; the outer edges of the grid are empty, and there is a diamond shaped buffer zone in the grid that is completely devoid of rocks. This buffer happens to align with the edges of the diamond region made by stepping 26501365 times. While these edge cases wouldn't be difficult to handle, we do not need to consider them here thanks to these buffers.)
+
+### A Single Filled Grid
+
+- call it filled when enough steps have passed for all four corners to be filled
+- rocks could interfere with this, but are sparse
+- A filled grid is either even or odd.
+- The center grid has odd parity.
+
+(todo: reorder the above?)
+
+### All Filled Grids
+
+- have parity
+- can calucalte the number that are filled
+- can calculate the number of each parity
+
+### Cardinal End Grids
+
+- we know number of filled grids
+- calculate remaining steps
+- enter from the side
+
+### Diagonal tiles
+
+- two types of edge tiles
+- each has a different number of remaining steps
+- Calculate the number of each
+
+### Full Computation
+
+- fully covered tiles of even parity
+- fully covered tiles of odd parity
+- edge tiles with small corners covered
+- edge tiles with large corners covered
+- four far corner tiles
+
+### Notes about the input
 
 ## Final Code
 
@@ -190,9 +317,9 @@ def parseInput(fileInput: String): Vector[Vector[Char]] = Vector.from:
   yield line.toVector
 ```
 
-
 ## Solutions from the community
 
+- [Solution](https://github.com/stewSquared/advent-of-code/blob/master/src/main/scala/2023/Day21.worksheet.sc) by [Stewart Stewart](https://github.com/stewSquared)
 - [Solution](https://github.com/xRuiAlves/advent-of-code-2023/blob/main/Day21.scala) by [Rui Alves](https://github.com/xRuiAlves/)
 - [Solution](https://github.com/AvaPL/Advent-of-Code-2023/tree/main/src/main/scala/day21) by [Paweł Cembaluk](https://github.com/AvaPL)
 
