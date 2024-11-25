@@ -98,6 +98,12 @@ const config = {
           {
             type: 'dropdown',
             position: 'left',
+            label: 'Puzzles 2024',
+            items: buildDropdown('2024/puzzles')
+          },
+          {
+            type: 'dropdown',
+            position: 'left',
             label: 'Puzzles 2023',
             items: buildDropdown('2023/puzzles')
           },

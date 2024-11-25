@@ -1,37 +1,41 @@
 import java.io.File
 
-ThisBuild / scalaVersion := "3.3.1"
+ThisBuild / scalaVersion := "3.5.2"
 
 lazy val adventOfCode = project
   .in(file("."))
   .enablePlugins(ScalaJSPlugin)
   .settings(
-    (Compile / sourceGenerators) += taskPatchSolutions("2021", _ / "solutions" / "2021" / "src").taskValue,
-    (Compile / sourceGenerators) += taskPatchSolutions("2022", _ / "solutions" / "2022" / "src").taskValue,
-    (Compile / sourceGenerators) += taskPatchSolutions("2023", _ / "solutions" / "2023" / "src").taskValue,
+    Seq("2021", "2022", "2023", "2024")
+      .map(year => (Compile / sourceGenerators) += taskPatchSolutions(year).taskValue),
     Compile / managedSourceDirectories := Nil,
     run / fork := true,
     run / baseDirectory := (ThisBuild / baseDirectory).value / "solutions"
   )
 
-def taskPatchSolutions(year: String, getSrcDir: File => File) = Def.task {
+def taskPatchSolutions(year: String) = Def.task {
   val s = streams.value
   val cacheDir = s.cacheDirectory
   val trgDir = (Compile / sourceManaged).value / s"solutions-$year-src"
-  val srcDir = getSrcDir((ThisBuild / baseDirectory).value)
+  val srcDir = (ThisBuild / baseDirectory).value / "solutions" / year / "src"
 
-  FileFunction.cached(cacheDir / s"fetch${year}Solutions",
-      FilesInfo.lastModified, FilesInfo.exists) { dependencies =>
-    s.log.info(s"Unpacking $year solutions sources to $trgDir...")
-    if (trgDir.exists)
-      IO.delete(trgDir)
-    IO.createDirectory(trgDir)
-    IO.copyDirectory(srcDir, trgDir)
-    val sourceFiles = (trgDir ** "*.scala").get.toSet
-    for (f <- sourceFiles)
-      IO.writeLines(f, patchSolutions(f.getName, year, IO.readLines(f)))
-    sourceFiles
-  } (Set(srcDir)).toSeq
+  FileFunction
+    .cached(
+      cacheDir / s"fetch${year}Solutions",
+      FilesInfo.lastModified,
+      FilesInfo.exists
+    ) { dependencies =>
+      s.log.info(s"Unpacking $year solutions sources to $trgDir...")
+      if (trgDir.exists)
+        IO.delete(trgDir)
+      IO.createDirectory(trgDir)
+      IO.copyDirectory(srcDir, trgDir)
+      val sourceFiles = (trgDir ** "*.scala").get.toSet
+      for (f <- sourceFiles)
+        IO.writeLines(f, patchSolutions(f.getName, year, IO.readLines(f)))
+      sourceFiles
+    } (Set(srcDir))
+    .toSeq
 }
 
 /** adds `package adventofcode${year}` to the file after the last using directive */
@@ -61,8 +65,8 @@ lazy val solver = project
   .enablePlugins(ScalaJSPlugin)
   .settings(
     libraryDependencies ++= Seq(
-      "org.scala-js" %%% "scalajs-dom" % "2.3.0",
-      "com.raquo" %%% "laminar" % "0.14.5"
+      "org.scala-js" %%% "scalajs-dom" % "2.8.0",
+      "com.raquo" %%% "laminar" % "17.1.0"
     ),
     scalaJSLinkerConfig ~= (_.withModuleKind(ModuleKind.ESModule))
   )
