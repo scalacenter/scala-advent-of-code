@@ -6,6 +6,10 @@ import scala.util.{Try, Failure, Success}
 import scala.scalajs.js.annotation.JSExportTopLevel
 
 object Solver:
+  private val solutions2024: Map[String, String => Any] =
+    // import adventofcode2024.*
+    Map()
+
   private val solutions2023: Map[String, String => Any] =
     import adventofcode2023.*
     Map(
@@ -109,6 +113,7 @@ object Solver:
 
   private val solutions: Map[String, Map[String, String => Any]] =
     Map(
+      "2024" -> solutions2024,
       "2023" -> solutions2023,
       "2022" -> solutions2022,
       "2021" -> solutions2021,
