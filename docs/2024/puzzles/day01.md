@@ -40,7 +40,7 @@ the second smallest on the left is paired with the second smallest on the right,
 Then we can find the distances between them, and sum the distances:
 
 ```scala
-def part1(input: String): String =
+def part1(input: String): Long =
   val (lefts, rights) = parse(input)
   lefts
     .zip(rights)
@@ -57,7 +57,7 @@ then multiply that count by the number itself.
 Finally we sum the similarity scores of all the left numbers:
 
 ```scala
-def part2(input: String): String =
+def part2(input: String): Long =
   val (lefts, rights) = parse(input)
   lefts
     .map(left => rights.count(_ == left) * left) // similarity scores
