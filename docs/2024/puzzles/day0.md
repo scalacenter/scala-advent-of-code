@@ -1,4 +1,4 @@
 <head>
   <title>Redirecting...</title>
-  <meta http-equiv="refresh" content="0; url=../puzzles/day01"/>
+  <meta http-equiv="refresh" content="0; url=../day01"/>
 </head>
