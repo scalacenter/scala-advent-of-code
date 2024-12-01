@@ -27,7 +27,7 @@ const buildDropdown = (dir) => {
       n
     })
   });
-  const sorted = days.sort((a, b) => a.n - b.n);
+  const sorted = days.sort((a, b) => a.n - b.n).filter((day) => day.n > 0);
   return sorted
 };
 
