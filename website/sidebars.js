@@ -26,7 +26,7 @@ const buildSidebar = (dir) => {
   }
   const days = fs.readdirSync(`target/mdoc/${dir}`).map(extractDay);
   const sorted = days.sort((a, b) => a.n - b.n);
-  return sorted.map((day) => day.id);
+  return sorted.filter((day) => day.n > 0).map((day) => day.id);
 };
 
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
