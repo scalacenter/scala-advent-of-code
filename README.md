@@ -1,4 +1,4 @@
-# Scala Advent of Code 2023
+# Scala Advent of Code 2024
 
 Solutions in Scala for the annual [Advent of Code (adventofcode.com)](https://adventofcode.com/) challenge.
 
