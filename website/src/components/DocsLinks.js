@@ -16,7 +16,7 @@ const DocsLinks = (props) => {
   const globalData = useGlobalData();
   const docs = globalData["docusaurus-plugin-content-docs"].default.versions[0].docs
   const days = docs.filter(doc => rx.test(doc.id))
-  const sorted = days.sort((a, b) => dayN(rx, a) - dayN(rx, b));
+  const sorted = days.sort((a, b) => dayN(rx, a) - dayN(rx, b)).filter(day => dayN(rx, day) > 0);
   return sorted
     .map((day, i) => {
       return (
