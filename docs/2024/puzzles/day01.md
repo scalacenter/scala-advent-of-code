@@ -68,6 +68,7 @@ end part2
 ```
 
 ## Solutions from the community
+
 - [Solution](https://github.com/Jannyboy11/AdventOfCode2024/blob/master/src/main/scala/day01/Day01.scala) of [Jan Boerman](https://x.com/JanBoerman95)
 - [Solution](https://github.com/bishabosha/advent-of-code-2024/blob/main/2024-day01.scala) by [Jamie Thompson](https://github.com/bishabosha)
 - [Solution](https://github.com/nikiforo/aoc24/blob/main/src/main/scala/io/github/nikiforo/aoc24/D1T2.scala) by [Artem Nikiforov](https://github.com/nikiforo)
@@ -75,7 +76,6 @@ end part2
 - [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2024/Day01.scala) by [Philippus Baalman](https://github.com/philippus)
 - [Solution](https://scastie.scala-lang.org/Sporarum/jVlQBCvoQXCtlK4ryIn42Q/4) by [Quentin Bernet](https://github.com/Sporarum)
 - [Solution](https://github.com/jnclt/adventofcode2024/blob/main/day01/historian-hysteria.sc) by [jnclt](https://github.com/jnclt)
-
 - [Solution](https://github.com/YannMoisan/advent-of-code/blob/master/2024/src/main/scala/Day1.scala) by [YannMoisan](https://github.com/YannMoisan)
 
 Share your solution to the Scala community by editing this page.
