@@ -68,9 +68,8 @@ end part2
 ```
 
 ## Solutions from the community
+- [Solution](https://github.com/bishabosha/advent-of-code-2024/blob/main/2024-day01.scala) by [Jamie Thompson](https://github.com/bishabosha)
 - [Solution](https://github.com/nikiforo/aoc24/blob/main/src/main/scala/io/github/nikiforo/aoc24/D1T2.scala) by [Artem Nikiforov](https://github.com/nikiforo)
-
-
 - [Solution](https://github.com/rmarbeck/advent2024/tree/main/day1) by [Raphaël Marbeck](https://github.com/rmarbeck)
 - [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2024/Day01.scala) by [Philippus Baalman](https://github.com/philippus)
 - [Solution](https://scastie.scala-lang.org/Sporarum/jVlQBCvoQXCtlK4ryIn42Q/4) by [Quentin Bernet](https://github.com/Sporarum)
