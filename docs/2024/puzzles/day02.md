@@ -22,7 +22,7 @@ Therefore parsing looks like this:
 ```scala
 case class Report(levels: Seq[Long])
 
-def parseLine(line: string): Report = Report(line.split(" ").map(_.toLong).toSeq)
+def parseLine(line: String): Report = Report(line.split(" ").map(_.toLong).toSeq)
 
 def parse(input: String): Seq[Report] = input
   .linesIterator
@@ -43,8 +43,8 @@ It's not the most efficient way (like traversing only once and keeping track of 
 but it's very clean and simple:
 
 ```scala
-case class Report(level: Seq[Long]):
-  val pairs = level.init.zip(level.tail) // consecutive pairs
+case class Report(levels: Seq[Long]):
+  val pairs = levels.init.zip(levels.tail) // consecutive pairs
   def allIncr: Boolean = pairs.forall(_ < _)
   def allDecr: Boolean = pairs.forall(_ > _)
   def within(lower: Long, upper: Long): Boolean = pairs.forall: pair =>
@@ -70,8 +70,8 @@ Then, a `Report` is safe, if it's safe as in Part 1, or one of the dampened repo
 case class Report(levels: Seq[Long]):
   // ... as before
   def checkDampenedReports: Boolean = (0 until levels.size).exists: index =>
-    val newLevel = levels.take(index) ++ levels.drop(index + 1)
-    Report(newLevel).isSafe
+    val newLevels = levels.take(index) ++ levels.drop(index + 1)
+    Report(newLevels).isSafe
   def isDampenedSafe: Boolean = isSafe || checkDampenedReports
 ```
 
