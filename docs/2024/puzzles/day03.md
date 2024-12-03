@@ -13,6 +13,7 @@ https://adventofcode.com/2024/day/3
 - [Solution](https://github.com/rmarbeck/advent2024/blob/main/day3/src/main/scala/Solution.scala) by [Raphaël Marbeck](https://github.com/rmarbeck)
 - [Solution](https://github.com/jnclt/adventofcode2024/blob/main/day03/mull-it-over.sc) by [jnclt](https://github.com/jnclt)
 - [Solution](https://github.com/makingthematrix/AdventOfCode2024/blob/main/src/main/scala/io/github/makingthematrix/AdventofCode2024/DayThree.scala) by [Maciej Gorywoda](https://github.com/makingthematrix)
+- [Solution](https://github.com/YannMoisan/advent-of-code/blob/master/2024/src/main/scala/Day3.scala) by [YannMoisan](https://github.com/YannMoisan)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)
