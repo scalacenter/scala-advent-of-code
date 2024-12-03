@@ -39,7 +39,7 @@ We need to check consecutive pairs of numbers in each report in 3 ways:
 - to see if their differences are within given bounds.
 
 So let's construct them only once, save it as a `val`, then reuse this value 3 times.
-It's not the most efficient way (like traversing only once and keeping track of everything), 
+It's not the most efficient way (like traversing only once and keeping track of everything),
 but it's very clean and simple:
 
 ```scala
@@ -61,7 +61,7 @@ def part1(input: String): Int = parse(input).count(_.isSafe)
 
 ### Part 2
 
-Now we add new methods to `Report`. 
+Now we add new methods to `Report`.
 We check if there exists a `Report` obtained by dropping one number, such that it's safe.
 We do this by iterating over the index of each `Report`.
 Then, a `Report` is safe, if it's safe as in Part 1, or one of the dampened reports is safe:
@@ -75,8 +75,8 @@ case class Report(levels: Seq[Long]):
   def isDampenedSafe: Boolean = isSafe || checkDampenedReports
 ```
 
-Again this is not the most efficient way (we are creating many new `Report` instances), 
-but our puzzle inputs are fairly short (there are at most 8 levels in each `Report`), 
+Again this is not the most efficient way (we are creating many new `Report` instances),
+but our puzzle inputs are fairly short (there are at most 8 levels in each `Report`),
 so it's a simple approach that reuses the `isSafe` method from Part 1.
 
 Part 2 solver now counts the dampened safe reports:
@@ -95,6 +95,7 @@ def part2(input: String): Int = parse(input).count(_.isDampenedSafe)
 - [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2024/Day02.scala) by [Philippus Baalman](https://github.com/philippus)
 
 - [Solution](https://github.com/nikiforo/aoc24/blob/main/src/main/scala/io/github/nikiforo/aoc24/D2T2.scala) by [Artem Nikiforov](https://github.com/nikiforo)
+- [Solution](https://github.com/itsjoeoui/aoc2024/blob/main/src/day02.scala) by [itsjoeoui](https://github.com/itsjoeoui)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)
