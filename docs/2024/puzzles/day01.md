@@ -78,6 +78,7 @@ end part2
 - [Solution](https://github.com/jnclt/adventofcode2024/blob/main/day01/historian-hysteria.sc) by [jnclt](https://github.com/jnclt)
 - [Solution](https://github.com/YannMoisan/advent-of-code/blob/master/2024/src/main/scala/Day1.scala) by [YannMoisan](https://github.com/YannMoisan)
 - [Solution](https://github.com/itsjoeoui/aoc2024/blob/main/src/day01.scala) by [itsjoeoui](https://github.com/itsjoeoui)
+- [Solution](https://github.com/w-r-z-k/aoc2024/blob/main/src/main/scala/Day1.scala) by [Richard W](https://github.com/w-r-z-k)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)
