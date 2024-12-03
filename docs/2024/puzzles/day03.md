@@ -25,12 +25,12 @@ This task plays very well to Scala strengths: pattern matching, and the standard
 The shopkeeper at the North Pole Toboggan Rental Shop asks us to go through the input string, find all substrings that look like calls to a multiplication method (`"mul(a,b)`), perform the multiplications, and sum them together. To find such substrings we will construct a regular expression which will look for the following:
 1. Each substring starts with a text `mul(`. In the regex form we need to escape the parenthesis, so this will be `mul\(`.
 2. The text is followed by the first positive integer. Since it's an integer and it's positive we don't need to look for floating points or minuses, we can just look for sequences of ciphers. In regex, one cipher is denoted by `\d`, and since we look for a sequence of one or more ciphers, it's `\d+`.
-3. After the first number there should be a comma, and in regex that again needs to be escaped, so `\,`.
+3. After the first number there should be a comma, so `,`.
 4. Then there should be a second number, so agian `\d+`.
 5. And the substring should finish with the closing parentheses, escaped again, so `\)`.
 That's it. Our whole regex looks like this: 
 ```scala
-val mulPattern: Regex = """mul\((\d+)\,(\d+)\)""".r
+val mulPattern: Regex = """mul\((\d+),(\d+)\)""".r
 ```
 
 Given that our input string is already read into the value `input`, we can now find in it all occurences of substrings that match our regex:
@@ -55,7 +55,7 @@ To implement this logic, first we need a slightly more complicated regular expre
 4. Finally we need to tell the compiler that we look for substrings that match **any** of the the three rules we made above. In regex, this is done by putting regular expressions in parentheses and separating them with a `|` sign, like this: `(GROUP 1|GROUP 2|GROUP 3)`.
 Together, our new regular expression looks as following:
 ```scala
-val allPattern: Regex = """(mul\((\d+)\,(\d+)\)|do\(\)|don\'t\(\))""".r
+val allPattern: Regex = """(mul\((\d+),(\d+)\)|do\(\)|don\'t\(\))""".r
 ```
 
 As in **Part 1** we can now use `allPattern` to find all occurences of `"mul(a,b)"`, `"do()"`, and `"don't()"` in the input strings:
