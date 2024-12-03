@@ -8,7 +8,7 @@ https://adventofcode.com/2024/day/3
 
 ## Solution Summary
 
-1. WWrite a regex to find a string that looks like `"mul(a,b)"` where `a` and `b` are integers.
+1. Write a regex to find a string that looks like `"mul(a,b)"` where `a` and `b` are integers.
 2. **Part 1**:
    - Run the regex over the input string and find all matches.
    - For each match extract `a` and `b` and multiply them.
@@ -23,7 +23,7 @@ https://adventofcode.com/2024/day/3
 This task plays very well with Scala's strengths: pattern matching and the standard collections library. But first, we need to learn a bit of regular expressions. Personally, I believe everyone should learn them. They're scary only at the beginning, and then they become a very valuable tool in your pocket.
 
 The shopkeeper at the North Pole Toboggan Rental Shop asks us to go through the input string, find all substrings that look like calls to a multiplication method `"mul(a,b)"`, perform the multiplications, and sum them together. To find such  substrings, we will construct a regular expression that will look for the following:
-1. Each substring starts with a text "mul(`. We need to escape the parenthesis in the regex form, so this will be `mul\(`.
+1. Each substring starts with a text "mul(". We need to escape the parenthesis in the regex form, so this will be `mul\(`.
 2. "mul(" is followed by the first positive integer. Since it's an integer and positive, we don't need to look for floating points or minuses; we can look for sequences of ciphers. In regex, one cipher is denoted by `\d`, and since we look for a sequence of one or more ciphers, it's `\d+`.
 3. After the first number there should be a comma, so `,`.
 4. Then there should be a second number, so again `\d+`.
@@ -51,11 +51,11 @@ The second half of the tasks adds a complication. Inside the input string are hi
 To implement this logic, first, we need a slightly more complicated regular expression that matches either "mul(a,b)" or "do()" or "don't()" and can extract from the input string all occurrences of each of those substrings in the order they appear.
 1. We already have the most complicated part of the new regular expressions - it's the regular expression from **Part 1**, `mul\((\d+)\,(\d+)\)`.
 2. Then, we need to be able to find a text "do()". As we know, we need to escape parentheses, so `do\(\)`.
-3. And similarly, we need to be able to find a substring "don't()". On top of parentheses, we also need to escape a single quotation mark, so `don't\(\)`.
+3. And similarly, we need to be able to find a substring "don't()" - `don't\(\)`.
 4. Finally, we must tell the compiler we are looking for substrings that match any of the three rules we made above. In regex, this is done by putting regular expressions in parentheses and separating them with a `|` sign, like this: `(GROUP 1|GROUP 2|GROUP 3)`.
 Together, our new regular expression looks as follows:
 ```scala
-val allPattern: Regex = """(mul\((\d+),(\d+)\)|do\(\)|don\'t\(\))""".r
+val allPattern: Regex = """(mul\((\d+),(\d+)\)|do\(\)|don't\(\))""".r
 ```
 
 As in **Part 1** we can now use `allPattern` to find all occurences of `"mul(a,b)"`, `"do()"`, and `"don't()"` in the input string:
@@ -104,8 +104,8 @@ import scala.util.matching.Regex
 
 object DayThree:
   private def readInput: String = Files.readString(Path.of("resources/input3"))
-  private val mulPattern: Regex = """mul\((\d+)\,(\d+)\)""".r
-  private val allPattern: Regex = """(mul\((\d+)\,(\d+)\)|do\(\)|don\'t\(\))""".r
+  private val mulPattern: Regex = """mul\((\d+),(\d+)\)""".r
+  private val allPattern: Regex = """(mul\((\d+),(\d+)\)|do\(\)|don't\(\))""".r
 
   @main def main(): Unit =
     val input = readInput
