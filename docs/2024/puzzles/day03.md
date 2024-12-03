@@ -109,7 +109,7 @@ object DayThree:
     val input = readInput
     // Part 1
     val res1 = mulPattern.findAllIn(input).collect { case mulPattern(a, b) => a.toInt * b.toInt }.sum
-    println(res1) // 188192787
+    println(res1)
     // Part 2
     val (_, res2) = allPattern.findAllIn(input).foldLeft((true, 0)) {
       case ((true, sum), mulPattern(a, b)) => (true, sum + (a.toInt * b.toInt))
