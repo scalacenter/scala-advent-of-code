@@ -96,6 +96,7 @@ def part2(input: String): Int = parse(input).count(_.isDampenedSafe)
 
 - [Solution](https://github.com/nikiforo/aoc24/blob/main/src/main/scala/io/github/nikiforo/aoc24/D2T2.scala) by [Artem Nikiforov](https://github.com/nikiforo)
 - [Solution](https://github.com/itsjoeoui/aoc2024/blob/main/src/day02.scala) by [itsjoeoui](https://github.com/itsjoeoui)
+- [Solution](https://github.com/makingthematrix/AdventOfCode2024/blob/main/src/main/scala/io/github/makingthematrix/AdventofCode2024/DayTwo.scala) by [Maciej Gorywoda](https://github.com/makingthematrix)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)
