@@ -26,7 +26,7 @@ The shopkeeper at the North Pole Toboggan Rental Shop asks us to go through the 
 1. Each substring starts with a text "mul(`. We need to escape the parenthesis in the regex form, so this will be `mul\(`.
 2. "mul(" is followed by the first positive integer. Since it's an integer and positive, we don't need to look for floating points or minuses; we can look for sequences of ciphers. In regex, one cipher is denoted by `\d`, and since we look for a sequence of one or more ciphers, it's `\d+`.
 3. After the first number there should be a comma, so `,`.
-4. Then there should be a second number, so agian `\d+`.
+4. Then there should be a second number, so again `\d+`.
 5. And the substring should finish with the closing parentheses, escaped again, so `\)`.
 That's it. Our whole regex looks like this: 
 ```scala
