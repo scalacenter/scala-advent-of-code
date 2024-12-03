@@ -16,6 +16,7 @@ https://adventofcode.com/2024/day/3
 - [Solution](https://github.com/YannMoisan/advent-of-code/blob/master/2024/src/main/scala/Day3.scala) by [YannMoisan](https://github.com/YannMoisan)
 - [Solution](https://github.com/spamegg1/aoc/blob/master/2024/03/03.worksheet.sc#L62) by [Spamegg](https://github.com/spamegg1/)
 - [Solution](https://github.com/samuelchassot/AdventCode_2024/blob/c213b5ca3cf7eabd3c2d2ba852a36869575b1442/03/Day03.scala) by [Samuel Chassot](https://github.com/samuelchassot/)
+- [Solution](https://github.com/scarf005/aoc-scala/blob/main/2024/day03.scala) by [scarf](https://github.com/scarf005)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)
