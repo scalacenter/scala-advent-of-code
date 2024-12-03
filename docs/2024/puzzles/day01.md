@@ -79,6 +79,7 @@ end part2
 - [Solution](https://github.com/YannMoisan/advent-of-code/blob/master/2024/src/main/scala/Day1.scala) by [YannMoisan](https://github.com/YannMoisan)
 - [Solution](https://github.com/itsjoeoui/aoc2024/blob/main/src/day01.scala) by [itsjoeoui](https://github.com/itsjoeoui)
 - [Solution](https://github.com/w-r-z-k/aoc2024/blob/main/src/main/scala/Day1.scala) by [Richard W](https://github.com/w-r-z-k)
+- [Solution](https://github.com/makingthematrix/AdventOfCode2024/blob/main/src/main/scala/io/github/makingthematrix/AdventofCode2024/DayOne.scala) by [Maciej Gorywoda](https://github.com/makingthematrix)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)
