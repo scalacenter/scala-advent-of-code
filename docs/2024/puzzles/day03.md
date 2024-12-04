@@ -42,7 +42,7 @@ val multiplications = mulPattern.findAllIn(input)
 
 Take note that `multiplications` is an instance of `MatchIterator` over the input string. If we turn it into a sequence, it will be a sequence of substrings - but what we actually need to do is extract the numbers from within each substring, multiply them, and then sum them all together. Fortunately, the `collect` method from the Scala standard collection library will be just perfect for that. What's more, we can reuse the same regex. In Scala, regular expressions can be seamlessly used in pattern matching, which makes working with strings a breeze.
 ```scala
-val result1 = multiplications.collect { case mulPattern(a, b) => a * b }.sum
+val result1 = multiplications.collect { case mulPattern(a, b) => a.toInt * b.toInt }.sum
 ```
 And here it is - the result for **Part 1**. 
 
