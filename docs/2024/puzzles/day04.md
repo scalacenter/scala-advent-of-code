@@ -118,18 +118,21 @@ def scanString(target: String)(x: Int, y: Int, dir: Dir, grid: Grid): Boolean =
 val scanXMAS = scanString("XMAS")
 ```
 
-Now we have a way to find a string in a grid, we should iterate through each point in the grid, and count all the possible `"XMAS"` strings starting from that point:
+Now we have a way to find a string in a grid, we should iterate through each point in the grid, by using `Iterator.tabulate`,
+and count all the possible `"XMAS"` strings starting from that point:
 
 ```scala
 def totalXMAS(grid: Grid): Int =
-  val counts =
-    for
-      y <- grid.indices
-      x <- grid(y).indices
-    do
+  Iterator
+    .tabulate(grid.size, grid.size): (y, x) =>
       dirs.count(dir => scanXMAS(x, y, dir, grid))
-  counts.sum
+    .flatten
+    .sum
 ```
+
+:::note
+Note that `Iterator.tabulate` with two arguments creates an `Iterator[Iterator[T]]`, so use `.flatten` to join the results together.
+:::
 
 now we have the full solution for part 1:
 
@@ -196,13 +199,11 @@ def part2(input: String): Int =
   totalMAS(parse(input))
 
 def totalMAS(grid: Grid): Int =
-  val passing =
-    for
-      y <- grid.indices
-      x <- grid(y).indices
-      if isMAS(x, y, grid)
-    yield ()
-  passing.size
+  Iterator
+    .tabulate(grid.size, grid.size): (y, x) =>
+      if isMAS(x, y, grid) then 1 else 0
+    .flatten
+    .sum
 ```
 
 ## Final Code
@@ -244,13 +245,11 @@ def scanString(target: String)(x: Int, y: Int, dir: Dir, grid: Grid): Boolean =
 val scanXMAS = scanString("XMAS")
 
 def totalXMAS(grid: Grid): Int =
-  val counts =
-    for
-      y <- grid.indices
-      x <- grid(y).indices
-    do
+  Iterator
+    .tabulate(grid.size, grid.size): (y, x) =>
       dirs.count(dir => scanXMAS(x, y, dir, grid))
-  counts.sum
+    .flatten
+    .sum
 
 def part2(input: String): Int =
   totalMAS(parse(input))
@@ -278,13 +277,11 @@ def isMAS(x: Int, y: Int, grid: Grid): Boolean =
     case _ => false
 
 def totalMAS(grid: Grid): Int =
-  val passing =
-    for
-      y <- grid.indices
-      x <- grid(y).indices
-      if isMAS(x, y, grid)
-    yield ()
-  passing.size
+  Iterator
+    .tabulate(grid.size, grid.size): (y, x) =>
+      if isMAS(x, y, grid) then 1 else 0
+    .flatten
+    .sum
 ```
 
 ## Solutions from the community
