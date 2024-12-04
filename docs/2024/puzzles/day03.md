@@ -2,6 +2,8 @@ import Solver from "../../../../../website/src/components/Solver.js"
 
 # Day 3: Mull It Over
 
+by [@makingthematrix](https://github.com/makingthematrix)
+
 ## Puzzle description
 
 https://adventofcode.com/2024/day/3
@@ -128,7 +130,6 @@ object DayThree:
 - [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2024/Day03.scala) by [Philippus Baalman](https://github.com/philippus)
 - [Solution](https://github.com/rmarbeck/advent2024/blob/main/day3/src/main/scala/Solution.scala) by [Raphaël Marbeck](https://github.com/rmarbeck)
 - [Solution](https://github.com/jnclt/adventofcode2024/blob/main/day03/mull-it-over.sc) by [jnclt](https://github.com/jnclt)
-- [Solution](https://github.com/makingthematrix/AdventOfCode2024/blob/main/src/main/scala/io/github/makingthematrix/AdventofCode2024/DayThree.scala) by [Maciej Gorywoda](https://github.com/makingthematrix)
 - [Solution](https://github.com/bishabosha/advent-of-code-2024/blob/main/2024-day03.scala) by [Jamie Thompson](https://github.com/bishabosha) (single pass, no regex)
 - [Solution](https://github.com/YannMoisan/advent-of-code/blob/master/2024/src/main/scala/Day3.scala) by [YannMoisan](https://github.com/YannMoisan)
 - [Solution](https://github.com/spamegg1/aoc/blob/master/2024/03/03.worksheet.sc#L62) by [Spamegg](https://github.com/spamegg1/)

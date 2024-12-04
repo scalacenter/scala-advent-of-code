@@ -2,6 +2,8 @@ import Solver from "../../../../../website/src/components/Solver.js"
 
 # Day 2: Red-Nosed Reports
 
+by [@spamegg1](https://github.com/spamegg1)
+
 ## Puzzle description
 
 https://adventofcode.com/2024/day/2
