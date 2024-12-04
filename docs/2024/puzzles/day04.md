@@ -15,6 +15,8 @@ https://adventofcode.com/2024/day/4
 - [Solution](https://github.com/spamegg1/aoc/blob/master/2024/04/04.worksheet.sc#L87) by [Spamegg](https://github.com/spamegg1/)
 - [Solution](https://github.com/jnclt/adventofcode2024/blob/main/day04/ceres-search.sc) by [jnclt](https://github.com/jnclt)
 - [Solution](https://github.com/scarf005/aoc-scala/blob/main/2024/day04.scala) by [scarf](https://github.com/scarf005)
+- [Solution](https://github.com/nichobi/advent-of-code-2024/blob/main/04/solution.scala) by [nichobi](https://github.com/nichobi)
+- [Solution](https://github.com/makingthematrix/AdventOfCode2024/blob/main/src/main/scala/io/github/makingthematrix/AdventofCode2024/DayFour.scala) by [Maciej Gorywoda](https://github.com/makingthematrix)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)
