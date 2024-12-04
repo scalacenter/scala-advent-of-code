@@ -29,7 +29,8 @@ The shopkeeper at the North Pole Toboggan Rental Shop asks us to go through the 
 3. After the first number there should be a comma, so `,`.
 4. Then there should be a second number, so again `\d+`.
 5. And the substring should finish with the closing parentheses, escaped again, so `\)`.
-   That's it. Our whole regex looks like this:
+
+That's it. Our whole regex looks like this:
 
 ```scala
 val mulPattern: Regex = """mul\((\d+),(\d+)\)""".r
@@ -59,7 +60,8 @@ To implement this logic, first, we need a slightly more complicated regular expr
 2. Then, we need to be able to find a text "do()". As we know, we need to escape parentheses, so `do\(\)`.
 3. And similarly, we need to be able to find a substring "don't()" - `don't\(\)`.
 4. Finally, we must tell the compiler we are looking for substrings that match any of the three rules we made above. In regex, this is done by putting regular expressions in parentheses and separating them with a `|` sign, like this: `(GROUP 1|GROUP 2|GROUP 3)`.
-   Together, our new regular expression looks as follows:
+
+Together, our new regular expression looks as follows:
 
 ```scala
 val allPattern: Regex = """(mul\((\d+),(\d+)\)|do\(\)|don't\(\))""".r
