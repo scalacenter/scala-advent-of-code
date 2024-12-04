@@ -12,6 +12,7 @@ https://adventofcode.com/2024/day/4
 - [Solution](https://github.com/henryk-cesnolovic/advent-of-code-2024/blob/main/AdventOfCode/src/Day4.scala) by [Henryk Česnolovič](https://github.com/henryk-cesnolovic)
 - [Solution](https://github.com/YannMoisan/advent-of-code/blob/master/2024/src/main/scala/Day4.scala) by [YannMoisan](https://github.com/YannMoisan)
 - [Solution](https://github.com/rmarbeck/advent2024/blob/main/day4/src/main/scala/Solution.scala) by [Raphaël Marbeck](https://github.com/rmarbeck)
+- [Solution](https://github.com/jnclt/adventofcode2024/blob/main/day04/ceres-search.sc) by [jnclt](https://github.com/jnclt)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)
