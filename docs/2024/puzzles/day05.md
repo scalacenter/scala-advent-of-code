@@ -19,7 +19,7 @@ As a common part of the solution, we will:
 - represent the rules as an adjacency list `Map[Int, List[Int]]`
 
 1. **Part 1**:
-   - For every update, we iterate over its elements (while keeping track of the visited nodes) and for each node check that **none** of its neighbors were visited before it.
+   - For every update, we iterate over its elements (while keeping track of the visited nodes) and for each node check that **none** of its successors were visited before it.
    - We only keep the updates that don't violate the ordering rules.
    - We compute the middle number of the valid updates.
    - The solution is the sum of the middle numbers of the valid updates.
