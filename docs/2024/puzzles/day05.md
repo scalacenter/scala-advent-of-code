@@ -117,7 +117,7 @@ def fixUpdate(update: List[Int]): List[Int] =
     .flatten.groupMap(_._1)(_._2)
 ```
 
-The `relevantRules` are only those that only use the nodes from `update`, and the `prevsMap` is a map from a node to its incoming edges.
+The `relevantRules` are only those that only use the nodes from `update`, and the `prevsMap` is a map from a node to its direct predecessors.
 
 Then, we start with nodes that have no incoming edges and run a BFS to fix the ordering:
 
