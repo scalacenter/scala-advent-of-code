@@ -98,7 +98,7 @@ def part1(input: String) =
 
 ## Part 2
 
-We start Part 2 by parsing and filtering the updates that violate the ordering rules, very similarily to Part 1:
+We start Part 2 by parsing and filtering the updates that violate the ordering rules, very similarly to Part 1:
 
 ```scala
 val (rules, updates) = parseRulesAndupdates(input)
