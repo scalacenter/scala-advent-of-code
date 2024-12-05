@@ -10,8 +10,8 @@ https://adventofcode.com/2024/day/3
 
 ## Solution Summary
 
-1. Write a regex to find a string that looks like `"mul(a,b)"` where `a` and `b` are integers.
-2. **Part 1**:
+1. **Part 1**:
+   - Write a regex to find a string that looks like `"mul(a,b)"` where `a` and `b` are integers.
    - Run the regex over the input string and find all matches.
    - For each match extract `a` and `b` and multiply them.
    - Sum all the partial results.
@@ -20,7 +20,7 @@ https://adventofcode.com/2024/day/3
    - Run the regex over the input string and find all matches.
    - Fold over the matches and use the regex from **Part 1** to multiply and sum only from the "highlighted" parts of the input string.
 
-## Part 1
+### Part 1
 
 This task plays very well with Scala's strengths: pattern matching and the standard collections library. But first, we need to learn a bit of regular expressions. Personally, I believe everyone should learn them. They're scary only at the beginning, and then they become a very valuable tool in your pocket.
 
@@ -49,10 +49,9 @@ Take note that `multiplications` is an instance of `MatchIterator` over the inpu
 ```scala
 val result1 = multiplications.collect { case mulPattern(a, b) => a.toInt * b.toInt }.sum
 ```
-
 And here it is - the result for **Part 1**.
 
-## Part 2
+### Part 2
 
 The second half of the tasks adds a complication. Inside the input string are hidden two more method calls: "do()" and "don't()". The task is to recognize them and perform the multiplication and addition only on those parts of the input strings that are "highlighted". The input string is "highlighted" at the beginning and to the first "don't()". "don't()" turns the highlighting off until we encounter "do()" which turns the highlighting on again. And so on, until the end of the input string.
 
