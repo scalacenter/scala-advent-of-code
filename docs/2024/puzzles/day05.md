@@ -8,7 +8,7 @@ by [@KacperFKorban](https://github.com/KacperFKorban)
 
 https://adventofcode.com/2024/day/5
 
-## Solution Sumary
+## Solution Summary
 
 We can treat the data as a graph, where:
 - the ordering rules represent directed edges in the graph
