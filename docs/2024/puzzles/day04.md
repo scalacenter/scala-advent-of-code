@@ -297,6 +297,7 @@ def totalMAS(grid: Grid): Int =
 - [Solution](https://github.com/nichobi/advent-of-code-2024/blob/main/04/solution.scala) by [nichobi](https://github.com/nichobi)
 - [Solution](https://github.com/makingthematrix/AdventOfCode2024/blob/main/src/main/scala/io/github/makingthematrix/AdventofCode2024/DayFour.scala) by [Maciej Gorywoda](https://github.com/makingthematrix)
 - [Solution](https://github.com/itsjoeoui/aoc2024/blob/main/src/day04.scala) by [itsjoeoui](https://github.com/itsjoeoui)
+- [Solution](https://github.com/guycastle/advent_of_code/blob/main/src/main/scala/aoc2024/day04/DayFour.scala) by [Guillaume Vandecasteele](https://github.com/guycastle)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)
