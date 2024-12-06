@@ -148,6 +148,7 @@ object DayThree:
 - [Solution](https://github.com/spamegg1/aoc/blob/master/2024/03/03.worksheet.sc#L62) by [Spamegg](https://github.com/spamegg1/)
 - [Solution](https://github.com/samuelchassot/AdventCode_2024/blob/c213b5ca3cf7eabd3c2d2ba852a36869575b1442/03/Day03.scala) by [Samuel Chassot](https://github.com/samuelchassot/)
 - [Solution](https://github.com/scarf005/aoc-scala/blob/main/2024/day03.scala) by [scarf](https://github.com/scarf005)
+- [Solution](https://github.com/rayrobdod/advent-of-code/blob/main/2024/03/day3.scala) by [Raymond Dodge](https://github.com/rayrobdod)
 - [Solution](https://github.com/itsjoeoui/aoc2024/blob/main/src/day03.scala) by [itsjoeoui](https://github.com/itsjoeoui)
 - [Solution](https://github.com/nichobi/advent-of-code-2024/blob/main/03/solution.scala) by [nichobi](https://github.com/nichobi)
 - [Solution](https://github.com/guycastle/advent_of_code/blob/main/src/main/scala/aoc2024/day03/DayThree.scala) by [Guillaume Vandecasteele](https://github.com/guycastle)
