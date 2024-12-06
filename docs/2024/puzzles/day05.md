@@ -147,10 +147,10 @@ The BFS function takes a set of visited nodes, a queue of nodes to visit, and a 
 The BFS works as follows:
 - If the queue is empty, we return the result
 - Otherwise, we dequeue a node and add it to the visited set and the result list. We enqueue all neighbors of the node that:
-  -  have not been visited yet
-  -  **and** are not in the queue
-  -  **and** have all of their incoming edges visited or enqueued.
-  
+  - have not been visited yet
+  - **and** are not in the queue
+  - **and** have all of their incoming edges visited or enqueued.
+
   We then call the BFS function recursively with the updated queue, visited set, and result list.
 
 The result of the `fixUpdate` function is call to the `bfs` function with the `startNodes` in the queue.
@@ -205,6 +205,7 @@ def part2(input: String) =
 - [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2024/Day05.scala) by [Philippus Baalman](https://github.com/philippus)
 - [Solution](https://github.com/makingthematrix/AdventOfCode2024/blob/main/src/main/scala/io/github/makingthematrix/AdventofCode2024/DayFive.scala) by [Maciej Gorywoda](https://github.com/makingthematrix)
 - [Solution](https://github.com/guycastle/advent_of_code/blob/main/src/main/scala/aoc2024/day05/DayFive.scala) by [Guillaume Vandecasteele](https://github.com/guycastle)
+- [Solution](https://github.com/itsjoeoui/aoc2024/blob/main/src/day05.scala) by [itsjoeoui](https://github.com/itsjoeoui)
 - [Solution](https://github.com/aamiguet/advent-2024/blob/main/src/main/scala/ch/aamiguet/advent2024/Day5.scala) by [Antoine Amiguet](https://github.com/aamiguet/)
 - [Solution](https://github.com/jnclt/adventofcode2024/blob/main/day05/print-queue.sc) by [jnclt](https://github.com/jnclt)
 
