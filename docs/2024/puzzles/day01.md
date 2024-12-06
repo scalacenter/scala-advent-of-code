@@ -84,6 +84,7 @@ end part2
 - [Solution](https://github.com/scarf005/aoc-scala/blob/main/2024/day01.scala) by [scarf](https://github.com/scarf005)
 - [Solution](https://github.com/nichobi/advent-of-code-2024/blob/main/01/solution.scala) by [nichobi](https://github.com/nichobi)
 - [Solution](https://github.com/guycastle/advent_of_code/blob/main/src/main/scala/aoc2024/day01/DayOne.scala) by [Guillaume Vandecasteele](https://github.com/guycastle)
+- [Solution](https://github.com/rolandtritsch/scala3-aoc-2024/blob/trunk/src/aoc2024/Day01.scala) by [Roland Tritsch](https://github.com/rolandtritsch)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)
