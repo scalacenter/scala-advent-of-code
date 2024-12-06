@@ -95,7 +95,7 @@ def part2(input: String): Int = parse(input).count(_.isDampenedSafe)
 - [Solution](https://github.com/jnclt/adventofcode2024/blob/main/day02/red-nosed-reports.sc) by [jnclt](https://github.com/jnclt)
 - [Solution](https://github.com/bishabosha/advent-of-code-2024/blob/main/2024-day02.scala) by [Jamie Thompson](https://github.com/bishabosha)
 - [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2024/Day02.scala) by [Philippus Baalman](https://github.com/philippus)
-
+- [Solution](https://github.com/rayrobdod/advent-of-code/blob/main/2024/02/day2.scala) by [Raymond Dodge](https://github.com/rayrobdod)
 - [Solution](https://github.com/nikiforo/aoc24/blob/main/src/main/scala/io/github/nikiforo/aoc24/D2T2.scala) by [Artem Nikiforov](https://github.com/nikiforo)
 - [Solution](https://github.com/itsjoeoui/aoc2024/blob/main/src/day02.scala) by [itsjoeoui](https://github.com/itsjoeoui)
 - [Solution](https://github.com/makingthematrix/AdventOfCode2024/blob/main/src/main/scala/io/github/makingthematrix/AdventofCode2024/DayTwo.scala) by [Maciej Gorywoda](https://github.com/makingthematrix)

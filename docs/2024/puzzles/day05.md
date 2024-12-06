@@ -201,6 +201,7 @@ def part2(input: String) =
 - [Solution](https://github.com/spamegg1/aoc/blob/master/2024/05/05.worksheet.sc#L133) by [Spamegg](https://github.com/spamegg1/)
 - [Solution](https://github.com/rmarbeck/advent2024/blob/main/day5/src/main/scala/Solution.scala) by [Raphaël Marbeck](https://github.com/rmarbeck)
 - [Solution](https://github.com/scarf005/aoc-scala/blob/main/2024/day05.scala) by [scarf](https://github.com/scarf005)
+- [Solution](https://github.com/rayrobdod/advent-of-code/blob/main/2024/05/day5.sc) by [Raymond Dodge](https://github.com/rayrobdod)
 - [Solution](https://github.com/nichobi/advent-of-code-2024/blob/main/05/solution.scala) by [nichobi](https://github.com/nichobi)
 - [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2024/Day05.scala) by [Philippus Baalman](https://github.com/philippus)
 - [Solution](https://github.com/guycastle/advent_of_code/blob/main/src/main/scala/aoc2024/day05/DayFive.scala) by [Guillaume Vandecasteele](https://github.com/guycastle)
