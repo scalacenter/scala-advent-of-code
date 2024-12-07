@@ -8,6 +8,7 @@ https://adventofcode.com/2024/day/7
 
 ## Solutions from the community
 
+- [Solution](https://github.com/spamegg1/aoc/blob/master/2024/07/07.worksheet.sc#L82) by [Spamegg](https://github.com/spamegg1/)
 - [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2024/Day07.scala) by [Philippus Baalman](https://github.com/philippus)
 - [Solution](https://github.com/rolandtritsch/scala3-aoc-2024/blob/trunk/src/aoc2024/Day07.scala) by [Roland Tritsch](https://github.com/rolandtritsch)
 - [Solution](https://github.com/aamiguet/advent-2024/blob/main/src/main/scala/ch/aamiguet/advent2024/Day7.scala) by [Antoine Amiguet](https://github.com/aamiguet)
