@@ -1,6 +1,10 @@
 import Solver from "../../../../../website/src/components/Solver.js"
 
 # Day 6: Guard Gallivant
+
+by [@samuelchassot](https://github.com/samuelchassot)
+
+
 # Day 06 - solution
 
 ## Part 1
