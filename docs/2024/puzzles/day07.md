@@ -17,6 +17,7 @@ https://adventofcode.com/2024/day/7
 - [Solution](https://github.com/guycastle/advent_of_code/blob/main/src/main/scala/aoc2024/day07/DaySeven.scala) by [Guillaume Vandecasteele](https://github.com/guycastle)
 - [Solution](https://github.com/scarf005/aoc-scala/blob/main/2024/day07.scala) by [scarf](https://github.com/scarf005)
 - [Solution](https://github.com/jnclt/adventofcode2024/blob/main/day07/bridge-repair.sc) by [jnclt](https://github.com/jnclt)
+- [Solution](https://github.com/Jannyboy11/AdventOfCode2024/blob/master/src/main/scala/day07/Day07.scala) of [Jan Boerman](https://x.com/JanBoerman95)
 - [Solution](https://github.com/makingthematrix/AdventOfCode2024/blob/main/src/main/scala/io/github/makingthematrix/AdventofCode2024/DaySeven.scala) by [Maciej Gorywoda](https://github.com/makingthematrix)
 
 Share your solution to the Scala community by editing this page.
