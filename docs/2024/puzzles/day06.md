@@ -198,11 +198,7 @@ def possibleObstaclesPositionsNumber(g: Guard, startingPov: PointOfView): Int =
         Guard(newLab)
       )
 
-    val parList = newPossibleGuards.par
-    val forkJoinPool = new ForkJoinPool(8)
-    parList.tasksupport = ForkJoinTaskSupport(forkJoinPool)
-
-    parList.count(g => looping(g, startingPov))
+    newPossibleGuards.par.count(g => looping(g, startingPov))
 ```
 
 As we are brute forcing, let's use a parallel collection, to use all the potential of our nice hardware, to check multiple lab dispositions at the same time. We also use a `ForkJoinPool` to control the number of threads used by the parallel collection. See how simple it is to use parallel collections in Scala, using the `.par` method.
