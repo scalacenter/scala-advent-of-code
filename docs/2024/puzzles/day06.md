@@ -14,6 +14,7 @@ https://adventofcode.com/2024/day/6
 - [Solution](https://github.com/rolandtritsch/scala3-aoc-2024/blob/trunk/src/aoc2024/Day06.scala) by [Roland Tritsch](https://github.com/rolandtritsch)
 - [Solution](https://github.com/aamiguet/advent-2024/blob/main/src/main/scala/ch/aamiguet/advent2024/Day6.scala) by [Antoine Amiguet](https://github.com/aamiguet)
 - [Solution](https://github.com/scarf005/aoc-scala/blob/main/2024/day06.scala) by [scarf](https://github.com/scarf005)
+- [Solution](https://github.com/makingthematrix/AdventOfCode2024/blob/main/src/main/scala/io/github/makingthematrix/AdventofCode2024/DaySix.scala) by [makingthematrix](https://github.com/makingthematrix)
 - [Solution](https://github.com/jnclt/adventofcode2024/blob/main/day06/guard-gallivant.sc) by [jnclt](https://github.com/jnclt)
 - [Solution](https://github.com/itsjoeoui/aoc2024/blob/main/src/day06.scala) by [itsjoeoui](https://github.com/itsjoeoui)
 - [Solution](https://github.com/guycastle/advent_of_code/blob/main/src/main/scala/aoc2024/day06/DaySix.scala) by [Guillaume Vandecasteele](https://github.com/guycastle)
