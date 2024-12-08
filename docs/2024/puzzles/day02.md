@@ -105,6 +105,7 @@ def part2(input: String): Int = parse(input).count(_.isDampenedSafe)
 - [Solution](https://github.com/guycastle/advent_of_code/blob/main/src/main/scala/aoc2024/day02/DayTwo.scala) by [Guillaume Vandecasteele](https://github.com/guycastle)
 - [Solution](https://github.com/rolandtritsch/scala3-aoc-2024/blob/trunk/src/aoc2024/Day02.scala) by [Roland Tritsch](https://github.com/rolandtritsch)
 - [Solution](https://github.com/profunctor-optics/advent-2024/blob/main/src/main/scala/advent2024/Day02.scala) by [Georgi Krastev](https://github.com/joroKr21)
+- [Solution](https://github.com/jportway/advent2024/blob/master/src/main/scala/Day2.scala) by [Joshua Portway](https://github.com/jportway)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)
