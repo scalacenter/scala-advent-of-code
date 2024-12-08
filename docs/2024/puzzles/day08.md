@@ -17,6 +17,7 @@ https://adventofcode.com/2024/day/8
 - [Solution](https://github.com/makingthematrix/AdventOfCode2024/blob/main/src/main/scala/io/github/makingthematrix/AdventofCode2024/DayEight.scala) by [Maciej Gorywoda](https://github.com/makingthematrix)
 - [Solution](https://github.com/nichobi/advent-of-code-2024/blob/main/08/solution.scala) by [nichobi](https://github.com/nichobi)
 - [Solution](https://github.com/jnclt/adventofcode2024/blob/main/day08/resonant-collinearity.sc) by [jnclt](https://github.com/jnclt)
+- [Solution](https://github.com/rolandtritsch/scala3-aoc-2024/blob/trunk/src/aoc2024/Day08.scala) by [Roland Tritsch](https://github.com/rolandtritsch)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)
