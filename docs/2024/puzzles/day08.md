@@ -14,6 +14,7 @@ https://adventofcode.com/2024/day/8
 - [Solution](https://github.com/scarf005/aoc-scala/blob/main/2024/day08.scala) by [scarf](https://github.com/scarf005)
 - [Solution](https://github.com/aamiguet/advent-2024/blob/main/src/main/scala/ch/aamiguet/advent2024/Day8.scala) by [Antoine Amiguet](https://github.com/aamiguet)
 - [Solution](https://github.com/jportway/advent2024/blob/master/src/main/scala/Day8.scala) by [Joshua Portway](https://github.com/jportway)
+- [Solution](https://github.com/makingthematrix/AdventOfCode2024/blob/main/src/main/scala/io/github/makingthematrix/AdventofCode2024/DayEight.scala) by [Maciej Gorywoda](https://github.com/makingthematrix)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)
