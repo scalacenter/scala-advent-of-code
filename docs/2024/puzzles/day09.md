@@ -61,7 +61,7 @@ def createDisk(input: String): Disk =
     val intInput = input.toList.map(_ - '0') // Convert characters to int [0, 9]
     val fileFreeGroups = intInput.grouped(2).toVector // Last group will contain a single element
     val zippedGroups = fileFreeGroups.zipWithIndex
-    val disk = zippedGroups.flatMap:
+    zippedGroups.flatMap:
       case (List(fileN, freeN), i) => 
         // File block followed by free block
         List.fill(fileN)(Some(i)) ::: List.fill(freeN)(None)
@@ -69,7 +69,6 @@ def createDisk(input: String): Disk =
         // Final file block
         List.fill(fileN)(Some(i))
       case _ => Nil
-    return disk
 ```
 
 Finally, we need to compact the disk we obtain: Iterate over the disk elements, from the beginning (left)
@@ -94,12 +93,12 @@ def compact(disk: Disk): Disk =
 The code remains very similar to `part1`. However this time, the `Disk` structure can't consider characters individually anymore. Consecutive file blocks are indivisible, they form a single `Block`. Thus, we define a new `Block` enumeration. All `Block`s have a size, but `Free` blocks do not have any index attached whereas `File` blocks do:
 ```scala
 enum Block(val size: Int):
-    case Free(s: Int) extends Block(s)
-    case File(s: Int, i: Int) extends Block(s)
+  case Free(s: Int) extends Block(s)
+  case File(s: Int, i: Int) extends Block(s)
 
-    def index = this match
-      case Free(size) => None
-      case File(size, id) => Some(id)
+  def index = this match
+    case Free(size) => None
+    case File(size, id) => Some(id)
 ```
 
 The main driver for `part2` has the same components as the one from `part1`:
@@ -129,13 +128,12 @@ def part2(input: String): Long =
     val intInput = input.toList.map(_ - '0') // Convert characters to int [0, 9]
     val fileFreeGroups = intInput.grouped(2).toVector // Last group will contain a single element
     val zippedGroups = fileFreeGroups.zipWithIndex
-    val disk = zippedGroups.flatMap:
+    zippedGroups.flatMap:
       case (List(fileN, freeN), id) => 
         Vector(Block.File(fileN, id), Block.Free(freeN))
       case (List(fileN), id) => 
         Vector(Block.File(fileN, id))
       case _ => Nil
-    return disk
 
   def compact(disk: Disk): Disk = ???
 
