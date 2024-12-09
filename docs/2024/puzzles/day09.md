@@ -314,5 +314,7 @@ def part2(input: String): Long =
 
 ## Solutions from the community
 - [Solution](https://github.com/nikiforo/aoc24/blob/main/src/main/scala/io/github/nikiforo/aoc24/D9T2.scala) by [Artem Nikiforov](https://github.com/nikiforo)
+- [Solution](https://github.com/AlexMckey/AoC2024_Scala/blob/master/src/year2024/day09.scala) by [Alex Mc'key](https://github.com/AlexMckey)
+- [Solution](https://github.com/nichobi/advent-of-code-2024/blob/main/09/solution.scala) by [nichobi](https://github.com/nichobi)
 
 Share your solution to the Scala community by editing this page.
