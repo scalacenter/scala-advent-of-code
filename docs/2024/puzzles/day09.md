@@ -13,7 +13,7 @@ https://adventofcode.com/2024/day/9
 1. Convert the input to a disk representation:
   - `part1`: A sequence of optional file indices
   - `part2`: A sequence of indivisible file/free-space blocks
-2. Create a compacted representation of this disk: Starting from the end of the disk,
+2. Create a compact representation of this disk: Starting from the end of the disk,
   - `part1`: Move individual file indices to the leftmost free space
   - `part2`: Move file blocks to the to the leftmost free block, if any
 3. Compute the checksum of the resulting disk
