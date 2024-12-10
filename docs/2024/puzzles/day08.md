@@ -77,7 +77,7 @@ end parse
 ### Part 1
 
 For part 1, we take each pair of antennae of a given frequency and locate
-their antinodes. We then count the number of distinct location within the
+their antinodes. We then count the number of distinct locations within the
 map area.
 
 According to the puzzle, the antinodes are collinear with each pair of
