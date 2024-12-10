@@ -1,8 +1,8 @@
 import Solver from "../../../../../website/src/components/Solver.js"
 
-by [@dyvrl](https://github.com/dyvrl)
-
 # Day 9: Disk Fragmenter
+
+by [@dyvrl](https://github.com/dyvrl)
 
 ## Puzzle description
 
