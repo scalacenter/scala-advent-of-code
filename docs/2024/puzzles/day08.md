@@ -110,7 +110,7 @@ end part1
 Part 2 is very similar to part 1, but instead of there being only two antinodes,
 the antinodes occur at any location that is a whole multiple of the distance
 between the antennae. That is, the antinodes lie at A + n(B→A). We can use
-`Iterable.iterate` to generate the infinite series of these locations and then
+`Iterator.iterate` to generate the infinite series of these locations and then
 just take while the location is within the map.
 
 ```scala 3
