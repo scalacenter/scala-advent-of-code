@@ -11,6 +11,7 @@ https://adventofcode.com/2024/day/9
 - [Solution](https://github.com/AlexMckey/AoC2024_Scala/blob/master/src/year2024/day09.scala) by [Alex Mc'key](https://github.com/AlexMckey)
 - [Solution](https://github.com/nichobi/advent-of-code-2024/blob/main/09/solution.scala) by [nichobi](https://github.com/nichobi)
 - [Solution](https://github.com/makingthematrix/AdventOfCode2024/blob/main/src/main/scala/io/github/makingthematrix/AdventofCode2024/DayNine.scala) by [Maciej Gorywoda](https://github.com/makingthematrix)
+- [Solution](https://github.com/aamiguet/advent-2024/blob/main/src/main/scala/ch/aamiguet/advent2024/Day9.scala) by [Antoine Amiguet](https://github.com/aamiguet)
 - [Solution](https://github.com/jnclt/adventofcode2024/blob/main/day09/disk-fragmenter.sc) by [jnclt](https://github.com/jnclt)
   
 Share your solution to the Scala community by editing this page.
