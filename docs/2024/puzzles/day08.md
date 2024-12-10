@@ -2,6 +2,8 @@ import Solver from "../../../../../website/src/components/Solver.js"
 
 # Day 8: Resonant Collinearity
 
+by [@merlinorg](https://github.com/merlinorg)
+
 ## Puzzle description
 
 https://adventofcode.com/2024/day/8
@@ -26,7 +28,7 @@ locations corresponds to a particular frequency (i.e. a particular
 letter or digit on the map.)
 
 ```scala 3
-final case class AntennaMap(
+case class AntennaMap(
   width: Int,
   height: Int,
   antennaGroups: Iterable[Seq[Location]],
@@ -39,13 +41,13 @@ A location is an *x, y* pair along with some helpers for location
 arithmetic and range checking.
 
 ```scala 3
-final case class Location(x: Int, y: Int):
+case class Location(x: Int, y: Int):
   def -(other: Location): Vec          = Vec(x - other.x, y - other.y)
   def +(vec: Vec): Location            = Location(x + vec.dx, y + vec.dy)
   def within(map: AntennaMap): Boolean = x >= 0 && x < map.width && y >= 0 && y < map.height
 end Location
 
-final case class Vec(dx: Int, dy: Int)
+case class Vec(dx: Int, dy: Int)
 ```
 
 #### Parsing
