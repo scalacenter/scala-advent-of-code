@@ -18,6 +18,7 @@ https://adventofcode.com/2024/day/11
 - [Solution](https://github.com/rolandtritsch/scala3-aoc-2024/blob/trunk/src/aoc2024/Day11.scala) by [Roland Tritsch](https://github.com/rolandtritsch)
 - [Solution](https://github.com/jnclt/adventofcode2024/blob/main/day11/plutonian-pebbles.sc) by [jnclt](https://github.com/jnclt)
 - [Solution](https://github.com/makingthematrix/AdventOfCode2024/blob/main/src/main/scala/io/github/makingthematrix/AdventofCode2024/DayEleven.scala) by [Maciej Gorywoda](https://github.com/makingthematrix)
+- [Solution](https://github.com/aamiguet/advent-2024/blob/main/src/main/scala/ch/aamiguet/advent2024/Day11.scala) by [Antoine Amiguet](https://github.com/aamiguet)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)
