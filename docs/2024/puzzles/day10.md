@@ -25,7 +25,7 @@ Let's start by representing coordinate pairs:
   type Pos = (Int, Int)
   extension (pos: Pos)
     def +(other: Pos): Pos =
-      (pos._1 + other._1, pos._2 + other._2)
+      (pos(0) + other(0), pos(1) + other(1))
 ```
 
 and the input grid:
@@ -34,10 +34,10 @@ and the input grid:
   type Topo = Vector[Vector[Int]]
   extension (topo: Topo)
     def apply(pos: Pos): Int =
-      topo(pos._1)(pos._2)
+      topo(pos(0))(pos(1))
     def inBounds(pos: Pos): Boolean =
-      pos._1 >= 0 && pos._1 < topo.size &&
-      pos._2 >= 0 && pos._2 < topo.head.size
+      pos(0) >= 0 && pos(0) < topo.size &&
+      pos(1) >= 0 && pos(1) < topo.head.size
     def positions =
       for row <- topo.indices
           column <- topo.head.indices
