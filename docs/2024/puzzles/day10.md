@@ -16,6 +16,7 @@ https://adventofcode.com/2024/day/10
 - [Solution](https://github.com/makingthematrix/AdventOfCode2024/blob/main/src/main/scala/io/github/makingthematrix/AdventofCode2024/DayTen.scala) by [Maciej Gorywoda](https://github.com/makingthematrix)
 - [Solution](https://github.com/jnclt/adventofcode2024/blob/main/day10/hoof-it.sc) by [jnclt](https://github.com/jnclt)
 - [Solution](https://github.com/aamiguet/advent-2024/blob/main/src/main/scala/ch/aamiguet/advent2024/Day10.scala) by [Antoine Amiguet](https://github.com/aamiguet)
+- [Solution](https://github.com/scarf005/aoc-scala/blob/main/2024/day10.scala) by [scarf](https://github.com/scarf005)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)
