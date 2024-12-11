@@ -77,7 +77,8 @@ neighbors -- those neighbors that are exactly 1 higher than us.
     .toMap
 ```
 
-with this graph structure in hand, we can forget about the grid.
+with this graph structure in hand, we can forget about the grid
+and solve the problem at a higher level of abstraction.
 
 ### Part 1
 
