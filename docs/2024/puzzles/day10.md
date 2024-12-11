@@ -53,7 +53,7 @@ Reading the input is typical as well:
   def getInput(name: String): Topo =
     io.Source.fromResource(name)
     .getLines
-    .map(_.map(_ - '0').toVector)
+    .map(_.map(_.asDigit).toVector)
     .toVector
 ```
 
