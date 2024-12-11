@@ -117,7 +117,10 @@ that we have.
 
 The code for part 2 is nearly identical. We no longer need to de-duplicate
 routes that have the same destination, so it's now sufficient for the recursion
-to return `Int`:
+to return `Int`.
+
+It would certainly be possible to refactor this to share more code
+with part 1, but I've chosen to leave it this way.
 
 ```scala
   def solve2(topo: Topo): Int =
