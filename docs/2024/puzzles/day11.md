@@ -130,11 +130,11 @@ So to accomplish this, use `foldLeft`, which within a single blink step will let
 
 ```scala
 def blinkUnordered(stones: Map[Long, Long]): Map[Long, Long] =
-  stones.foldLeft(stones): (stones, stone) =>
+  stones.foldLeft(stones): (nextStones, stone) =>
     stone match
-      case (0, n)                      => stones.diff(0, -n).diff(1, n)
-      case (old @ EvenDigits(a, b), n) => stones.diff(old, -n).diff(a, n).diff(b, n)
-      case (other, n)                  => stones.diff(other, -n).diff(other * 2024, n)
+      case (0, n)                      => nextStones.diff(0, -n).diff(1, n)
+      case (old @ EvenDigits(a, b), n) => nextStones.diff(old, -n).diff(a, n).diff(b, n)
+      case (other, n)                  => nextStones.diff(other, -n).diff(other * 2024, n)
 ```
 
 You still have to define the `diff` method, but to explain what changed since part 1: now consider the key-value association of each stone to the count in the map.
@@ -225,11 +225,11 @@ def part2(input: String): Long =
   stones1.values.sum
 
 def blinkUnordered(stones: Map[Long, Long]): Map[Long, Long] =
-  stones.foldLeft(stones): (stones, stone) =>
+  stones.foldLeft(stones): (nextStones, stone) =>
     stone match
-      case (0, n)                      => stones.diff(0, -n).diff(1, n)
-      case (old @ EvenDigits(a, b), n) => stones.diff(old, -n).diff(a, n).diff(b, n)
-      case (other, n)                  => stones.diff(other, -n).diff(other * 2024, n)
+      case (0, n)                      => nextStones.diff(0, -n).diff(1, n)
+      case (old @ EvenDigits(a, b), n) => nextStones.diff(old, -n).diff(a, n).diff(b, n)
+      case (other, n)                  => nextStones.diff(other, -n).diff(other * 2024, n)
 
 extension (stones: Map[Long, Long])
   def diff(stone: Long, change: Long): Map[Long, Long] =
