@@ -10,12 +10,12 @@ https://adventofcode.com/2024/day/13
 
 This problem requires you to work with equations and numbers.
 
-Both parts of the problem asks you to calculate the smallest number of tokens needed to win as many prizes as possible, which means to calculate the optimal number of A and B button presses.
+Both parts of the problem ask you to calculate the smallest number of tokens needed to win as many prizes as possible, which means to calculate the optimal number of A and B button presses.
 
-- For part 1, the question assures that buttons are pressed no more than 100 times, so it can be simply brute forced for all possible combinations.
-- For part 2, the position of prize is higher by 10000000000000, which means brute-force approach is not feasible. We need to use the power of math to calculate the optimal solution.
-  - First, describe the relation between button presses and prize position can as a multivariable equation.
-  - Then, use the algebraic properties to simplify the equation.
+- For part 1, the question assures you that buttons are pressed no more than 100 times, so it can simply be brute forced for all possible combinations.
+- For part 2, the position of prize is higher by 10000000000000, which means a brute-force approach is not feasible. We need to use the power of math to calculate the optimal solution.
+  - First, describe the relation between button presses and prize position as a multivariable equation.
+  - Then, use algebraic properties to simplify the equation.
   - This way, we reduce the complexity of the problem to `O(1)`.
 
 ## Parsing
@@ -26,14 +26,14 @@ The input data is quite complex to parse. First, let's create a case class to st
 case class Claw(ax: Long, ay: Long, bx: Long, by: Long, x: Long, y: Long)
 ```
 
-Since a lot of numbers needs to be parsed, [Extractor Objects](https://docs.scala-lang.org/tour/extractor-objects.html) come in handy. this `L` object with an `unapply` method will parse a string to `Long`:
+Since a lot of numbers need to be parsed, [Extractor Objects](https://docs.scala-lang.org/tour/extractor-objects.html) come in handy. this `L` object with an `unapply` method will parse a string to `Long`:
 
 ```scala
 object L:
   def unapply(s: String): Option[Long] = s.toLongOption
 ```
 
-Then the inputs can be pattern matched like this:
+Then the inputs can be pattern-matched, like this:
 
 ```scala
 object Claw:
@@ -98,7 +98,7 @@ Then `A` can be equated in both expressions:
 \frac{x - B \cdot bx}{ax} = \frac{y - B \cdot by}{ay}
 ```
 
-Now `ax` and `ay` can be Cross-multiplied to eliminate denominators:
+Now `ax` and `ay` can be cross-multiplied to eliminate denominators:
 
 ```math
 (x - B \cdot bx) \cdot ay = (y - B \cdot by) \cdot ax
