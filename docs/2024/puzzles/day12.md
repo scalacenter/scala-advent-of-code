@@ -151,8 +151,39 @@ Thankfully, there is a fun math fact that can help here: The number of sides in 
 So all we have to do is count the number of corners in a region and we will get the number of sides.
 
 Finding corners in a 1x1 integer grid is hard, but doubling the size of the grid reduces the amount of cases we have to check.
-As it turns out, we can check the corner just by knowing the amount of filled neighbors we have: A 3 or 7 means it's a normal corner,
-and a 4 is the edge case pointed out in the puzzle text. 
+
+Doubling the grid lets you inspect each corner of each block individually. Through experimentation in a pixel editor,
+you can find that when using 2x2 squares aligned to a 2x2 grid, there are only a few number of neighbors each pixel can have.
+
+Here are those cases outlined:
+
+* Not a corner, internal (8)
+* Not a corner, Edge (5)
+* Not a corner, adjacent to "concave-like" corner (6)
+* A corner, "convex-like" (3)
+* A corner, "concave-like" (7)
+* A corner, "convex like" with diagonal neighbor (4)
+
+```text
+..........
+...3553...
+...5886...
+...588763.
+...455553.
+.34.......
+.33.......
+```
+
+and the same region with the corners marked:
+```text
+..........
+...X##X...
+...####...
+...###X#X.
+...X####X.
+.XX.......
+.XX.......
+```
 
 Let's add an extension to double the region:
 
