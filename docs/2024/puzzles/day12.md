@@ -163,6 +163,7 @@ Here are those cases outlined:
 * A corner, "convex-like" (3)
 * A corner, "concave-like" (7)
 * A corner, "convex like" with diagonal neighbor (4)
+
 ```text
 ..........
 ...3553...
