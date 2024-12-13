@@ -210,6 +210,8 @@ def part2(input: String): Int = {
 
 Final code:
 ```scala
+import scala.collection.mutable as mut
+
 type Region = Vector[(Int, Int)]
 def cardinalPositions(x: Int, y: Int): List[(Int, Int)] = {
   List((x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1))
