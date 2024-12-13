@@ -12,6 +12,7 @@ https://adventofcode.com/2024/day/12
 - [Solution](https://github.com/merlinorg/aoc2024/blob/main/src/main/scala/Day12.scala) by [merlinorg](https://github.com/merlinorg)
 - [Solution](https://github.com/aamiguet/advent-2024/blob/main/src/main/scala/ch/aamiguet/advent2024/Day12.scala) by [Antoine Amiguet](https://github.com/aamiguet)
 - [Solution](https://github.com/makingthematrix/AdventOfCode2024/blob/main/src/main/scala/io/github/makingthematrix/AdventofCode2024/DayTwelve.scala) by [Maciej Gorywoda](https://github.com/makingthematrix)
+- [Solution](https://github.com/spamegg1/aoc/blob/master/2024/12/12.worksheet.sc#L191) by [Spamegg](https://github.com/spamegg1/)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)
