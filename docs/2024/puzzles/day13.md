@@ -2,6 +2,8 @@ import Solver from "../../../../../website/src/components/Solver.js"
 
 # Day 13: Claw Contraption
 
+by [@scarf005](https://github.com/scarf005)
+
 ## Puzzle description
 
 https://adventofcode.com/2024/day/13
