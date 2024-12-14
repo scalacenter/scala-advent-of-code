@@ -8,6 +8,7 @@ https://adventofcode.com/2024/day/14
 
 ## Solutions from the community
 
+- [Solution](https://github.com/scarf005/aoc-scala/blob/main/2024/day14.scala) by [scarf](https://github.com/scarf005)
 - [Solution](https://github.com/aamiguet/advent-2024/blob/main/src/main/scala/ch/aamiguet/advent2024/Day14.scala) by [Antoine Amiguet](https://github.com/aamiguet)
 
 Share your solution to the Scala community by editing this page.
