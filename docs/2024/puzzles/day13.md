@@ -165,21 +165,14 @@ def part2(input: String): Long =
     .sum
 ```
 
-## Final Solution
+## Final Code
 
 ```scala
-extension (a: Long)
-  infix def safeDiv(b: Long): Option[Long] =
-    Option.when(b != 0 && a % b == 0)(a / b)
-
 case class Claw(ax: Long, ay: Long, bx: Long, by: Long, x: Long, y: Long):
   def solve: Option[Long] = for
     b <- (x * ay - y * ax) safeDiv (bx * ay - by * ax)
     a <- (x - b * bx) safeDiv ax
   yield a * 3 + b
-
-object L:
-  def unapply(s: String): Option[Long] = s.toLongOption
 
 object Claw:
   def parse(xs: Seq[String]): Option[Claw] = xs match
@@ -193,6 +186,13 @@ object Claw:
 
 def parse(input: String): Seq[Claw] =
   input.split("\n+").toSeq.grouped(3).flatMap(Claw.parse).toSeq
+
+extension (a: Long)
+  infix def safeDiv(b: Long): Option[Long] =
+    Option.when(b != 0 && a % b == 0)(a / b)
+
+object L:
+  def unapply(s: String): Option[Long] = s.toLongOption
 
 def part1(input: String): Long =
   parse(input).flatMap(_.solve).sum
