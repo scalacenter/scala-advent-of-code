@@ -81,54 +81,54 @@ We need another approach. Let's look at the condition carefully...
 
 Turns out we can express it using system of equations! For number of button presses `A` and `B`, our target `x` and `y` can be described as following equation:
 
-```math
+$$
 \begin{cases}
 A \cdot ax + B \cdot bx = x \\
 A \cdot ay + B \cdot by = y
 \end{cases}
-```
+$$
 
 Which can be solved for `A` in terms of `B`:
 
-```math
+$$
 A = \frac{x - B \cdot bx}{ax}, \quad A = \frac{y - B \cdot by}{ay}
-```
+$$
 
 Then `A` can be equated in both expressions:
 
-```math
+$$
 \frac{x - B \cdot bx}{ax} = \frac{y - B \cdot by}{ay}
-```
+$$
 
 Now `ax` and `ay` can be cross-multiplied to eliminate denominators:
 
-```math
+$$
 (x - B \cdot bx) \cdot ay = (y - B \cdot by) \cdot ax
-```
+$$
 
 ...Expand and rearrange:
 
-```math
+$$
 x \cdot ay - B \cdot bx \cdot ay = y \cdot ax - B \cdot by \cdot ax
-```
+$$
 
 Group terms involving `B`:
 
-```math
+$$
 x \cdot ay - y \cdot ax = B \cdot (bx \cdot ay - by \cdot ax)
-```
+$$
 
 Then solve for `B`:
 
-```math
+$$
 B = \frac{x \cdot ay - y \cdot ax}{bx \cdot ay - by \cdot ax}
-```
+$$
 
 Using `B`, `A` can also be solved:
 
-```math
+$$
 A = \frac{x - B \cdot bx}{ax}
-```
+$$
 
 There's two more important requirement for `A` and `B`:
 1. `A` and `B` should both be an natural number.
@@ -165,21 +165,14 @@ def part2(input: String): Long =
     .sum
 ```
 
-## Final Solution
+## Final Code
 
 ```scala
-extension (a: Long)
-  infix def safeDiv(b: Long): Option[Long] =
-    Option.when(b != 0 && a % b == 0)(a / b)
-
 case class Claw(ax: Long, ay: Long, bx: Long, by: Long, x: Long, y: Long):
   def solve: Option[Long] = for
     b <- (x * ay - y * ax) safeDiv (bx * ay - by * ax)
     a <- (x - b * bx) safeDiv ax
   yield a * 3 + b
-
-object L:
-  def unapply(s: String): Option[Long] = s.toLongOption
 
 object Claw:
   def parse(xs: Seq[String]): Option[Claw] = xs match
@@ -193,6 +186,13 @@ object Claw:
 
 def parse(input: String): Seq[Claw] =
   input.split("\n+").toSeq.grouped(3).flatMap(Claw.parse).toSeq
+
+extension (a: Long)
+  infix def safeDiv(b: Long): Option[Long] =
+    Option.when(b != 0 && a % b == 0)(a / b)
+
+object L:
+  def unapply(s: String): Option[Long] = s.toLongOption
 
 def part1(input: String): Long =
   parse(input).flatMap(_.solve).sum
