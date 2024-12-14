@@ -151,8 +151,39 @@ Thankfully, there is a fun math fact that can help here: The number of sides in 
 So all we have to do is count the number of corners in a region and we will get the number of sides.
 
 Finding corners in a 1x1 integer grid is hard, but doubling the size of the grid reduces the amount of cases we have to check.
-As it turns out, we can check the corner just by knowing the amount of filled neighbors we have: A 3 or 7 means it's a normal corner,
-and a 4 is the edge case pointed out in the puzzle text. 
+
+Doubling the grid lets you inspect each corner of each block individually. Through experimentation in a pixel editor,
+you can find that when using 2x2 squares aligned to a 2x2 grid, there are only a few number of neighbors each pixel can have.
+
+Here are those cases outlined:
+
+* Not a corner, internal (8)
+* Not a corner, Edge (5)
+* Not a corner, adjacent to "concave-like" corner (6)
+* A corner, "convex-like" (3)
+* A corner, "concave-like" (7)
+* A corner, "convex like" with diagonal neighbor (4)
+
+```text
+..........
+...3553...
+...5886...
+...588763.
+...455553.
+.34.......
+.33.......
+```
+
+and the same region with the corners marked:
+```text
+..........
+...X##X...
+...####...
+...###X#X.
+...X####X.
+.XX.......
+.XX.......
+```
 
 Let's add an extension to double the region:
 
@@ -345,6 +376,9 @@ def part2(input: String): Int = {
 - [Solution](https://github.com/aamiguet/advent-2024/blob/main/src/main/scala/ch/aamiguet/advent2024/Day12.scala) by [Antoine Amiguet](https://github.com/aamiguet)
 - [Solution](https://github.com/makingthematrix/AdventOfCode2024/blob/main/src/main/scala/io/github/makingthematrix/AdventofCode2024/DayTwelve.scala) by [Maciej Gorywoda](https://github.com/makingthematrix)
 - [Solution](https://github.com/spamegg1/aoc/blob/master/2024/12/12.worksheet.sc#L191) by [Spamegg](https://github.com/spamegg1/)
+- [Solution](https://github.com/jnclt/adventofcode2024/blob/main/day12/garden-groups.sc) by [jnclt](https://github.com/jnclt)
+- [Solution](https://github.com/scarf005/aoc-scala/blob/main/2024/day12.scala) by [scarf](https://github.com/scarf005)
+- [Solution](https://github.com/AlexMckey/AoC2024_Scala/blob/master/src/year2024/day12.scala) by [Alex Mc'key](https://github.com/AlexMckey)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)
