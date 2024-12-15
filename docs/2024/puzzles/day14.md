@@ -14,6 +14,7 @@ https://adventofcode.com/2024/day/14
 - [Solution](https://github.com/aamiguet/advent-2024/blob/main/src/main/scala/ch/aamiguet/advent2024/Day14.scala) by [Antoine Amiguet](https://github.com/aamiguet)
 - [Solution](https://github.com/AlexMckey/AoC2024_Scala/blob/master/src/year2024/day14.scala) by [Alex Mc'key](https://github.com/AlexMckey)
 - [Solution](https://github.com/spamegg1/aoc/blob/master/2024/14/14.scala#L165) by [Spamegg](https://github.com/spamegg1)
+- [Solution](https://github.com/jnclt/adventofcode2024/blob/main/day14/restroom-redoubt.sc) by [jnclt](https://github.com/jnclt)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)
