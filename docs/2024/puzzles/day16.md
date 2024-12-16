@@ -10,6 +10,7 @@ https://adventofcode.com/2024/day/16
 
 - [Solution](https://github.com/merlinorg/aoc2024/blob/main/src/main/scala/Day16.scala) by [merlinorg](https://github.com/merlinorg)
 - [Solution](https://github.com/nikiforo/aoc24/blob/main/src/main/scala/io/github/nikiforo/aoc24/D16T2.scala) by [Artem Nikiforov](https://github.com/nikiforo)
+- [Solution](https://github.com/aamiguet/advent-2024/blob/main/src/main/scala/ch/aamiguet/advent2024/Day16.scala) by [Antoine Amiguet](https://github.com/aamiguet)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)
