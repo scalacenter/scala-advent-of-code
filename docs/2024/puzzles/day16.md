@@ -414,7 +414,7 @@ extension [K, V](queue: PriorityQueue[K, V])
 
 ### Mutable solution
 
-For the interested, the (shorter and faster, but unprincipled) mutable version is as
+For the interested (but unprincipled), the (shorter and faster, but unprincipled) mutable version is as
 follows: Instead of state carrying an immutable queue and visited set, we just iteratively
 update a mutable queue and set. The immutable solution can actually be brought up to speed
 with the mutable version with just a small update to iterate in chunks, so performance is
