@@ -9,13 +9,13 @@ https://adventofcode.com/2024/day/18
 
 ## Solution Summary
 
-1. Parse input into a List of points
-2. For part 1, take the first 1024 points and path find through them
+1. Parse input into a `List` of points
+2. For part 1, take the first 1024 points and path-find through them
 3. For part 2, find the tipping point where pathfinding can't be done anymore
 
 ## Part 1
 
-First, let's make the Vec2i class for our points:
+First, let's make the `Vec2i` class for our points:
 
 ```scala
 case class Vec2i(x: Int, y: Int):
@@ -36,7 +36,7 @@ def parse(str: String): (Int, Int, List[Vec2i]) =
   (if ps.length == 25 then 7 else 71, if ps.length == 25 then 12 else 1024, ps)
 ```
 
-For both parts, we'll need a path finding function. While I would usually use a grid, because of part 2 it's easier to pathfind using a Set.
+For both parts, we'll need a path finding function. While I would usually use a grid, because of part 2 it's easier to pathfind using a `Set`.
 Here's an implementation of Dijkstra's algorithim with sets:
 
 ```scala
@@ -90,25 +90,25 @@ def part1(str: String): Int =
 Part 2 is finding the point where the path is impossible to reach. A naive approach would be a linear search, and with the input size it is perfectly acceptable
 with only taking 2 seconds, but a better approach is a binary search.
 
-All of part 2's code is entirely within it's code segment:
-
+Part 2 is just a short code block:
 ```scala
 def part2(str: String): Vec2i =
   val (size, take, walls) = parse(str)
   Iterator.iterate(take -> walls.size): (i0, i1) =>
-    if walls.take((i0 + i1) / 2).toSet.search(size).isEmpty then i0 -> (i0 + i1) / 2 else (i0 + i1) / 2 + 1 -> i1
+    if walls.take((i0 + i1) / 2).toSet.search(size).isEmpty 
+    then i0 -> (i0 + i1) / 2 else (i0 + i1) / 2 + 1 -> i1
   .flatMap: (i0, i1) =>
     Option.when(i0 == i1)(walls(i0 - 1))
   .next()
 ```
 
 This code will need some explaining. The iterate function is iterating through a binary search: it picks the midpoint of its two endpoints
-and searches the path with that amount of bytes fallen. If the result is None, meaning there is no valid path, then it pins its higher end point
-to that midpoint and repeats. If it's Some, meaning there is a valid path, then it pins the lower endpoint to the midpoint + 1. Doing this means you can
+and searches the path with that amount of bytes fallen. If the result is `None`, meaning there is no valid path, then it pins its higher end point
+to that midpoint and repeats. If it's `Some`, meaning there is a valid path, then it pins the lower endpoint to the midpoint + 1. Doing this means you can
 invalidate large swathes of combinations from having to be tested. Before rewriting my code to use binary search, it took around 2 seconds. This code takes
 around 50 milliseconds, so that's a 40x speedup just from using binary search.
 
-The flatMap(...).next() just finds the first point where i0 == i1, or where the binary search has completed. Because we've been taking, and not indexing, we have
+The `flatMap(...).next()` just finds the first point where `i0 == i1`, or where the binary search has completed. Because we've been taking, and not indexing, we have
 to subtract one to get the proper index.
 
 Final code:
@@ -168,7 +168,8 @@ def part1(str: String): Int =
 def part2(str: String): Vec2i =
   val (size, take, walls) = parse(str)
   Iterator.iterate(take -> walls.size): (i0, i1) =>
-    if walls.take((i0 + i1) / 2).toSet.search(size).isEmpty then i0 -> (i0 + i1) / 2 else (i0 + i1) / 2 + 1 -> i1
+    if walls.take((i0 + i1) / 2).toSet.search(size).isEmpty 
+    then i0 -> (i0 + i1) / 2 else (i0 + i1) / 2 + 1 -> i1
   .flatMap: (i0, i1) =>
     Option.when(i0 == i1)(walls(i0 - 1))
   .next()
