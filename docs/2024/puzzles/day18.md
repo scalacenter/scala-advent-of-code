@@ -88,7 +88,7 @@ def part1(str: String): Int =
 ## Part 2
 
 Part 2 is finding the point where the path is impossible to reach. A naive approach would be a linear search, and with the input size it is perfectly acceptable
-with only taking 2 seconds, but a better approach is a binary search.
+(only taking 2 seconds), but a faster approach is a binary search.
 
 Part 2 is just a short code block:
 ```scala
