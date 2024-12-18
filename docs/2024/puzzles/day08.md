@@ -144,6 +144,7 @@ end part2
 - [Solution](https://github.com/jnclt/adventofcode2024/blob/main/day08/resonant-collinearity.sc) by [jnclt](https://github.com/jnclt)
 - [Solution](https://github.com/rolandtritsch/scala3-aoc-2024/blob/trunk/src/aoc2024/Day08.scala) by [Roland Tritsch](https://github.com/rolandtritsch)
 - [Solution](https://github.com/merlinorg/aoc2024/blob/main/src/main/scala/Day8.scala) by [merlinorg](https://github.com/merlinorg)
+- [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2024/Day08.scala) by [Philippus Baalman](https://github.com/philippus)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)
