@@ -17,6 +17,7 @@ https://adventofcode.com/2024/day/14
 - [Solution](https://github.com/jnclt/adventofcode2024/blob/main/day14/restroom-redoubt.sc) by [jnclt](https://github.com/jnclt)
 - [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2024/Day14.scala) by [Philippus Baalman](https://github.com/philippus)
 - [Solution](https://github.com/TheDrawingCoder-Gamer/adventofcode2024/blob/master/src/main/scala/Day14.scala) by [Bulby](https://github.com/TheDrawingCoder-Gamer)
+- [Solution](https://github.com/jportway/advent2024/blob/master/src/main/scala/Day14.scala) by [Joshua Portway](https://github.com/jportway)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)
