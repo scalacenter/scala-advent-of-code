@@ -206,6 +206,7 @@ def part2(input: String): Long =
 ```
 
 ## Solutions from the community
+
 - [Solution](https://github.com/rmarbeck/advent2024/blob/main/day13/src/main/scala/Solution.scala) by [Raphaël Marbeck](https://github.com/rmarbeck)
 - [Solution](https://github.com/spamegg1/aoc/blob/master/2024/13/13.worksheet.sc#L109) by [Spamegg](https://github.com/spamegg1)
 - [Solution](https://github.com/aamiguet/advent-2024/blob/main/src/main/scala/ch/aamiguet/advent2024/Day13.scala) by [Antoine Amiguet](https://github.com/aamiguet)
