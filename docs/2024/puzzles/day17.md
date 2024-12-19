@@ -13,6 +13,7 @@ https://adventofcode.com/2024/day/17
 - [Solution](https://github.com/AlexMckey/AoC2024_Scala/blob/master/src/year2024/day17.scala) by [Alex Mc'key](https://github.com/AlexMckey)
 - [Solution](https://github.com/rmarbeck/advent2024/blob/main/day17/src/main/scala/Solution.scala) by [Raphaël Marbeck](https://github.com/rmarbeck)
 - [Solution](https://github.com/jportway/advent2024/blob/master/src/main/scala/Day17.scala) by [Joshua Portway](https://github.com/jportway)
+- [Solution](https://github.com/nikiforo/aoc24/blob/main/src/main/scala/io/github/nikiforo/aoc24/D17T2.scala) by [Artem Nikiforov](https://github.com/nikiforo)
 - [Writeup](https://thedrawingcoder-gamer.github.io/aoc-writeups/2024/day17.html) by [Bulby](https://github.com/TheDrawingCoder-Gamer)
   
 
