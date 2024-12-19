@@ -472,6 +472,6 @@ given Ordering[Reindeer] = Ordering.by(-_.score)
 - [Solution](https://github.com/AlexMckey/AoC2024_Scala/blob/master/src/year2024/day16.scala) by [Alex Mc'key](https://github.com/AlexMckey)
 - [Solution](https://github.com/rmarbeck/advent2024/blob/main/day16/src/main/scala/Solution.scala) by [Raphaël Marbeck](https://github.com/rmarbeck)
 - [Solution](https://github.com/TheDrawingCoder-Gamer/adventofcode2024/blob/master/src/main/scala/Day16.scala) by [Bulby](https://github.com/TheDrawingCoder-Gamer)
-
+- [Solution](https://github.com/jportway/advent2024/blob/master/src/main/scala/Day16.scala) by [Joshua Portway](https://github.com/jportway)
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)
