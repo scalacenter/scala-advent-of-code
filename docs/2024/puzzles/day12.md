@@ -379,6 +379,7 @@ def part2(input: String): Int = {
 - [Solution](https://github.com/jnclt/adventofcode2024/blob/main/day12/garden-groups.sc) by [jnclt](https://github.com/jnclt)
 - [Solution](https://github.com/scarf005/aoc-scala/blob/main/2024/day12.scala) by [scarf](https://github.com/scarf005)
 - [Solution](https://github.com/AlexMckey/AoC2024_Scala/blob/master/src/year2024/day12.scala) by [Alex Mc'key](https://github.com/AlexMckey)
+- [Solution](https://github.com/jportway/advent2024/blob/master/src/main/scala/Day12.scala) by [Joshua Portway](https://github.com/jportway)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)
