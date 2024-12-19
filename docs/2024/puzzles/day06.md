@@ -205,7 +205,7 @@ def possibleObstaclesPositionsNumber(g: Guard, startingPov: PointOfView): Int =
     newPossibleGuards.par.count(g => looping(g, startingPov))
 ```
 
-As we are brute forcing, let's use a parallel collection, to use all the potential of our nice hardware, to check multiple lab dispositions at the same time. We also use a `ForkJoinPool` to control the number of threads used by the parallel collection. See how simple it is to use parallel collections in Scala, using the `.par` method.
+As we are brute forcing, let's use a parallel collection, to use all the potential of our nice hardware, to check multiple lab dispositions at the same time. See how simple it is to use parallel collections in Scala, using the `.par` method.
 
 
 This concludes the solution for part 2 of the problem.
