@@ -11,7 +11,7 @@ https://adventofcode.com/2024/day/8
 ## Solution summary
 
 1. Parse the map to identify the locations of all the antennae,
-grouped by their frequency.
+   grouped by their frequency.
 2. Find all the antinode locations within the map boundary.
 3. Count the number of distinct antinodes.
 
@@ -37,7 +37,7 @@ case class AntennaMap(
 
 #### Location
 
-A location is an *x, y* pair along with some helpers for location
+A location is an _x, y_ pair along with some helpers for location
 arithmetic and range checking.
 
 ```scala 3
@@ -130,8 +130,8 @@ def part2(input: String): String =
 end part2
 ```
 
-
 ## Solutions from the community
+
 - [Solution](https://github.com/nikiforo/aoc24/blob/main/src/main/scala/io/github/nikiforo/aoc24/D8T2.scala) by [Artem Nikiforov](https://github.com/nikiforo)
 - [Solution](https://github.com/rmarbeck/advent2024/blob/main/day8/src/main/scala/Solution.scala) by [Raphaël Marbeck](https://github.com/rmarbeck)
 - [Solution](https://github.com/fthomas/aoc24/blob/main/src/main/scala/Day08.scala) by [Frank Thomas](https://github.com/fthomas)
@@ -146,6 +146,7 @@ end part2
 - [Solution](https://github.com/merlinorg/aoc2024/blob/main/src/main/scala/Day8.scala) by [merlinorg](https://github.com/merlinorg)
 - [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2024/Day08.scala) by [Philippus Baalman](https://github.com/philippus)
 - [Solution](https://github.com/TheDrawingCoder-Gamer/adventofcode2024/blob/master/src/main/scala/day8.sc) by [Bulby](https://github.com/TheDrawingCoder-Gamer)
+- [Solution](https://github.com/itsjoeoui/aoc2024/blob/main/src/day08.scala) by [itsjoeoui](https://github.com/itsjoeoui)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)

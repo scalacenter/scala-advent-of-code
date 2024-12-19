@@ -30,6 +30,7 @@ def parse(input: String): Seq[(Long, List[Long])] =
 ```
 
 ### Part 1
+
 To find the equations that could possibly be true we iterate over the equations and check each of them using a recursive
 `checkEquation` function. Its input is the test value and the list of numbers and its return value is a boolean.
 In each iteration we have two choices, either we use the `*` operator, or we use the `+` operator.
@@ -60,6 +61,7 @@ end part1
 ```
 
 ### Part 2
+
 In this part a new concatenation operator `||` is added that combines the digits from its left and right inputs into a
 single number, for this we expand the `checkEquation` function with a case that does exactly that. We use `toString` on
 the two numbers, concatenate them using `++` and then apply `toLong`, concatenate with the remaining numbers and call
@@ -105,6 +107,7 @@ end part2
 - [Solution](https://github.com/profunctor-optics/advent-2024/blob/main/src/main/scala/advent2024/Day07.scala) by [Georgi Krastev](https://github.com/joroKr21)
 - [Solution](https://github.com/jportway/advent2024/blob/master/src/main/scala/Day7.scala) by [Joshua Portway](https://github.com/jportway)
 - [Solution](https://github.com/TheDrawingCoder-Gamer/adventofcode2024/blob/master/src/main/scala/day7.sc) by [Bulby](https://github.com/TheDrawingCoder-Gamer)
+- [Solution](https://github.com/itsjoeoui/aoc2024/blob/main/src/day07.scala) by [itsjoeoui](https://github.com/itsjoeoui)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)
