@@ -60,11 +60,8 @@ extension (walls: Set[Vec2i])
 
     val q = mut.PriorityQueue(start -> 0d)(using Ordering.by[(Vec2i, Double), Double](_._2).reverse)
 
-    while q.nonEmpty do
+    while q.nonEmpty && q.head._1 != goal do
       val (current, score) = q.dequeue()
-
-      if current == goal then
-        return Some(reconstructPath(cameFrom.toMap, current))
 
       for neighbor <- current.cardinalNeighbors.filter(it => it.isContainedIn(gridSize, gridSize) && !walls.contains(it)) do
         val alt = score + 1d
@@ -73,7 +70,7 @@ extension (walls: Set[Vec2i])
           dist(neighbor) = alt
           q.addOne(neighbor -> alt)
 
-    None
+    q.headOption.map(it => reconstructPath(cameFrom.toMap, it._1))
 ```
 
 Now part 1 is just running this with the correct inputs:
