@@ -320,5 +320,6 @@ def part2(input: String): Long =
 - [Solution](https://github.com/rmarbeck/advent2024/blob/main/day9/src/main/scala/Solution.scala) by [Raphaël Marbeck](https://github.com/rmarbeck)
 - [Solution](https://github.com/jportway/advent2024/blob/master/src/main/scala/Day9.scala) by [Joshua Portway](https://github.com/jportway)
 - [Solution](https://github.com/rolandtritsch/scala3-aoc-2024/blob/trunk/src/aoc2024/Day09.scala) by [Roland Tritsch](https://github.com/rolandtritsch)
-  
+- [Solution](https://github.com/TheDrawingCoder-Gamer/adventofcode2024/blob/master/src/main/scala/day9.sc) by [Bulby](https://github.com/TheDrawingCoder-Gamer)
+
 Share your solution to the Scala community by editing this page.

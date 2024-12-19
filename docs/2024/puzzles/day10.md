@@ -157,6 +157,7 @@ throw away duplicate counts.
 - [Solution](https://github.com/aamiguet/advent-2024/blob/main/src/main/scala/ch/aamiguet/advent2024/Day10.scala) by [Antoine Amiguet](https://github.com/aamiguet)
 - [Solution](https://github.com/jportway/advent2024/blob/master/src/main/scala/Day10.scala) by [Joshua Portway](https://github.com/jportway)
 - [Solution](https://github.com/scarf005/aoc-scala/blob/main/2024/day10.scala) by [scarf](https://github.com/scarf005)
+- [Solution](https://github.com/TheDrawingCoder-Gamer/adventofcode2024/blob/master/src/main/scala/day10.sc) by [Bulby](https://github.com/TheDrawingCoder-Gamer)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)
