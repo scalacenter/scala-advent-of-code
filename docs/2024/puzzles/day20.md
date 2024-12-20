@@ -12,6 +12,7 @@ https://adventofcode.com/2024/day/20
 - [Solution](https://github.com/nikiforo/aoc24/blob/main/src/main/scala/io/github/nikiforo/aoc24/D20T2.scala) by [Artem Nikiforov](https://github.com/nikiforo)
 - [Solution](https://github.com/aamiguet/advent-2024/blob/main/src/main/scala/ch/aamiguet/advent2024/Day20.scala) by [Antoine Amiguet](https://github.com/aamiguet)
 - [Solution](https://github.com/merlinorg/aoc2024/blob/main/src/main/scala/Day20.scala) by [merlinorg](https://github.com/merlinorg)
+- [Writeup](https://thedrawingcoder-gamer.github.io/aoc-writeups/2024/day20.html) by [Bulby](https://github.com/TheDrawingCoder-Gamer)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)
