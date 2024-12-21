@@ -7,8 +7,11 @@ import scala.scalajs.js.annotation.JSExportTopLevel
 
 object Solver:
   private val solutions2024: Map[String, String => Any] =
-    // import adventofcode2024.*
-    Map()
+    import adventofcode2024.*
+    Map(
+      "day13-part1" -> day13.part1,
+      "day13-part2" -> day13.part2,
+    )
 
   private val solutions2023: Map[String, String => Any] =
     import adventofcode2023.*
