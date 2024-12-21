@@ -43,11 +43,11 @@ class Warehouse(
     val robotCol: Int)
 ```
 
-*NB:* We use `ArraySeq`s instead of `Array`s to guarantee that we don’t accidentally mutate them in our program while still getting constant-time random access.
+*NB:* We use `collection.immutable.ArraySeq`s instead of `Array`s to guarantee that we don’t accidentally mutate them in our program. `ArraySeq`, like `Array` but unlike `Seq`, guarantees constant-time random access (we’ll be doing that a lot) and benefits from the fact that the size of the collection never changes.
 
 ### Part 1
 
-We start with the parser. First, we’ll need a way to create `Direction` and `WarehouseCell` objects from their `Char` representations. We could either write a simple pattern matcher:
+We start with the parser. First, we’ll need a way to create `Direction` and `WarehouseCell` objects from their `Char` representations. We could either write a simple pattern match:
 
 ```scala
 object Direction:
@@ -66,8 +66,6 @@ enum WarehouseCell(val repr: Char):
   case Empty extends WarehouseCell('.')
   case Wall extends WarehouseCell('#')
   case Box extends WarehouseCell('O')
-  case LeftBox extends WarehouseCell('[')
-  case RightBox extends WarehouseCell(']')
   case Robot extends WarehouseCell('@')
 
 object WarehouseCell:
@@ -132,7 +130,7 @@ class Warehouse:
 ```
 
 Some nifty Scala features at play:
-* `.lift` lets us turn a potentially exception-throwing method (`ArraySeq.apply` out of bounds) into one that returns an `Option`, which we can further `flatMap` with the `Option`-valued wall/box/empty logic.
+* Applying `ArraySeq.apply` to an index out of bounds would result in an exception. However, `ArraySeq` also defines an `isDefinedAt` method, making it a `PartialFunction`. Then `lift` lets us turn it into an `Option`-valued one, which we can further `flatMap` with the `Option`-valued wall/box/empty logic. (Alternatively, we could do all this by handling and throwing exceptions ourselves.)
 * We define an `apply` method on `Direction` so that we can compute the updated position for `(row, col)` in direction `d` simply as `d(row, col)` (or optionally repeatedly, `d(row, col, n)`).
 
   ```scala
@@ -233,7 +231,7 @@ As for the move logic, I made a flawed assumption (a premature optimization?) in
 
 This method, now called `positionsToMove`, preserves the part 1 computation and slightly simplifies the `move` code too.
 
-```
+```scala
 class Warehouse:
   /* ... */
   
