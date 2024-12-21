@@ -1,5 +1,5 @@
 # Scala stuff
-/.bloop/
+.bloop/
 .bsp/
 metals.sbt
 target/
