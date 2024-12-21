@@ -205,6 +205,16 @@ def part2(input: String): Long =
     .sum
 ```
 
+### Run it in the browser
+
+#### Part 1
+
+<Solver puzzle="day13-part1" year="2024"/>
+
+#### Part 2
+
+<Solver puzzle="day13-part2" year="2024"/>
+
 ## Solutions from the community
 
 - [Solution](https://github.com/rmarbeck/advent2024/blob/main/day13/src/main/scala/Solution.scala) by [Raphaël Marbeck](https://github.com/rmarbeck)
