@@ -10,9 +10,7 @@ https://adventofcode.com/2024/day/21
 
 ## Data structures
 
-This is the easy part: we start by defining the data structures that we will use to represent the keypads and the positions on the grid.
-
-We define a `Pos` case class to represent a position on a 2D grid. We also define two keypads: `numericalKeypad` and `directionalKeypad` as `Map[Char, Pos]` and their respective value sets as `Set[Pos]`.
+We begin by defining the data structures used to represent the keypads and positions on the grid. We start with a `Pos` case class for 2D coordinates. Then, we define two keypads—`numericalKeypad` and `directionalKeypad`—as `Map[Char, Pos]`, with their corresponding sets of valid positions as `Set[Pos]`.
 
 ```scala mdoc:silent
 case class Pos(x: Int, y: Int):
@@ -40,7 +38,7 @@ val directionalKeypadPositions = directionalKeypad.values.toSet
 
 ### Interleaving directions doesn't help
 
-Let us consider the numerical keypad, and let's assume that want to go from `3` to `4`.
+Consider the numerical keypad. Suppose we want to go from `3` to `4`:
 
 ```
 +---+---+---+
@@ -54,19 +52,18 @@ Let us consider the numerical keypad, and let's assume that want to go from `3` 
     +---+---+
 ```
 
-There are 3 possible shortest paths:
-
-``` 
+There are three possible shortest paths:
+```
 a) <<^A: 3 -> 2 -> 1 -> 4
 b) <^<A: 3 -> 2 -> 5 -> 4
 c) ^<<A: 3 -> 6 -> 5 -> 4
 ```
 
-A shorted path is always a combination of moves in 2 directions. In this case: top (`^`) and left (`<`).
+A shortest path here is always a combination of moves in two directions: up (`^`) and left (`<`).
 
-The first key insight is that **interleaving moves in different directions never makes the cost for the next robot better**. This is because it will need to move more between keys, instead of being able to stay at the same position and repeatedly press `A`.
+Our first key insight is that **interleaving moves in different directions never reduces the cost for the next robot**. Interleaving forces the robot to travel more, rather than staying in the same position and repeatedly pressing `A`.
 
-To convince ourselves, let us compute the shortest paths for the next robot for the above examples. We will use the `minPath` function that computes the shortest path between two keys on a keypad. We wil define this function in the next section, but for now, let's assume it exists.
+To confirm, we can compute the shortest paths for the next robot in these examples using a `minPath` function (defined later):
 
 ```scala mdoc
 minPath("<<^A")
@@ -79,19 +76,19 @@ minPath("^<<A")
 minPath("^<<A").length
 ```
 
-As you can see, interleaving in this example—and, believe me, in all cases—does not improve the cost for the next robot. Here, it even makes it worse: the minimum paths for `a)` and `c)` have length 10, while the minimum path for `b)` has length 14.
+As you can see, interleaving doesn't help. In fact, in this example, it makes the result worse: the paths for `a)` and `c)` both have length 10, while path `b)` has length 14.
 
 :::info
 
-As this article is type-setted using [mdoc](https://scalameta.org/mdoc), the code snippets are actually executed 😍 The comments are automatically added by `mdoc` and are the output of the executing the lines above, similarly to [worksheets](https://docs.scala-lang.org/scala3/book/tools-worksheets.html). See [the source](https://github.com/scalacenter/scala-advent-of-code/edit/website/docs/2024/puzzles/day21.md) to learn more!
+Because this article is typeset using [mdoc](https://scalameta.org/mdoc), the code snippets above are actually executed. The comments are automatically added by `mdoc` based on runtime output. See [the source](https://github.com/scalacenter/scala-advent-of-code/edit/website/docs/2024/puzzles/day21.md) for more details!
 
 :::
 
 ### Optimal directions order
 
-Therefore, when computing directions to go from one key to another, we are left with only 2 possibilities: either we go horizontally first, or we go vertically first.
+Therefore, when computing directions between two keys, there are only two possibilities: move horizontally first or move vertically first.
 
-Let's confirm, that this can indeed makes a difference—this was not obvious to me at first. From what I could observe experimentally, this actually only makes a difference for the second next robot. Let's consider the paths `"v>A"` and `">vA"`:
+Interestingly, from experiments, the chosen order only affects the second next robot in most cases. For instance, take `"v>A"` and `">vA"`:
 
 ```scala mdoc
 minPath("v>A")
@@ -103,7 +100,7 @@ minPath(minPath(">vA"))
 minPath(minPath(">vA")).length
 ```
 
-As you can see, the optimal order in this case is to go vertically first, then horizontally. However, there are cases where the optimal order is to go horizontally first, then vertically:
+Here, going vertically first (`v>A`) turns out to be optimal. However, there are also cases where horizontal-first is better:
 
 ```scala mdoc
 minPath("v<A")
@@ -115,7 +112,7 @@ minPath(minPath("<vA"))
 minPath(minPath("<vA")).length
 ```
 
-Let's compute the optimal order for all possible combinations of directions:
+We can systematically check all combinations of up/down with left/right:
 
 ```scala mdoc
 for h <- List('>', '<') do
@@ -124,15 +121,13 @@ for h <- List('>', '<') do
     println(s"$h$v: ${minPath(minPath(s"$h$v")).size}")
 ```
 
-The second key insight is that **the optimal order of directions is always the same for each pair of directions**. Again, you will need to trust me on this one, because I have no idea how to make a formal argument for this.
+Our second key insight is that **the optimal direction order is consistent for each pair of directions**, though there’s no straightforward formal proof presented here. In practice, there’s exactly one case (`v>`) that prefers vertical first. Everywhere else, horizontal-first either works better or doesn’t matter.  
 
-As you can see in the output above, there is one case where the optimal order is to go vertical first, and then horizontal: `v>` is better than `>v`. In all other cases, the order doesn't matter, or is better to go horizontal first. In our code, we will therefore make a special case for this one case.
-
-Note also that there are also cases where we don't have the luxury to choose the order, because one order would cross the gab, which is not allowed:
+There are also situations where one direction sequence would cross the gap—which is not allowed—so the order is effectively forced:
 
 > In particular, if a robot arm is ever aimed at a gap where no button is present on the keypad, even for an instant, the robot will panic unrecoverably. So, don't do that. All robots will initially aim at the keypad's A key, wherever it is.
 
-For example, to go from `0` to `1`, the only possible path is `^<`, because going `<^` would cross the gap (`X`):
+For example, to go from `0` to `1`, the only valid sequence is `^<`, since `<^` would pass through a gap (`X`):
 
 ```
 +---+---+---+
@@ -146,12 +141,9 @@ For example, to go from `0` to `1`, the only possible path is `^<`, because goin
     +---+---+
 ```
 
-
 ## Part 1
 
-Thanks to the two insights above, we can now finally define the `minPath` function that computes the optimal for a given `input: String`, on the numerical keyboard if `isNumerical` is `true`, or on the directtional keyboard otherwise. This function uses the `minPathStep` helper that computes the optimal direction to go from one `Pos` to another.
-
-The two insights above are captured by the `reverse` condition in the `minPathStep`.
+Using these insights, we define the `minPath` function to compute the optimal path for a given `input`, using the numerical keypad if `isNumerical` is `true`, or the directional keypad otherwise. Internally, it relies on `minPathStep`, which implements our two insights using the `reverse` condition.
 
 ```scala mdoc:silent
 def minPathStep(from: Pos, to: Pos, positions: Set[Pos]): String =
@@ -180,11 +172,11 @@ def part1(input: String): Long =
     .sum
 ```
 
-Comments in `part1` show the intermediate results for the example input `029A`.
+The comments in `part1` demonstrate intermediate results for the sample input `029A`.
 
 ## Part 2
 
-The solution above is fine for 3 consecutive robots, but it doesn't scale well for 25 robots. As you can observe, the size of paths grows exponentially with the number of robots, so it would not be practical actually compute the path for 25 robots. Instead, we refactor our code to only compute the _size_ of the path, and not the path itself. This is captures by two new functions `minPathStepCost` and `minPathCost`. Both new `level` and `maxLevel` parameters, where `level` is the current robot level, `0` being the robot which has the decimal keypad and `maxLevel` being the last robot. The new structure also allows to [memoize](https://en.wikipedia.org/wiki/Memoization) the results, which is crucial for performance here, as we call the functions with the same arguments many times.
+Although the above approach works for three consecutive robots, it does not scale to 25 robots because path size grows exponentially. Instead, we refactor the code to compute only the cost of each path, not the path itself. This leads to two new functions, `minPathStepCost` and `minPathCost`, which incorporate a `level` parameter for the current robot (with 0 indicating the numerical keypad) and a `maxLevel` parameter for the last robot. We also use [memoization](https://en.wikipedia.org/wiki/Memoization) to cache results for performance, since these functions are called repeatedly with the same arguments.
 
 ```scala mdoc:silent
 val cache = collection.mutable.Map.empty[(Pos, Pos, Int, Int), Long]
@@ -211,7 +203,7 @@ def part2(input: String): Long =
     .sum
 ```
 
-For my example input puzzle, this solution is able to compute the result in a reasonable time: on my machine, around 55 ms on the JVM, and 3 ms on [Scala Native](https://scala-native.org/en/stable/)!
+On my example puzzle input, this solution runs in about 55 ms on the JVM and 3 ms on [Scala Native](https://scala-native.org/en/stable/).  
 
 ```scala
 @main def part2time: Unit =
@@ -232,12 +224,11 @@ Execution time: 3ms
 
 ## Final code
 
-You can see the complete code on [GitHub](https://github.com/scalacenter/scala-advent-of-code/blob/main/2024/src/day21.scala).
+See the complete code on [GitHub](https://github.com/scalacenter/scala-advent-of-code/blob/main/2024/src/day21.scala).
 
 ## Run it in the browser
 
-You can play with the code above in the browser, thanks to the solution being compiled to [Scala.js](https://www.scala-js.org/).
-
+Thanks to the [Scala.js](https://www.scala-js.org/) build, you can also experiment with this code directly in the browser.
 ### Part 1
 
 <Solver puzzle="day21-part1" year="2024"/>
