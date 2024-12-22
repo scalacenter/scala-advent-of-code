@@ -10,7 +10,7 @@ https://adventofcode.com/2024/day/21
 
 ## Data structures
 
-We begin by defining the data structures used to represent the keypads and positions on the grid. We start with a `Pos` case class for 2D coordinates. Then, we define two keypads—`numericalKeypad` and `directionalKeypad`—as `Map[Char, Pos]`, with their corresponding sets of valid positions as `Set[Pos]`.
+We begin by defining the data structures used to represent the keypads and positions on the grid. We start with a `Pos` case class for 2D coordinates. Then, we define two keypads—`numericKeypad` and `directionalKeypad`—as `Map[Char, Pos]`, with their corresponding sets of valid positions as `Set[Pos]`.
 
 ```scala mdoc:silent
 case class Pos(x: Int, y: Int):
@@ -19,13 +19,13 @@ case class Pos(x: Int, y: Int):
   def projX = Pos(x, 0)
   def projY = Pos(0, y)
 
-val numericalKeypad = Map(
+val numericKeypad = Map(
   '7' -> Pos(0, 0), '8' -> Pos(1, 0), '9' -> Pos(2, 0),
   '4' -> Pos(0, 1), '5' -> Pos(1, 1), '6' -> Pos(2, 1),
   '1' -> Pos(0, 2), '2' -> Pos(1, 2), '3' -> Pos(2, 2),
                     '0' -> Pos(1, 3), 'A' -> Pos(2, 3),
 )
-val numericalKeypadPositions = numericalKeypad.values.toSet
+val numericKeypadPositions = numericKeypad.values.toSet
 
 val directionalKeypad = Map(
                     '^' -> Pos(1, 0), 'A' -> Pos(2, 0),
@@ -38,7 +38,7 @@ val directionalKeypadPositions = directionalKeypad.values.toSet
 
 ### Interleaving directions doesn't help
 
-Consider the numerical keypad. Suppose we want to go from `3` to `4`:
+Consider the numeric keypad. Suppose we want to go from `3` to `4`:
 
 ```
 +---+---+---+
@@ -143,7 +143,7 @@ For example, to go from `0` to `1`, the only valid sequence is `^<`, since `<^` 
 
 ## Part 1
 
-Using these insights, we define the `minPath` function to compute the optimal path for a given `input`, using the numerical keypad if `isNumerical` is `true`, or the directional keypad otherwise. It relies on `minPathStep`.
+Using these insights, we define the `minPath` function to compute the optimal path for a given `input`, using the numeric keypad if `isNumeric` is `true`, or the directional keypad otherwise. It relies on `minPathStep`.
 
 Our two insights are captured by the `reverse` condition inside `minPathStep`: we switch to writing vertical moves first if horizontal-first would cross a gap, or if vertical-first is safe and the horizontal move is to the right.
 
@@ -155,9 +155,9 @@ def minPathStep(from: Pos, to: Pos, positions: Set[Pos]): String =
   val reverse = !positions(from + shift.projX) || (positions(from + shift.projY) && shift.x > 0)
   if reverse then v + h + 'A' else h + v + 'A'
 
-def minPath(input: String, isNumerical: Boolean = false): String =
-  val keypad = if isNumerical then numericalKeypad else directionalKeypad
-  val positions = if isNumerical then numericalKeypadPositions else directionalKeypadPositions
+def minPath(input: String, isNumeric: Boolean = false): String =
+  val keypad = if isNumeric then numericKeypad else directionalKeypad
+  val positions = if isNumeric then numericKeypadPositions else directionalKeypadPositions
   (s"A$input").map(keypad).sliding(2).map(p => minPathStep(p(0), p(1), positions)).mkString
 
 def part1(input: String): Long =
@@ -165,7 +165,7 @@ def part1(input: String): Long =
     .linesIterator
     .filter(_.nonEmpty)
     .map: line => // 029A
-      val path1 = minPath(line, isNumerical = true) // <A^A^^>AvvvA
+      val path1 = minPath(line, isNumeric = true) // <A^A^^>AvvvA
       val path2 = minPath(path1) // v<<A>>^A<A>A<AAv>A^A<vAAA^>A
       val path3 = minPath(path2) // <vA<AA>>^AvAA<^A>Av<<A>>^AvA^Av<<A>>^AA<vA>A^A<A>Av<<A>A^>AAA<Av>A^A
       val num = line.init.toLong // 29
@@ -178,13 +178,13 @@ The comments in `part1` demonstrate intermediate results for the sample input `0
 
 ## Part 2
 
-Although the above approach works for three consecutive robots, it does not scale to 25 robots because path size grows exponentially. Instead, we refactor the code to compute only the cost of each path, not the path itself. This leads to two new functions, `minPathStepCost` and `minPathCost`, which incorporate a `level` parameter for the current robot (with 0 indicating the numerical keypad) and a `maxLevel` parameter for the last robot. We also use [memoization](https://en.wikipedia.org/wiki/Memoization) to cache results for performance, since these functions are called repeatedly with the same arguments.
+Although the above approach works for three consecutive robots, it does not scale to 25 robots because path size grows exponentially. Instead, we refactor the code to compute only the cost of each path, not the path itself. This leads to two new functions, `minPathStepCost` and `minPathCost`, which incorporate a `level` parameter for the current robot (with 0 indicating the numeric keypad) and a `maxLevel` parameter for the last robot. We also use [memoization](https://en.wikipedia.org/wiki/Memoization) to cache results for performance, since these functions are called repeatedly with the same arguments.
 
 ```scala mdoc:silent
 val cache = collection.mutable.Map.empty[(Pos, Pos, Int, Int), Long]
 def minPathStepCost(from: Pos, to: Pos, level: Int, maxLevel: Int): Long =
   cache.getOrElseUpdate((from, to, level, maxLevel), {
-    val positions = if level == 0 then numericalKeypadPositions else directionalKeypadPositions
+    val positions = if level == 0 then numericKeypadPositions else directionalKeypadPositions
     val shift = to - from
     val h = (if shift.x > 0 then ">" else "<") * shift.x.abs
     val v = (if shift.y > 0 then "v" else "^") * shift.y.abs
@@ -194,7 +194,7 @@ def minPathStepCost(from: Pos, to: Pos, level: Int, maxLevel: Int): Long =
   })
 
 def minPathCost(input: String, level: Int, maxLevel: Int): Long =
-  val keypad = if level == 0 then numericalKeypad else directionalKeypad
+  val keypad = if level == 0 then numericKeypad else directionalKeypad
   (s"A$input").map(keypad).sliding(2).map(p => minPathStepCost(p(0), p(1), level, maxLevel)).sum
 
 def part2(input: String): Long =
