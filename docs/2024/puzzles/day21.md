@@ -143,7 +143,9 @@ For example, to go from `0` to `1`, the only valid sequence is `^<`, since `<^` 
 
 ## Part 1
 
-Using these insights, we define the `minPath` function to compute the optimal path for a given `input`, using the numerical keypad if `isNumerical` is `true`, or the directional keypad otherwise. Internally, it relies on `minPathStep`, which implements our two insights using the `reverse` condition.
+Using these insights, we define the `minPath` function to compute the optimal path for a given `input`, using the numerical keypad if `isNumerical` is `true`, or the directional keypad otherwise. It relies on `minPathStep`.
+
+Our two insights are captured by the `reverse` condition inside `minPathStep`: we switch to writing vertical moves first if horizontal-first would cross a gap, or if vertical-first is safe and the horizontal move is to the right.
 
 ```scala mdoc:silent
 def minPathStep(from: Pos, to: Pos, positions: Set[Pos]): String =
