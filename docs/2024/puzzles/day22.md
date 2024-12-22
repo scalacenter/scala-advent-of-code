@@ -231,7 +231,7 @@ but map is specialised at small sizes, so a single-entry map has no more
 overhead than a tuple.
 
 ```scala 3
-def monkeyMap(line: String): Map[(Long, Long, Long, Long), Long] =
+def deltaMap(line: String): Map[(Long, Long, Long, Long), Long] =
   given Semigroup[Long] = leftBiasedSemigroup
   line.toLong.secretsIterator.map(_ % 10).take(2000).sliding(5).foldMap: quintuple =>
     Map(deltaQuartuple(quintuple) -> quintuple(4))
@@ -250,7 +250,7 @@ solution is then just the maximum value in the map.
 ```scala 3
 def part2(input: String): Long =
   val deltaTotals = input.linesIterator.foldMap: line =>
-    monkeyMap(line)
+    deltaMap(line)
   deltaTotals.values.max
 ```
 
@@ -265,10 +265,10 @@ def part1(input: String): Long =
 
 def part2(input: String): Long =
   val deltaTotals = input.linesIterator.foldMap: line =>
-    monkeyMap(line)
+    deltaMap(line)
   deltaTotals.values.max
 
-def monkeyMap(line: String): Map[(Long, Long, Long, Long), Long] =
+def deltaMap(line: String): Map[(Long, Long, Long, Long), Long] =
   given Semigroup[Long] = leftBiasedSemigroup
   line.toLong.secretsIterator.map(_ % 10).take(2000).sliding(5).foldMap: quintuple =>
     Map(deltaQuartuple(quintuple) -> quintuple(4))
