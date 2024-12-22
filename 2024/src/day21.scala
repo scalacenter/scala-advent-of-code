@@ -11,13 +11,13 @@ case class Pos(x: Int, y: Int):
   def projX = Pos(x, 0)
   def projY = Pos(0, y)
 
-val numericalKeypad = Map(
+val numericKeypad = Map(
   '7' -> Pos(0, 0), '8' -> Pos(1, 0), '9' -> Pos(2, 0),
   '4' -> Pos(0, 1), '5' -> Pos(1, 1), '6' -> Pos(2, 1),
   '1' -> Pos(0, 2), '2' -> Pos(1, 2), '3' -> Pos(2, 2),
                     '0' -> Pos(1, 3), 'A' -> Pos(2, 3),
 )
-val numericalKeypadPositions = numericalKeypad.values.toSet
+val numericKeypadPositions = numericKeypad.values.toSet
 
 val directionalKeypad = Map(
                     '^' -> Pos(1, 0), 'A' -> Pos(2, 0),
@@ -37,9 +37,9 @@ def minPathStep(from: Pos, to: Pos, positions: Set[Pos]): String =
   val reverse = !positions(from + shift.projX) || (positions(from + shift.projY) && shift.x > 0)
   if reverse then v + h + 'A' else h + v + 'A'
 
-def minPath(input: String, isNumerical: Boolean = false): String =
-  val keypad = if isNumerical then numericalKeypad else directionalKeypad
-  val positions = if isNumerical then numericalKeypadPositions else directionalKeypadPositions
+def minPath(input: String, isNumeric: Boolean = false): String =
+  val keypad = if isNumeric then numericKeypad else directionalKeypad
+  val positions = if isNumeric then numericKeypadPositions else directionalKeypadPositions
   (s"A$input").map(keypad).sliding(2).map(p => minPathStep(p(0), p(1), positions)).mkString
 
 def part1(input: String): Long =
@@ -47,7 +47,7 @@ def part1(input: String): Long =
     .linesIterator
     .filter(_.nonEmpty)
     .map: line => // 029A
-      val path1 = minPath(line, isNumerical = true) // <A^A^^>AvvvA
+      val path1 = minPath(line, isNumeric = true) // <A^A^^>AvvvA
       val path2 = minPath(path1) // v<<A>>^A<A>A<AAv>A^A<vAAA^>A
       val path3 = minPath(path2) // <vA<AA>>^AvAA<^A>Av<<A>>^AvA^Av<<A>>^AA<vA>A^A<A>Av<<A>A^>AAA<Av>A^A
       val num = line.init.toLong // 29
@@ -66,7 +66,7 @@ def part1(input: String): Long =
 val cache = collection.mutable.Map.empty[(Pos, Pos, Int, Int), Long]
 def minPathStepCost(from: Pos, to: Pos, level: Int, maxLevel: Int): Long =
   cache.getOrElseUpdate((from, to, level, maxLevel), {
-    val positions = if level == 0 then numericalKeypadPositions else directionalKeypadPositions
+    val positions = if level == 0 then numericKeypadPositions else directionalKeypadPositions
     val shift = to - from
     val h = (if shift.x > 0 then ">" else "<") * shift.x.abs
     val v = (if shift.y > 0 then "v" else "^") * shift.y.abs
@@ -76,7 +76,7 @@ def minPathStepCost(from: Pos, to: Pos, level: Int, maxLevel: Int): Long =
   })
 
 def minPathCost(input: String, level: Int, maxLevel: Int): Long =
-  val keypad = if level == 0 then numericalKeypad else directionalKeypad
+  val keypad = if level == 0 then numericKeypad else directionalKeypad
   (s"A$input").map(keypad).sliding(2).map(p => minPathStepCost(p(0), p(1), level, maxLevel)).sum
 
 def part2(input: String): Long =
