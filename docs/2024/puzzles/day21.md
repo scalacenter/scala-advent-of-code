@@ -80,7 +80,7 @@ As you can see, interleaving doesn't help. In fact, in this example, it makes th
 
 :::info
 
-Because this article is typeset using [mdoc](https://scalameta.org/mdoc), the code snippets above are actually executed. The comments are automatically added by `mdoc` based on runtime output. See [the source](https://github.com/scalacenter/scala-advent-of-code/edit/website/docs/2024/puzzles/day21.md) for more details!
+Because this article is typeset using [mdoc](https://scalameta.org/mdoc), the code snippets above are actually executed. The comments are automatically added by mdoc based on runtime output. See [the source](https://github.com/scalacenter/scala-advent-of-code/edit/website/docs/2024/puzzles/day21.md) for more details!
 
 :::
 
