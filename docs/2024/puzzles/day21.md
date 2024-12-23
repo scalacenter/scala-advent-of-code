@@ -214,16 +214,16 @@ On my example puzzle input, the solution completes in about 55 ms on the JVM and
   val start = System.currentTimeMillis()
   println(s"The solution is ${part2(loadInput())}")
   val end = System.currentTimeMillis()
-  println(s"Execution time: ${end - start}ms")
+  println(s"Execution time: ${end - start} ms")
 ```
 
 ```
 ➜  ~/scala-advent-of-code/solutions/2024 git:(4fc4c4251) ✗ scala . -M day21.part2
 The solution is 263492840501566
-Execution time: 55ms
+Execution time: 55 ms
 ➜  ~/scala-advent-of-code/solutions/2024 git:(4fc4c4251) ✗ scala --native . -M day21.part2
 The solution is 263492840501566
-Execution time: 3ms
+Execution time: 3 ms
 ```
 
 ### JMH benchmark
@@ -242,8 +242,12 @@ import java.util.concurrent.TimeUnit
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 @Warmup(iterations = 50)
 class Day21Bench:
-  @Benchmark def bench() = part2(loadInput())
-  @Benchmark def benchComputeOnly() = part2(Day21Bench.input)
+  @Benchmark def bench() =
+    cache.clear()
+    part2(loadInput())
+  @Benchmark def benchComputeOnly() =
+    cache.clear()
+    part2(Day21Bench.input)
 
 object Day21Bench:
   val input = day21.loadInput()
@@ -255,52 +259,28 @@ You can run this benchmark directly with Scala CLI’s experimental [`--power`](
 
 :::
 
-After 50 warm-up iterations, the runtime is about 2 ms including input loading, or 1 ms when only computing the result:
+After 50 warm-up iterations, the runtime is about 1.5 ms including input loading, or 1.3 ms when only computing the result:
 
 ```
 Benchmark                    Mode  Cnt  Score   Error  Units
-Day21Bench.bench               ss    5  0.205 ± 0.079  ms/op
-Day21Bench.benchComputeOnly    ss    5  0.116 ± 0.175  ms/op
+Day21Bench.bench               ss    5  1.548 ± 0.470  ms/op
+Day21Bench.benchComputeOnly    ss    5  1.268 ± 0.596  ms/op
 ```
 
-After 500 warm-up iterations, it drops to 1 ms and 0.03 ms, respectively:
-
-```
-Benchmark                    Mode  Cnt  Score   Error  Units
-Day21Bench.bench               ss    5  0.104 ± 0.082  ms/op
-Day21Bench.benchComputeOnly    ss    5  0.029 ± 0.018  ms/op
-```
-
-And with 5000 warm-up iterations, we see 0.05 ms and 0.006 ms:
+After 500 warm-up iterations, the timings drop to 0.3 ms and 0.2 ms, respectively:
 
 ```
 Benchmark                    Mode  Cnt  Score   Error  Units
-Day21Bench.bench               ss    5  0.052 ± 0.039  ms/op
-Day21Bench.benchComputeOnly    ss    5  0.006 ± 0.007  ms/op
+Day21Bench.bench               ss    5  0.300 ± 0.052  ms/op
+Day21Bench.benchComputeOnly    ss    5  0.238 ± 0.006  ms/op
 ```
 
-When using the default JMH warm-up (5 × 10s, or roughly 2.5 million iterations here), times fall to about 0.02 ms and 0.003 ms, respectively. In the example below, we change the unit to microseconds:
-
-```scala
-package day21
-
-import org.openjdk.jmh.annotations.{Benchmark,BenchmarkMode,Mode,OutputTimeUnit,Warmup}
-import java.util.concurrent.TimeUnit
-
-@OutputTimeUnit(TimeUnit.MICROSECONDS)
-@BenchmarkMode(Array(Mode.AverageTime))
-class Day21Bench:
-  @Benchmark def bench() = part2(loadInput())
-  @Benchmark def benchComputeOnly() = part2(Day21Bench.input)
-
-object Day21Bench:
-  val input = day21.loadInput()
-```
+And with 5000 warm-up iterations, we see similar results:
 
 ```
-Benchmark                    Mode  Cnt   Score   Error  Units
-Day21Bench.bench             avgt   25  22.242 ± 0.573  us/op
-Day21Bench.benchComputeOnly  avgt   25   3.374 ± 0.051  us/op
+Benchmark                    Mode  Cnt  Score   Error  Units
+Day21Bench.bench               ss    5  0.273 ± 0.028  ms/op
+Day21Bench.benchComputeOnly    ss    5  0.239 ± 0.061  ms/op
 ```
 
 These results come from running five forks of five iterations each on a MacBook Pro (2019) with a 2.6 GHz 6-Core Intel Core i7 processor.
