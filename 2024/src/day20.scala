@@ -18,22 +18,22 @@ extension (x: Int) inline def ±(y: Int) = x - y to x + y
 extension (x: Inclusive)
   inline def &(y: Inclusive) = (x.start max y.start) to (x.end min y.end)
 
-opaque type Pos = (Int, Int)
+opaque type Pos = Int
 
 object Pos:
-  val up: Pos = (0, -1)
-  val down: Pos = (0, 1)
-  val left: Pos = (-1, 0)
-  val right: Pos = (1, 0)
-  val zero: Pos = (0, 0)
-  def apply(x: Int, y: Int): Pos = (x, y)
+  val up = Pos(0, -1)
+  val down = Pos(0, 1)
+  val left = Pos(-1, 0)
+  val right = Pos(1, 0)
+  val zero = Pos(0, 0)
+  inline def apply(x: Int, y: Int): Pos = y << 16 | x
 
   extension (p: Pos)
-    inline def x = p._1
-    inline def y = p._2
+    inline def x = p & 0xffff
+    inline def y = p >> 16
     inline def neighbors: List[Pos] =
       List(p + up, p + right, p + down, p + left)
-    inline def +(q: Pos): Pos = (p.x + q.x, p.y + q.y)
+    inline def +(q: Pos): Pos = Pos(p.x + q.x, p.y + q.y)
     inline infix def taxiDist(q: Pos) = (p.x - q.x).abs + (p.y - q.y).abs
 
 case class Rect(x: Inclusive, y: Inclusive):
