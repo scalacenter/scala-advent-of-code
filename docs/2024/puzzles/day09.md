@@ -321,5 +321,6 @@ def part2(input: String): Long =
 - [Solution](https://github.com/jportway/advent2024/blob/master/src/main/scala/Day9.scala) by [Joshua Portway](https://github.com/jportway)
 - [Solution](https://github.com/rolandtritsch/scala3-aoc-2024/blob/trunk/src/aoc2024/Day09.scala) by [Roland Tritsch](https://github.com/rolandtritsch)
 - [Solution](https://github.com/TheDrawingCoder-Gamer/adventofcode2024/blob/e163baeaedcd90732b5e19f578a2faadeb1ef872/src/main/scala/day9.sc) by [Bulby](https://github.com/TheDrawingCoder-Gamer)
+- [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2024/Day09.scala) by [Philippus Baalman](https://github.com/philippus)
 
 Share your solution to the Scala community by editing this page.
