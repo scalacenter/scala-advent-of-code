@@ -145,7 +145,7 @@ end part2
 - [Solution](https://github.com/rolandtritsch/scala3-aoc-2024/blob/trunk/src/aoc2024/Day08.scala) by [Roland Tritsch](https://github.com/rolandtritsch)
 - [Solution](https://github.com/merlinorg/aoc2024/blob/main/src/main/scala/Day8.scala) by [merlinorg](https://github.com/merlinorg)
 - [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2024/Day08.scala) by [Philippus Baalman](https://github.com/philippus)
-- [Solution](https://github.com/TheDrawingCoder-Gamer/adventofcode2024/blob/master/src/main/scala/day8.sc) by [Bulby](https://github.com/TheDrawingCoder-Gamer)
+- [Solution](https://github.com/TheDrawingCoder-Gamer/adventofcode2024/blob/e163baeaedcd90732b5e19f578a2faadeb1ef872/src/main/scala/day8.sc) by [Bulby](https://github.com/TheDrawingCoder-Gamer)
 - [Solution](https://github.com/itsjoeoui/aoc2024/blob/main/src/day08.scala) by [itsjoeoui](https://github.com/itsjoeoui)
 
 Share your solution to the Scala community by editing this page.

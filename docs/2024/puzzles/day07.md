@@ -106,7 +106,7 @@ end part2
 - [Solution](https://github.com/nichobi/advent-of-code-2024/blob/main/07/solution.scala) by [nichobi](https://github.com/nichobi)
 - [Solution](https://github.com/profunctor-optics/advent-2024/blob/main/src/main/scala/advent2024/Day07.scala) by [Georgi Krastev](https://github.com/joroKr21)
 - [Solution](https://github.com/jportway/advent2024/blob/master/src/main/scala/Day7.scala) by [Joshua Portway](https://github.com/jportway)
-- [Solution](https://github.com/TheDrawingCoder-Gamer/adventofcode2024/blob/master/src/main/scala/day7.sc) by [Bulby](https://github.com/TheDrawingCoder-Gamer)
+- [Solution](https://github.com/TheDrawingCoder-Gamer/adventofcode2024/blob/e163baeaedcd90732b5e19f578a2faadeb1ef872/src/main/scala/day7.sc) by [Bulby](https://github.com/TheDrawingCoder-Gamer)
 - [Solution](https://github.com/itsjoeoui/aoc2024/blob/main/src/day07.scala) by [itsjoeoui](https://github.com/itsjoeoui)
 
 Share your solution to the Scala community by editing this page.
