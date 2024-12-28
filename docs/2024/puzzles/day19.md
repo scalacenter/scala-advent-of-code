@@ -8,7 +8,7 @@ by [Paweł Cembaluk](https://github.com/AvaPL)
 
 https://adventofcode.com/2024/day/19
 
-## Solution Summary
+## Solution summary
 
 The puzzle involves arranging towels to match specified patterns. Each towel has a predefined stripe sequence, and the
 task is to determine:
@@ -21,7 +21,7 @@ efficient counting in Part 2.
 
 ## Part 1
 
-### Parsing the Input
+### Parsing the input
 
 The input consists of two sections:
 
