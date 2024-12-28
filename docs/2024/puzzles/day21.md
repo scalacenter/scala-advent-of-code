@@ -303,6 +303,7 @@ Thanks to the [Scala.js](https://www.scala-js.org/) build, you can also experime
 ## Solutions from the community
 
 - [Solution](https://github.com/merlinorg/aoc2024/blob/main/src/main/scala/Day21.scala) by [merlinorg](https://github.com/merlinorg)
+- [Solution](https://github.com/AvaPL/Advent-of-Code-2024/tree/main/src/main/scala/day21) by [Paweł Cembaluk](https://github.com/AvaPL)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)

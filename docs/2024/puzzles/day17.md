@@ -278,6 +278,7 @@ object Day17:
 - [Solution](https://github.com/jportway/advent2024/blob/master/src/main/scala/Day17.scala) by [Joshua Portway](https://github.com/jportway)
 - [Solution](https://github.com/nikiforo/aoc24/blob/main/src/main/scala/io/github/nikiforo/aoc24/D17T2.scala) by [Artem Nikiforov](https://github.com/nikiforo)
 - [Writeup](https://thedrawingcoder-gamer.github.io/aoc-writeups/2024/day17.html) by [Bulby](https://github.com/TheDrawingCoder-Gamer)
+- [Solution](https://github.com/AvaPL/Advent-of-Code-2024/tree/main/src/main/scala/day17) by [Paweł Cembaluk](https://github.com/AvaPL)
   
 
 Share your solution to the Scala community by editing this page.
