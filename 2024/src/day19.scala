@@ -24,8 +24,7 @@ def parse(input: String): (List[Towel], List[Pattern]) =
 
 def part1(input: String): Int =
   val (towels, patterns) = parse(input)
-  val possiblePatterns = patterns.filter(isPossible(towels))
-  possiblePatterns.size
+  patterns.count(isPossible(towels))
 
 def isPossible(towels: List[Towel])(pattern: Pattern): Boolean =
   val regex = towels.mkString("^(", "|", ")*$").r
