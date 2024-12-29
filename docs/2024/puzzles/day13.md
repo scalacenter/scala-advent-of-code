@@ -227,6 +227,7 @@ def part2(input: String): Long =
 - [Solution](https://github.com/jnclt/adventofcode2024/blob/main/day13/claw-contraption.sc) by [jnclt](https://github.com/jnclt)
 - [Solution](https://github.com/TheDrawingCoder-Gamer/adventofcode2024/blob/e163baeaedcd90732b5e19f578a2faadeb1ef872/src/main/scala/Day13.scala) by [Bulby](https://github.com/TheDrawingCoder-Gamer)
 - [Solution](https://github.com/jportway/advent2024/blob/master/src/main/scala/Day13.scala) by [Joshua Portway](https://github.com/jportway)
+- [Solution](https://github.com/AvaPL/Advent-of-Code-2024/tree/main/src/main/scala/day13) by [Paweł Cembaluk](https://github.com/AvaPL)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)

@@ -405,6 +405,7 @@ object Day15:
 - [Writeup](https://thedrawingcoder-gamer.github.io/aoc-writeups/2024/day15.html) by [Bulby](https://github.com/TheDrawingCoder-Gamer)
 - [Solution](https://github.com/jportway/advent2024/blob/master/src/main/scala/Day15.scala) by [Joshua Portway](https://github.com/jportway)
 - [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2024/Day15.scala) by [Philippus Baalman](https://github.com/philippus)
+- [Solution](https://github.com/AvaPL/Advent-of-Code-2024/tree/main/src/main/scala/day15) by [Paweł Cembaluk](https://github.com/AvaPL)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)

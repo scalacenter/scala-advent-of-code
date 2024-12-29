@@ -333,6 +333,7 @@ extension [A](self: Iterator[A])
 - [Solution](https://github.com/merlinorg/aoc2024/blob/main/src/main/scala/Day22.scala) by [merlinorg](https://github.com/merlinorg)
 - [Solution](https://github.com/aamiguet/advent-2024/blob/main/src/main/scala/ch/aamiguet/advent2024/Day22.scala) by [Antoine Amiguet](https://github.com/aamiguet)
 - [Writeup](https://thedrawingcoder-gamer.github.io/aoc-writeups/2024/day22.html) by [Bulby](https://github.com/TheDrawingCoder-Gamer)
+- [Solution](https://github.com/AvaPL/Advent-of-Code-2024/tree/main/src/main/scala/day22) by [Paweł Cembaluk](https://github.com/AvaPL)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)
