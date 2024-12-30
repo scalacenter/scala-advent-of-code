@@ -319,7 +319,7 @@ def part2(input: String): Long =
 - [Solution](https://github.com/jnclt/adventofcode2024/blob/main/day09/disk-fragmenter.sc) by [jnclt](https://github.com/jnclt)
 - [Solution](https://github.com/rmarbeck/advent2024/blob/main/day9/src/main/scala/Solution.scala) by [Raphaël Marbeck](https://github.com/rmarbeck)
 - [Solution](https://github.com/jportway/advent2024/blob/master/src/main/scala/Day9.scala) by [Joshua Portway](https://github.com/jportway)
-- [Solution](https://github.com/rolandtritsch/scala3-aoc-2024/blob/trunk/src/aoc2024/Day09.scala) by [Roland Tritsch](https://github.com/rolandtritsch)
+- [Solution](https://github.com/rolandtritsch/scala3-aoc-2024/blob/trunk/main/src/aoc2024/Day09.scala) by [Roland Tritsch](https://github.com/rolandtritsch)
 - [Solution](https://github.com/TheDrawingCoder-Gamer/adventofcode2024/blob/e163baeaedcd90732b5e19f578a2faadeb1ef872/src/main/scala/day9.sc) by [Bulby](https://github.com/TheDrawingCoder-Gamer)
 - [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2024/Day09.scala) by [Philippus Baalman](https://github.com/philippus)
 - [Solution](https://github.com/AvaPL/Advent-of-Code-2024/tree/main/src/main/scala/day9) by [Paweł Cembaluk](https://github.com/AvaPL)
