@@ -142,7 +142,7 @@ end part2
 - [Solution](https://github.com/makingthematrix/AdventOfCode2024/blob/main/src/main/scala/io/github/makingthematrix/AdventofCode2024/DayEight.scala) by [Maciej Gorywoda](https://github.com/makingthematrix)
 - [Solution](https://github.com/nichobi/advent-of-code-2024/blob/main/08/solution.scala) by [nichobi](https://github.com/nichobi)
 - [Solution](https://github.com/jnclt/adventofcode2024/blob/main/day08/resonant-collinearity.sc) by [jnclt](https://github.com/jnclt)
-- [Solution](https://github.com/rolandtritsch/scala3-aoc-2024/blob/trunk/src/aoc2024/Day08.scala) by [Roland Tritsch](https://github.com/rolandtritsch)
+- [Solution](https://github.com/rolandtritsch/scala3-aoc-2024/blob/trunk/main/src/aoc2024/Day08.scala) by [Roland Tritsch](https://github.com/rolandtritsch)
 - [Solution](https://github.com/merlinorg/aoc2024/blob/main/src/main/scala/Day8.scala) by [merlinorg](https://github.com/merlinorg)
 - [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2024/Day08.scala) by [Philippus Baalman](https://github.com/philippus)
 - [Solution](https://github.com/TheDrawingCoder-Gamer/adventofcode2024/blob/e163baeaedcd90732b5e19f578a2faadeb1ef872/src/main/scala/day8.sc) by [Bulby](https://github.com/TheDrawingCoder-Gamer)
