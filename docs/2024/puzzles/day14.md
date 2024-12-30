@@ -116,7 +116,7 @@ This is arbitrary and only really possible by print debugging your code, but her
 ```scala
 extension (robots: List[Robot])
   def findEasterEgg: Int =
-    (0 to 10403).find: i =>
+    (0 to (size.x * size.y)).find: i =>
       val newRobots = robots.stepN(i)
       newRobots.groupBy(_.pos.y).count(_._2.length >= 10) > 15 && newRobots.groupBy(_.pos.x).count(_._2.length >= 15) >= 3
     .getOrElse(-1)
