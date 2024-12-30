@@ -209,7 +209,7 @@ def part2(input: String) =
 - [Solution](https://github.com/itsjoeoui/aoc2024/blob/main/src/day05.scala) by [itsjoeoui](https://github.com/itsjoeoui)
 - [Solution](https://github.com/aamiguet/advent-2024/blob/main/src/main/scala/ch/aamiguet/advent2024/Day5.scala) by [Antoine Amiguet](https://github.com/aamiguet/)
 - [Solution](https://github.com/jnclt/adventofcode2024/blob/main/day05/print-queue.sc) by [jnclt](https://github.com/jnclt)
-- [Solution](https://github.com/rolandtritsch/scala3-aoc-2024/blob/trunk/src/aoc2024/Day05.scala) by [Roland Tritsch](https://github.com/rolandtritsch)
+- [Solution](https://github.com/rolandtritsch/scala3-aoc-2024/blob/trunk/main/src/aoc2024/Day05.scala) by [Roland Tritsch](https://github.com/rolandtritsch)
 - [Solution](https://github.com/Jannyboy11/AdventOfCode2024/blob/master/src/main/scala/day05/Day05.scala) of [Jan Boerman](https://x.com/JanBoerman95)
 - [Solution](https://github.com/profunctor-optics/advent-2024/blob/main/src/main/scala/advent2024/Day05.scala) by [Georgi Krastev](https://github.com/joroKr21)
 - [Solution](https://github.com/jportway/advent2024/blob/master/src/main/scala/Day5.scala) by [Joshua Portway](https://github.com/jportway)
