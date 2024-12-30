@@ -296,6 +296,16 @@ def part1(input: String): Int = parse(input).stepN(100).safety
 def part2(input: String): Int = parse(input).findEasterEgg
 ```
 
+## Run it in the browser
+
+### Part 1
+
+<Solver puzzle="day14-part1" year="2024"/>
+
+### Part 2
+
+<Solver puzzle="day14-part2" year="2024"/>
+
 
 ## Solutions from the community
 
