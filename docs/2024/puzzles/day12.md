@@ -1,7 +1,7 @@
 import Solver from "../../../../../website/src/components/Solver.js"
 
 # Day 12: Garden Groups
-by [@TheDrawingCoder-Gamer](https://github.com/TheDrawingCoder-Gamer)
+by [Bulby](https://github.com/TheDrawingCoder-Gamer)
 
 
 ## Puzzle description
