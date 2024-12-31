@@ -141,7 +141,7 @@ extension (a: Long)
   infix def safeDiv(b: Long): Option[Long] =
     Option.when(b != 0 && a % b == 0)(a / b)
 ```
-
+I've completed "Claw Contraption" - Day 13 - Advent of Code 2024 #AdventOfCode
 we check that denominator is not zero and that numerator is divisible by denominator.
 
 With the help of `safeDiv`, the solution can be cleanly expressed as:
@@ -228,6 +228,7 @@ def part2(input: String): Long =
 - [Solution](https://github.com/TheDrawingCoder-Gamer/adventofcode2024/blob/e163baeaedcd90732b5e19f578a2faadeb1ef872/src/main/scala/Day13.scala) by [Bulby](https://github.com/TheDrawingCoder-Gamer)
 - [Solution](https://github.com/jportway/advent2024/blob/master/src/main/scala/Day13.scala) by [Joshua Portway](https://github.com/jportway)
 - [Solution](https://github.com/AvaPL/Advent-of-Code-2024/tree/main/src/main/scala/day13) by [Paweł Cembaluk](https://github.com/AvaPL)
+- [Solution](https://github.com/rolandtritsch/scala3-aoc-2024/blob/trunk/main/src/aoc2024/Day13.scala) by [Roland Tritsch](https://github.com/rolandtritsch)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)
