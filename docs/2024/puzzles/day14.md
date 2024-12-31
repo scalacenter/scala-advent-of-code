@@ -125,7 +125,7 @@ extension (robots: List[Robot])
     .getOrElse(-1)
 ```
 
-We don't even need to check if the lines are inline - our test is strict enough with counting lines that it works regardless. Results may vary
+We don't even need to check if the lines are contiguous - our test is strict enough with counting lines that it works regardless. Results may vary
 on your input. Here I test if there are more than 15 horizontal lines with a length of 10 or more, and that there are 3 or more vertical lines
 with length 15 or greater.
 
@@ -245,7 +245,7 @@ My Christmas tree looks like this:
 ```
 
 With this information of how this looks we could make a smarter `findEasterEgg` with the knowledge of the border. The border
-makes it much easier as we only have to check for 2 inline lines in each dimension.
+makes it much easier as we only have to check for 2 contiguous lines in each dimension.
 
 ## Final Code
 
