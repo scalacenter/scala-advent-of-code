@@ -100,7 +100,10 @@ def part1(input: String): Int = parse(input).stepN(100).safety
 ## Part 2
 
 Part 2 wants us to find an image which is really hard. Thankfully, there is one thing I know about Christmas trees: They have
-a lot of lines in a row and are an organized shape.
+a lot of lines in a row and are an organized shape. 
+
+We are assuming here that the tree is solid. This assumption is fine in this case, the space to search is finite
+so the worst we can get is a "not found" answer, but in other problems we may want to be more sure about our input.
 
 The christmas trees I know are really tall, but only in a few columns. So let's test the vertical columns for a few lines that are really long.
 They also have a lot of shorter horizontal lines, so let's also check the rows for a lot of shorter lines.
