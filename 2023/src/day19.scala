@@ -174,8 +174,6 @@ case class AbstractPart(x: Range, m: Range, a: Range, s: Range):
 
 @main def part2: Unit = println(part2(personalPuzzle, 4001))
 
-extension [T](part: (T, T)) private inline def swap: (T, T) = (part._2, part._1)
-
 def part2(input: String, until: Long): Long =
   val Array(workflowLines, _) = input.split("\n\n")
   val workflow = Workflow.parse(workflowLines.trim())
