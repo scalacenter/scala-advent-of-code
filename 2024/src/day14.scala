@@ -23,7 +23,7 @@ extension (self: Int)
     else
       m
 
-case class Robot(pos: Vec2i, velocity: Vec2i)
+case class Robot(pos: Vec2i, velocity: Vec2i):
   def stepN(n: Int = 1): Robot =
     copy(pos = pos.copy(x = (pos.x + n * velocity.x) rem size.x, y = (pos.y + n * velocity.y) rem size.y))
 
