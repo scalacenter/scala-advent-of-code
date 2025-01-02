@@ -141,6 +141,7 @@ extension (a: Long)
   infix def safeDiv(b: Long): Option[Long] =
     Option.when(b != 0 && a % b == 0)(a / b)
 ```
+
 we check that denominator is not zero and that numerator is divisible by denominator.
 
 With the help of `safeDiv`, the solution can be cleanly expressed as:
