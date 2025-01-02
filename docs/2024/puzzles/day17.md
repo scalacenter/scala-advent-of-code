@@ -48,7 +48,7 @@ object Day17:
 ```
 
 Now, let’s implement the `step` method. This is also a relatively straightforward translation from the puzzle description:
-* The only case in which the machine halts is if the instruction pointer goes out of bounds, so we start with `program.lift(ip)` (opcode) and `program.lift(ip + 1)` (operand) to wrap the rest of the logic (see my [Day 15 write-up](/scala-advent-of-code/2024/puzzles/day15) if you want a little explanation about `lift`).
+* The only case in which the machine halts is if the instruction pointer goes out of bounds, so we start with `program.lift(ip)` (opcode) and `program.lift(ip + 1)` (operand) to wrap the rest of the logic (see my [Day 15 write-up](day15) if you want a little explanation about `lift`).
 * We pattern match on the opcode to implement the instructions, observing that for most instructions, the program doesn’t produce any output, and increments `ip` by 2. Also, `combo` is an obvious helper method to write.
 * The `adv`, `bdv`, and `cdv` instructions are specified in a kind of roundabout way in the puzzle: they’re just computing a right shift! It took me embarassingly long to realize this.
 
