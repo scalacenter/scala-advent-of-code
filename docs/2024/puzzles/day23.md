@@ -30,7 +30,7 @@ def parse(input: String): Connection = input
 ```
 
 - `1)`: both `a -> b` and `b -> a` are added to the graph so that the graph is undirected.
-- `2)`: a fancier way to write `groupBy(_._1).mapValues(_.map(_._2))`.
+- `2)`: a fancier way to write `groupBy(_._1).mapValues(_.map(_._2))`, [check the docs](https://www.scala-lang.org/api/3.x/scala/collection/IterableOps.html#groupMap-fffff03a) for details.
 
 ## Part 1
 
