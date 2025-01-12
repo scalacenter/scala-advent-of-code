@@ -17,7 +17,7 @@ The puzzle involves finding triangles and [maximal cliques](https://en.wikipedia
 
 ## Parsing the input
 
-Both part uses undirected graph, represented as:
+Both parts use undirected graphs, represented as:
 
 ```scala
 type Connection = Map[String, Set[String]]
@@ -34,7 +34,7 @@ def parse(input: String): Connection = input
 
 ## Part 1
 
-The goal is to find triangles that have a computer which name starts with `t`.
+The goal is to find triangles that have a computer whose name starts with `t`.
 This could be checked by simply checking whether all three vertices are connected to each other, like:
 
 ```scala
@@ -80,7 +80,7 @@ def part1(input: String) =
 
 ## Part 2
 
-This part is more complex, but this there's a generalization of the problem: [finding the size of the largest clique in the graph](https://en.wikipedia.org/wiki/Clique_(graph_theory)). We'll skip the explanation of the algorithm, but here's the code:
+This part is more complex, but there's a generalization of the problem: [finding the size of the largest clique in the graph](https://en.wikipedia.org/wiki/Clique_(graph_theory)). We'll skip the explanation of the algorithm, but here's the code:
 
 ```scala
 def findMaximumCliqueBronKerbosch(connections: Connection): Set[String] =
