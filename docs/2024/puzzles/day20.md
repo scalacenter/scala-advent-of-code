@@ -264,7 +264,7 @@ def part2(input: String) =
 - [Solution](https://github.com/nikiforo/aoc24/blob/main/src/main/scala/io/github/nikiforo/aoc24/D20T2.scala) by [Artem Nikiforov](https://github.com/nikiforo)
 - [Solution](https://github.com/aamiguet/advent-2024/blob/main/src/main/scala/ch/aamiguet/advent2024/Day20.scala) by [Antoine Amiguet](https://github.com/aamiguet)
 - [Solution](https://github.com/merlinorg/aoc2024/blob/main/src/main/scala/Day20.scala) by [merlinorg](https://github.com/merlinorg)
-- [Solution](https://github.com/scarf005/aoc-scala/blob/main/2024/day13.scala) by [scarf](https://github.com/scarf005)
+- [Solution](https://github.com/scarf005/aoc-scala/blob/main/2024/day20.scala) by [scarf](https://github.com/scarf005)
 - [Writeup](https://thedrawingcoder-gamer.github.io/aoc-writeups/2024/day20.html) by [Bulby](https://github.com/TheDrawingCoder-Gamer)
 - [Solution](https://github.com/AvaPL/Advent-of-Code-2024/tree/main/src/main/scala/day20) by [Paweł Cembaluk](https://github.com/AvaPL)
 
