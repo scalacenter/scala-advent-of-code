@@ -75,7 +75,7 @@ def part1(input: String): Long =
 
 ### Part 2
 
-However, we need to completely ditch our day 1 solution, because now our targets are suddenly farther by 10 _trillion_. We won't be able to run it till the heat death of the universe! (probably)
+However, we need to completely ditch our part 1 solution, because now our targets are suddenly farther by 10 _trillion_. We won't be able to run it till the heat death of the universe! (probably)
 
 We need another approach. Let's look at the condition carefully...
 
