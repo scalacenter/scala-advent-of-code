@@ -38,6 +38,11 @@ const sidebars = {
   adventOfCodeSidebar: [
     'introduction',
     'setup',
+/* TODO uncomment after day 1 is published
+    {
+      "2025 Puzzles": buildSidebar('2025/puzzles'),
+    },
+*/
     {
       "2024 Puzzles": buildSidebar('2024/puzzles'),
     },

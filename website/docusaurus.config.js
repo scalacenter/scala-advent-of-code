@@ -98,6 +98,12 @@ const config = {
           {
             type: 'dropdown',
             position: 'left',
+            label: 'Puzzles 2025',
+            items: buildDropdown('2025/puzzles')
+          },
+          {
+            type: 'dropdown',
+            position: 'left',
             label: 'Puzzles 2024',
             items: buildDropdown('2024/puzzles')
           },
@@ -140,6 +146,14 @@ const config = {
                 to: '/setup',
               },
               {
+                label: 'Puzzles 2025',
+                to: '2025/puzzles/day01',
+              },
+              {
+                label: 'Puzzles 2024',
+                to: '2024/puzzles/day01',
+              },
+              {
                 label: 'Puzzles 2023',
                 to: '2023/puzzles/day01',
               },
@@ -161,8 +175,12 @@ const config = {
                 href: 'https://discord.com/channels/632150470000902164/913451015246868530'
               },
               {
-                label: 'Twitter',
-                href: 'https://twitter.com/scala_lang',
+                label: 'Bluesky',
+                href: 'https://bsky.app/profile/scala-lang.org',
+              },
+              {
+                label: 'Mastodon',
+                href: 'https://fosstodon.org/@scala_lang',
               },
             ],
           },
