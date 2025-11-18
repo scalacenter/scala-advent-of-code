@@ -1,7 +1,7 @@
-//> using scala "3.7.4"
-//> using lib "com.lihaoyi::sourcecode:0.4.4"
-//> using lib "com.lihaoyi::os-lib:0.11.6"
-//> using lib "org.jsoup:jsoup:1.15.4"
+//> using scala 3.7.4
+//> using dep com.lihaoyi::sourcecode:0.4.4
+//> using dep com.lihaoyi::os-lib:0.11.6
+//> using dep org.jsoup:jsoup:1.15.4
 
 import java.time.LocalDate
 import java.time.Month
