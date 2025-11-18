@@ -19,11 +19,11 @@ jobs:
           ref: website
           submodules: true
 
-      - uses: coursier/cache-action@v6
+      - uses: coursier/cache-action@v7
 
-      - uses: VirtusLab/scala-cli-setup@v0.1.18
+      - uses: VirtusLab/scala-cli-setup@v1.10.1
         with:
-          jvm: "temurin:17"
+          jvm: "temurin:21"
 
       - name: Generate todays article
         run: scala-cli run .github/workflows/scripts/addDay.scala
