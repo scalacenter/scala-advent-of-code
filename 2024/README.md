@@ -1,4 +1,4 @@
-# Scala Advent of Code 2025
+# Scala Advent of Code 2024
 
 Solutions in Scala for the annual [Advent of Code (adventofcode.com)](https://adventofcode.com/) challenge.
 
@@ -9,7 +9,6 @@ See earlier editions:
 - [2021](/2021/README.md)
 - [2022](/2022/README.md)
 - [2023](/2023/README.md)
-- [2024](/2024/README.md)
 
 ## Website
 
@@ -20,7 +19,7 @@ The [Scala Advent of Code](https://scalacenter.github.io/scala-advent-of-code/) 
 
 ## Setup
 
-We use Visual Studio Code with Metals to write Scala code, and Scala-CLI to compile and run it. (Scala-CLI has been the default `scala` command since Scala 3.5.)
+We use Visual Studio Code with Metals to write Scala code, and scala-cli to compile and run it.
 
 You can follow these [steps](https://scalacenter.github.io/scala-advent-of-code/setup) to set up your environement.
 
@@ -29,29 +28,29 @@ You can follow these [steps](https://scalacenter.github.io/scala-advent-of-code/
 After you clone the repository, open a terminal and run:
 ```
 $ cd scala-advent-of-code
-$ scala setup-ide 2025
-$ mkdir 2025/input
-$ code 2025
+$ scala-cli setup-ide 2024
+$ mkdir 2024/input
+$ code 2024
 ```
 
-`code 2025` will open Visual Studio Code and start Metals. If not you may have to go to the Metals pane and click
+`code 2024` will open Visual Studio Code and start Metals. If not you may have to go to the Metals pane and click
 the button labelled "Start Metals".
 
-When you navigate to a file, e.g. `2025/src/day01.scala`, Metals should index the project, and then display code lenses
+When you navigate to a file, e.g. `2024/src/day01.scala` metals should index the project, and then display code lenses
 above each of the main methods `part1` and `part2`, as shown in this image:
-![](img/code-lenses.png)
+![](../img/code-lenses.png)
 
-To run a solution, first copy your input to the folder `2025/input`.
+To run a solution, first copy your input to the folder `2024/input`.
 Then click `run` in VS Code which will run the code and display the results of the program. Or `debug`,
 which will let you pause on breakpoints, and execute expressions in the debug console.
 
 ### How to run a solution with command line
 
-To run a solution, first copy your input to the folder `2025/input`.
+To run a solution, first copy your input to the folder `2024/input`.
 
 In a terminal you can run:
 ```
-$ scala 2025 -M day01.part1
+$ scala-cli 2024 -M day01.part1
 Compiling project (Scala 3.x.y, JVM)
 Compiled project (Scala 3.x.y, JVM)
 The solution is 64929
@@ -59,9 +58,9 @@ The solution is 64929
 
 Or, to run another solution:
 ```
-$ scala 2025 -M <dayX>.<partX>
+$ scala-cli 2024 -M <dayX>.<partX>
 ```
 
 ## Contributing
 
-Please do not commit your puzzle inputs; we can not accept them, as they are protected by copyright
+- Please do not commit your puzzle inputs, we can not accept them as they are protected by copyright
