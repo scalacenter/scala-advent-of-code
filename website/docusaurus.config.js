@@ -149,7 +149,7 @@ const config = {
               },
               {
                 label: 'Puzzles 2025',
-                to: '2025/puzzles/day01',
+                to: '2025/puzzles/day0',
               },
               {
                 label: 'Puzzles 2024',
