@@ -26,7 +26,9 @@ const buildSidebar = (dir) => {
   }
   const days = fs.readdirSync(`target/mdoc/${dir}`).map(extractDay);
   const sorted = days.sort((a, b) => a.n - b.n);
-  return sorted.filter((day) => day.n > 0).map((day) => day.id);
+  return sorted.filter((day) => day.n > 0
+    || dir.includes('2025') && day.n === 0 // remove after day 1 2025
+  ).map((day) => day.id);
 };
 
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
@@ -38,11 +40,9 @@ const sidebars = {
   adventOfCodeSidebar: [
     'introduction',
     'setup',
-/* TODO uncomment after day 1 is published
     {
       "2025 Puzzles": buildSidebar('2025/puzzles'),
     },
-*/
     {
       "2024 Puzzles": buildSidebar('2024/puzzles'),
     },

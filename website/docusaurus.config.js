@@ -27,7 +27,9 @@ const buildDropdown = (dir) => {
       n
     })
   });
-  const sorted = days.sort((a, b) => a.n - b.n).filter((day) => day.n > 0);
+  const sorted = days.sort((a, b) => a.n - b.n).filter((day) => day.n > 0
+    || dir.includes('2025') && day.n === 0 // TODO remove after Dec 1, 2025
+  );
   return sorted
 };
 

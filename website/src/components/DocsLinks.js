@@ -16,14 +16,16 @@ const DocsLinks = (props) => {
   const globalData = useGlobalData();
   const docs = globalData["docusaurus-plugin-content-docs"].default.versions[0].docs
   const days = docs.filter(doc => rx.test(doc.id))
-  const sorted = days.sort((a, b) => dayN(rx, a) - dayN(rx, b)).filter(day => dayN(rx, day) > 0);
+  const sorted = days.sort((a, b) => dayN(rx, a) - dayN(rx, b)).filter(day => dayN(rx, day) > 0
+    || dir.includes('2025') && dayN(rx, day) === 0 // TODO remove after Dec 1, 2025
+  );
   return sorted
-    .map((day, i) => {
+    .map(day => {
       return (
         <Link
           className={linkStyle}
           to={`/${day.id}`}>
-          Day {i + 1}
+          Day {dayN(rx, day)}
         </Link>
       )
     });
