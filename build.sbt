@@ -1,12 +1,12 @@
 import java.io.File
 
-ThisBuild / scalaVersion := "3.5.2"
+ThisBuild / scalaVersion := "3.7.4"
 
 lazy val adventOfCode = project
   .in(file("."))
   .enablePlugins(ScalaJSPlugin)
   .settings(
-    Seq("2021", "2022", "2023", "2024")
+    Seq("2021", "2022", "2023", "2024", "2025")
       .map(year => (Compile / sourceGenerators) += taskPatchSolutions(year).taskValue),
     Compile / managedSourceDirectories := Nil,
     run / fork := true,

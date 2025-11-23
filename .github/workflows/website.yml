@@ -6,13 +6,13 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v5
         with:
           submodules: true
-      - uses: coursier/cache-action@v6
-      - uses: VirtusLab/scala-cli-setup@v0.1.18
+      - uses: coursier/cache-action@v7
+      - uses: VirtusLab/scala-cli-setup@v1.10.1
         with:
-          jvm: "temurin:17"
+          jvm: "temurin:21"
           apps: sbt
       - name: Publish ${{ github.ref }}
         run: sbt docs/docusaurusPublishGhpages
