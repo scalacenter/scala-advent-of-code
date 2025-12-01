@@ -9,7 +9,10 @@ https://adventofcode.com/2025/day/1
 ## Solutions from the community
 
 - [Solution](https://github.com/merlinorg/advent-of-code/blob/main/src/main/scala/year2025/day01.scala) by [merlinorg](https://github.com/merlinorg)
+
 - [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2025/Day01.scala) by [Philippus Baalman](https://github.com/philippus)
-- 
+
+- [Solution](https://github.com/rmarbeck/advent2025/blob/main/day1/src/main/scala/Solution.scala) by [Raphaël Marbeck](https://github.com/rmarbeck)
+
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)
