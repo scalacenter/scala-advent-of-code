@@ -35,10 +35,10 @@ def parseLine(line: String): Instr = line match
   case s"R$value" => (dir = 1, clicks = value.toInt)
 ```
 
-Then parse all of the input into a sequence of instructions:
+Then parse all of the input:
 
 ```scala
-def parse(input: String): Seq[Instr] = input.linesIterator.map(parseLine).toSeq
+def parse(input: String) = input.linesIterator.map(parseLine)
 ```
 
 ## Part 1
