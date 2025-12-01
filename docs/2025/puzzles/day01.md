@@ -118,7 +118,7 @@ After, we just get the hit count of the final dial instance:
 def part1(input: String) =
   val instrs = parse(input)
   instrs
-    .foldLeft(Dial(50, 0))((dial, instr) => dial.next(instr))
+    .foldLeft(Dial(50, 0))((dial, instr) => dial.rotate(instr))
     .hits
 ```
 
@@ -209,11 +209,11 @@ val passZeroAtLeastOnce = instr.clicks >= clicksToReachZero
 ### Coding the logic
 
 Carefully, we can put these ideas at work.
-Now our `next` method has logic for both parts:
+Now our `rotate` method has logic for both parts:
 
 ```scala
 case class Dial(pointer: Int, hits: Int, passes: Int):
-  def next(instr: Instr): Dial =
+  def rotate(instr: Instr): Dial =
     // part 1
     val newPointer = (pointer + instr.dir * instr.clicks) mod 100
     val newHits    = hits + (if newPointer == 0 then 1 else 0)
@@ -234,7 +234,7 @@ Then we can use the same code from part 1, but get the passes at the end:
 def part2(input: String) =
   val instrs = parse(input)
   instrs
-    .foldLeft(Dial(50, 0, 0))((dial, instr) => dial.next(instr))
+    .foldLeft(Dial(50, 0, 0))((dial, instr) => dial.rotate(instr))
     .passes
 ```
 
@@ -261,7 +261,7 @@ def parse(input: String): Seq[Instr] = input
   .toSeq
 
 case class Dial(pointer: Int, hits: Int, passes: Int):
-  def next(instr: Instr): Dial =
+  def rotate(instr: Instr): Dial =
     // part 1
     val newPointer = (pointer + instr.dir * instr.clicks) mod 100
     val newHits    = hits + (if newPointer == 0 then 1 else 0)
@@ -277,12 +277,12 @@ case class Dial(pointer: Int, hits: Int, passes: Int):
 
 def part1(input: String) =
   parse(input)
-    .foldLeft(Dial(50, 0, 0))((dial, instr) => dial.next(instr))
+    .foldLeft(Dial(50, 0, 0))((dial, instr) => dial.rotate(instr))
     .hits
 
 def part2(input: String) =
   parse(input)
-    .foldLeft(Dial(50, 0, 0))((dial, instr) => dial.next(instr))
+    .foldLeft(Dial(50, 0, 0))((dial, instr) => dial.rotate(instr))
     .passes
 ```
 
