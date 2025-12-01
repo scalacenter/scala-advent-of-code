@@ -294,6 +294,7 @@ def part2(input: String) =
 - [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2025/Day01.scala) by [Philippus Baalman](https://github.com/philippus)
 
 - [Solution](https://github.com/rmarbeck/advent2025/blob/main/day1/src/main/scala/Solution.scala) by [Raphaël Marbeck](https://github.com/rmarbeck)
+- [Solution](https://github.com/bishabosha/advent-of-code-2025/blob/main/scala/2025_day01.scala) by [Jamie Thompson](https://github.com/bishabosha)
 
 - [Solution](https://github.com/YannMoisan/advent-of-code/blob/master/2025/src/main/scala/Day1.scala) by [Yann Moisan](https://github.com/YannMoisan)
 
