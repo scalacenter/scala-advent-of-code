@@ -299,5 +299,7 @@ def part2(input: String) =
 - [Solution](https://github.com/YannMoisan/advent-of-code/blob/master/2025/src/main/scala/Day1.scala) by [Yann Moisan](https://github.com/YannMoisan)
 - [Solution](https://github.com/aamiguet/advent-2025/blob/main/src/main/scala/ch/aamiguet/advent2025/Day01.scala) by [Antoine Amiguet](https://github.com/aamiguet)
 
+- [Solution](https://github.com/johnduffell/aoc-2025/blob/main/src/main/scala/Day1.scala) by [John Duffell](https://github.com/johnduffell)
+
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [Go here to volunteer](https://github.com/scalacenter/scala-advent-of-code/discussions/842)
