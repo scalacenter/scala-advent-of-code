@@ -300,4 +300,4 @@ def part2(input: String) =
 - [Solution](https://github.com/aamiguet/advent-2025/blob/main/src/main/scala/ch/aamiguet/advent2025/Day01.scala) by [Antoine Amiguet](https://github.com/aamiguet)
 
 Share your solution to the Scala community by editing this page.
-You can even write the whole article! [See here for the expected format](https://github.com/scalacenter/scala-advent-of-code/discussions/424)
+You can even write the whole article! [Go here to volunteer](https://github.com/scalacenter/scala-advent-of-code/discussions/842)
