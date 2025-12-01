@@ -28,7 +28,7 @@ const buildDropdown = (dir) => {
     })
   });
   const sorted = days.sort((a, b) => a.n - b.n).filter((day) => day.n > 0
-    || dir.includes('2025') && day.n === 0 // TODO remove after Dec 1, 2025
+    // || dir.includes('<year>') && day.n === 0 // TODO remove after Dec 1, <year>
   );
   return sorted
 };
@@ -149,7 +149,7 @@ const config = {
               },
               {
                 label: 'Puzzles 2025',
-                to: '2025/puzzles/day0',
+                to: '2025/puzzles/day01',
               },
               {
                 label: 'Puzzles 2024',

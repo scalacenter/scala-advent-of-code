@@ -27,7 +27,7 @@ const buildSidebar = (dir) => {
   const days = fs.readdirSync(`target/mdoc/${dir}`).map(extractDay);
   const sorted = days.sort((a, b) => a.n - b.n);
   return sorted.filter((day) => day.n > 0
-    || dir.includes('2025') && day.n === 0 // remove after day 1 2025
+    // || dir.includes('<year>') && day.n === 0 // remove after day 1 <year>
   ).map((day) => day.id);
 };
 
