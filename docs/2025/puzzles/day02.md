@@ -10,7 +10,7 @@ https://adventofcode.com/2025/day/2
 
 ## Solution Summary
 
-Brute force is sufficient here. We every number in the ranges for invalid IDs.
+Brute force is sufficient here. We test every number in the ranges for invalid IDs.
 
 ### Part 1
 
