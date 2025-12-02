@@ -33,8 +33,10 @@ def invalid(id: Long): Boolean =
 At this point, we can get every ID from the input by flattening our ranges, then we simply filter with `invalid`:
 
 ```scala
-val ans1 = ranges.flatten.filter(invalid).sum
+val ans1 = ranges.iterator.flatten.filter(invalid).sum
 ```
+
+Note that while `Range` acts like a collection, the individual numbers aren't stored in memory, but when an array of ranges is flattened, it's concretized into an array of numbers, so we first convert with `.iterator` to prevent allocating a full `Array` of all the IDs being checked.
 
 ### Part 2
 
@@ -53,7 +55,7 @@ def invalid2(id: Long) =
 And now we can use the same line from `ans1` with the updated function:
 
 ```scala
-val ans2 = ranges.flatten.filter(invalid2).sum
+val ans2 = ranges.iterator.flatten.filter(invalid2).sum
 ```
 
 ### Alternative: Using Regular Expressions
