@@ -56,18 +56,18 @@ And now we can use the same line from `ans1` with the updated function:
 val ans2 = ranges.flatten.filter(invalid2).sum
 ```
 
-### Footnote: Using Regular Expressions
+### Alternative: Using Regular Expressions
 
-We can match any sequence of digits using `\d+`. If we place that in a parenthesized group, we can reference it with `\1` to account for repeats, then wrap the whole thing in begining/end of line markers, `^` and `$`. Part 1 looks like so:
+We can match any sequence of digits using `\d+`. If we place that in a parenthesized group, we can reference it with `\1` to account for repeats. Part 1 looks like so:
 
 ```scala
-def invalid(id: Long) = """^(\d+)\1$""".r.matches(id.toString)
+def invalid(id: Long) = """(\d+)\1""".r.matches(id.toString)
 ```
 
 This first matches any sequence of digits, then succeeds if that sequence is followed by itself. For part 2, we repeat the `\1` match at least once, using `+`:
 
 ```scala
-def invalid2(id: Long) = """^(\d+)\1+$""".r.matches(id.toString)
+def invalid2(id: Long) = """(\d+)\1+""".r.matches(id.toString)
 ```
 
 ## Solutions from the community
