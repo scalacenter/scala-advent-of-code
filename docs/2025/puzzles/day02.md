@@ -76,6 +76,33 @@ def invalid2(id: Long) = """(\d+)\1+""".r.matches(id.toString)
 
 While a brute force check of each possible ID works for the provided inputs, an input range of could very easily represent gigabytes of Longs. Instead, it's possible to generate invalid IDs directly (eg., start with `123` and multiply by `1001`, `1001001`, etc.). In a solution by [@merlinorg](https://github.com/merlinorg), [such an approach](https://github.com/merlinorg/advent-of-code/blob/789cb88de7e09bc36928b87be685cc95b30e9a4a/src/main/scala/year2025/day02.scala#L30-L42) drops complexity from `O(n)` to `O(sqrt(n))` for part 1.
 
+## Final Code
+
+```scala
+import collection.immutable.NumericRange
+
+def part1(input: String): Long =
+  ranges(input).iterator.flatten.filter(invalid).sum
+
+def part2(input: String): Long =
+  ranges(input).iterator.flatten.filter(invalid2).sum
+
+def ranges(input: String): NumericRange[Long] =
+  input.split(',').map:
+    case s"$a-$b" => a.toLong to b.toLong
+
+def invalid(id: Long): Boolean =
+  val s = id.toString
+  val (left, right) = s.splitAt(s.length / 2)
+  left == right
+
+def invalid2(id: Long): Boolean =
+  val s = id.toString
+  val n = s.length
+  val divisors = (1 to n / 2).filter(n % _ == 0)
+  divisors.exists(d => s.take(d) * (n/d) == s)
+```
+
 ## Solutions from the community
 
 - [Solution](https://github.com/stewSquared/advent-of-code/blob/master/src/main/scala/2025/Day02.worksheet.sc) by [Stewart Stewart](https://github.com/stewSquared)
