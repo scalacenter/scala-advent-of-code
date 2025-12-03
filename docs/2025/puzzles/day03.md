@@ -35,7 +35,7 @@ def part1(input: String): Long = {
     // Trim and filter out non-empty strings (just a precaution)
     .map(_.trim)
     .filter(_.nonEmpty)
-    // Foreach line, calculate its maximum
+    // For each line, calculate its maximum
     .map { line =>
       // Loop in loop for getting that 2-char max
       (0 until line.length - 1)
