@@ -74,7 +74,7 @@ def invalid2(id: Long) = """(\d+)\1+""".r.matches(id.toString)
 
 ### Optimization
 
-While a brute force check of each possible ID works for the provided inputs, an input range of could very easily represent gigabytes of Longs. Instead, it's possible to generate invalid IDs directly (eg., start with `123` and multiply by `1001`, `1001001`, etc.). In a solution by [@merlinorg](https://github.com/merlinorg), [such an approach](https://github.com/merlinorg/advent-of-code/blob/789cb88de7e09bc36928b87be685cc95b30e9a4a/src/main/scala/year2025/day02.scala#L30-L42) drops complexity from `O(n)` to `O(sqrt(n))` for part 1.
+While a brute force check of each possible ID works for the provided inputs, an input range could very easily represent gigabytes of Longs. Instead, it's possible to generate invalid IDs directly (eg., start with `123` and multiply by `1001`, `1001001`, etc.). In a solution by [@merlinorg](https://github.com/merlinorg), [such an approach](https://github.com/merlinorg/advent-of-code/blob/789cb88de7e09bc36928b87be685cc95b30e9a4a/src/main/scala/year2025/day02.scala#L30-L42) drops complexity from `O(n)` to `O(sqrt(n))` for part 1.
 
 ## Final Code
 
