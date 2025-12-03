@@ -2,6 +2,8 @@ import Solver from "../../../../../website/src/components/Solver.js"
 
 # Day 3: Lobby
 
+by [@alexandru](https://github.com/alexandru)
+
 ## Puzzle description
 
 https://adventofcode.com/2025/day/3
