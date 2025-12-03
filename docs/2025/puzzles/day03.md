@@ -113,8 +113,8 @@ def process(charsCount: Int)(input: String): Long =
     // sum them all up
     .sum
 
-def part1 = process(2)
-def part2 = process(12)
+def part1(input: String): Long = process(2)(input)
+def part2(input: String): Long = process(12)(input)
 ```
 
 ## Solutions from the community
