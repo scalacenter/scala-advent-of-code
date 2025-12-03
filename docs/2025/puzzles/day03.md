@@ -43,8 +43,9 @@ def part1(input: String): Long = {
         .map { i =>
           // Second loop picking the second char (loop-in-loop)
           (i + 1 until line.length)
-            .map(j => s"${line.charAt(i)}${line.charAt(j)}")
-            .map(_.toLong)
+            // Concatenate the two chars
+            .map(j => s"${line.charAt(i)}${line.charAt(j)}".toLong)
+            // Calculate the maximum
             .max
         }
         .max
