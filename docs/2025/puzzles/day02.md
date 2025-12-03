@@ -104,6 +104,7 @@ def invalid2(id: Long): Boolean =
 ```
 
 ## Solutions from the community
+- [Solution](https://github.com/rmarbeck/advent2025/blob/main/day02/src/main/scala/Solution.scala) by [Raphaël Marbeck](https://github.com/rmarbeck)
 
 - [Solution](https://github.com/YannMoisan/advent-of-code/blob/master/2025/src/main/scala/Day2.scala) by [Yann Moisan](https://github.com/YannMoisan)
 - [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2025/Day02.scala) by [Philippus Baalman](https://github.com/philippus)
