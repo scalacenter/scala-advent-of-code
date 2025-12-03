@@ -17,14 +17,14 @@ Input is made of lines with digits, like:
 
 ## Part 1
 
-Part 1 is about extracting, for each line, the largest 2-digit number made from individual digits picked from those lines, but note that ordering is important:
+Part 1 is about extracting, for each line, the largest 2-digit number made from individual digits picked from that line, while maintaining their original order:
 
 - **98**7654321111111: `98`
 - **8**1111111111111**9**: `89`
 - 2342342342342**78**: `78`
 - 818181**9**1111**2**111: `92`
 
-Given a line of text, to get that maximum, we can do a loop inside another loop, an algorithm with an `O(n^2)` complexity per line processed. With a bit of parsing of the original input, the solution for part 1 becomes:
+To find the maximum 2-digit number for each line, we use a nested loop approach with `O(n²)` time complexity per line. After parsing the input, the solution for part 1 becomes:
 
 ```scala
 def part1(input: String): Long = {
@@ -43,9 +43,7 @@ def part1(input: String): Long = {
         .map { i =>
           // Second loop picking the second char (loop-in-loop)
           (i + 1 until line.length)
-            // concatenate first char with second char
             .map(j => s"${line.charAt(i)}${line.charAt(j)}")
-            // convert to number
             .map(_.toLong)
             .max
         }
@@ -58,18 +56,17 @@ def part1(input: String): Long = {
 
 ## Part 2
 
-Part 2 complicates the problem above by asking for a 12-digits numbers (instead of 2-digit numbers). 
+Part 2 extends the problem by asking for 12-digit numbers (instead of 2-digit numbers). 
 
 ```scala
 def max(line: String, remaining: Int): String = {
-  // We select the index of the biggest digit from our `line`.
-  // Crucially important is that we don't go over 
-  // `line.length - remaining + 1`, because we need to have chars left
-  // for building the rest of our number.
+  // Select the index of the largest digit from our `line`.
+  // We must not search beyond `line.length - remaining + 1`
+  // to ensure we have enough characters left for the remaining digits.
   val maxIdx = (0 until line.length - remaining + 1)
     .maxBy(i => line.charAt(i))
-  // Given the rest of the string (the suffix after our found `maxIdx`)
-  // we build the rest by doing a recursive call
+  // Build the remaining digits by recursively processing
+  // the substring after our selected character
   val rest =
     if remaining > 1 then
       // recursive call, unsafe!
@@ -98,7 +95,7 @@ To give an example of how this would work in practice, for a line like "23**4**2
 "8" + ""
 ```
 
-We can now describe a function that works for both parts 1 and 2:
+We can now create a unified function that handles both parts by parameterizing the number of digits:
 
 ```scala
 def process(charsCount: Int)(input: String): Long =
