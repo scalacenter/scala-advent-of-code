@@ -120,8 +120,8 @@ def part2(input: String): Long = process(12)(input)
 ```
 
 ## Solutions from the community
+- [Solution](https://github.com/rmarbeck/advent2025/blob/main/day03/src/main/scala/Solution.scala) by [Raphaël Marbeck](https://github.com/rmarbeck)
 - [Solution](https://github.com/johnduffell/aoc-2025/blob/main/src/main/scala/Day3.scala) by [John Duffell](https://github.com/johnduffell)
-
 - [Solution](https://github.com/merlinorg/advent-of-code/blob/main/src/main/scala/year2025/day03.scala) by [merlinorg](https://github.com/merlinorg)
 - [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2025/Day03.scala) by [Philippus Baalman](https://github.com/philippus)
 - [Solution](https://github.com/YannMoisan/advent-of-code/blob/master/2025/src/main/scala/Day3.scala) by [Yann Moisan](https://github.com/YannMoisan)
