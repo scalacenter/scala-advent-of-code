@@ -121,6 +121,7 @@ def part2(input: String): Long = process(12)(input)
 
 ## Solutions from the community
 
+- [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2025/Day03.scala) by [Philippus Baalman](https://github.com/philippus)
 - [Solution](https://github.com/YannMoisan/advent-of-code/blob/master/2025/src/main/scala/Day3.scala) by [Yann Moisan](https://github.com/YannMoisan)
 - [Solution](https://github.com/aamiguet/advent-2025/blob/main/src/main/scala/ch/aamiguet/advent2025/Day03.scala) by [Antoine Amiguet](https://github.com/aamiguet)
 
