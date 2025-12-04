@@ -112,6 +112,7 @@ def invalid2(id: Long): Boolean =
 - [Live solve recording](https://www.youtube.com/watch?v=oo1J4u2zATY&list=PLnP_dObOt-rWB2QisPZ67anfI7CZx3Vsq&t=3577s) by [Stewart Stewart](https://youtube.com/@stewSquared)
 
 - [Solution](https://github.com/aamiguet/advent-2025/blob/main/src/main/scala/ch/aamiguet/advent2025/Day02.scala) by [Antoine Amiguet](https://github.com/aamiguet)
+- [Solution](https://github.com/johnduffell/aoc-2025/blob/main/src/main/scala/Day2.scala) by [John Duffell](https://github.com/johnduffell)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [Go here to volunteer](https://github.com/scalacenter/scala-advent-of-code/discussions/842)
