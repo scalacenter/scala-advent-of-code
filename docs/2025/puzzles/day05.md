@@ -179,6 +179,14 @@ def part2(input: String): Long =
   combinedRanges.toIterator.map(_.size).sum
 ```
 
+It's worth noting that this is similar in concept to a disjoint set, which is a Set of Sets where every Set is disjoint from each other.
+Here, I'm collecting the ranges and making sure that every range is disjoint from each other.
+
+Cats collections has an implementation of Disjoint Sets, and it also has an implementation of a Discrete Interval Encoding Tree,
+which lets you hold a collection of ranges. This encodes types that are fully ordered, and have a predecessor and successor function. 
+This is true for all integral types. You could very easily rework the code to use Diet instead of disjoint sets, and infact it supports
+extracting the disjoint ranges from itself.
+
 ## Final Code
 
 ```scala
