@@ -142,9 +142,8 @@ So let's add that intersect method:
       LRange(start max t.start, end min t.end)
 ```
 
-Now we needed that intersect to implement difference.
-
-The intersect will clamp any points that go outside our bound to our edge, meaning we can compare easier.
+We needed that intersect to implement difference. The intersect will clamp any points that go outside our bound to 
+our edge, meaning we can compare easier.
 
 We can do simple math to make the set - we find the points before and after the hole. If we didn't intersect at all,
 then we can just return a singleton set with `this`.
