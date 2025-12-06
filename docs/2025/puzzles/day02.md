@@ -111,6 +111,7 @@ def invalid2(id: Long): Boolean =
 - [Solution](https://github.com/stewSquared/advent-of-code/blob/master/src/main/scala/2025/Day02.worksheet.sc) by [Stewart Stewart](https://github.com/stewSquared)
 - [Live solve recording](https://www.youtube.com/watch?v=oo1J4u2zATY&list=PLnP_dObOt-rWB2QisPZ67anfI7CZx3Vsq&t=3577s) by [Stewart Stewart](https://youtube.com/@stewSquared)
 - [Solution](https://github.com/aamiguet/advent-2025/blob/main/src/main/scala/ch/aamiguet/advent2025/Day02.scala) by [Antoine Amiguet](https://github.com/aamiguet)
+- [Writeup](https://thedrawingcoder-gamer.github.io/aoc-writeups/2025/day02.html) by [Bulby](https://github.com/TheDrawingCoder-Gamer)
 - [Solution](https://github.com/counter2015/aoc2025/blob/master/src/main/scala/aoc2025/Day02.scala) by [counter2015](https://github.com/counter2015) 
 - [Solution](https://github.com/johnduffell/aoc-2025/blob/main/src/main/scala/Day2.scala) by [John Duffell](https://github.com/johnduffell)
 
