@@ -238,6 +238,7 @@ def drawGrid(grid: Array[Array[Char]]): String =
 
 ## Solutions from the community
 
+- [Writeup](https://thedrawingcoder-gamer.github.io/aoc-writeups/2025/day04.html) by [Bulby](https://github.com/TheDrawingCoder-Gamer)
 - [Solution](https://github.com/YannMoisan/advent-of-code/blob/master/2025/src/main/scala/Day4.scala) by [Yann Moisan](https://github.com/YannMoisan)
 - [Solution](https://github.com/rmarbeck/advent2025/blob/main/day04/src/main/scala/Solution.scala) by [Raphaël Marbeck](https://github.com/rmarbeck)
 - [Solution](https://github.com/merlinorg/advent-of-code/blob/main/src/main/scala/year2025/day04.scala) by [merlinorg](https://github.com/merlinorg)
