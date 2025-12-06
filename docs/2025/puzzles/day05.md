@@ -9,6 +9,7 @@ https://adventofcode.com/2025/day/5
 ## Solutions from the community
 
 - [Solution](https://github.com/merlinorg/advent-of-code/blob/main/src/main/scala/year2025/day05.scala) by [merlinorg](https://github.com/merlinorg)
+- [Solution](https://github.com/Jannyboy11/AdventOfCode2025/blob/master/src/main/scala/day05/Day05.scala) by [Jan Boerman](https://x.com/JanBoerman95)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [Go here to volunteer](https://github.com/scalacenter/scala-advent-of-code/discussions/842)
