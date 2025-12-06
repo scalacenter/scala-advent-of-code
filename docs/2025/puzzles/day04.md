@@ -237,6 +237,7 @@ def drawGrid(grid: Array[Array[Char]]): String =
 ```
 
 ## Solutions from the community
+- [Solution](https://github.com/guycastle/advent_of_code/blob/main/src/main/scala/aoc2025/day04/DayFour.scala) by [Guillaume Vandecasteele](https://github.com/guycastle)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [Go here to volunteer](https://github.com/scalacenter/scala-advent-of-code/discussions/842)
