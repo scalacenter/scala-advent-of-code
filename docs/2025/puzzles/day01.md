@@ -301,6 +301,7 @@ def part2(input: String) =
 
 - [Solution](https://github.com/johnduffell/aoc-2025/blob/main/src/main/scala/Day1.scala) by [John Duffell](https://github.com/johnduffell)
 - [Writeup](https://thedrawingcoder-gamer.github.io/aoc-writeups/2025/day01.html) by [Bulby](https://github.com/TheDrawingCoder-Gamer)
+- [Solution](https://github.com/counter2015/aoc2025/blob/master/src/main/scala/aoc2025/Day01.scala) by [counter2015](https://github.com/counter2015)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [Go here to volunteer](https://github.com/scalacenter/scala-advent-of-code/discussions/842)
