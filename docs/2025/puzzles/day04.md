@@ -19,7 +19,7 @@ more accessible rolls.
 
 First the input string needs to be parsed. A two-dimensional array of characters (`Array[Array[Char]]`) is used to
 represent the grid. This makes it easy to reason about positions in the grid. And it also helps with speed, because we
-can update the array. Split the input by the newline character, giving the rows in the grid. Than map each row, calling
+can update the array. Split the input by the newline character, giving the rows in the grid. Then map each row, calling
 `toCharArray`.
 
 ```scala
