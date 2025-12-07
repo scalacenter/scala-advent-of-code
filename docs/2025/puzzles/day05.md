@@ -11,5 +11,7 @@ https://adventofcode.com/2025/day/5
 
 - [Solution](https://github.com/merlinorg/advent-of-code/blob/main/src/main/scala/year2025/day05.scala) by [merlinorg](https://github.com/merlinorg)
 
+- [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2025/Day05.scala) by [Philippus Baalman](https://github.com/philippus)
+
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [Go here to volunteer](https://github.com/scalacenter/scala-advent-of-code/discussions/842)
