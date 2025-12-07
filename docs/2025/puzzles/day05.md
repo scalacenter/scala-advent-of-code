@@ -79,7 +79,7 @@ final case class LRange(start: Long, end: Long):
   def size: Long = end - start + 1
 ```
 
-Alright, now the hard part: intersection and union.
+Alright, now the hard part: intersection and difference.
 We'll need to add a couple methods to `LRange` to handle intersection and difference:
 
 ```scala
@@ -178,8 +178,8 @@ def part2(input: String): Long =
       val removed = acc.flatMap(_ - range)
       // then add it seperately
       removed + range
-  // toIterator to prevent Set from deduplicating our result
-  combinedRanges.toIterator.map(_.size).sum
+  // iterator to prevent Set from deduplicating our result
+  combinedRanges.iterator.map(_.size).sum
 ```
 
 It's worth noting that this is similar in concept to a disjoint set, which is a Set of Sets where every Set is disjoint from each other.
