@@ -11,7 +11,7 @@ https://adventofcode.com/2025/day/7
 ## Solution Summary
 
 - Parse the input representing the faulty tachyon manifold into a two dimensional `Array`.
-- In part 1, we count the number of times a tachyon beam is splitted.
+- In part 1, we count the number of times a tachyon beam is split.
 - In part 2, we count all the possible timelines (paths) a tachyon can take in the manifold.
 
 ## Parsing the input
@@ -31,7 +31,7 @@ private def parse(input: String): Manifold =
 
 ## Part 1
 
-We have to count the number of times a beam is splitted. A split occurs when a beam hits a splitter `^` at position `i` . The beam is then split and continue at position `i - 1` and `i + 1` in the next row (line) of the manifold.
+We have to count the number of times a beam is split. A split occurs when a beam hits a splitter `^` at position `i` . The beam is then split and continue at position `i - 1` and `i + 1` in the next row (line) of the manifold.
 
 We process the manifold in the direction of the beam, top to bottom, row by row. For each row, we have to do two things :
 
@@ -45,9 +45,9 @@ val manifold = parse(input)
 val beamSource = Set(manifold.head.indexOf('S'))
 ```
 
-We then iterate over all the remainging rows using `foldLeft`. Our initial value is composed ot the `Set` containing the index of the source of the beam and an initial split count of 0.
+We then iterate over all the remaining rows using `foldLeft`. Our initial value is composed of the `Set` containing the index of the source of the beam and an initial split count of 0.
 
-At each step we update both the positions of the beam and the cumulative split count and finally returns the final count.
+At each step we update both the positions of the beam and the cumulative split count and finally return the final count.
 
 ```scala
 manifold
@@ -98,7 +98,7 @@ We now have everything we need for the next step :
 
 From the previous beam indices we compute the new beam indices `updatedBeamIndices`:
 
-- Add the splitted beam indices : to the right and to the left of each split index.
+- Add the split beam indices : to the right and to the left of each split index.
 - Remove the `splitIndices` as the beam is discontinued after a splitter.
 
 ```scala
@@ -163,7 +163,7 @@ Let's dive into it!
 
 First, we reuse `findSplitIndices` from part 1 to find the splits.
 
-Then we compute the new timelines originating from each split. Everytime a tachyon hits a splitter two new timelines are created: one to the left and one to the right of the splitter. This doubles the number of timelines. Example:
+Then we compute the new timelines originating from each split. Every time a tachyon hits a splitter two new timelines are created: one to the left and one to the right of the splitter. This doubles the number of timelines. Example:
 
 >If a tachyon with 3 different past timelines hits a splitter at position `i`, in the next step we have two possible tachyons with each 3 different past timelines at position `i - 1` and `i + 1` making a total of 6 timelines.
 
@@ -187,7 +187,7 @@ val splittedTimelines =
 
 From the previous beam timelines map we finally compute the new beam timelines `updatedBeamTimelines`:
 
-- Merging the splitted timelines `Map`. By using `updateWith` we handle the two cases:
+- Merging the split timelines `Map`. By using `updateWith` we handle the two cases:
     - If the entry already exists, we udpate it by adding the new timeline count to the existing one
     - Or creating a new entry
 - Removing all positions that hit a splitter
