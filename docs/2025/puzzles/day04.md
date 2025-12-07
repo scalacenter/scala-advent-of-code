@@ -19,7 +19,7 @@ more accessible rolls.
 
 First the input string needs to be parsed. A two-dimensional array of characters (`Array[Array[Char]]`) is used to
 represent the grid. This makes it easy to reason about positions in the grid. And it also helps with speed, because we
-can update the array. Split the input by the newline character, giving the rows in the grid. Than map each row, calling
+can update the array. Split the input by the newline character, giving the rows in the grid. Then map each row, calling
 `toCharArray`.
 
 ```scala
@@ -237,6 +237,16 @@ def drawGrid(grid: Array[Array[Char]]): String =
 ```
 
 ## Solutions from the community
+
+- [Solution](https://codeberg.org/nichobi/adventofcode/src/branch/main/2025/04/solution.scala) by [nichobi](https://codeberg.org/nichobi)
+- [Solution](https://github.com/guycastle/advent_of_code/blob/main/src/main/scala/aoc2025/day04/DayFour.scala) by [Guillaume Vandecasteele](https://github.com/guycastle)
+- [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2025/Day04.scala) by [Philippus Baalman](https://github.com/philippus)
+- [Solution](https://github.com/aamiguet/advent-2025/blob/main/src/main/scala/ch/aamiguet/advent2025/Day04.scala) by [Antoine Amiguet](https://github.com/aamiguet)
+- [Writeup](https://thedrawingcoder-gamer.github.io/aoc-writeups/2025/day04.html) by [Bulby](https://github.com/TheDrawingCoder-Gamer)
+- [Solution](https://github.com/YannMoisan/advent-of-code/blob/master/2025/src/main/scala/Day4.scala) by [Yann Moisan](https://github.com/YannMoisan)
+- [Solution](https://github.com/rmarbeck/advent2025/blob/main/day04/src/main/scala/Solution.scala) by [Raphaël Marbeck](https://github.com/rmarbeck)
+- [Solution](https://github.com/merlinorg/advent-of-code/blob/main/src/main/scala/year2025/day04.scala) by [merlinorg](https://github.com/merlinorg)
+- [Solution](https://github.com/johnduffell/aoc-2025/blob/main/src/main/scala/Day4.scala) by [John Duffell](https://github.com/johnduffell)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [Go here to volunteer](https://github.com/scalacenter/scala-advent-of-code/discussions/842)
