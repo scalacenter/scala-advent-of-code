@@ -138,7 +138,7 @@ manifold
   .tail
   .foldLeft(beamTimelineSource): (beamTimelines, row) =>
     val splitIndices = findSplitIndices(row, beamTimelines.keySet)
-    val splittedTimelines =
+    val splitTimelines =
       splitIndices
         .flatMap: i =>
           val pastTimelines = beamTimelines(i)
@@ -148,7 +148,7 @@ manifold
         .mapValues(_.sum)
         .toMap
     val updatedBeamTimelines =
-      splittedTimelines
+      splitTimelines
         .foldLeft(beamTimelines): (bm, s) =>
           bm.updatedWith(s._1):
             case None => Some(s._2)
@@ -240,7 +240,7 @@ override def part2(input: String): Long =
     .tail
     .foldLeft(beamTimelineSource): (beamTimelines, row) =>
       val splitIndices = findSplitIndices(row, beamTimelines.keySet)
-      val splittedTimelines =
+      val splitTimelines =
         splitIndices
           .flatMap: i =>
             val pastTimelines = beamTimelines(i)
@@ -250,7 +250,7 @@ override def part2(input: String): Long =
           .mapValues(_.sum)
           .toMap
       val updatedBeamTimelines =
-        splittedTimelines
+        splitTimelines
           .foldLeft(beamTimelines): (bm, s) =>
             bm.updatedWith(s._1):
               case None => Some(s._2)
