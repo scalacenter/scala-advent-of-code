@@ -187,7 +187,7 @@ Here, I'm collecting the ranges and making sure that every range is disjoint fro
 
 Cats collections has an implementation of Disjoint Sets, and it also has an implementation of a Discrete Interval Encoding Tree,
 which lets you hold a collection of ranges. This encodes types that are fully ordered, and have a predecessor and successor function. 
-This is true for all integral types. I have a sample of Day 5 [implemented entirely using Diet and Range](https://github.com/TheDrawingCoder-Gamer/adventofcode2024/blob/02f203be69a8d31b48c5c6080e1642c4df51cbe6/core/shared/src/main/scala/gay/menkissing/advent/y2025/Day05.scala)
+This is true for all integral types. I have a sample of Day 5 [implemented entirely using Diet and Range](https://github.com/TheDrawingCoder-Gamer/adventofcode2024/blob/dcbe2e97d93f18649c98b9afb333dd9f0e8ebcde/core/shared/src/main/scala/gay/menkissing/advent/y2025/Day05.scala)
 for those curious.
 
 ## Final Code
