@@ -237,6 +237,7 @@ def drawGrid(grid: Array[Array[Char]]): String =
 ```
 
 ## Solutions from the community
+- [Solution](https://github.com/guycastle/advent_of_code/blob/main/src/main/scala/aoc2025/day04/DayFour.scala) by [Guillaume Vandecasteele](https://github.com/guycastle)
 
 - [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2025/Day04.scala) by [Philippus Baalman](https://github.com/philippus)
 - [Solution](https://github.com/aamiguet/advent-2025/blob/main/src/main/scala/ch/aamiguet/advent2025/Day04.scala) by [Antoine Amiguet](https://github.com/aamiguet)
