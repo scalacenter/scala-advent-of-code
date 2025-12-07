@@ -300,6 +300,7 @@ def part2(input: String) =
 - [Solution](https://github.com/aamiguet/advent-2025/blob/main/src/main/scala/ch/aamiguet/advent2025/Day01.scala) by [Antoine Amiguet](https://github.com/aamiguet)
 
 - [Solution](https://github.com/johnduffell/aoc-2025/blob/main/src/main/scala/Day1.scala) by [John Duffell](https://github.com/johnduffell)
+- [Writeup](https://thedrawingcoder-gamer.github.io/aoc-writeups/2025/day01.html) by [Bulby](https://github.com/TheDrawingCoder-Gamer)
 - [Solution](https://github.com/counter2015/aoc2025/blob/master/src/main/scala/aoc2025/Day01.scala) by [counter2015](https://github.com/counter2015)
 - [Solution](https://github.com/guycastle/advent_of_code/blob/main/src/main/scala/aoc2025/day01/DayOne.scala) by [Guillaume Vandecasteele](https://github.com/guycastle)
 
