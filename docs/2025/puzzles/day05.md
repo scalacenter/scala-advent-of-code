@@ -238,7 +238,7 @@ def part2(input: String): Long =
     ranges.foldLeft(Set.empty[LRange]): (acc, range) =>
       val removed = acc.flatMap(_ - range)
       removed + range
-  combinedRanges.toIterator.map(_.size).sum
+  combinedRanges.iterator.map(_.size).sum
 ```
 
 ## Solutions from the community
