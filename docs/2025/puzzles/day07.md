@@ -263,6 +263,10 @@ override def part2(input: String): Long =
 
 ## Solutions from the community
 
+- [Solution](https://github.com/rmarbeck/advent2025/blob/main/day07/src/main/scala/Solution.scala) by [Raphaël Marbeck](https://github.com/rmarbeck)
+
+- [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2025/Day07.scala) by [Philippus Baalman](https://github.com/philippus)
+
 - [Solution](https://github.com/aamiguet/advent-2025/blob/main/src/main/scala/ch/aamiguet/advent2025/Day07.scala) by [Antoine Amiguet](https://github.com/aamiguet)
 
 Share your solution to the Scala community by editing this page.
