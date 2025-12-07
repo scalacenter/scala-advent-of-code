@@ -120,6 +120,7 @@ def part2(input: String): Long = process(12)(input)
 ```
 
 ## Solutions from the community
+
 - [Solution](https://github.com/rmarbeck/advent2025/blob/main/day03/src/main/scala/Solution.scala) by [Raphaël Marbeck](https://github.com/rmarbeck)
 - [Solution](https://github.com/johnduffell/aoc-2025/blob/main/src/main/scala/Day3.scala) by [John Duffell](https://github.com/johnduffell)
 - [Solution](https://github.com/merlinorg/advent-of-code/blob/main/src/main/scala/year2025/day03.scala) by [merlinorg](https://github.com/merlinorg)
@@ -127,6 +128,7 @@ def part2(input: String): Long = process(12)(input)
 - [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2025/Day03.scala) by [Philippus Baalman](https://github.com/philippus)
 - [Solution](https://github.com/YannMoisan/advent-of-code/blob/master/2025/src/main/scala/Day3.scala) by [Yann Moisan](https://github.com/YannMoisan)
 - [Solution](https://github.com/aamiguet/advent-2025/blob/main/src/main/scala/ch/aamiguet/advent2025/Day03.scala) by [Antoine Amiguet](https://github.com/aamiguet)
+- [Solution](https://github.com/Jannyboy11/AdventOfCode2025/blob/master/src/main/scala/day03/Day03.scala) by [Jan Boerman](https://x.com/JanBoerman95)
 - [Solution](https://codeberg.org/nichobi/adventofcode/src/branch/main/2025/03/solution.scala) by [nichobi](https://codeberg.org/nichobi)
 - [Solution](https://github.com/guycastle/advent_of_code/blob/main/src/main/scala/aoc2025/day03/DayThree.scala) by [Guillaume Vandecasteele](https://github.com/guycastle)
 - [Writeup](https://thedrawingcoder-gamer.github.io/aoc-writeups/2025/day03.html) by [Bulby](https://github.com/TheDrawingCoder-Gamer)

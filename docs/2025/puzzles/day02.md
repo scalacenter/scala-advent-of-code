@@ -104,6 +104,7 @@ def invalid2(id: Long): Boolean =
 ```
 
 ## Solutions from the community
+
 - [Solution](https://github.com/rmarbeck/advent2025/blob/main/day02/src/main/scala/Solution.scala) by [Raphaël Marbeck](https://github.com/rmarbeck)
 - [Solution](https://github.com/bishabosha/advent-of-code-2025/blob/main/scala/2025_day02.scala) by [Jamie Thompson](https://github.com/bishabosha)
 - [Solution](https://github.com/YannMoisan/advent-of-code/blob/master/2025/src/main/scala/Day2.scala) by [Yann Moisan](https://github.com/YannMoisan)
@@ -114,6 +115,7 @@ def invalid2(id: Long): Boolean =
 - [Writeup](https://thedrawingcoder-gamer.github.io/aoc-writeups/2025/day02.html) by [Bulby](https://github.com/TheDrawingCoder-Gamer)
 - [Solution](https://github.com/counter2015/aoc2025/blob/master/src/main/scala/aoc2025/Day02.scala) by [counter2015](https://github.com/counter2015) 
 - [Solution](https://github.com/johnduffell/aoc-2025/blob/main/src/main/scala/Day2.scala) by [John Duffell](https://github.com/johnduffell)
+- [Solution](https://github.com/Jannyboy11/AdventOfCode2025/blob/master/src/main/scala/day02/Day02.scala) by [Jan Boerman](https://x.com/JanBoerman95)
 - [Solution](https://codeberg.org/nichobi/adventofcode/src/branch/main/2025/02/solution.scala) by [nichobi](https://codeberg.org/nichobi)
 - [Solution](https://github.com/guycastle/advent_of_code/blob/main/src/main/scala/aoc2025/day02/DayTwo.scala) by [Guillaume Vandecasteele](https://github.com/guycastle)
 

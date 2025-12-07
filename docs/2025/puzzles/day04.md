@@ -247,6 +247,7 @@ def drawGrid(grid: Array[Array[Char]]): String =
 - [Solution](https://github.com/rmarbeck/advent2025/blob/main/day04/src/main/scala/Solution.scala) by [Raphaël Marbeck](https://github.com/rmarbeck)
 - [Solution](https://github.com/merlinorg/advent-of-code/blob/main/src/main/scala/year2025/day04.scala) by [merlinorg](https://github.com/merlinorg)
 - [Solution](https://github.com/johnduffell/aoc-2025/blob/main/src/main/scala/Day4.scala) by [John Duffell](https://github.com/johnduffell)
+- [Solution](https://github.com/Jannyboy11/AdventOfCode2025/blob/master/src/main/scala/day04/Day04.scala) by [Jan Boerman](https://x.com/JanBoerman95)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [Go here to volunteer](https://github.com/scalacenter/scala-advent-of-code/discussions/842)

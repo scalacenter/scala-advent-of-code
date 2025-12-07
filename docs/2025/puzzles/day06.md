@@ -8,6 +8,7 @@ https://adventofcode.com/2025/day/6
 
 ## Solutions from the community
 
+- [Solution](https://github.com/Jannyboy11/AdventOfCode2025/blob/master/src/main/scala/day06/Day06.scala) by [Jan Boerman](https://x.com/JanBoerman95)
 - [Solution](https://github.com/aamiguet/advent-2025/blob/main/src/main/scala/ch/aamiguet/advent2025/Day06.scala) by [Antoine Amiguet](https://github.com/aamiguet)
 - [Solution](https://codeberg.org/nichobi/adventofcode/src/branch/main/2025/06/solution.scala) by [nichobi](https://codeberg.org/nichobi)
 - [Solution](https://github.com/guycastle/advent_of_code/blob/main/src/main/scala/aoc2025/day06/DaySix.scala) by [Guillaume Vandecasteele](https://github.com/guycastle)
