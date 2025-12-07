@@ -23,6 +23,9 @@ We'll need to end up doing more fancy stuff with our range type, so let's define
 final case class LRange(start: Long, end: Long)
 ```
 
+We can't use `NumericRange` because getting the size returns an `Int`, and it will throw for ranges bigger than `Int.MaxValue`.
+We have to handle ranges with a size greater than `Int.MaxValue`, so we'll need to roll our own here.
+
 Let's define our parsed input as a tuple:
 
 ```scala
@@ -65,7 +68,7 @@ def part1(input: String): Long =
 
 Part 2 is a lot more complicated, but I've done [much worse](https://adventofcode.com/2021/day/22), so it wasn't too bad.
 
-My common library has implementations for ranges that can intersect and combine with each other, but I'll reimplement them here
+My common library has implementations for ranges that can intersect and subtract each other, but I'll reimplement them here
 just for completeness.
 
 
@@ -77,7 +80,7 @@ final case class LRange(start: Long, end: Long):
 ```
 
 Alright, now the hard part: intersection and union.
-We'll need to add a couple methods to `LRange` to handle intersection and union:
+We'll need to add a couple methods to `LRange` to handle intersection and difference:
 
 ```scala
 final case class LRange(start: Long, end: Long):
@@ -184,8 +187,8 @@ Here, I'm collecting the ranges and making sure that every range is disjoint fro
 
 Cats collections has an implementation of Disjoint Sets, and it also has an implementation of a Discrete Interval Encoding Tree,
 which lets you hold a collection of ranges. This encodes types that are fully ordered, and have a predecessor and successor function. 
-This is true for all integral types. You could very easily rework the code to use Diet instead of disjoint sets, and infact it supports
-extracting the disjoint ranges from itself.
+This is true for all integral types. I have a sample of Day 5 [implemented entirely using Diet and Range](https://github.com/TheDrawingCoder-Gamer/adventofcode2024/blob/02f203be69a8d31b48c5c6080e1642c4df51cbe6/core/shared/src/main/scala/gay/menkissing/advent/y2025/Day05.scala)
+for those curious.
 
 ## Final Code
 
