@@ -22,7 +22,7 @@ Parsing the input is quite straighforward. First let's define a type alias so th
 type Manifold = Array[String]
 ```
 
-As the input is a multiline `String` with each line representing a row of the manifold, we simply split by lines:
+As the input is a multiline `String` with each line representing a row of the manifold, we simply split it by lines:
 
 ```scala
 private def parse(input: String): Manifold =
@@ -33,7 +33,7 @@ private def parse(input: String): Manifold =
 
 We have to count the number of times a beam is split. A split occurs when a beam hits a splitter `^` at position `i` . The beam is then split and continue at position `i - 1` and `i + 1` in the next row (line) of the manifold.
 
-We process the manifold in the direction of the beam, top to bottom, row by row. For each row, we have to do two things :
+We process the manifold in the direction of the beam, top to bottom, row by row. For each row, we have to do two things:
 
 - Count the number of splitters hit by a beam
 - Update the positions of the beam for the next row
