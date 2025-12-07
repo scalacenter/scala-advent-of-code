@@ -172,7 +172,7 @@ Since we don't care about the past timelines but only the current positions: if 
 Overall this is implemented with:
 
 ```scala
-val splittedTimelines =
+val splitTimelines =
   splitIndices
     .flatMap: i =>
       // splitting a timeline
@@ -194,7 +194,7 @@ From the previous beam timelines map we finally compute the new beam timelines `
 
 ```scala
 val updatedBeamTimelines =
-  splittedTimelines
+  splitTimelines
     .foldLeft(beamTimelines): (bm, s) =>
       bm.updatedWith(s._1):
         // adding a new key
