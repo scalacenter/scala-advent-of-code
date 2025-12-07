@@ -10,7 +10,7 @@ https://adventofcode.com/2025/day/7
 
 ## Solution Summary
 
-- Parse the input representing the faulty tachyon manifold into a two dimensional `Array`.
+- Parse the input representing the faulty tachyon manifold into an `Array` of `String`.
 - In part 1, we count the number of times a tachyon beam is split.
 - In part 2, we count all the possible timelines (paths) a tachyon can take in the manifold.
 
@@ -19,14 +19,14 @@ https://adventofcode.com/2025/day/7
 Parsing the input is quite straighforward. First let's define a type alias so that we have a meaningful type name for our value:
 
 ```scala
-type Manifold = Array[Array[Char]]
+type Manifold = Array[String]
 ```
 
-As the input is a NxM grid of characters, we split it by line and then for each line convert it from a `String` to an `Array[Char]`
+As the input is a multiline `String` with each line representing a row of the manifold, we simply split by lines:
 
 ```scala
 private def parse(input: String): Manifold =
-  input.split("\n").map(_.toArray)
+  input.split("\n")
 ```
 
 ## Part 1
@@ -77,7 +77,7 @@ This function takes two arguments:
 - `row` : the current row of the manifold
 - `beamIndices` : the resulting `Set` of beam indices from the previous row
 
-We zip the `row` with its index and then filter it with two conditions :
+We use the fact that a `String` acts like an `Array[Char]`. We zip it with its index and filter it with two conditions :
 
 - A beam is travelling at this index
 - There is a splitter at this index
@@ -85,7 +85,7 @@ We zip the `row` with its index and then filter it with two conditions :
 The function returns the list of indices as we don't need anything else.
 
 ```scala
-private def findSplitIndices(row: Array[Char], beamIndices: Set[Int]): List[Int] =
+private def findSplitIndices(row: String, beamIndices: Set[Int]): List[Int] =
   row
     .zipWithIndex
     .filter: (location, i) =>
@@ -207,12 +207,12 @@ val updatedBeamTimelines =
 ## Final code
 
 ```scala
-type Manifold = Array[Array[Char]]
+type Manifold = Array[String]
 
 private def parse(input: String): Manifold =
-  input.split("\n").map(_.toArray)
+  input.split("\n")
 
-private def findSplitIndices(row: Array[Char], beamIndices: Set[Int]): List[Int] =
+private def findSplitIndices(row: String, beamIndices: Set[Int]): List[Int] =
   row
     .zipWithIndex
     .filter: (location, i) =>
