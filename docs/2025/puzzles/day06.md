@@ -15,6 +15,7 @@ https://adventofcode.com/2025/day/6
 - [Solution](https://github.com/rmarbeck/advent2025/blob/main/day06/src/main/scala/Solution.scala) by [Raphaël Marbeck](https://github.com/rmarbeck)
 - [Solution](https://github.com/henryk-cesnolovic/advent-of-code-2025/blob/main/d6/solution.scala) by [Henryk Česnolovič](https://github.com/henryk-cesnolovic)
 - [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2025/Day06.scala) by [Philippus Baalman](https://github.com/philippus)
+- [Solution](https://github.com/YannMoisan/advent-of-code/blob/master/2025/src/main/scala/Day6.scala) by [Yann Moisan](https://github.com/YannMoisan)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [Go here to volunteer](https://github.com/scalacenter/scala-advent-of-code/discussions/842)
