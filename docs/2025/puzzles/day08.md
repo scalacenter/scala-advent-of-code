@@ -8,6 +8,7 @@ https://adventofcode.com/2025/day/8
 
 ## Solutions from the community
 
+- [Solution](https://github.com/merlinorg/advent-of-code/blob/main/src/main/scala/year2025/day08.scala) by [merlinorg](https://github.com/merlinorg)
 - [Solution](https://github.com/rmarbeck/advent2025/blob/main/day08/src/main/scala/Solution.scala) by [Raphaël Marbeck](https://github.com/rmarbeck)
 - [Solution](https://github.com/henryk-cesnolovic/advent-of-code-2025/blob/main/d8/solution.scala) by [Henryk Česnolovič](https://github.com/henryk-cesnolovic)
 - [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2025/Day08.scala) by [Philippus Baalman](https://github.com/philippus)
