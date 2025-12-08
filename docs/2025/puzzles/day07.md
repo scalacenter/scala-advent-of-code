@@ -10,6 +10,7 @@ https://adventofcode.com/2025/day/7
 - [Solution](https://github.com/rmarbeck/advent2025/blob/main/day07/src/main/scala/Solution.scala) by [Raphaël Marbeck](https://github.com/rmarbeck)
 
 - [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2025/Day07.scala) by [Philippus Baalman](https://github.com/philippus)
+- [Solution](https://github.com/YannMoisan/advent-of-code/blob/master/2025/src/main/scala/Day7.scala) by [Yann Moisan](https://github.com/YannMoisan)
 
 - [Solution](https://github.com/Jannyboy11/AdventOfCode2025/blob/master/src/main/scala/day07/Day07.scala) by [Jan Boerman](https://x.com/JanBoerman95)
 
