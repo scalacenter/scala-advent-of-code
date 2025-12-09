@@ -124,7 +124,7 @@ def findReflectionWithSmudge(pattern: Pattern): Option[Int] =
 - [Solution](https://github.com/spamegg1/advent-of-code-2023-scala/blob/solutions/13.worksheet.sc#L156) by [Spamegg](https://github.com/spamegg1)
 - [Solution](https://github.com/xRuiAlves/advent-of-code-2023/blob/main/Day13.scala) by [Rui Alves](https://github.com/xRuiAlves/)
 - [Solution](https://github.com/jnclt/adventofcode2023/blob/main/day13/point-of-incidence.sc) by [jnclt](https://github.com/jnclt)
-- [Solution](https://github.com/merlinorg/aoc2023/blob/main/src/main/scala/Day13.scala) by [merlin](https://github.com/merlinorg/)
+- [Solution](https://github.com/merlinorg/advent-of-code/blob/main/src/main/scala/year2023/day13.scala) by [merlin](https://github.com/merlinorg/)
 - [Solution](https://github.com/GrigoriiBerezin/advent_code_2023/tree/master/task13/src/main/scala) by [g.berezin](https://github.com/GrigoriiBerezin)
 - [Solution](https://github.com/bishabosha/advent-of-code-2023/blob/main/2023-day13.scala) by [Jamie Thompson](https://github.com/bishabosha)
 - [Solution](https://github.com/AvaPL/Advent-of-Code-2023/tree/main/src/main/scala/day13) by [Paweł Cembaluk](https://github.com/AvaPL)
