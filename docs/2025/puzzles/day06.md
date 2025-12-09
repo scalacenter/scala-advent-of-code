@@ -202,7 +202,7 @@ Reusing the `calculate` extension method from part 1, we can now finish part 2:
 
 ```scala
 def part2(input: String): Long =
-  val lines = input.linesIterator
+  val lines = input.linesIterator.toVector
   val ops = lines.last.split(raw"\s+").iterator
   val xss = lines.init.transpose.map(_.mkString.trim).splitBy("")
 
