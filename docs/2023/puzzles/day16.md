@@ -474,7 +474,7 @@ def part2(input: String) =
 - [Solution](https://github.com/spamegg1/advent-of-code-2023-scala/blob/solutions/16.worksheet.sc#L131) by [Spamegg](https://github.com/spamegg1/)
 - [Solution](https://github.com/beneyal/aoc-2023/blob/main/src/main/scala/day16.scala) by [Ben Eyal](https://github.com/beneyal/)
 - [Solution](https://github.com/xRuiAlves/advent-of-code-2023/blob/main/Day16.scala) by [Rui Alves](https://github.com/xRuiAlves/)
-- [Solution](https://github.com/merlinorg/aoc2023/blob/main/src/main/scala/Day16.scala) by [merlin](https://github.com/merlinorg/)
+- [Solution](https://github.com/merlinorg/advent-of-code/blob/main/src/main/scala/year2023/day16.scala) by [merlin](https://github.com/merlinorg/)
 - [Solution](https://github.com/GrigoriiBerezin/advent_code_2023/tree/master/task15/src/main/scala) by [g.berezin](https://github.com/GrigoriiBerezin)
 - [Solution](https://github.com/bishabosha/advent-of-code-2023/blob/main/2023-day16.scala) by [Jamie Thompson](https://github.com/bishabosha)
 - [Solution](https://github.com/AvaPL/Advent-of-Code-2023/tree/main/src/main/scala/day16) by [Paweł Cembaluk](https://github.com/AvaPL)
