@@ -324,7 +324,7 @@ def search(next: StateTransform)(using Grid): Int =
 ## Solutions from the community
 
 - [Solution](https://github.com/stewSquared/advent-of-code/blob/master/src/main/scala/2023/Day17.worksheet.sc) by [stewSquared](https://github.com/stewSquared)
-- [Solution](https://github.com/merlinorg/aoc2023/blob/main/src/main/scala/Day17.scala) by [merlin](https://github.com/merlinorg/)
+- [Solution](https://github.com/merlinorg/advent-of-code/blob/main/src/main/scala/year2023/day17.scala) by [merlin](https://github.com/merlinorg/)
 - [Solution](https://github.com/xRuiAlves/advent-of-code-2023/blob/main/Day17.scala) by [Rui Alves](https://github.com/xRuiAlves/)
 - [Solution](https://github.com/bishabosha/advent-of-code-2023/blob/main/2023-day17.scala) by [Jamie Thompson](https://github.com/bishabosha)
 - [Solution](https://github.com/AvaPL/Advent-of-Code-2023/tree/main/src/main/scala/day17) by [Paweł Cembaluk](https://github.com/AvaPL)

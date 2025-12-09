@@ -134,7 +134,7 @@ def part2(input: String): String =
 
 ## Solutions from the community
 
-- [Solution](https://github.com/merlinorg/aoc2023/blob/main/src/main/scala/Day18.scala) by [merlin](https://github.com/merlinorg/)
+- [Solution](https://github.com/merlinorg/advent-of-code/blob/main/src/main/scala/year2023/day18.scala) by [merlin](https://github.com/merlinorg/)
 - [Solution](https://github.com/spamegg1/advent-of-code-2023-scala/blob/solutions/18.worksheet.sc#L101) by [Spamegg](https://github.com/spamegg1/)
 - [Solution](https://github.com/xRuiAlves/advent-of-code-2023/blob/main/Day18.scala) by [Rui Alves](https://github.com/xRuiAlves/)
 - [Solution](https://github.com/GrigoriiBerezin/advent_code_2023/tree/master/task18/src/main/scala) by [g.berezin](https://github.com/GrigoriiBerezin)
