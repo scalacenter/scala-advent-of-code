@@ -131,6 +131,7 @@ def part2(input: String): Long = process(12)(input)
 - [Solution](https://github.com/Jannyboy11/AdventOfCode2025/blob/master/src/main/scala/day03/Day03.scala) by [Jan Boerman](https://x.com/JanBoerman95)
 - [Solution](https://codeberg.org/nichobi/adventofcode/src/branch/main/2025/03/solution.scala) by [nichobi](https://codeberg.org/nichobi)
 - [Solution](https://github.com/guycastle/advent_of_code/blob/main/src/main/scala/aoc2025/day03/DayThree.scala) by [Guillaume Vandecasteele](https://github.com/guycastle)
+- [Solution](https://github.com/counter2015/aoc2025/blob/master/src/main/scala/aoc2025/Day03.scala) by [counter2015](https://github.com/counter2015)
 - [Writeup](https://thedrawingcoder-gamer.github.io/aoc-writeups/2025/day03.html) by [Bulby](https://github.com/TheDrawingCoder-Gamer)
 
 Share your solution to the Scala community by editing this page.
