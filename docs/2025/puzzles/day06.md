@@ -65,8 +65,8 @@ Now it's a matter of processing each column, which is fairly straightforward.
 Let's define an [extension method](https://docs.scala-lang.org/scala3/reference/contextual/extension-methods.html) to improve readability.
 
 ```scala
-extension (xs: IterableOnce[(symbol: String, nums: IterableOnce[String])])
-  inline def calculate: Long = xs.iterator.collect {
+extension (xs: Iterator[(symbol: String, nums: IterableOnce[String])])
+  def calculate: Long = xs.iterator.collect {
     case ("*", nums) => nums.iterator.map(_.toLong).product
     case ("+", nums) => nums.iterator.map(_.toLong).sum
   }.sum
@@ -119,7 +119,7 @@ Which is exactly what we need to calculate cephalopod math!
 ```scala
 def part2(input: String) =
   val lines = input.linesIterator.toVector // get list of lines
-  val ops = lines.last.split(raw"\s+").toVector // we'll use them later
+  val ops = lines.last.split(raw"\s+").iterator // we'll use them later
   lines
     .init // transposing requires all rows to be of equal length, so remove symbols from last line for simplicity
     .transpose
@@ -148,7 +148,7 @@ Now we can easily convert each column into cephalopod number strings:
 ```scala
 def part2(input: String) =
   val lines = input.linesIterator.toVector // get list of lines
-  val ops = lines.last.split(raw"\s+").toVector // we'll use them later
+  val ops = lines.last.split(raw"\s+").iterator // we'll use them later
   lines.init.transpose.map(_.mkString.trim)
 
 // Vector(
@@ -187,7 +187,7 @@ extension [A](xs: IterableOnce[A])
 ```scala
 def part2(input: String) =
   val lines = input.linesIterator.toVector // get list of lines
-  val ops = lines.last.split(raw"\s+").toVector // we'll use them later
+  val ops = lines.last.split(raw"\s+").iterator // we'll use them later
   lines.init.transpose.map(_.mkString.trim).splitBy("")
 
 // Vector(
@@ -202,12 +202,11 @@ Reusing the `calculate` extension method from part 1, we can now finish part 2:
 
 ```scala
 def part2(input: String): Long =
-  val lines = input.linesIterator.toVector
-  val ops = lines.last.split(raw"\s+").toVector
+  val lines = input.linesIterator
+  val ops = lines.last.split(raw"\s+").iterator
   val xss = lines.init.transpose.map(_.mkString.trim).splitBy("")
 
-  (ops lazyZip xss) // zip the operations with the chunks, lazily for efficiency
-    .calculate
+  (ops zip xss).calculate // zip the operations with the chunks
 ```
 
 ## Final Code
@@ -220,8 +219,8 @@ extension [A](xs: IterableOnce[A])
       if e != sep then cur += e else { b += cur.result(); cur.clear() }
     (b += cur.result()).result()
 
-extension (xs: IterableOnce[(symbol: String, nums: IterableOnce[String])])
-  inline def calculate: Long = xs.iterator.collect {
+extension (xs: Iterator[(symbol: String, nums: IterableOnce[String])])
+  def calculate: Long = xs.iterator.collect {
     case ("*", nums) => nums.iterator.map(_.toLong).product
     case ("+", nums) => nums.iterator.map(_.toLong).sum
   }.sum
@@ -235,10 +234,10 @@ def part1(input: String): Long = input.linesIterator.toVector
 
 def part2(input: String): Long =
   val lines = input.linesIterator.toVector
-  val ops = lines.last.split(raw"\s+").toVector
+  val ops = lines.last.split(raw"\s+").iterator
   val xss = lines.init.transpose.map(_.mkString.trim).splitBy("")
 
-  (ops lazyZip xss).calculate
+  (ops zip xss).calculate
 ```
 
 ## Solutions from the community
