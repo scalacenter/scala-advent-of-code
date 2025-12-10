@@ -14,7 +14,7 @@ def loadInput(): String = loadFileSync(s"$currentDir/../input/day08")
 /**************/
 
 /** A junction box in 3D space with an associated circuit ID. */
-class Box(val x: Long, val y: Long, val z: Long, var circuit: Int):
+case class Box(val x: Long, val y: Long, val z: Long, var circuit: Int):
   def distanceSquare(other: Box): Long =
     (x - other.x) * (x - other.x) + (y - other.y) * (y - other.y) + (z - other.z) * (z - other.z)
 
