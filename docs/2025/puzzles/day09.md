@@ -10,11 +10,11 @@ https://adventofcode.com/2025/day/9
 
 ## Solution Summary
 
-We use rectangle representations and search over all possible rectangles for the maximum, filtering for part 2 by checking interesections with boundary lines.
+We use rectangle representations and search over all possible rectangles for the maximum, filtering for part 2 by checking intersections with boundary lines.
 
 ### Part 1
 
-For Part 1, it suffices to calculate the area for all possible rectangles, but modelling this nicely will help with Part 2, so we'll take advantage of some of the tools Scala gives us. We'll use case classes for `Point` and `Area`. An Area is a set representing a rectangular grid of points -- the 3D analog of a [`Range`](https://www.scala-lang.org/api/current/scala/collection/immutable/Range.html). Like a Range, it can function as a virtual collection.
+For Part 1, it suffices to calculate the area for all possible rectangles, but modelling this nicely will help with Part 2, so we'll take advantage of some of the tools Scala gives us. We'll use case classes for `Point` and `Area`. An Area is a set representing a rectangular grid of points -- the 2D analog of a [`Range`](https://www.scala-lang.org/api/current/scala/collection/immutable/Range.html). Like a Range, it can function as a virtual collection.
 
 An Area can be determined by two bounding corner points, or by the four bounding side locations. Here, we choose to represent it as the product of two ranges:
 
@@ -124,7 +124,7 @@ A point can be determined to be inside or outside the boundary in linear time by
 
 The number of checks can be reduced by using edge compression on the coordinates, so that entire rectangles of tiles that have no overlaps with any red tile coordinate can have their color determined at the same time. Alternatively, one could optimize by using a disjoint set data structure. The `Area` type above can be used like a set with O(1) set membership, and the full set of green tiles could be represented by a collection of these.
 
-Any alternative approaches take significantly more work, however. [@merlinorg](https://github.com/merlinorg/) has provided [an example](https://github.com/merlinorg/advent-of-code/blob/44a80dd81d54cea13255e4013ad28cf18fbfbb8e/src/main/scala/year2025/day09alt.scala) that fully handles all edge cases.
+Any alternative approaches take significantly more work, however. [@merlinorg](https://github.com/merlinorg/) has provided [an example](https://github.com/merlinorg/advent-of-code/blob/44a80dd81d54cea13255e4013ad28cf18fbfbb8e/src/main/scala/year2025/day09alt.scala) that handles more, but still not all, edge cases.
 
 ## Final Code
 
