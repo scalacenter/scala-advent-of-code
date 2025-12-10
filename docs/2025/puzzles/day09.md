@@ -126,6 +126,61 @@ The number of checks can be reduced by using edge compression on the coordinates
 
 Any alternative approaches take significantly more work, however. [@merlinorg](https://github.com/merlinorg/) has provided [an example](https://github.com/merlinorg/advent-of-code/blob/44a80dd81d54cea13255e4013ad28cf18fbfbb8e/src/main/scala/year2025/day09alt.scala) that fully handles all edge cases.
 
+## Final Code
+
+```scala
+case class Point(x: Int, y: Int)
+
+case class Area(xRange: Range, yRange: Range):
+  def size: Long = xRange.size.toLong * yRange.size.toLong
+  def inner: Area =
+    Area(
+      xRange = xRange.drop(1).dropRight(1),
+      yRange = yRange.drop(1).dropRight(1)
+    )
+
+  def intersects(a: Area): Boolean =
+    xRange.intersects(a.xRange) && yRange.intersects(a.yRange)
+
+extension (r: Range) def intersects(s: Range): Boolean =
+  r.nonEmpty && s.nonEmpty &&
+    (s.contains(r.min) ||  r.contains(s.min))
+
+object Area:
+  def bounding(p: Point, q: Point): Area =
+    val dx = q.x - p.x
+    val dy = q.y - p.y
+    apply(
+      xRange = p.x to q.x by (if dx == 0 then 1 else dx.sign),
+      yRange = p.y to q.y by (if dy == 0 then 1 else dy.sign)
+    )
+
+
+def part1(input: String): Long =
+  val tiles = input.collect:
+    case s"$x,$y" => Point(x.toInt, y.toInt)
+
+  val rectangles = tiles.combinations(2).collect:
+    case Seq(p, q) => Area(p, q)
+  .toList
+
+  rectangles.map(_.size).max
+
+
+val part2(input: String): Long =
+  val tiles = input.collect:
+    case s"$x,$y" => Point(x.toInt, y.toInt)
+
+  val rectangles = tiles.combinations(2).collect:
+    case Seq(p, q) => Area(p, q)
+  .toList
+
+  def allGreen(a: Area): Boolean =
+    !lines.exists(_.intersects(a.inner))
+
+  rectangles.filter(allGreen).map(_.size).max
+```
+
 ## Solutions from the community
 
 - [Solution](https://github.com/stewSquared/advent-of-code/blob/master/src/main/scala/2025/Day09.worksheet.sc) by [Stewart Stewart](https://github.com/stewSquared)
