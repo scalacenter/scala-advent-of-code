@@ -175,6 +175,9 @@ val part2(input: String): Long =
     case Seq(p, q) => Area(p, q)
   .toList
 
+  val lines = tiles.zip(tiles.last :: tiles).map:
+    case (p, q) => Area.bounding(p, q)
+
   def allGreen(a: Area): Boolean =
     !lines.exists(_.intersects(a.inner))
 
