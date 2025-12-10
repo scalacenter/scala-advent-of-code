@@ -39,7 +39,7 @@ Now we can parse our tiles into `Point`s and construct our rectangular `Area`s. 
 val tiles = input.collect:
   case s"$x,$y" => Point(x.toInt, y.toInt)
 
-val rects = tiles.combinations(2).collect:
+val rectangles = tiles.combinations(2).collect:
   case Seq(p, q) => Area(p, q)
 .toList
 ```
@@ -54,7 +54,7 @@ The final missing detail is the computation of the size of a rectangle. While ou
 From here, we can compute our answer to part 1:
 
 ```scala
-val ans1 = rects.map(_.size).max
+val ans1 = rectangles.map(_.size).max
 ```
 
 ### Part 2
@@ -107,7 +107,7 @@ def allGreen(a: Area): Boolean =
 And our part 2 solution only needs to add this as a filter:
 
 ```scala
-val ans2 = rects.filter(allGreen).map(_.size).max
+val ans2 = rectangles.filter(allGreen).map(_.size).max
 ```
 
 ### Edge Cases that don't need to be handled
@@ -116,17 +116,15 @@ The shape of the input data is largely a circle, with a single rectangular incur
 
 First, when we check that a rectangle doesn't intersect any boundaries, that does not actually tell us the rectangle is fully green. It tells us that the rectangle is either fully inside or outside of the circle. Because of the shape of the input, the largest non-intersected rectangle will always be fully contained.
 
-Second, boundaries can intersect our rectangle without diminishing the number of green tiles. (example pending)
+Second, boundaries can intersect our rectangle without diminishing the number of green tiles, as long as it's directly adjacent to another boundary.
 
-## Alternative approaches:
+## Alternatives and Optimizations
 
-### even-odd counting
+A point can be determined to be inside or outside the boundary in linear time by counting the number of lines between the edge of the grid and the point. An odd number of boundary crossings means the tile is green. This can then be used to test every point inside a candidate rectangle and would detect the edge cases missed above.
 
-TODO
+The number of checks can be reduced by using edge compression on the coordinates, so that entire rectangles of tiles that have no overlaps with any red tile coordinate can have their color determined at the same time. Alternatively, one could optimize by using a disjoint set data structure. The `Area` type above can be used like a set with O(1) set membership, and the full set of green tiles could be represented by a collection of these.
 
-### disjoint set data structure
-
-TODO
+Any alternative approaches take significantly more work, however. [@merlinorg](https://github.com/merlinorg/) has provided [an example](https://github.com/merlinorg/advent-of-code/blob/44a80dd81d54cea13255e4013ad28cf18fbfbb8e/src/main/scala/year2025/day09alt.scala) that fully handles all edge cases.
 
 ## Solutions from the community
 
