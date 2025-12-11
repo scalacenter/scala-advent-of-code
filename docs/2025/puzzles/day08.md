@@ -102,9 +102,9 @@ On my machine, both parts run in under two seconds, which is acceptable for this
 
 What we implemented is essentially the [Euclidean minimum spanning tree (EMST)](https://en.wikipedia.org/wiki/Euclidean_minimum_spanning_tree) computed via [Kruskal’s algorithm](https://en.wikipedia.org/wiki/Kruskal%27s_algorithm), after generating all pairwise distances.
 
-This algorithm is normally paired with a [union–find](https://en.wikipedia.org/wiki/Disjoint-set_data_structure) structure to maintain connected components efficiently. Using it would speed up our current `merge` step, which is (O(n)) per merge, and reduce it to near-constant time.
+This algorithm is normally paired with a [union–find](https://en.wikipedia.org/wiki/Disjoint-set_data_structure) structure to maintain connected components efficiently. Using it would speed up our current `merge` step, which is $\mathcal{O}(n)$ per merge, and reduce it to near-constant time.
 
-We could also improve how we find the (k) closest pairs. Computing all pairs and sorting them has (O(n^2 log n)) complexity. A spatial index such as a [k-d tree](https://en.wikipedia.org/wiki/K-d_tree) would avoid generating all pairs and, in the average case, remove the quadratic blow-up. Another option is to restrict candidates to a geometric graph such as the [relative neighborhood graph](https://en.wikipedia.org/wiki/Relative_neighborhood_graph) or the 3D [Delaunay triangulation](https://en.wikipedia.org/wiki/Delaunay_triangulation), both of which contain the EMST and are much sparser than the complete graph.
+We could also improve how we find the $k$ closest pairs. Computing all pairs and sorting them has $\mathcal{O}(n^2 \log n)$ complexity. A spatial index such as a [k-d tree](https://en.wikipedia.org/wiki/K-d_tree) would avoid generating all pairs and, in the average case, remove the quadratic blow-up. Another option is to restrict candidates to a geometric graph such as the [relative neighborhood graph](https://en.wikipedia.org/wiki/Relative_neighborhood_graph) or the 3D [Delaunay triangulation](https://en.wikipedia.org/wiki/Delaunay_triangulation), both of which contain the EMST and are much sparser than the complete graph.
 
 ## Final Code
 
