@@ -59,7 +59,7 @@ such minima, typically with a short-cut exit, but can have significant
 (memory usage). In this case, we want to traverse all paths, so depth-first
 is more appropriate, having _O(log(N))_ space complexity.
 
-To count the paths will will use a recursive loop:
+To count the paths we will use a recursive loop:
 
 - The number of paths from **B** to **B** is 1.
 - The number of paths from **A** to **B** is equal to the sum of the
