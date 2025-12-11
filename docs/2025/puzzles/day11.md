@@ -106,7 +106,7 @@ observation:
   from **B** to **C**, then there are **n**×**m** paths from
   **A** to **C**.
 
-To solve the problem, we then need just to consider two routes
+To solve the problem, we then just need to consider two routes
 through the system:
 
 - **svr** →⋯→ **fft** →⋯→ **dac** →⋯→ **out**
