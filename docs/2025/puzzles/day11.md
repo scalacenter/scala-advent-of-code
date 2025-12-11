@@ -11,7 +11,7 @@ https://adventofcode.com/2025/day/11
 ## Solution Summary
 
 We use a simple recursive algorithm to count the number of paths in
-part 1. We add memoisation to make part 2 tractable.
+part 1. We add memoization to make part 2 tractable.
 
 ### Part 1
 
@@ -151,10 +151,10 @@ then the number of paths we have to traverse will grow exponentially.
 We did not encounter this in part 1 because the problem was constructed
 such that there was no exponential growth from that other starting point.
 
-#### Memoisation
+#### Memoization
 
 The solution to this problem is
-[memoisation](https://en.wikipedia.org/wiki/Memoization). In the problem
+[memoization](https://en.wikipedia.org/wiki/Memoization). In the problem
 described just above, when we are counting the number of paths from **B**, we
 have to count number of paths from **D** and **E**. When we are then looking
 at **C**, we have already calculated the results for **D** and **E**
@@ -197,7 +197,7 @@ present in the map.
 
 With this enhancement, the computation completes in moments and the
 result is very large – almost a quadrillion in my case. Without
-memoisation, the universe would be a distant memory before the initial
+memoization, the universe would be a distant memory before the initial
 solution would complete.
 
 ## On Mutability
@@ -220,41 +220,41 @@ output of type `Result` (`Long` in this case), and is called with an
 initial value (`from`). As part of its operation, it needs to be able
 to recursively call itself.
 
-Consider now the following `memoised` function signature: It has the same two
+Consider now the following `memoized` function signature: It has the same two
 type parameters, `A` and `Result`, an initial value `init`,
 and a function from `A` to `Result` – but this function has a second
 parameter, a function from `A` to `Result` (the recursion call) –
 and it returns a value of type `Result`.
 
 ```scala 3
-def memoised[A, Result](init: A)(f: (A, A => Result) => Result): Result
+def memoized[A, Result](init: A)(f: (A, A => Result) => Result): Result
 ```
 
 With something like this, we can rewrite `countPaths` just so:
 
 ```scala 3
   def countPaths(from: String, to: String): Long =
-    memoised[Result = Long](from): (loc, loop) =>
+    memoized[Result = Long](from): (loc, loop) =>
       if loc == to then 1L else adjacency(loc).map(loop).sum
 ```
 
-If you squint, this is now almost identical to the non-memoised
+If you squint, this is now almost identical to the non-memoized
 code. Our shameful mutability is hidden.
 
 This uses [named type arguments](https://docs.scala-lang.org/scala3/reference/experimental/named-typeargs.html),
 an experimental language feature that lets us avoid specifying
 both types. In this case, the result type can't be automatically inferred.
 
-And what does `memoised` look like? It creates a `Function1`
+And what does `memoized` look like? It creates a `Function1`
 class that encapsulates the memo and allows the recursive function
 to be called, like the [Y combinator](https://en.wikipedia.org/wiki/Fixed-point_combinator#Y_combinator).
 
 ```scala 3
-def memoised[A, Result](init: A)(f: (A, A => Result) => Result): Result =
-  class Memoise extends (A => B):
+def memoized[A, Result](init: A)(f: (A, A => Result) => Result): Result =
+  class Memoize extends (A => B):
     val memo = mutable.Map.empty[A, B]
     def apply(a: A): B = memo.getOrElseUpdate(a, f(a, this))
-  Memoise()(init)
+  Memoize()(init)
 ```
 
 ## Final Code
@@ -280,14 +280,14 @@ import scala.language.experimental.namedTypeArguments
 
 extension (adjacency: AdjacencyList)
   def countPaths(from: String, to: String): Long =
-    memoised[Result = Long](from): (loc, loop) =>
+    memoized[Result = Long](from): (loc, loop) =>
       if loc == to then 1L else adjacency(loc).map(loop).sum
 
-def memoised[A, Result](init: A)(f: (A, A => Result) => Result): Result =
-  class Memoise extends (A => B):
+def memoized[A, Result](init: A)(f: (A, A => Result) => Result): Result =
+  class Memoize extends (A => B):
     val memo = mutable.Map.empty[A, B]
     def apply(a: A): B = memo.getOrElseUpdate(a, f(a, this))
-  Memoise()(init)
+  Memoize()(init)
 
 extension (self: String)
   def parse: AdjacencyList = self.linesIterator
