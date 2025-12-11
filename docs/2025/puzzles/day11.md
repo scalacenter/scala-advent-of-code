@@ -204,7 +204,7 @@ solution would complete.
 
 As someone (although apparently not on the Internet) once said:
 
-> “Abjure mutability”
+> “Abjure mutability, embrace purity and constancy”
 
 Mutability is absolutely necessary in order to efficiently solve
 many problems. But, like children, it is best kept in a small
