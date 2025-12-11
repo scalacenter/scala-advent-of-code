@@ -7,6 +7,7 @@ import Solver from "../../../../../website/src/components/Solver.js"
 https://adventofcode.com/2025/day/11
 
 ## Solutions from the community
+- [Solution](https://codeberg.org/nichobi/adventofcode/src/branch/main/2025/11/solution.scala) by [nichobi](https://nichobi.com)
 
 - [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2025/Day11.scala) by [Philippus Baalman](https://github.com/philippus)
 
