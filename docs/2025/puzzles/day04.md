@@ -71,7 +71,7 @@ def countAdjacentRolls(grid: Array[Array[Char]], pos: (x: Int, y: Int)): Int =
 To count all the accessible rolls of paper, all the positions in the grid containing a roll (@) should be checked for
 the amount of adjacent rolls. Using calls to the `indices` method of the array the positions are generated. If a
 position contains a roll and the amount of adjacent rolls for that position is less than 4 it gets counted towards the
-total sum. The `countAccessibleRoll` method looks like this:
+total sum. The `countAccessibleRolls` method looks like this:
 
 ```scala
 def countAccessibleRolls(grid: Array[Array[Char]]): Int =
