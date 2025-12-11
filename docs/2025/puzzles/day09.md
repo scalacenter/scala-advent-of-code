@@ -122,7 +122,7 @@ Second, boundaries can intersect our rectangle without diminishing the number of
 
 A point can be determined to be inside or outside the boundary in linear time by counting the number of lines between the edge of the grid and the point. An odd number of boundary crossings means the tile is green. This can then be used to test every point inside a candidate rectangle and would detect the edge cases missed above.
 
-The number of checks can be reduced by using edge compression on the coordinates, so that entire rectangles of tiles that have no overlaps with any red tile coordinate can have their color determined at the same time. Alternatively, one could optimize by using a disjoint set data structure. The `Area` type above can be used like a set with O(1) set membership, and the full set of green tiles could be represented by a collection of these.
+The number of checks can be reduced by using edge compression on the coordinates, so that entire rectangles of tiles that have no overlaps with any red tile coordinate can have their color determined at the same time. This can be used enable a fast flood fill approach which would avoid the edge cases above. Similarly, one could optimize by using a disjoint set data structure. The `Area` type above can be used like a set with O(1) set membership, and the full set of green tiles could be represented by a collection of these.
 
 Any alternative approaches take significantly more work, however. [@merlinorg](https://github.com/merlinorg/) has provided [an example](https://github.com/merlinorg/advent-of-code/blob/44a80dd81d54cea13255e4013ad28cf18fbfbb8e/src/main/scala/year2025/day09alt.scala) that handles more, but still not all, edge cases.
 
