@@ -2,6 +2,8 @@ import Solver from "../../../../../website/src/components/Solver.js"
 
 # Day 12: Christmas Tree Farm
 
+by [@natsukagami](https://github.com/natsukagami)
+
 ## Puzzle description
 
 https://adventofcode.com/2025/day/12
