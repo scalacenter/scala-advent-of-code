@@ -130,6 +130,7 @@ Thanks to the [Scala.js](https://www.scala-js.org/) build, you can also experime
 - [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2025/Day08.scala) by [Philippus Baalman](https://github.com/philippus)
 - [Solution](https://github.com/aamiguet/advent-2025/blob/main/src/main/scala/ch/aamiguet/advent2025/Day08.scala) by [Antoine Amiguet](https://github.com/aamiguet)
 - [Solution](https://codeberg.org/nichobi/adventofcode/src/branch/main/2025/08/solution.scala) by [nichobi](https://nichobi.com)
+- [Solution](https://github.com/AvaPL/Advent-of-Code-2025/tree/main/src/main/scala/day8) by [Paweł Cembaluk](https://github.com/AvaPL)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [Go here to volunteer](https://github.com/scalacenter/scala-advent-of-code/discussions/842)
