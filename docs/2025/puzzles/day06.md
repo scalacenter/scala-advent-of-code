@@ -251,6 +251,7 @@ def part2(input: String): Long =
 - [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2025/Day06.scala) by [Philippus Baalman](https://github.com/philippus)
 - [Solution](https://github.com/YannMoisan/advent-of-code/blob/master/2025/src/main/scala/Day6.scala) by [Yann Moisan](https://github.com/YannMoisan)
 - [Solution](https://github.com/counter2015/aoc2025/blob/master/src/main/scala/aoc2025/Day06.scala) by [counter2015](https://github.com/counter2015)
+- [Solution](https://github.com/AvaPL/Advent-of-Code-2025/tree/main/src/main/scala/day6) by [Paweł Cembaluk](https://github.com/AvaPL)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [Go here to volunteer](https://github.com/scalacenter/scala-advent-of-code/discussions/842)

@@ -191,6 +191,7 @@ val part2(input: String): Long =
 
 - [Solution](https://github.com/stewSquared/advent-of-code/blob/master/src/main/scala/2025/Day09.worksheet.sc) by [Stewart Stewart](https://github.com/stewSquared)
 - [Live solve recording](https://www.youtube.com/live/59KJcRlxvEE?t=2645s) by [Stewart Stewart](https://youtube.com/@stewSquared)
+- [Solution (part 1)](https://github.com/AvaPL/Advent-of-Code-2025/tree/main/src/main/scala/day9) by [Paweł Cembaluk](https://github.com/AvaPL)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [Go here to volunteer](https://github.com/scalacenter/scala-advent-of-code/discussions/842)
