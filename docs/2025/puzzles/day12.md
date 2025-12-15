@@ -224,7 +224,7 @@ solver
     // we can now draw shapes in toFill down!
 ```
 
-So, how does this fair?
+So, how does this fare?
 
 Well, Z3 can solve the example... (that the trivial code cannot)
 
