@@ -131,6 +131,7 @@ Thanks to the [Scala.js](https://www.scala-js.org/) build, you can also experime
 - [Solution](https://github.com/aamiguet/advent-2025/blob/main/src/main/scala/ch/aamiguet/advent2025/Day08.scala) by [Antoine Amiguet](https://github.com/aamiguet)
 - [Solution](https://codeberg.org/nichobi/adventofcode/src/branch/main/2025/08/solution.scala) by [nichobi](https://nichobi.com)
 - [Solution](https://github.com/AvaPL/Advent-of-Code-2025/tree/main/src/main/scala/day8) by [Paweł Cembaluk](https://github.com/AvaPL)
+- [Solution](https://github.com/counter2015/aoc2025/blob/master/src/main/scala/aoc2025/Day08.scala) by [counter2015](https://github.com/counter2015)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [Go here to volunteer](https://github.com/scalacenter/scala-advent-of-code/discussions/842)
