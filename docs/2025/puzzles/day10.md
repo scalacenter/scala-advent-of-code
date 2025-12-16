@@ -10,9 +10,9 @@ https://adventofcode.com/2025/day/10
 
 The input includes multiple lines, each of them can be handled independently, the result is the sum from the output of each scenario.
 
-For part 1, I applied the [Breadth-first Search](https://en.wikipedia.org/wiki/Breadth-first_search) algorithm (BFS), BFS allows finding the shorest-path from a state to another when every transition has the same cost, this was quicky to implement and produced the correct output.
+For part 1, I applied the [Breadth-first Search](https://en.wikipedia.org/wiki/Breadth-first_search) algorithm (BFS), BFS allows finding the shortest-path from a state to another when every transition has the same cost, this was quick to implement and produced the correct output.
 
-For part 2, BFS wasn't adequate due to the number of potential states, there is an alternative [Divide-and-conquer](https://en.wikipedia.org/wiki/Divide-and-conquer_algorithm) approach which is fast enough.
+For part 2, BFS wasn't adequate due to the number of potential states, there is an alternative Reduce-and-conquer approach (a variation of [Divide-and-conquer](https://en.wikipedia.org/wiki/Divide-and-conquer_algorithm)) which is fast enough.
 
 
 ## Parsing the input
@@ -98,7 +98,7 @@ def loop(queue: Queue[State], touched: Set[String], inputCase: InputCase): Optio
 }
 ```
 
-The final piece is just wiring the existing functionaly to cover each scenario and sum the results:
+The final piece is just wiring the existing functionality to cover each scenario and sum the results:
 
 ```scala
 def part1(input: String): Unit = {
@@ -132,7 +132,7 @@ There are potential alternatives to deal with this but given the input size, the
 
 ## Part 2
 
-My initial reaction was that resolving this might be trivial to do by reusing the BFS implementation while by changing a few operations:
+My initial reaction was that resolving this might be trivial to do by reusing the BFS implementation by changing a few operations:
 
 - State is now the joltage.
 - Instead of going from the empty state to the goal, let's go from the given joltage to `0` values.
@@ -189,9 +189,9 @@ index 21ccc48..b98c9e4 100644
      }
 ```
 
-This resolved the example input but was too slow with the actual test scenarios, I tried a few heuristics to trim unnecessary paths, tried `DFS` with prunning, `A*`, and, I was close to implement a [bidirectional BFS](https://en.wikipedia.org/wiki/Bidirectional_search).
+This resolved the example input but it was too slow with the actual test scenarios, I tried a few heuristics to trim unnecessary paths, I also tried `DFS` with prunning, `A*`, and, I was close to implement a [bidirectional BFS](https://en.wikipedia.org/wiki/Bidirectional_search).
 
-Eventually, I got an idea from [reddit](https://old.reddit.com/r/adventofcode/comments/1pk87hl/2025_day_10_part_2_bifurcate_your_way_to_victory/) about using a [Divide-and-conquer](https://en.wikipedia.org/wiki/Divide-and-conquer_algorithm) approach instead which goes like this, if the path from `0` to `T` takes `N` steps, the path from `0` to `2T` takes `2N` steps, with this:
+Eventually, I got an idea from [reddit](https://old.reddit.com/r/adventofcode/comments/1pk87hl/2025_day_10_part_2_bifurcate_your_way_to_victory/) about using the Reduce-and-conquer approach instead, it goes like this; if the path from `0` to `T` takes `N` steps, the path from `0` to `2T` takes `2N` steps, with this:
 
 - We can try to get convert the `joltage` into even numbers.
 - Resolve `joltage / 2`.
@@ -200,13 +200,13 @@ Eventually, I got an idea from [reddit](https://old.reddit.com/r/adventofcode/co
 
 **DISCLAIMER** I have no proof that this handles every possible scenario but with the test cases I prepared, the BFS result leads to the same from this, and, the result has been accepted by Advent of Code.
 
-Let's start by defining how to press the buttons to get `` from the alternatives to resolve part 1, I mentioned that applying a button more than once is not necessary because it invalidates the previous action, in this case with integer values, we can claim the same but it is not about the value itself but the parity.
+There is an important detail to resolve part 1, applying a button more than once does not make sense because it invalidates the previous action, in the case of part 2 which uses integer values, we can focus on the value parity instead, for this, the same statement holds, applying the same button twice invalidates the previous action.
 
-For example, applying a buton `0, 3` to joltages `3, 4, 5, 6` leads to joltates `2, 4, 4, 6` (all even) but applying the same button again will revert the parity back.
+For example, applying the button `0, 3` to joltages `3, 4, 5, 6` lead to `2, 4, 4, 6` (all even) but applying the same button again will revert the parity back.
 
-When all joltages are even (like `2, 4, 4, 6`), we can divide them by 2, leaving us with joltages `1, 2, 2, 3`, then, we apply the same process recursively.
+When all joltages are even (like `2, 4, 4, 6`), we can divide each value by 2, leaving us with `1, 2, 2, 3`, then, we can apply the same process recursively.
 
-Having said this, let's generate all possible transitions given the available buttons, this is, all subsets from the given buttons, leveraging the powerful Scala stdlib, we can call the `Set#subsets` function:
+Having said this, let's generate all possible transitions from the available buttons, this is, all [subsets](https://en.wikipedia.org/wiki/Subset) from the given buttons, leveraging the powerful Scala stdlib, we can call the `Set#subsets` function:
 
 ```scala
 scala> List(1, 2, 3).toSet.subsets.foreach(println)
