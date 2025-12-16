@@ -236,5 +236,7 @@ But no luck for any tests in the actual input :( So yes, it was fun, but we stil
 - [Solution](https://github.com/Philippus/adventofcode/blob/main/src/main/scala/adventofcode2025/Day12.scala) by [Philippus Baalman](https://github.com/philippus)
 - [Solution](https://github.com/AvaPL/Advent-of-Code-2025/tree/main/src/main/scala/day12) by [Paweł Cembaluk](https://github.com/AvaPL)
 
+- [Solution](https://gist.github.com/AlexITC/aa893a5a32d01f4e59c0adbd0732c8c9) by [Alexis Hernandez](https://github.com/AlexITC)
+
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [Go here to volunteer](https://github.com/scalacenter/scala-advent-of-code/discussions/842)
