@@ -272,6 +272,7 @@ override def part2(input: String): Long =
 - [Solution](https://github.com/Jannyboy11/AdventOfCode2025/blob/master/src/main/scala/day07/Day07.scala) by [Jan Boerman](https://x.com/JanBoerman95)
 - [Solution](https://github.com/aamiguet/advent-2025/blob/main/src/main/scala/ch/aamiguet/advent2025/Day07.scala) by [Antoine Amiguet](https://github.com/aamiguet)
 - [Solution](https://github.com/AvaPL/Advent-of-Code-2025/tree/main/src/main/scala/day7) by [Paweł Cembaluk](https://github.com/AvaPL)
+- [Solution](https://github.com/counter2015/aoc2025/blob/master/src/main/scala/aoc2025/Day07.scala) by [counter2015](https://github.com/counter2015)
 
 Share your solution to the Scala community by editing this page.
 You can even write the whole article! [Go here to volunteer](https://github.com/scalacenter/scala-advent-of-code/discussions/842)
